@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWA 103: Global Political Economy - Spring 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #c17817;
+            --text: #2a2a2a;
+            --light-bg: #fdfbf7;
+            --border: #e0ddd5;
+            --hover: #f5f3ed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .course-meta {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-top: 1rem;
+        }
+
+        .course-meta div {
+            margin: 0.3rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 2px solid var(--border);
+            z-index: 100;
+            margin-bottom: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        nav li {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background: var(--hover);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: white;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .info-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Assignments table */
+        .assignments {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .assignment-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .assignment-item:last-child {
+            border-bottom: none;
+        }
+
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .assignment-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .assignment-weight {
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Schedule */
+        .week {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .week-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .class-day {
+            margin: 1rem 0;
+            padding-left: 1rem;
+        }
+
+        .class-day strong {
+            color: var(--accent);
+        }
+
+        /* Links */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                min-width: 100%;
+            }
+
+            .assignment-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Global Political Economy</h1>
+            <div class="course-meta">
+                <div><strong>DWA 103</strong> | Diplomacy and World Affairs</div>
+                <div>Occidental College | Spring 2026</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#info">Course Info</a></li>
+                <li><a href="#description">Description</a></li>
+                <li><a href="#assignments">Assignments</a></li>
+                <li><a href="#policies">Policies</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="info">
+            <h2>Course Information</h2>
+            
+            <div class="info-box">
+                <strong>Sections</strong>
+                Section 1: T/Th 1:30-2:55 PM | Johnson 302<br>
+                Section 2: T/Th 10:05-11:30 AM | Mosher 2
+            </div>
+
+            <div class="info-box">
+                <strong>Instructor: Professor Igor Logvinenko</strong>
+                Email: ilogvinenko@oxy.edu<br>
+                Office: 210 Johnson Hall<br>
+                Zoom: <a href="https://occidental.zoom.us/j/6119692775" target="_blank">occidental.zoom.us/j/6119692775</a>
+            </div>
+
+            <div class="info-box">
+                <strong>Office Hours</strong>
+                Zoom: Wednesdays Noon-1:30 PM<br>
+                In-person: Thursdays 11:30 AM - 1 PM<br>
+                <em>All office hours by appointment. Sign up at least 24 hours in advance.</em>
+            </div>
+        </section>
+
+        <section id="description">
+            <h2>Course Description</h2>
+            
+            <p>This is an undergraduate survey of the field of Global Political Economy (GPE). It is required for Diplomacy and World Affairs majors and most of the students enrolled are DWA majors. It is intended for students who already have some background in the field of International Relations and Economics and are interested in exploring major theoretical, empirical and policy perspectives on GPE.</p>
+
+            <p>The first part of the course will cover foundational theories of global political economy. The goal is to understand how theory is framed, how it "works," and to understand what its potential inferences for practice might be. The second part of the course delves into globalization as a field of study, building on the foundations laid in the first part of the course, focusing on trade, finance and economic development.</p>
+
+            <p>During the second half of the semester students also write a literature review project on a topic of their choice. Examples include: China-US rivalry; global kleptocracy; the green/circular economy; gender and the global economy; corporate citizenship and responsibility; rise of populism/authoritarianism; sustainable development goals (SDGs); social/economic rights and more.</p>
+
+            <div class="info-box">
+                <strong>Course Workload</strong>
+                This is a 4-unit course. Students are expected to devote at least twelve (12) hours per week on average, including in-class time.
+            </div>
+
+            <h3>Course Objectives</h3>
+            <p>By the end of the course, you will:</p>
+            <ol>
+                <li>Become familiar with the main debates in the field of global political economy</li>
+                <li>Be able to summarize and evaluate cutting-edge work in the literature</li>
+                <li>Be able to deploy research skills (locate relevant sources, evaluate their relevance, properly cite them, produce a research design, identify data sources) to advance your own research</li>
+                <li>Write a research paper of significant length using theses, organization, arguments, evidence, and language suitable to the social sciences</li>
+            </ol>
+
+            <h3>Required Text</h3>
+            <p><strong>The Contested World Economy: The Deep and Global Roots of International Political Economy</strong> by Eric Helleiner (referred to as CWE)</p>
+            <p>Available at the bookstore or online (as rental, ebook, or hardcopy). Additional readings will be linked on the course page or provided electronically.</p>
+        </section>
+
+        <section id="assignments">
+            <h2>Assignments & Grading</h2>
+
+            <div class="assignments">
+                <div class="assignment-item">
+                    <div class="assignment-header">
+                        <div class="assignment-title">1. Reading Journal</div>
+                        <div class="assignment-weight">20%</div>
+                    </div>
+                    <p>Weekly discussion questions as either <strong>Connector</strong> or <strong>Applier</strong> (alternating roles), plus in-class writing exercises and notes on campus lectures. 300-500 words per week. Due on the last day of class.</p>
+                    
+                    <h4 style="margin-top: 1rem; color: var(--primary);">Connector Role</h4>
+                    <p>Connect current week's material to prior weeks' readings. Must reference specific passages. End with a discussion question.</p>
+                    
+                    <h4 style="margin-top: 1rem; color: var(--primary);">Applier Role</h4>
+                    <p>Apply the week's material to real-world events (contemporary or historical) from reputable outlets. Explain why and how the material applies.</p>
+                </div>
+
+                <div class="assignment-item">
+                    <div class="assignment-header">
+                        <div class="assignment-title">2. Economic Indicator Assignment</div>
+                        <div class="assignment-weight">20%</div>
+                    </div>
+                    <p>Pick an economic indicator and analyze its history and contemporary significance. Output can be traditional paper, infographic, digital story-telling, or podcast.</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Email indicator choice by March 7</li>
+                        <li>In-class workshop March 19</li>
+                        <li>Presentations on March 21</li>
+                        <li>Submit project by March 22 at 11:59 PM</li>
+                    </ul>
+                </div>
+
+                <div class="assignment-item">
+                    <div class="assignment-header">
+                        <div class="assignment-title">3. Literature Review</div>
+                        <div class="assignment-weight">40%</div>
+                    </div>
+                    <p>An extensive review of literature on a GPE topic of your choice. You can expand on a topic we cover or pick your own (after consulting with me).</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Description & Annotated Bibliography (10%)</li>
+                        <li>Short Presentation (10%)</li>
+                        <li>Final Draft (20%)</li>
+                    </ul>
+                </div>
+
+                <div class="assignment-item">
+                    <div class="assignment-header">
+                        <div class="assignment-title">4. Participation</div>
+                        <div class="assignment-weight">20%</div>
+                    </div>
+                    <p>Quality and consistency of your preparation for and participation in class discussions. This includes attendance, engagement, and contributing to intellectual discussion.</p>
+                </div>
+            </div>
+
+            <h3>Grade Distribution</h3>
+            <div class="info-box">
+                A: 92.5-100 | A-: 90-92.5 | B+: 87.5-90 | B: 82.5-87.5 | B-: 80-82.5
+            </div>
+        </section>
+
+        <section id="policies">
+            <h2>Course Policies</h2>
+
+            <h3>Late Assignments & Flexibility</h3>
+            <p>You have a <strong>48-hour grace period</strong> to turn in assignments after the deadline, no questions asked. For every 24-hour period after the grace period, one letter grade will be deducted (A→B→C, etc.). This policy does NOT apply to the final draft of the literature review.</p>
+
+            <h3>Communication</h3>
+            <p>I will reply to emails within 24 hours (48 hours on weekends). If you don't hear from me, please follow up. You can sign up for office hours or ask questions during class.</p>
+
+            <h3>Use of Generative AI</h3>
+            <p>I believe in students becoming adept with tools like ChatGPT while understanding their limitations. We will dedicate time to explore generative AI tools. You may find it valuable for refining and clarifying your learning and writing, though verifying AI outputs can be time-consuming.</p>
+
+            <h3>Laptop/Smartphone Use Policy</h3>
+            <p>Laptops and smartphones may not be used during lectures (except with accommodations or prior approval). Lecture slides will be available before and after class. Please take notes using traditional notepads during lectures. Bring your laptop for discussions and writing exercises.</p>
+
+            <h3>Academic Integrity</h3>
+            <p>Students must comply with the Student Handbook, particularly the section on Academic Ethics. Whenever outside sources are used, they must be properly credited.</p>
+
+            <h3>Student Support Services</h3>
+            <ul>
+                <li>The Writing Center</li>
+                <li>Center for Digital Liberal Arts</li>
+                <li>Language Accommodations/Learning Differences</li>
+                <li>Student Health/Emmons</li>
+                <li>Office of Religious and Spiritual Life</li>
+                <li>Title IX Resources</li>
+                <li>Intercultural Community Center</li>
+            </ul>
+        </section>
+
+        <section id="schedule">
+            <h2>Course Schedule</h2>
+
+            <div class="week">
+                <div class="week-title">Week 1: Introductions (Jan 20-22)</div>
+                <div class="class-day">
+                    <strong>TUE, JAN 20:</strong> Introductions and Course Logistics
+                </div>
+                <div class="class-day">
+                    <strong>THU, JAN 22:</strong> Contesting Globalization<br>
+                    Readings: CWE Ch. 1 (pp. 1-16), Frieden (pp. 1-27), Keohane & Nye
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 2rem 0 1rem;">PART I: THEORETICAL PERSPECTIVES ON GPE</h3>
+
+            <div class="week">
+                <div class="week-title">Week 2: Liberalisms (Jan 27-29)</div>
+                <div class="class-day">
+                    Readings: CWE Chs. 2-3 (pp. 19-55), Lake (2009), Aggarval & Dupont<br>
+                    <em>Group Discussions on Thursday</em>
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 3: Political Economy and Security (Feb 3-5)</div>
+                <div class="class-day">
+                    Readings: CWE Ch. 4, Drezner (2010), Kirshner (2009), Hirschman (1980)
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 4: Ideas and Identity - Constructivisms (Feb 10-12)</div>
+                <div class="class-day">
+                    <strong>NO CLASS TUESDAY</strong> - Discussions ready for Thursday<br>
+                    Readings: CWE Chs. 8-13 (pick one chapter), Abdelal (2009), Nelson (2014), Tickner (2004)<br>
+                    Watch: Shilliam lecture on Race, Colonialism, and Global Economy
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 5: Global Capitalism as Social Structure - Marxism (Feb 17-19)</div>
+                <div class="class-day">
+                    Readings: CWE Chs. 6-7 (pp. 87-122), Wallerstein (2013), Przeworski (2020)
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 2rem 0 1rem;">PART II: SELECT ISSUE AREAS IN GPE</h3>
+
+            <div class="week">
+                <div class="week-title">Week 6: Trade (Feb 24-26)</div>
+                <div class="class-day">
+                    Readings: "Why Trade Is Good for You" (Economist), Rodrik (2012), Milner (1999)
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 7: Global Finance (Mar 3-5)</div>
+                <div class="class-day">
+                    Readings: Bhagwati (1998), Wolf (2019), Kirshner (2003), Oatley et al. (2013)<br>
+                    <em>Discussion questions on Thursday</em>
+                </div>
+            </div>
+
+            <div class="info-box" style="text-align: center; font-size: 1.2rem; margin: 2rem 0;">
+                <strong>🌴 SPRING BREAK - Week of March 9 🌴</strong>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 8: Economic Indicator Week (Mar 17-19)</div>
+                <div class="class-day">
+                    <strong>TUE:</strong> Workshop<br>
+                    <strong>THU:</strong> Presentations<br>
+                    <strong>FRI:</strong> Submit assignment
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 9: Writing Project Workshop (Mar 24-26)</div>
+                <div class="class-day">
+                    <strong>TUE:</strong> Literature Review Workshop<br>
+                    <strong>THU:</strong> Guest lecture - Ambassador Derek Shearer on "Reflections on Globalization after the Cold War"
+                </div>
+            </div>
+
+            <div class="info-box" style="background: #fff3cd; border-left-color: #f0ad4e;">
+                <strong>FRI, MARCH 27:</strong> Day Trip to the Port of LA (meet at 7:15 AM) - TO BE CONFIRMED
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 10: Global Energy System Transformation (Mar 31 - Apr 2)</div>
+                <div class="class-day">
+                    <strong>NO CLASS THURSDAY</strong> (Prof. at WPSA Conference)<br>
+                    Readings: Scholten, Clabough, Singh (2023)
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 11: Global Economic Development (Apr 7-9)</div>
+                <div class="class-day">
+                    Readings: Olson (1993), Basu (2006), Stiglitz (2008)<br>
+                    <em>Group Discussions on Thursday</em>
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 12: Global Capitalism, Democracy and Dictatorship (Apr 14-16)</div>
+                <div class="class-day">
+                    Readings: Friedman (Capitalism and Freedom Ch. 1), Krugman (1994), Rodrik, Ansell & Samuels (2010)<br>
+                    <em>Group Discussions on Thursday</em>
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 13: Founder's Day - NO CLASS (Apr 21)</div>
+            </div>
+
+            <div class="week">
+                <div class="week-title">Week 14: Student Presentations (Apr 23, 28)</div>
+            </div>
+
+            <div class="info-box" style="background: #f8d7da; border-left-color: #dc3545;">
+                <strong>FINAL PAPER DUE: Friday, May 8th at 11:59 PM</strong><br>
+                NO 48-hour extension possible for final paper
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--primary); color: white; padding: 2rem 0; margin-top: 4rem; text-align: center;">
+        <div class="container">
+            <p>DWA 103: Global Political Economy | Occidental College | Spring 2026</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Professor Igor Logvinenko | ilogvinenko@oxy.edu</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Highlight active nav section on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.borderBottomColor = 'transparent';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.borderBottomColor = 'var(--accent)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
