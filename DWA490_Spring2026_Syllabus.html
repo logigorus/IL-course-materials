@@ -439,6 +439,69 @@
             margin-bottom: 0;
         }
 
+        /* Foldable/Collapsible Elements */
+        details.foldable {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        details.foldable summary {
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s ease;
+        }
+
+        details.foldable summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.foldable summary::after {
+            content: "▸";
+            margin-left: auto;
+            transition: transform 0.2s ease;
+            color: var(--oxy-orange);
+        }
+
+        details.foldable[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        details.foldable summary:hover {
+            background: var(--bg-cream);
+        }
+
+        .foldable-content {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .foldable-content p {
+            margin-bottom: 1rem;
+        }
+
+        .foldable-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .foldable-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .foldable-content li {
+            margin-bottom: 0.5rem;
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -511,6 +574,7 @@
             <a href="#honors">Honors</a>
             <a href="#resources">Resources</a>
             <a href="#writing">Writing System</a>
+            <a href="#ai-policy">AI Policy</a>
         </div>
     </nav>
 
@@ -521,19 +585,18 @@
         <div class="info-cards">
             <div class="info-card">
                 <h3>📍 Instructor</h3>
-                <p><strong>[Instructor Name]</strong></p>
-                <p>Email: <a href="mailto:instructor@oxy.edu">instructor@oxy.edu</a></p>
-                <p>Office: [Office Location]</p>
+                <p><strong>Igor Logvinenko</strong></p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#1a7376757d6c73747f7471755a756263347f7e6f"><span class="__cf_email__" data-cfemail="d4bdb8bbb3a2bdbab1babfbb94bbacadfab1b0a1">[email&#160;protected]</span></a></p>
+                <p>Office: Johnson 210</p>
             </div>
             <div class="info-card">
                 <h3>🕐 Office Hours</h3>
                 <p>Tuesdays 3:15–4:40 PM</p>
                 <p><em>Reserved for comps meetings</em></p>
-                <a href="#" class="btn">Book Office Hours</a>
+                <a href="https://calendar.app.google/kyoVTsKh2LJnJkfaA" class="btn" target="_blank">Book Office Hours</a>
             </div>
             <div class="info-card">
                 <h3>📚 Course Links</h3>
-                <p><a href="#">Canvas Course Page</a></p>
                 <p><a href="https://drive.google.com/drive/folders/1AhlLK80nc9-SbTFDNMdhDojv4S4q4qn4?usp=sharing">Example Theses (Recent)</a></p>
                 <p><a href="https://scholar.oxy.edu/handle/20.500.12711/159">Oxy Scholar Archive</a></p>
             </div>
@@ -586,12 +649,12 @@
                         <td>—</td>
                     </tr>
                     <tr class="deadline-row">
-                        <td><strong>Tue, Feb 3</strong></td>
+                        <td><strong>Thu, Feb 5</strong></td>
                         <td>📌 Extensive Outline Due</td>
-                        <td><strong>15%</strong></td>
+                        <td><strong>10%</strong></td>
                     </tr>
                     <tr class="deadline-row">
-                        <td><strong>Tue, Mar 3</strong></td>
+                        <td><strong>Thu, Mar 5</strong></td>
                         <td>📌 Rough Draft Due</td>
                         <td><strong>15%</strong></td>
                     </tr>
@@ -633,7 +696,7 @@
                     <div class="grade-label">Fall Proposal</div>
                 </div>
                 <div class="grade-item">
-                    <div class="grade-percent">15%</div>
+                    <div class="grade-percent">10%</div>
                     <div class="grade-label">Extensive Outline</div>
                 </div>
                 <div class="grade-item">
@@ -643,6 +706,10 @@
                 <div class="grade-item major">
                     <div class="grade-percent">60%</div>
                     <div class="grade-label">Final Draft</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percent">5%</div>
+                    <div class="grade-label">Peer Review</div>
                 </div>
                 <div class="grade-item">
                     <div class="grade-percent">5%</div>
@@ -660,6 +727,15 @@
                 <li>Research question</li>
                 <li>Annotated bibliography</li>
                 <li>Methodology / case selection</li>
+            </ul>
+
+            <h3>Rough Draft Components</h3>
+            <ul>
+                <li>Introduction with thesis statement</li>
+                <li>Literature review</li>
+                <li>Methodology section</li>
+                <li>Case study analysis (preliminary)</li>
+                <li>Tentative conclusions</li>
             </ul>
 
             <h3>Two-Grade System</h3>
@@ -689,19 +765,19 @@
                         <td><span class="week-num">1</span></td>
                         <td>Tue, Jan 20</td>
                         <td><span class="topic-title">Joint Session</span><br><span class="deliverable">Course overview, expectations, semester plan</span></td>
-                        <td>Submit revised thesis statement</td>
+                        <td>Revised thesis statement <em>(Thu 1/22)</em></td>
                     </tr>
                     <tr>
                         <td><span class="week-num">2</span></td>
                         <td>Tue, Jan 27</td>
                         <td><span class="topic-title">Variation, Variation, Variation</span><br><span class="deliverable">Research design fundamentals</span></td>
-                        <td>Submit annotated bibliography (10 sources)</td>
+                        <td>Email update to IL on changes to research plan <em>(Thu 1/29)</em></td>
                     </tr>
                     <tr class="deadline-row">
                         <td><span class="week-num">3</span></td>
                         <td>Tue, Feb 3</td>
                         <td><span class="topic-title">Case Selection &amp; Justification</span></td>
-                        <td class="major-deadline">📌 Extensive Outline Due (15%)</td>
+                        <td class="major-deadline">📌 Extensive Outline Due (10%) <em>(Thu 2/5)</em></td>
                     </tr>
                 </tbody>
             </table>
@@ -720,26 +796,26 @@
                     <tr>
                         <td><span class="week-num">4</span></td>
                         <td>Tue, Feb 10</td>
-                        <td><span class="topic-title"><em>No Class Meeting</em></span><br><span class="deliverable">Office hours available by appointment</span></td>
-                        <td>Peer review of outlines (Canvas)</td>
+                        <td><span class="topic-title"><em>Independent Writing &amp; Research Week</em></span><br><span class="deliverable">No class meeting — focus on case study research. Office hours available.</span></td>
+                        <td>—</td>
                     </tr>
                     <tr>
                         <td><span class="week-num">5</span></td>
                         <td>Tue, Feb 17</td>
-                        <td><span class="topic-title">Methodology Deep Dive</span><br><span class="deliverable">Methods, variables, frameworks</span></td>
-                        <td>Submit methodology section draft</td>
+                        <td><span class="topic-title">Literature Review</span><br><span class="deliverable">Synthesizing sources, identifying debates</span></td>
+                        <td>Literature review draft <em>(Tue 2/17)</em></td>
                     </tr>
                     <tr>
                         <td><span class="week-num">6</span></td>
                         <td>Tue, Feb 24</td>
-                        <td><span class="topic-title">Literature as Conversation</span><br><span class="deliverable">Synthesizing sources</span></td>
-                        <td>Submit literature review draft</td>
+                        <td><span class="topic-title"><em>Independent Writing &amp; Research Week</em></span><br><span class="deliverable">No class meeting — focus on drafting. Office hours available.</span></td>
+                        <td>—</td>
                     </tr>
                     <tr class="deadline-row">
                         <td><span class="week-num">7</span></td>
                         <td>Tue, Mar 3</td>
                         <td><span class="topic-title">Draft Workshop</span></td>
-                        <td class="major-deadline">📌 Rough Draft Due (15%)</td>
+                        <td class="major-deadline">📌 Rough Draft Due (15%) <em>(Thu 3/5)</em></td>
                     </tr>
                 </tbody>
             </table>
@@ -760,26 +836,26 @@
                     <tr>
                         <td><span class="week-num">9</span></td>
                         <td>Tue, Mar 17</td>
-                        <td><span class="topic-title">Feedback Triage</span><br><span class="deliverable">Prioritizing revisions</span></td>
-                        <td>Revision plan memo</td>
+                        <td><span class="topic-title"><em>Research Week</em></span><br><span class="deliverable">No class meeting — focus on writing and revision. Office hours available.</span></td>
+                        <td>—</td>
                     </tr>
                     <tr>
                         <td><span class="week-num">10</span></td>
                         <td>Tue, Mar 24</td>
-                        <td><span class="topic-title">Argument Architecture</span><br><span class="deliverable">Strengthening your thesis</span></td>
-                        <td>Submit revised introduction</td>
+                        <td><span class="topic-title">Research Design Check-In</span><br><span class="deliverable">Final research design justification, case selection questions</span></td>
+                        <td>Updated research design to IL <em>(optional, Thu 3/26)</em></td>
                     </tr>
                     <tr>
                         <td><span class="week-num">11</span></td>
                         <td>Tue, Mar 31</td>
-                        <td><span class="topic-title">Polish &amp; Precision</span><br><span class="deliverable">Line editing, citations, formatting</span></td>
-                        <td>Submit case study section draft</td>
+                        <td><span class="topic-title">Peer Review Day</span><br><span class="deliverable">Meet in class or coordinate with partner elsewhere</span></td>
+                        <td>2-page peer review (5%) <em>(Thu 4/2)</em></td>
                     </tr>
                     <tr>
                         <td><span class="week-num">12</span></td>
                         <td>Tue, Apr 7</td>
                         <td><span class="topic-title">Final Class Meeting</span><br><span class="deliverable">Last questions, final push strategies</span></td>
-                        <td>Complete peer review exchange</td>
+                        <td>Final revision plan <em>(Thu 4/9)</em></td>
                     </tr>
                 </tbody>
             </table>
@@ -856,9 +932,23 @@
         <!-- The Independent Nature -->
         <section class="section">
             <h2>The Independent Nature of Comps</h2>
-            <p>The Senior Comprehensive is an <strong>independent project</strong>. Your faculty supervisor is available to consult with you on all aspects, but this does not guarantee receiving 'Honors' or 'Distinction.'</p>
-            <p>Comps are not like other classes—it is similar to an independent study whereby faculty individually offer guidance on literature, structure, and analysis, but the product you are expected to produce is far more ambitious.</p>
-            <p>If your research topic falls outside the expertise of your DWA thesis supervisor, you must find a professor in another department to act as a second reader, critic, and judge.</p>
+            <p>Senior Comprehensives mark a fundamental shift in your relationship to academic work. In previous courses, faculty structured your learning: they assigned readings, set prompts, and guided you toward predetermined outcomes. Comps inverts this dynamic. <strong>You</strong> define the question. <strong>You</strong> design the research. <strong>You</strong> drive the project forward.</p>
+            
+            <p>Your faculty supervisor serves as a consultant and mentor—available to discuss ideas, suggest sources, and provide feedback on drafts. But they are not responsible for ensuring your success. There is no safety net of weekly assignments building toward a guaranteed result. The thesis you produce must be yours: conceived, researched, written, and defended by you.</p>
+
+            <div class="callout">
+                <p><strong>This is intentional.</strong> Comps simulates the conditions of professional intellectual work—where you must identify problems worth solving, marshal evidence, construct arguments, and deliver results without someone managing each step. The independence that feels uncomfortable now is precisely what employers, graduate programs, and colleagues will expect of you.</p>
+            </div>
+
+            <h3>What This Means in Practice</h3>
+            <ul>
+                <li><strong>Initiative is required.</strong> Don't wait for your supervisor to check in. Schedule meetings, come prepared with specific questions, and take ownership of the timeline.</li>
+                <li><strong>Feedback is guidance, not instruction.</strong> Your supervisor may suggest revisions, but you decide how to incorporate them. You are the author.</li>
+                <li><strong>Quality is your responsibility.</strong> Submitting drafts on schedule and following advice does not guarantee Honors or Distinction. The work must demonstrate genuine intellectual achievement.</li>
+                <li><strong>Expertise has limits.</strong> If your topic falls outside your supervisor's specialization, you must identify and consult with a second reader in another department.</li>
+            </ul>
+
+            <p>The students who thrive in comps are those who embrace this independence—who see the thesis not as an assignment to complete but as an opportunity to demonstrate what they're capable of producing on their own.</p>
         </section>
 
         <!-- Resources -->
@@ -879,25 +969,9 @@
 
             <h3>Writing Resources</h3>
             <div class="resources-grid">
-                <a href="https://owl.purdue.edu/owl/general_writing/the_writing_process/developing_an_outline/index.html" class="resource-link" target="_blank">
-                    <span class="resource-icon">📝</span>
-                    <span>Purdue OWL: Developing an Outline</span>
-                </a>
-                <a href="http://writing.colostate.edu/guides/researchsources/thesisstatement/" class="resource-link" target="_blank">
-                    <span class="resource-icon">💡</span>
-                    <span>Colorado State: Thesis Statements</span>
-                </a>
                 <a href="https://owl.purdue.edu/owl/general_writing/common_writing_assignments/research_papers/index.html" class="resource-link" target="_blank">
                     <span class="resource-icon">📄</span>
                     <span>Purdue OWL: Research Papers</span>
-                </a>
-                <a href="http://belfercenter.ksg.harvard.edu/publication/156/writing_for_international_security.html" class="resource-link" target="_blank">
-                    <span class="resource-icon">🌐</span>
-                    <span>Harvard: Writing for International Security</span>
-                </a>
-                <a href="https://owl.purdue.edu/owl/research_and_citation/conducting_research/research_overview/primary_research.html" class="resource-link" target="_blank">
-                    <span class="resource-icon">🔬</span>
-                    <span>Purdue OWL: Primary Research</span>
                 </a>
                 <a href="http://advice.writing.utoronto.ca/types-of-writing/literature-review/" class="resource-link" target="_blank">
                     <span class="resource-icon">📚</span>
@@ -907,9 +981,9 @@
                     <span class="resource-icon">✏️</span>
                     <span>UW-Madison: Quoting Sources</span>
                 </a>
-                <a href="https://owl.purdue.edu/owl/research_and_citation/conducting_research/evaluating_sources_of_information/index.html" class="resource-link" target="_blank">
-                    <span class="resource-icon">🔍</span>
-                    <span>Purdue OWL: Evaluating Sources</span>
+                <a href="http://belfercenter.ksg.harvard.edu/publication/156/writing_for_international_security.html" class="resource-link" target="_blank">
+                    <span class="resource-icon">🌐</span>
+                    <span>Harvard: Writing for International Security</span>
                 </a>
             </div>
 
@@ -960,6 +1034,53 @@
             </div>
         </section>
 
+        <!-- AI Policy -->
+        <section class="section" id="ai-policy">
+            <h2>AI Use Policy</h2>
+            <p>Artificial intelligence tools are rapidly transforming how knowledge work gets done. This policy is designed to help you develop the skills that will matter most in an AI-augmented professional environment.</p>
+
+            <details class="foldable">
+                <summary>💡 Why This Matters for Your Career</summary>
+                <div class="foldable-content">
+                    <p>In the workplace you're entering, AI will be ubiquitous. It can generate content, summarize research, draft memos, and produce polished prose on demand. This is already happening.</p>
+                    <p>But here's what AI cannot do: <strong>stand behind the work.</strong></p>
+                    <p>The skills that will differentiate you are <strong>judgment</strong>, <strong>taste</strong>, and <strong>accountability</strong>:</p>
+                    <ul>
+                        <li><strong>Judgment</strong> — Knowing what questions to ask, which sources to trust, when an argument is sound versus superficially convincing</li>
+                        <li><strong>Taste</strong> — Recognizing quality, originality, and what actually matters in a field of inquiry</li>
+                        <li><strong>Accountability</strong> — Being the person who can defend the work, explain the choices, and take responsibility for the conclusions</li>
+                    </ul>
+                    <p>Your Senior Comprehensive is where you develop these capacities. If AI writes your thesis, you graduate without them. The question isn't whether AI <em>can</em> produce content—it's whether <strong>you</strong> will be the person others trust to stand behind it.</p>
+                </div>
+            </details>
+
+            <h3>Where AI Cannot Be Used</h3>
+            <p>The following represent the core intellectual work of your thesis and must be entirely your own:</p>
+            <ul>
+                <li><strong>Writing thesis content</strong> — Your argument, analysis, and prose must reflect your own voice and thinking</li>
+                <li><strong>Developing your research question or thesis statement</strong> — This is your original intellectual contribution</li>
+                <li><strong>Literature review</strong> — You must actually read, interpret, and synthesize sources yourself</li>
+                <li><strong>Case study analysis</strong> — Original analytical work is the point of the exercise</li>
+                <li><strong>Drawing conclusions</strong> — Must flow from your own reasoning</li>
+                <li><strong>Peer review feedback</strong> — Giving meaningful critique is how you learn to assess your own work</li>
+            </ul>
+
+            <h3>Where AI May Be Used (With Disclosure)</h3>
+            <p>The following uses support but do not replace your intellectual work. If you use AI for any of these purposes, note it in your acknowledgments:</p>
+            <ul>
+                <li><strong>Grammar, spelling, proofreading</strong> — Similar to Grammarly or spell-check</li>
+                <li><strong>Citation formatting</strong> — Checking consistency (Chicago, APA, etc.)</li>
+                <li><strong>Explaining unfamiliar concepts</strong> — As a learning aid when encountering difficult theory (but you must then read primary sources)</li>
+                <li><strong>Brainstorming in early stages</strong> — Generating ideas to react against, not adopt wholesale</li>
+                <li><strong>Stress-testing arguments</strong> — Asking AI to identify weaknesses or counterarguments in your draft</li>
+                <li><strong>Translation assistance</strong> — For non-English sources</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>The Key Principle:</strong> If AI could have written it, it's not a Senior Comprehensive. The value of comps is demonstrating that <em>you</em> can produce independent scholarship. The struggle is the learning.</p>
+            </div>
+        </section>
+
         <!-- Academic Integrity -->
         <section class="section">
             <h2>Academic Integrity</h2>
@@ -990,8 +1111,4 @@
     <!-- Footer -->
     <footer class="footer">
         <p><em>Deadlines are a student's responsibility: we expect all deadlines to be met in a professional, independent manner.</em></p>
-        <p style="margin-top: 1rem;">DWA 490 · Spring 2026 · <a href="https://www.oxy.edu/academics/areas-study/diplomacy-world-affairs">Diplomacy &amp; World Affairs</a> · Occidental College</p>
-    </footer>
-
-</body>
-</html>
+        <p style="margin-top: 1rem;">DWA 490 · Spring 2026 · <a href="https://www.oxy.edu/aca
