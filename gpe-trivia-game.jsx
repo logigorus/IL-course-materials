@@ -1,0 +1,140 @@
+import { useState } from 'react';
+
+const questions = [
+  {
+    question: "Which institution was created at Bretton Woods in 1944?",
+    options: ["United Nations", "IMF", "WTO", "NATO"],
+    correct: 1
+  },
+  {
+    question: "Who wrote 'The Wealth of Nations'?",
+    options: ["Karl Marx", "John Maynard Keynes", "Adam Smith", "David Ricardo"],
+    correct: 2
+  },
+  {
+    question: "What does IPE stand for?",
+    options: ["International Policy Economics", "International Political Economy", "Internal Production Exchange", "Interstate Political Engagement"],
+    correct: 1
+  },
+  {
+    question: "Which perspective emphasizes the role of ideas and norms in shaping economic behavior?",
+    options: ["Realism", "Liberalism", "Constructivism", "Mercantilism"],
+    correct: 2
+  },
+  {
+    question: "The 'Washington Consensus' primarily promoted what type of policies?",
+    options: ["Protectionist", "Socialist", "Market liberalization", "Autarky"],
+    correct: 2
+  }
+];
+
+export default function GPETrivia() {
+  const [currentQ, setCurrentQ] = useState(0);
+  const [score, setScore] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [showResult, setShowResult] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+
+  const handleAnswer = (index) => {
+    if (selected !== null) return;
+    setSelected(index);
+    setShowResult(true);
+    if (index === questions[currentQ].correct) {
+      setScore(score + 1);
+    }
+  };
+
+  const nextQuestion = () => {
+    if (currentQ + 1 < questions.length) {
+      setCurrentQ(currentQ + 1);
+      setSelected(null);
+      setShowResult(false);
+    } else {
+      setGameOver(true);
+    }
+  };
+
+  const restart = () => {
+    setCurrentQ(0);
+    setScore(0);
+    setSelected(null);
+    setShowResult(false);
+    setGameOver(false);
+  };
+
+  if (gameOver) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+          <div className="text-6xl mb-4">🎓</div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">Game Over!</h2>
+          <p className="text-4xl font-bold text-amber-600 mb-4">{score} / {questions.length}</p>
+          <p className="text-slate-600 mb-6">
+            {score === questions.length ? "Perfect! You're a GPE expert!" :
+             score >= 3 ? "Great job! Keep studying!" :
+             "Keep learning, you'll get there!"}
+          </p>
+          <button
+            onClick={restart}
+            className="bg-slate-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-700 transition"
+          >
+            Play Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full">
+        <div className="flex justify-between items-center mb-6">
+          <span className="text-sm font-medium text-slate-500">
+            Question {currentQ + 1} of {questions.length}
+          </span>
+          <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-semibold">
+            Score: {score}
+          </span>
+        </div>
+        
+        <h2 className="text-xl font-bold text-slate-800 mb-6">
+          {questions[currentQ].question}
+        </h2>
+        
+        <div className="space-y-3">
+          {questions[currentQ].options.map((option, index) => {
+            let btnStyle = "bg-slate-100 hover:bg-slate-200 text-slate-800";
+            if (showResult) {
+              if (index === questions[currentQ].correct) {
+                btnStyle = "bg-green-500 text-white";
+              } else if (index === selected) {
+                btnStyle = "bg-red-500 text-white";
+              } else {
+                btnStyle = "bg-slate-100 text-slate-400";
+              }
+            }
+            return (
+              <button
+                key={index}
+                onClick={() => handleAnswer(index)}
+                disabled={showResult}
+                className={`w-full p-4 rounded-lg text-left font-medium transition ${btnStyle}`}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+        
+        {showResult && (
+          <button
+            onClick={nextQuestion}
+            className="w-full mt-6 bg-slate-800 text-white py-3 rounded-lg font-semibold hover:bg-slate-700 transition"
+          >
+            {currentQ + 1 < questions.length ? "Next Question →" : "See Results"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
