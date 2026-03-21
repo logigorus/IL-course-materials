@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Oxy Admissions SF — 3/21</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,system-ui,sans-serif;background:#111;color:#e8e6e0;padding:12px 16px 80px;font-size:15px;line-height:1.6;-webkit-text-size-adjust:100%}
+.hdr{padding:16px 0 12px;border-bottom:1px solid #333;margin-bottom:16px}
+.hdr h1{font-size:20px;font-weight:600;letter-spacing:-0.3px}
+.hdr p{font-size:12px;color:#888;margin-top:4px}
+.sec{border:1px solid #2a2a2a;border-radius:12px;margin-bottom:10px;overflow:hidden;background:#1a1a1a}
+.sec-head{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.sec-head:active{background:#222}
+.sec-num{font-size:11px;font-weight:700;color:#111;background:#f59e0b;border-radius:6px;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-size:15px;font-weight:600;flex:1}
+.sec-chev{color:#555;font-size:18px;transition:transform .2s;flex-shrink:0}
+.sec.open .sec-chev{transform:rotate(90deg)}
+.sec-body{display:none;padding:0 16px 16px;font-size:14px;line-height:1.65;color:#ccc}
+.sec.open .sec-body{display:block}
+.tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.tag-new{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
+.tag-quote{background:#3b82f622;color:#60a5fa;border:1px solid #3b82f644}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.stat{background:#222;border-radius:8px;padding:10px}
+.stat b{color:#f59e0b;font-size:15px}
+.stat span{display:block;font-size:12px;color:#999;margin-top:2px}
+h4{font-size:13px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px}
+.fund{border-left:2px solid #333;padding:6px 0 6px 12px;margin:6px 0}
+.fund strong{color:#60a5fa;font-size:13px}
+.fund p{font-size:13px;color:#999;margin-top:2px}
+.quote{border-left:2px solid #3b82f6;padding:8px 12px;margin:10px 0;font-style:italic;color:#a0a0a0;font-size:13px;background:#3b82f60a;border-radius:0 8px 8px 0}
+.kp{margin:8px 0}
+.kp strong{color:#e8e6e0}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #2a2a2a;padding:10px 16px;display:flex;gap:8px;z-index:10}
+.bottom-bar button{flex:1;padding:10px;border:1px solid #333;border-radius:8px;background:#1a1a1a;color:#ccc;font-size:13px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bottom-bar button:active{background:#333}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+<h1>Oxy Admissions — SF</h1>
+<p>March 21, 2026 · Igor Logvinenko · DWA · URC · Young Initiative</p>
+</div>
+
+<div class="sec open" id="s1">
+<div class="sec-head" onclick="toggle('s1')">
+<div class="sec-num">1</div>
+<div class="sec-title">Undergraduate Research Center</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="stat-grid">
+<div class="stat"><b>125+</b><span>students/summer</span></div>
+<div class="stat"><b>10 wks</b><span>full-time research</span></div>
+<div class="stat"><b>$6,000</b><span>stipend per fellow</span></div>
+<div class="stat"><b>All disciplines</b><span>STEM to humanities</span></div>
+</div>
+<h4>The pitch</h4>
+<div class="kp">At a research university, undergrads compete with grad students. At Oxy, <strong>you are the researcher</strong>. Started 1998 with 35 → now 125+. Students publish, win fellowships, arrive at grad programs with portfolios peers don't have until year 2 of PhD.</div>
+<div class="kp"><strong>Year-round:</strong> Academic-year grants + conference travel. Not just summer.</div>
+<div class="kp"><strong>REAP:</strong> Rising sophomores into Summer Research in sciences early.</div>
+</div>
+</div>
+
+<div class="sec" id="s2">
+<div class="sec-head" onclick="toggle('s2')">
+<div class="sec-num">2</div>
+<div class="sec-title">Research funding ecosystem</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<h4>URC = the hub</h4>
+<div class="kp">Not just summer — institutional engine for research. Three components:</div>
+<div class="kp"><strong>Summer:</strong> 125+ students, 10 weeks, paid, faculty-mentored</div>
+<div class="kp"><strong>Directed research:</strong> One-on-one with faculty during semester. Where thesis work begins. Pipeline to summer + post-Oxy.</div>
+<div class="kp"><strong>Year-round grants:</strong> Independent projects + conference travel</div>
+
+<h4>Cross-disciplinary</h4>
+<div class="kp">Chemistry student on batteries, English major on archives, Econ on trade data, DWA on energy transition — all presenting side by side. Liberal arts research.</div>
+
+<h4>Departmental funds</h4>
+<div class="fund"><strong>Politics — Anderson Fund</strong><p>Fieldwork, archives, conferences</p></div>
+<div class="fund"><strong>Economics — Schwartz Fund</strong><p>Independent research, professional dev</p></div>
+<div class="fund"><strong>DWA — Young Initiative</strong><p>Up to $3,500 summer/internships, $1,200 rolling travel, all majors</p></div>
+<div class="fund"><strong>Kahane UN Program</strong><p>Full semester NYC, up to 18 students/yr</p></div>
+<div class="fund"><strong>UEPI</strong><p>~40 students/summer, applied research in LA</p></div>
+
+<h4>The connective point</h4>
+<div class="kp">Climate student → DR in fall → URC summer → Young for intl fieldwork → UEPI for LA → UN semester. <strong>Layers across four years. URC is the hub.</strong></div>
+</div>
+</div>
+
+<div class="sec" id="s3">
+<div class="sec-head" onclick="toggle('s3')">
+<div class="sec-num">3</div>
+<div class="sec-title">DWA — the numbers</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="stat-grid">
+<div class="stat"><b>110–130</b><span>declared majors</span></div>
+<div class="stat"><b>9–11%</b><span>of all Oxy grads</span></div>
+<div class="stat"><b>8 faculty</b><span>up from 3 in 2004</span></div>
+<div class="stat"><b>36 courses</b><span>per year + UN semester</span></div>
+<div class="stat"><b>61.5%</b><span>alumni → postgrad</span></div>
+<div class="stat"><b>96%</b><span>skills satisfaction</span></div>
+</div>
+<div class="kp"><strong>IR major:</strong> Theory + policy + practice. 6 areas: diplomacy, identity, human rights, political economy, security, sustainability. Foreign language required.</div>
+<div class="kp"><strong>Diversity:</strong> International 17% (from 8%). Hispanic/Latinx 14%. 60% female — unusual in IR.</div>
+<div class="kp"><strong>DWA 103 (my course):</strong> States, markets, institutions — trade, finance, development, political fights underneath.</div>
+<div class="kp"><strong>Punching above our weight:</strong> Admissions key draw. $5.5M Kahane endowment. Graduates → govt, law, intl orgs, consulting, journalism, academia.</div>
+</div>
+</div>
+
+<div class="sec" id="s4">
+<div class="sec-head" onclick="toggle('s4')">
+<div class="sec-num">4</div>
+<div class="sec-title">Shearer Professorship ✦ NEW</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="tag tag-new">Recently announced</div>
+<div class="kp">New endowed Ambassador/Diplomat in Residence honoring Derek Shearer (Chevalier Prof, McKinnon Center director, 20+ yrs). Former U.S. Ambassador to Finland under Clinton.</div>
+<div class="kp"><strong>What it means:</strong> DWA will always have Ambassador/senior diplomat in residence. Students learn from practitioner at highest levels. Doors to internships, mentorship, foreign service.</div>
+<div class="kp"><strong>Network effect:</strong> Shearer linked students to Washington, UN, embassies worldwide. Professorship institutionalizes that. Direct line to foreign service — through a working relationship, not a career center.</div>
+<div class="kp"><strong>For parents:</strong> Very few undergrad programs have permanent Ambassador in Residence. Endowed = guaranteed. Students graduate with network most don't build until grad school.</div>
+</div>
+</div>
+
+<div class="sec" id="s5">
+<div class="sec-head" onclick="toggle('s5')">
+<div class="sec-num">5</div>
+<div class="sec-title">LA as classroom — Port + Mayor</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="tag tag-quote">Quotable moment</div>
+<div class="quote">"Next Friday, I'm taking my students to the Port of Long Beach. We're meeting with ILWU Local 13 — the dock workers' union — and seeing firsthand how global supply chains, labor politics, and environmental policy collide at the busiest port complex in the Western Hemisphere."</div>
+<div class="kp"><strong>What students see:</strong> Container ships from Asia. Automated cranes. Air quality monitors. Tariffs on the manifest. GPE on the ground.</div>
+<div class="kp"><strong>Labor:</strong> Local 13 — automation, trade disruptions, energy transition. People who literally move the global economy.</div>
+<div class="kp"><strong>Ecology:</strong> EJ ground zero in SoCal. Diesel, ship emissions, zero-emissions transition.</div>
+<div class="kp"><strong>Mayor's Office:</strong> Young Initiative + LA Mayor's Office → localizing UN SDGs. Global frameworks → city-level policy on climate, housing, inequality.</div>
+<div class="kp"><strong>For parents:</strong> Your child stands where 40% of US container imports arrive, talking to dock workers, environmentalists, policymakers.</div>
+</div>
+</div>
+
+<div class="sec" id="s6">
+<div class="sec-head" onclick="toggle('s6')">
+<div class="sec-num">6</div>
+<div class="sec-title">Kahane UN Program</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="stat-grid">
+<div class="stat"><b>18</b><span>students/semester NYC</span></div>
+<div class="stat"><b>400+</b><span>alumni since 1986</span></div>
+<div class="stat"><b>$5.5M</b><span>Kahane endowment</span></div>
+<div class="stat"><b>Only one</b><span>of its kind nationally</span></div>
+</div>
+<div class="kp">Full semester at UN — contributing, not observing. Two Oxy courses alongside.</div>
+<div class="kp"><strong>Recent:</strong> Student co-developed AI demo for UN mission. Another coordinated side events at 79th GA.</div>
+<div class="kp">25% of surveyed students named UN + Young as top highlights (unprompted).</div>
+<div class="kp">UN Week every spring → global leaders + alumni on campus.</div>
+</div>
+</div>
+
+<div class="sec" id="s7">
+<div class="sec-head" onclick="toggle('s7')">
+<div class="sec-num">7</div>
+<div class="sec-title">Young Initiative</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="kp">I'm stepping in to direct. Named after <strong>John Parke Young, Oxy Class of 1917</strong> — helped draft IMF + World Bank charters, attended UN founding conference <strong>in San Francisco in 1945</strong>.</div>
+<div class="kp">Student grants up to <strong>$3,500</strong> + rolling travel <strong>$1,200</strong> + open to all majors.</div>
+<div class="kp"><strong>$10,000</strong> doctoral fellowship annually → GPE research + mentorship to Oxy undergrads.</div>
+</div>
+</div>
+
+<div class="sec" id="s8">
+<div class="sec-head" onclick="toggle('s8')">
+<div class="sec-num">8</div>
+<div class="sec-title">Tying it together</div>
+<div class="sec-chev">›</div>
+</div>
+<div class="sec-body">
+<div class="kp"><strong>Institutional commitment:</strong> $5.5M Kahane. Young Initiative. Shearer Professorship. URC 125+/summer. Mayor's Office. Endowed — here for your child's 4 years and beyond.</div>
+<div class="kp"><strong>Two coasts, one education:</strong> DR in fall → Ambassador in Residence → UN in New York → funded summer research → Friday at Port of Long Beach with dock workers. No other LAC offers that range.</div>
+<div class="kp"><strong>Small-college difference:</strong> 8 faculty for 110–130 majors. 96% alumni skills. 60%+ grad school. 60% women, growing intl + Hispanic/Latinx. Shearer Professorship = permanent line to professional diplomacy.</div>
+</div>
+</div>
+
+<div class="bottom-bar">
+<button onclick="openAll()">Open all</button>
+<button onclick="closeAll()">Close all</button>
+</div>
+
+<script>
+function toggle(id){document.getElementById(id).classList.toggle('open')}
+function openAll(){document.querySelectorAll('.sec').forEach(s=>s.classList.add('open'))}
+function closeAll(){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('open'))}
+</script>
+</body>
+</html>
