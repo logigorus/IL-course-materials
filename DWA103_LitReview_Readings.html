@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature Review Reading List – DWA 103</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #c17817;
+            --text: #2a2a2a;
+            --light-bg: #fdfbf7;
+            --border: #e0ddd5;
+            --hover: #f5f3ed;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+
+        .course-meta {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.75rem;
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        p { margin-bottom: 1rem; }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        a:hover { border-bottom-color: var(--accent); }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .back-link:hover { opacity: 1; color: white; }
+
+        .info-box {
+            background: white;
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .info-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Topic cards */
+        .topic-card {
+            background: white;
+            border-radius: 8px;
+            margin: 1.75rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .topic-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .topic-header:hover {
+            background: #24456e;
+        }
+
+        .topic-number {
+            background: var(--accent);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .topic-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .topic-toggle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .topic-questions {
+            padding: 0 1.5rem;
+            background: #eef2f5;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topic-questions p {
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        .topic-questions p:last-child { margin-bottom: 0.75rem; }
+
+        .topic-body {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .reading-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0ede7;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .reading-item:last-child {
+            border-bottom: none;
+        }
+
+        .reading-number {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            min-width: 1.5rem;
+        }
+
+        .reading-item em {
+            color: #555;
+        }
+
+        .reading-item .pub-info {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Details/summary styling */
+        details summary {
+            list-style: none;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] .topic-toggle {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            h1 { font-size: 2rem; }
+            .topic-header { flex-wrap: wrap; }
+            .topic-title { font-size: 1.05rem; }
+        }
+
+        @media print {
+            details { open: true; }
+            details[open] summary ~ * { display: block !important; }
+            .topic-card { break-inside: avoid; }
+            header { padding: 1.5rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="DWA103.html" class="back-link">&#8592; Back to Syllabus</a>
+        <h1>Literature Review Reading List</h1>
+        <div class="course-meta">
+            <div><strong>DWA 103</strong> | Global Political Economy | Spring 2026</div>
+            <div>Key Empirical Papers by Topic</div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <section>
+        <h2>How to Use This List</h2>
+        <p>This reading list provides <strong>10 key empirical papers</strong> for each of the 10 literature review topics. These are starting points, not the full universe of work on each question. Use them to orient yourself, then follow citation trails in <a href="https://scholar.google.com" target="_blank">Google Scholar</a> to find additional sources.</p>
+
+        <div class="info-box">
+            <strong>Remember: Your Literature Review Has Two Parts</strong>
+            <p style="margin: 0.5rem 0 0 0;"><strong>Part I — Empirical Overview:</strong> Survey the key findings in your chosen area. What do scholars know? Where do they agree and disagree? These readings will help you map that terrain.</p>
+            <p style="margin: 0.5rem 0 0 0;"><strong>Part II — Theoretical Critique:</strong> Analyze the empirical literature through one GPE theoretical lens (Liberal, Neomercantilist/Realist, or Critical/Marxist). What does the theory reveal that the empirical work misses? What assumptions does it challenge? Draw on course readings and Helleiner for this section.</p>
+        </div>
+
+        <div class="info-box" style="background: #fff8e7; border-left-color: #c17817;">
+            <strong>&#9888;&#65039; These are suggestions, not requirements.</strong>
+            <p style="margin: 0;">You do not need to use all 10 readings listed for your topic. Your final bibliography should contain 8–10 sources that <em>you</em> have identified as most relevant to your specific research question. Some may come from this list; others you will find through your own Google Scholar research. The search process is part of the assignment.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Topics & Readings</h2>
+
+        <!-- TOPIC 1 -->
+        <details class="topic-card" open>
+            <summary class="topic-header">
+                <span class="topic-number">1</span>
+                <span class="topic-title">Global Inequality and Development</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Has economic globalization reduced global poverty while increasing within-country inequality?</p>
+                <p>&#8227; What does the empirical record say about the effectiveness of foreign aid in promoting economic development?</p>
+                <p>&#8227; Did the Washington Consensus policy package deliver on its promises, and what has replaced it?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Lakner, Christoph &amp; Branko Milanovic (2016). "Global Income Distribution: From the Fall of the Berlin Wall to the Great Recession." <span class="pub-info"><em>World Bank Economic Review</em></span> 30(2): 203–232.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Alvaredo, Facundo, Lucas Chancel, Thomas Piketty, Emmanuel Saez &amp; Gabriel Zucman (2018). "The Elephant Curve of Global Inequality and Growth." <span class="pub-info"><em>AEA Papers and Proceedings</em></span> 108: 103–108.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Milanovic, Branko (2024). "The Three Eras of Global Inequality, 1820–2020, with the Focus on the Past Thirty Years." <span class="pub-info"><em>World Development</em></span> 174: 106445.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Burnside, Craig &amp; David Dollar (2000). "Aid, Policies, and Growth." <span class="pub-info"><em>American Economic Review</em></span> 90(4): 847–868.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Easterly, William, Ross Levine &amp; David Roodman (2004). "New Data, New Doubts: A Comment on Burnside and Dollar's 'Aid, Policies, and Growth' (2000)." <span class="pub-info"><em>American Economic Review</em></span> 94(3): 774–780.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Acemoglu, Daron, Simon Johnson &amp; James A. Robinson (2001). "The Colonial Origins of Comparative Development: An Empirical Investigation." <span class="pub-info"><em>American Economic Review</em></span> 91(5): 1369–1401.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Dollar, David &amp; Aart Kraay (2004). "Trade, Growth, and Poverty." <span class="pub-info"><em>Economic Journal</em></span> 114(493): F22–F49.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Rodrik, Dani (2006). "Goodbye Washington Consensus, Hello Washington Confusion?" <span class="pub-info"><em>Journal of Economic Literature</em></span> 44(4): 973–987.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Deaton, Angus (2013). <em>The Great Escape: Health, Wealth, and the Origins of Inequality.</em> Princeton University Press. [Chapter 7]</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Bueno de Mesquita, Bruce &amp; Alastair Smith (2009). "A Political Economy of Aid." <span class="pub-info"><em>International Organization</em></span> 63(2): 309–340.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 2 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">2</span>
+                <span class="topic-title">International Trade and Tariffs</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Do the gains from trade outweigh the distributional costs, and for whom?</p>
+                <p>&#8227; Does the empirical evidence support infant industry protection or unilateral tariff escalation as effective development strategies?</p>
+                <p>&#8227; Has the "globalization backlash" produced measurable changes in trade and immigration policy?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Rodrik, Dani (2018). "What Do Trade Agreements Really Do?" <span class="pub-info"><em>Journal of Economic Perspectives</em></span> 32(2): 73–90.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Irwin, Douglas A. (2019). "Does Trade Reform Promote Economic Growth? A Review of Recent Evidence." <span class="pub-info"><em>Peterson Institute Working Paper</em></span> 19-9.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Frankel, Jeffrey A. &amp; David Romer (1999). "Does Trade Cause Growth?" <span class="pub-info"><em>American Economic Review</em></span> 89(3): 379–399.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Milner, Helen V. &amp; Keiko Kubota (2005). "Why the Move to Free Trade? Democracy and Trade Policy in the Developing Countries." <span class="pub-info"><em>International Organization</em></span> 59(1): 107–143.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Topalova, Petia (2010). "Factor Immobility and Regional Impacts of Trade Liberalization: Evidence on Poverty from India." <span class="pub-info"><em>American Economic Journal: Applied Economics</em></span> 2(4): 1–41.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Goldberg, Pinelopi K. &amp; Nina Pavcnik (2007). "Distributional Effects of Globalization in Developing Countries." <span class="pub-info"><em>Journal of Economic Literature</em></span> 45(1): 39–82.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Amiti, Mary, Stephen J. Redding &amp; David E. Weinstein (2019). "The Impact of the 2018 Tariffs on Prices and Welfare." <span class="pub-info"><em>Journal of Economic Perspectives</em></span> 33(4): 187–210.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Fajgelbaum, Pablo D., Pinelopi K. Goldberg, Patrick J. Kennedy &amp; Amit K. Khandelwal (2020). "The Return to Protectionism." <span class="pub-info"><em>Quarterly Journal of Economics</em></span> 135(1): 1–55.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Bagwell, Kyle &amp; Robert W. Staiger (1999). "An Economic Theory of GATT." <span class="pub-info"><em>American Economic Review</em></span> 89(1): 215–248.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Pierce, Justin R. &amp; Peter K. Schott (2016). "The Surprisingly Swift Decline of US Manufacturing Employment." <span class="pub-info"><em>American Economic Review</em></span> 106(7): 1632–1662.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 3 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">3</span>
+                <span class="topic-title">Economic Sanctions and Statecraft</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Under what conditions do economic sanctions achieve their stated foreign policy objectives?</p>
+                <p>&#8227; How effective have the post-2022 sanctions on Russia been in constraining its war economy?</p>
+                <p>&#8227; Is China's emerging countersanction regime fundamentally different from Western economic statecraft, or a mirror image of it?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Hufbauer, Gary Clyde, Jeffrey J. Schott, Kimberly Ann Elliott &amp; Barbara Oegg (2007). <em>Economic Sanctions Reconsidered,</em> 3rd ed. Peterson Institute for International Economics.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Pape, Robert A. (1997). "Why Economic Sanctions Do Not Work." <span class="pub-info"><em>International Security</em></span> 22(2): 90–136.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Drezner, Daniel W. (1999). <em>The Sanctions Paradox: Economic Statecraft and International Relations.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Neuenkirch, Matthias &amp; Florian Neumeier (2015). "The Impact of UN and US Economic Sanctions on GDP Growth." <span class="pub-info"><em>European Journal of Political Economy</em></span> 40: 110–125.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Itskhoki, Oleg &amp; Elina Ribakova (2024). "The Economics of the Russia Sanctions." <span class="pub-info"><em>Brookings Papers on Economic Activity</em></span> (Fall 2024).</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Farrell, Henry &amp; Abraham L. Newman (2019). "Weaponized Interdependence: How Global Economic Networks Shape State Coercion." <span class="pub-info"><em>International Security</em></span> 44(1): 42–79.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Mulder, Nicholas (2022). <em>The Economic Weapon: The Rise of Sanctions as a Tool of Modern War.</em> Yale University Press.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Bapat, Navin A. &amp; T. Clifton Morgan (2009). "Multilateral Versus Unilateral Sanctions Reconsidered: A Test Using New Data." <span class="pub-info"><em>International Studies Quarterly</em></span> 53(4): 1075–1094.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Felbermayr, Gabriel, Aleksandra Kirilakha, Constantinos Syropoulos, Erdal Yalcin &amp; Yoto V. Yotov (2020). "The Global Sanctions Data Base." <span class="pub-info"><em>European Economic Review</em></span> 129: 103561.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Early, Bryan R. &amp; Menevis Cilizoglu (2024). "Economic Sanctions in the Age of Geoeconomic Competition." <span class="pub-info"><em>Annual Review of Political Science</em></span> 27: 379–400.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 4 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">4</span>
+                <span class="topic-title">Global Financial Crises and Regulation</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; What empirical patterns explain why financial crises recur despite post-crisis regulatory reforms?</p>
+                <p>&#8227; Does IMF conditionality promote economic recovery, or does it deepen recessions in borrowing countries?</p>
+                <p>&#8227; How did the 2008 global financial crisis reshape the architecture of international financial governance?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Reinhart, Carmen M. &amp; Kenneth S. Rogoff (2009). <em>This Time Is Different: Eight Centuries of Financial Folly.</em> Princeton University Press.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Obstfeld, Maurice &amp; Kenneth Rogoff (2009). "Global Imbalances and the Financial Crisis: Products of Common Causes." <span class="pub-info"><em>Federal Reserve Bank of San Francisco Asia Economic Policy Conference.</em></span></div>
+                <div class="reading-item"><span class="reading-number">3.</span> Drezner, Daniel W. (2014). "The System Worked: How the World Stopped Another Great Depression." <span class="pub-info"><em>World Politics</em></span> 66(1): 123–164.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Helleiner, Eric (2011). "Understanding the 2007–2008 Global Financial Crisis: Lessons for Scholars of International Political Economy." <span class="pub-info"><em>Annual Review of Political Science</em></span> 14: 67–87.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Vreeland, James Raymond (2003). <em>The IMF and Economic Development.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Nelson, Stephen C. (2014). "Playing Favorites: How Shared Beliefs Shape the IMF's Lending Decisions." <span class="pub-info"><em>International Organization</em></span> 68(2): 297–328.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Kirshner, Jonathan (2003). "Money Is Politics." <span class="pub-info"><em>Review of International Political Economy</em></span> 10(4): 645–660.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Pistor, Katharina (2013). "A Legal Theory of Finance." <span class="pub-info"><em>Journal of Comparative Economics</em></span> 41(2): 315–330.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Kaya, Ayse &amp; Mike Reay (2019). "How Did the Washington Consensus Move within the IMF?" <span class="pub-info"><em>Review of International Political Economy</em></span> 26(3): 384–409.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Oatley, Thomas, W. Kindred Winecoff, Andrew Pennock &amp; Sarah Bauerle Danzman (2013). "The Political Economy of Global Finance: A Network Model." <span class="pub-info"><em>Perspectives on Politics</em></span> 11(1): 133–153.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 5 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">5</span>
+                <span class="topic-title">The Green Energy Transition and Climate Finance</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Is the global flow of green finance sufficient to meet climate mitigation goals, and who benefits from it?</p>
+                <p>&#8227; How does the geopolitics of critical minerals (lithium, cobalt, rare earths) shape the energy transition?</p>
+                <p>&#8227; Do green industrial policies like the Inflation Reduction Act accelerate decarbonization or primarily serve national competitiveness goals?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Falkner, Robert (2016). "The Paris Agreement and the New Logic of International Climate Politics." <span class="pub-info"><em>International Affairs</em></span> 92(5): 1107–1125.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Aklin, Micha&#235;l &amp; Johannes Urpelainen (2018). <em>Renewables: The Politics of a Global Energy Transition.</em> MIT Press.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Collington, Rosie (2025). "The Limits to Derisked Decarbonization: State Capacity Unevenness in Domestic Green Transition Strategies." <span class="pub-info"><em>Review of International Political Economy</em></span> 32(6): 1749–1772.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Bazilian, Morgan, et al. (2014). "Re-considering the Economics of Photovoltaic Power." <span class="pub-info"><em>Renewable Energy</em></span> 53: 329–338.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Yergin, Daniel (2020). <em>The New Map: Energy, Climate, and the Clash of Nations.</em> Penguin Press. [Chapters on the new geopolitics of energy]</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Sharma, Sarah E. &amp; Milan Babic (2025). "Introduction: The International Political Economy of Green Finance." <span class="pub-info"><em>Economy and Society</em></span> 54(1).</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Meckling, Jonas, Nina Kelsey, Eric Biber &amp; John Zysman (2015). "Winning Coalitions for Climate Policy." <span class="pub-info"><em>Science</em></span> 349(6253): 1170–1171.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Scholten, Daniel, ed. (2018). <em>The Geopolitics of Renewables.</em> Springer.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Kim, Sung-Young (2015). "Hybridized Industrial Ecosystems and the Makings of a New Developmental Infrastructure in East Asia's Green Energy Sector." <span class="pub-info"><em>Review of International Political Economy</em></span> 22(1): 158–182.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Lazard (2023). "Lazard's Levelized Cost of Energy Analysis—Version 16.0." [Widely cited empirical benchmark on renewable vs. fossil fuel cost parity]</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 6 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">6</span>
+                <span class="topic-title">Supply Chains, the &#8220;China Shock,&#8221; and Geoeconomic Fragmentation</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; How has import competition from China reshaped labor markets and political preferences in advanced economies?</p>
+                <p>&#8227; What does the empirical evidence show about the actual extent of nearshoring and friendshoring since 2020?</p>
+                <p>&#8227; What are the measurable economic costs of US-China decoupling for both countries and for third parties?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Autor, David H., David Dorn &amp; Gordon H. Hanson (2013). "The China Syndrome: Local Labor Market Effects of Import Competition in the United States." <span class="pub-info"><em>American Economic Review</em></span> 103(6): 2121–2168.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Autor, David, David Dorn &amp; Gordon H. Hanson (2016). "The China Shock: Learning from Labor-Market Adjustment to Large Changes in Trade." <span class="pub-info"><em>Annual Review of Economics</em></span> 8: 205–240.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Autor, David, David Dorn &amp; Gordon H. Hanson (2021). "On the Persistence of the China Shock." <span class="pub-info"><em>Brookings Papers on Economic Activity</em></span> (Fall): 381–476.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Acemoglu, Daron, David Autor, David Dorn, Gordon H. Hanson &amp; Brendan Price (2016). "Import Competition and the Great US Employment Sag of the 2000s." <span class="pub-info"><em>Journal of Labor Economics</em></span> 34(S1): S141–S198.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Caliendo, Lorenzo, Maximiliano Dvorkin &amp; Fernando Parro (2019). "Trade and Labor Market Dynamics: General Equilibrium Analysis of the China Trade Shock." <span class="pub-info"><em>Econometrica</em></span> 87(3): 741–835.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Farrell, Henry &amp; Abraham L. Newman (2023). <em>Underground Empire: How America Weaponized the World Economy.</em> Henry Holt.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Alfaro, Laura &amp; Davin Chor (2023). "Global Supply Chains: The Looming 'Great Reallocation.'" <span class="pub-info"><em>NBER Working Paper</em></span> 31661.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Antr&#224;s, Pol (2020). "De-Globalisation? Global Value Chains in the Post-COVID-19 Age." <span class="pub-info"><em>NBER Working Paper</em></span> 28115.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Baldwin, Richard &amp; Rebecca Freeman (2022). "Risks and Global Supply Chains: What We Know and What We Need to Know." <span class="pub-info"><em>Annual Review of Economics</em></span> 14: 153–180.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Miller, Chris (2022). <em>Chip War: The Fight for the World's Most Critical Technology.</em> Scribner.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 7 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">7</span>
+                <span class="topic-title">The Global South and Global Financial Governance</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; What patterns characterize recurring sovereign debt crises in developing countries, and why do they persist?</p>
+                <p>&#8227; How has China's rise as a major bilateral creditor changed the dynamics of debt restructuring?</p>
+                <p>&#8227; Does the empirical evidence support the claim that international financial institutions exhibit lending bias toward certain countries or policy orientations?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Reinhart, Carmen M. &amp; Christoph Trebesch (2016). "Sovereign Debt Relief and Its Aftermath." <span class="pub-info"><em>Journal of the European Economic Association</em></span> 14(1): 215–251.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Horn, Sebastian, Carmen M. Reinhart &amp; Christoph Trebesch (2021). "China's Overseas Lending." <span class="pub-info"><em>Journal of International Economics</em></span> 133: 103539.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Parks, Bradley C. et al. / AidData (2021). <em>Banking on the Belt and Road: Insights from a New Global Dataset of 13,427 Chinese Development Projects.</em> Williamsburg, VA: AidData.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Brautigam, Deborah (2020). "A Critical Look at Chinese 'Debt-Trap Diplomacy': The Rise of a Meme." <span class="pub-info"><em>Area Development and Policy</em></span> 5(1): 1–14.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Stone, Randall W. (2011). <em>Controlling Institutions: International Organizations and the Global Economy.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Vreeland, James Raymond &amp; Axel Dreher (2014). <em>The Political Economy of the United Nations Security Council: Money and Influence.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Kentikelenis, Alexander E., Thomas H. Stubbs &amp; Lawrence P. King (2016). "IMF Conditionality and Development Policy Space, 1985–2014." <span class="pub-info"><em>Review of International Political Economy</em></span> 23(4): 543–582.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Gallagher, Kevin P. (2015). <em>Ruling Capital: Emerging Markets and the Reregulation of Cross-Border Finance.</em> Cornell University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Kaplan, Stephen B. (2021). <em>Globalizing Patient Capital: The Political Economy of Chinese Finance in the Americas.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Sturzenegger, Federico &amp; Jeromin Zettelmeyer (2006). <em>Debt Defaults and Lessons from a Decade of Crises.</em> MIT Press.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 8 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">8</span>
+                <span class="topic-title">The Return of Industrial Policy</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; What does the empirical evidence from East Asia, the US, and the EU tell us about whether industrial policy "works"?</p>
+                <p>&#8227; How do the CHIPS Act, the Inflation Reduction Act, and the EU Green Deal compare in design and early outcomes?</p>
+                <p>&#8227; Is the current global surge in industrial policy a departure from the liberal trade order, or compatible with it?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Evenett, Simon J., et al. (2024). "The Return of Industrial Policy in Data." <span class="pub-info"><em>The World Economy</em></span> 47(7): 2755–2789.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Cherif, Reda &amp; Fuad Hasanov (2019). "The Return of the Policy That Shall Not Be Named: Principles of Industrial Policy." <span class="pub-info"><em>IMF Working Paper</em></span> 19/74.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Rodrik, Dani (2004). "Industrial Policy for the Twenty-First Century." <span class="pub-info"><em>CEPR Discussion Paper</em></span> 4767.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Aiginger, Karl &amp; Dani Rodrik (2020). "Rebirth of Industrial Policy and an Agenda for the Twenty-First Century." <span class="pub-info"><em>Journal of Industry, Competition and Trade</em></span> 20: 189–207.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Bown, Chad P. (2023). "Industrial Policy for Electric Vehicle Supply Chains and the US-EU Fight Over the Inflation Reduction Act." <span class="pub-info"><em>Peterson Institute Working Paper</em></span> 23-1.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Singh, J. T. N. (2023). "Recentring Industrial Policy Paradigm within IPE and Development Studies." <span class="pub-info"><em>Third World Quarterly</em></span> 44(9): 2015–2030.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Chang, Ha-Joon (2002). <em>Kicking Away the Ladder: Development Strategy in Historical Perspective.</em> Anthem Press.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Wade, Robert (1990/2004). <em>Governing the Market: Economic Theory and the Role of Government in East Asian Industrialization,</em> 2nd ed. Princeton University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Juh&#225;sz, R&#233;ka (2018). "Temporary Protection and Technology Adoption: Evidence from the Napoleonic Blockade." <span class="pub-info"><em>American Economic Review</em></span> 108(11): 3339–3376.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Lane, Nathan (2024). "Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea." <span class="pub-info"><em>Quarterly Journal of Economics</em></span> 139(4): 2507–2560.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 9 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">9</span>
+                <span class="topic-title">Globalization and the Rise of Populism</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; What is the empirical link between trade-induced labor market disruption and populist voting?</p>
+                <p>&#8227; Do left-wing and right-wing populisms respond to the same economic grievances, or to fundamentally different ones?</p>
+                <p>&#8227; Has the populist surge produced measurable changes in economic policy, or has it been more rhetorical than substantive?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Colantone, Italo &amp; Piero Stanig (2018). "The Trade Origins of Economic Nationalism: Import Competition and Voting Behavior in Western Europe." <span class="pub-info"><em>American Journal of Political Science</em></span> 62(4): 936–953.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Colantone, Italo &amp; Piero Stanig (2018). "Global Competition and Brexit." <span class="pub-info"><em>American Political Science Review</em></span> 112(2): 201–218.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Autor, David, David Dorn, Gordon Hanson &amp; Kaveh Majlesi (2020). "Importing Political Polarization? The Electoral Consequences of Rising Trade Exposure." <span class="pub-info"><em>American Economic Review</em></span> 110(10): 3139–3183.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Rodrik, Dani (2021). "Why Does Globalization Fuel Populism? Economics, Culture, and the Rise of Right-Wing Populism." <span class="pub-info"><em>Annual Review of Economics</em></span> 13: 133–170.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Margalit, Yotam (2019). "Economic Insecurity and the Causes of Populism, Reconsidered." <span class="pub-info"><em>Journal of Economic Perspectives</em></span> 33(4): 152–170.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Guiso, Luigi, Helios Herrera, Massimo Morelli &amp; Tommaso Sonno (2019). "Global Crises and Populism: The Role of Eurozone Institutions." <span class="pub-info"><em>Economic Policy</em></span> 34(97): 95–139.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Funke, Manuel, Moritz Schularick &amp; Christoph Trebesch (2023). "Populist Leaders and the Economy." <span class="pub-info"><em>American Economic Review</em></span> 113(12): 3249–3288.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Frieden, Jeffry A. (2018). "The Politics of the Globalization Backlash: Sources and Implications." <span class="pub-info"><em>Prepared for the Annual Meetings of the American Economic Association.</em></span></div>
+                <div class="reading-item"><span class="reading-number">9.</span> Walter, Stefanie (2021). "The Backlash Against Globalization." <span class="pub-info"><em>Annual Review of Political Science</em></span> 24: 421–442.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Norris, Pippa &amp; Ronald Inglehart (2019). <em>Cultural Backlash: Trump, Brexit, and Authoritarian Populism.</em> Cambridge University Press.</div>
+            </div>
+        </details>
+
+        <!-- TOPIC 10 -->
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">10</span>
+                <span class="topic-title">Democracy, Authoritarianism, and Economic Performance</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Does the empirical record show that democracies outperform autocracies on long-run economic growth?</p>
+                <p>&#8227; What explains China's sustained economic growth under authoritarian governance, and is the "China model" replicable?</p>
+                <p>&#8227; How does regime type shape a country's capacity to respond to economic crises?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Acemoglu, Daron, Suresh Naidu, Pascual Restrepo &amp; James A. Robinson (2019). "Democracy Does Cause Growth." <span class="pub-info"><em>Journal of Political Economy</em></span> 127(1): 47–100.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Krugman, Paul (1994). "The Myth of Asia's Miracle." <span class="pub-info"><em>Foreign Affairs</em></span> 73(6): 62–78.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Przeworski, Adam, Michael E. Alvarez, Jos&#233; Antonio Cheibub &amp; Fernando Limongi (2000). <em>Democracy and Development: Political Institutions and Well-Being in the World, 1950–1990.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Weingast, Barry R., Gabriella Montinola &amp; Yingyi Qian (1995). "Federalism, Chinese Style: The Political Basis for Economic Success in China." <span class="pub-info"><em>World Politics</em></span> 48(1): 50–81.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Rodrik, Dani (2000). "Institutions for High-Quality Growth: What They Are and How to Acquire Them." <span class="pub-info"><em>Studies in Comparative International Development</em></span> 35(3): 3–31.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Ansell, Ben W. &amp; David J. Samuels (2014). <em>Inequality and Democratization: An Elite-Competition Approach.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Olson, Mancur (1993). "Dictatorship, Democracy, and Development." <span class="pub-info"><em>American Political Science Review</em></span> 87(3): 567–576.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Ang, Yuen Yuen (2020). <em>China's Gilded Age: The Economic Boom and Massive Corruption.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Sen, Amartya (1999). <em>Development as Freedom.</em> Knopf.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Acemoglu, Daron &amp; James A. Robinson (2012). <em>Why Nations Fail: The Origins of Power, Prosperity, and Poverty.</em> Crown Business.</div>
+            </div>
+        </details>
+
+    </section>
+
+</main>
+
+<footer style="background: var(--primary); color: white; padding: 1.5rem 0; margin-top: 3rem; text-align: center;">
+    <div class="container">
+        <p style="margin: 0; opacity: 0.9;">DWA 103: Global Political Economy | Occidental College | Spring 2026<br>
+        Professor Igor Logvinenko | ilogvinenko@oxy.edu</p>
+    </div>
+</footer>
+
+</body>
+</html>
