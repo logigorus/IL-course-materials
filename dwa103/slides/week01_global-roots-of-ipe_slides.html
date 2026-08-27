@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DWA 103 · Week 1 · Global Roots of IPE</title>
+<style>
+  :root{
+    --oxy-orange:#E26030;   /* Occidental orange, PMS 7579 C */
+    --ink:#1A1919;          /* Occidental black */
+    --ink-2:#55524F;
+    --ink-3:#8A8683;
+    --line:#DDD9D4;
+    --paper:#FFFFFF;
+    --paper-2:#FAF8F5;
+    --surround:#141312;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--surround);
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    overflow:hidden;
+  }
+  #stage{
+    position:absolute;top:50%;left:50%;
+    width:1280px;height:720px;
+    transform-origin:center center;
+  }
+  .slide{
+    position:absolute;inset:0;
+    width:1280px;height:720px;
+    background:var(--paper);
+    padding:64px 84px 56px;
+    display:none;
+    flex-direction:column;
+  }
+  .slide.active{display:flex}
+  /* subtle Oxy mark: thin orange rule under the header zone */
+  .kicker{
+    font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--oxy-orange);font-weight:600;margin-bottom:10px;
+  }
+  h1{font-size:34px;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+  .rule{width:64px;height:3px;background:var(--oxy-orange);margin:18px 0 26px;border-radius:2px}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:flex-start}
+  .facts{list-style:none;font-size:23px;line-height:1.5;max-width:1040px}
+  .facts li{margin-bottom:16px;padding-left:26px;position:relative}
+  .facts li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:3px;background:var(--oxy-orange);border-radius:2px}
+  .cite{color:var(--ink-3);font-size:.82em;white-space:nowrap}
+  blockquote{
+    font-family:Georgia,"Times New Roman",serif;font-style:italic;
+    font-size:26px;line-height:1.45;color:var(--ink);
+    border-left:3px solid var(--oxy-orange);padding-left:24px;margin:10px 0 6px;max-width:980px;
+  }
+  blockquote .attr{display:block;font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;font-style:normal;font-size:17px;color:var(--ink-2);margin-top:12px}
+  .foot{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:13.5px;color:var(--ink-3);letter-spacing:.02em;margin-top:auto;padding-top:18px;
+  }
+  .foot .fno{color:var(--oxy-orange);font-weight:600}
+  svg text{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif}
+  /* columns */
+  .cols{display:flex;gap:36px;margin-top:8px}
+  .col{flex:1;border-top:3px solid var(--oxy-orange);padding-top:18px}
+  .col.gray{border-top-color:var(--line)}
+  .col h2{font-size:23px;margin-bottom:12px}
+  .col p{font-size:19px;line-height:1.45;color:var(--ink-2);margin-bottom:10px}
+  .col .names{font-size:17px;color:var(--ink);line-height:1.5}
+  /* tables */
+  table.def{border-collapse:collapse;width:100%;font-size:20px;margin-top:4px}
+  table.def th{text-align:left;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:0 18px 10px 0;border-bottom:2px solid var(--ink)}
+  table.def td{padding:14px 18px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+  table.def td.term{font-weight:700;white-space:nowrap;width:280px}
+  table.def td .cite{white-space:normal}
+  table.matrix{border-collapse:collapse;width:100%;font-size:17.5px;table-layout:fixed;margin-top:2px}
+  table.matrix th{font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:8px 10px;border-bottom:2px solid var(--ink);text-align:left}
+  table.matrix th.rowh{width:170px}
+  table.matrix td{padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
+  table.matrix td.rowh{font-weight:700;color:var(--ink)}
+  table.matrix td b{font-weight:600}
+  table.matrix td span{display:block;color:var(--ink-2);font-size:15px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
+  .card{background:var(--paper-2);border:1px solid var(--line);border-top:3px solid var(--oxy-orange);padding:20px 24px}
+  .card h2{font-size:22px;margin-bottom:8px}
+  .card p{font-size:18.5px;line-height:1.42;color:var(--ink-2)}
+  .qnum{color:var(--oxy-orange);font-weight:700;font-size:26px;display:block;margin-bottom:8px}
+  .qgrid{display:flex;gap:44px;margin-top:14px}
+  .qgrid div{flex:1;font-size:21px;line-height:1.5}
+  /* title slide */
+  .title-slide{justify-content:center}
+  .title-slide .kicker{font-size:17px}
+  .title-slide h1{font-size:54px;max-width:980px}
+  .title-slide .sub{font-size:24px;color:var(--ink-2);margin-top:22px;line-height:1.5;font-family:Georgia,serif}
+  /* HUD */
+  #hud{
+    position:fixed;right:18px;bottom:14px;color:#8a8683;
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;
+    user-select:none;z-index:5;
+  }
+  #help{position:fixed;left:18px;bottom:14px;color:#5c5956;font-size:12px;z-index:5}
+  @media print{
+    body{background:#fff;overflow:visible}
+    #stage{position:static;transform:none!important;width:auto;height:auto}
+    .slide{display:flex;position:relative;page-break-after:always;margin:0 auto}
+    #hud,#help{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 0 · REFRESHER: ANARCHY -->
+<section class="slide">
+  <div class="kicker">Refresher · IR Foundations</div>
+  <h1>Anarchy and Three Traditions</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Anarchy: no central authority above states <span class="cite">(Waltz 1979)</span></li>
+    </ul>
+    <div class="cols" style="margin-top:18px">
+      <div class="col">
+        <h2>Realism</h2>
+        <p>Anarchy as structure: self-help, relative gains, security through own means <span class="cite">(Waltz 1979)</span></p>
+      </div>
+      <div class="col">
+        <h2>International liberalism</h2>
+        <p>Anarchy's problems as solvable: institutions, interdependence, iterated cooperation <span class="cite">(Keohane 1984)</span></p>
+      </div>
+      <div class="col">
+        <h2>Constructivism</h2>
+        <p>"Anarchy is what states make of it" — its meaning set by ideas and identities <span class="cite">(Wendt 1992)</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Waltz 1979 · Keohane 1984 · Wendt 1992</span><span class="fno">0</span></div>
+</section>
+
+<!-- 1 · TITLE -->
+<section class="slide title-slide">
+  <div class="kicker">DWA 103 · The Contested World Economy · Occidental College</div>
+  <h1>Week 1: Global Roots of International Political Economy</h1>
+  <div class="rule"></div>
+  <div class="sub">Course text: Eric Helleiner, <em>The Contested World Economy: The Deep and Global Roots of International Political Economy</em> (Cambridge University Press, 2023)</div>
+  <div class="foot"><span>DWA 103 · Fall 2026</span><span class="fno">1</span></div>
+</section>
+
+<!-- 2 · DEFINITION + VENN -->
+<section class="slide">
+  <h1>International Political Economy: Definition</h1>
+  <div class="rule"></div>
+  <div class="body" style="flex-direction:row;gap:40px;align-items:center">
+    <ul class="facts" style="max-width:430px">
+      <li>Study of politics and economics at the global level</li>
+      <li>Interactions of states, markets, societies</li>
+    </ul>
+    <svg viewBox="0 0 620 380" width="620" height="380" role="img" aria-label="Venn diagram: states and markets overlap; the intersection is IPE">
+      <circle cx="230" cy="190" r="150" fill="none" stroke="#55524F" stroke-width="2.5"/>
+      <circle cx="390" cy="190" r="150" fill="none" stroke="#55524F" stroke-width="2.5"/>
+      <clipPath id="c1"><circle cx="230" cy="190" r="150"/></clipPath>
+      <g clip-path="url(#c1)"><circle cx="390" cy="190" r="150" fill="#E26030" opacity="0.14"/></g>
+      <text x="150" y="170" font-size="21" font-weight="700" fill="#1A1919" text-anchor="middle">States</text>
+      <text x="150" y="196" font-size="16" fill="#55524F" text-anchor="middle">power ·</text>
+      <text x="150" y="216" font-size="16" fill="#55524F" text-anchor="middle">politics</text>
+      <text x="472" y="170" font-size="21" font-weight="700" fill="#1A1919" text-anchor="middle">Markets</text>
+      <text x="472" y="196" font-size="16" fill="#55524F" text-anchor="middle">wealth ·</text>
+      <text x="472" y="216" font-size="16" fill="#55524F" text-anchor="middle">economics</text>
+      <text x="310" y="140" font-size="19" font-weight="700" fill="#E26030" text-anchor="middle">IPE</text>
+      <text x="310" y="172" font-size="16" fill="#1A1919" text-anchor="middle">who wins?</text>
+      <text x="310" y="196" font-size="16" fill="#1A1919" text-anchor="middle">who loses?</text>
+      <text x="310" y="220" font-size="16" fill="#1A1919" text-anchor="middle">who sets</text>
+      <text x="310" y="242" font-size="16" fill="#1A1919" text-anchor="middle">the rules?</text>
+    </svg>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 1</span><span class="fno">2</span></div>
+</section>
+
+<!-- 3 · 1971-74 TIMELINE -->
+<section class="slide">
+  <h1>Field Formalization, 1971–1974</h1>
+  <div class="rule"></div>
+  <div class="body" style="justify-content:center">
+    <svg viewBox="0 0 1100 330" width="1100" height="330" role="img" aria-label="Timeline of three shocks, 1971 to 1974">
+      <line x1="60" y1="230" x2="1050" y2="230" stroke="#DDD9D4" stroke-width="3"/>
+      <g text-anchor="middle">
+        <circle cx="220" cy="230" r="9" fill="#E26030"/>
+        <line x1="220" y1="221" x2="220" y2="150" stroke="#DDD9D4" stroke-width="2"/>
+        <text x="220" y="272" font-size="24" font-weight="700" fill="#1A1919">1971</text>
+        <text x="220" y="110" font-size="19" fill="#1A1919">End of dollar–gold</text>
+        <text x="220" y="134" font-size="19" fill="#1A1919">convertibility</text>
+        <circle cx="550" cy="230" r="9" fill="#E26030"/>
+        <line x1="550" y1="221" x2="550" y2="150" stroke="#DDD9D4" stroke-width="2"/>
+        <text x="550" y="272" font-size="24" font-weight="700" fill="#1A1919">1973</text>
+        <text x="550" y="110" font-size="19" fill="#1A1919">OPEC oil</text>
+        <text x="550" y="134" font-size="19" fill="#1A1919">crisis</text>
+        <circle cx="880" cy="230" r="9" fill="#E26030"/>
+        <line x1="880" y1="221" x2="880" y2="150" stroke="#DDD9D4" stroke-width="2"/>
+        <text x="880" y="272" font-size="24" font-weight="700" fill="#1A1919">1974</text>
+        <text x="880" y="86" font-size="19" fill="#1A1919">Demands for a New</text>
+        <text x="880" y="110" font-size="19" fill="#1A1919">International Economic</text>
+        <text x="880" y="134" font-size="19" fill="#1A1919">Order (NIEO)</text>
+      </g>
+      <text x="60" y="310" font-size="16" fill="#8A8683">Three shocks preceding the field's academic formalization</text>
+    </svg>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 1</span><span class="fno">3</span></div>
+</section>
+
+<!-- 4 · REBIRTH THESIS -->
+<section class="slide">
+  <h1>The "Rebirth" Thesis</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Strange: 1970s IPE = revival of pre-1945 political economy, not a new field</li>
+    </ul>
+    <svg viewBox="0 0 1100 300" width="1100" height="300" style="margin-top:26px" role="img" aria-label="Two timelines compared: the standard account starts in 1970; Helleiner's account starts around 1700">
+      <text x="60" y="66" font-size="17" font-weight="600" fill="#55524F">Standard account</text>
+      <line x1="60" y1="96" x2="1040" y2="96" stroke="#DDD9D4" stroke-width="3"/>
+      <rect x="866" y="88" width="174" height="16" rx="4" fill="#8A8683"/>
+      <text x="876" y="136" font-size="17" fill="#1A1919">1970</text>
+      <text x="1040" y="136" font-size="17" fill="#1A1919" text-anchor="end">present</text>
+      <text x="60" y="196" font-size="17" font-weight="600" fill="#55524F">Helleiner 2023</text>
+      <line x1="60" y1="226" x2="1040" y2="226" stroke="#DDD9D4" stroke-width="3"/>
+      <rect x="60" y="218" width="980" height="16" rx="4" fill="#E26030"/>
+      <text x="60" y="266" font-size="17" fill="#1A1919">c. 1700</text>
+      <text x="876" y="266" font-size="17" fill="#1A1919">1970</text>
+      <text x="1040" y="266" font-size="17" fill="#1A1919" text-anchor="end">present</text>
+      <line x1="866" y1="80" x2="866" y2="242" stroke="#1A1919" stroke-width="1.5" stroke-dasharray="4 5"/>
+    </svg>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 1</span><span class="fno">4</span></div>
+</section>
+
+<!-- 5 · TWO CLAIMS -->
+<section class="slide">
+  <h1>Helleiner 2023: Two Claims</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <h2>1 · A global history</h2>
+        <p>Pre-1945 debates included thinkers across Asia, Africa, Latin America, the Middle East.</p>
+        <p>Idea flows ran in multiple directions — East→West, South→North.</p>
+      </div>
+      <div class="col">
+        <h2>2 · Beyond three orthodoxies</h2>
+        <p>Debates exceeded the liberal–neomercantilist–Marxist triad.</p>
+        <p>Also present: autarkism, environmentalism, feminism, pan-movements, regionalism.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Helleiner 2023, introduction</span><span class="fno">5</span></div>
+</section>
+
+<!-- 6 · THREE ORTHODOXIES -->
+<section class="slide">
+  <h1>The Three Orthodoxies, 19th–20th c.</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <h2>Economic Liberalism</h2>
+        <p>Free trade · free markets · commerce–peace link</p>
+        <p class="names">Smith · Ricardo · Cobden · J.S. Mill</p>
+      </div>
+      <div class="col">
+        <h2>Neomercantilism</h2>
+        <p>Strategic protection · state-built industrial power</p>
+        <p class="names">Hamilton · List · Carey · Witte</p>
+      </div>
+      <div class="col">
+        <h2>Marxism</h2>
+        <p>Class conflict · global exploitation · revolution</p>
+        <p class="names">Marx · Lenin · Luxemburg</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Helleiner 2023, chs. 2–4</span><span class="fno">6</span></div>
+</section>
+
+<!-- 7 · LIBERALISM -->
+<section class="slide">
+  <h1>Economic Liberalism: Core Texts</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Smith 1776: "simple system of natural liberty" — individual self-interest, not government direction</li>
+    </ul>
+    <blockquote>
+      "It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest."
+      <span class="attr">— Adam Smith, <em>The Wealth of Nations</em>, 1776, bk. I, ch. 2</span>
+    </blockquote>
+  </div>
+  <div class="foot"><span>Smith 1776 · Helleiner 2023, ch. 2</span><span class="fno">7</span></div>
+</section>
+
+<!-- 8 · GLOBAL ADAPTATIONS MATRIX -->
+<section class="slide">
+  <h1>Global Adaptations, by Tradition and Region</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="matrix">
+      <tr>
+        <th class="rowh"></th><th>Americas</th><th>Africa / Ottoman</th><th>South Asia</th><th>East Asia</th>
+      </tr>
+      <tr>
+        <td class="rowh">Liberalism</td>
+        <td><b>Calvo</b> <span>Argentina</span><b>Silva Lisboa</b> <span>Brazil</span></td>
+        <td><b>Equiano</b> <span>liberal case vs. slave trade</span><b>D'Ghies</b> <span>Tripoli</span></td>
+        <td><b>Rammohun Roy</b> <span>India</span></td>
+        <td><b>Yan Fu</b> <span>China</span><b>Taguchi Ukichi</b> <span>Japan</span></td>
+      </tr>
+      <tr>
+        <td class="rowh">Neomercantilism</td>
+        <td><b>Hamilton · Carey</b> <span>United States</span></td>
+        <td></td>
+        <td><b>Ranade</b> <span>"economic nationalism" vs. British policy</span></td>
+        <td><b>Sun Yat-sen</b> <span>China</span><b>pre-contact thought</b> <span>Japan</span></td>
+      </tr>
+      <tr>
+        <td class="rowh">Marxism</td>
+        <td><b>Mariátegui</b> <span>Peru — Indigenous realities</span></td>
+        <td></td>
+        <td><b>M.N. Roy</b> <span>India — agrarian focus</span></td>
+        <td><b>Mao</b> <span>China — peasantry</span><b>Kōtoku Shūsui</b> <span>Japan</span></td>
+      </tr>
+    </table>
+    <p style="font-size:15px;color:#8A8683;margin-top:12px">Some Chinese scholars: Confucian texts endorsed market policies before Smith (Helleiner 2023). All entries: Helleiner 2023, chs. 2–4.</p>
+  </div>
+  <div class="foot"><span>Helleiner 2023, chs. 2–4</span><span class="fno">8</span></div>
+</section>
+
+<!-- 9 · LIST / LADDER -->
+<section class="slide">
+  <h1>Neomercantilism: List 1841</h1>
+  <div class="rule"></div>
+  <div class="body" style="flex-direction:row;gap:48px;align-items:center">
+    <div style="max-width:560px">
+      <ul class="facts">
+        <li>"Kicking away the ladder": Britain industrialized behind protection, then urged free trade on others <span class="cite">(List 1841)</span></li>
+      </ul>
+      <blockquote style="font-size:24px">
+        "The power of producing wealth is therefore infinitely more important than wealth itself."
+        <span class="attr">— Friedrich List, <em>The National System of Political Economy</em>, 1841</span>
+      </blockquote>
+    </div>
+    <svg viewBox="0 0 420 400" width="420" height="400" role="img" aria-label="Three-step sequence: protection, industrial lead, then free trade urged on others">
+      <g font-size="16.5" fill="#1A1919">
+        <rect x="20" y="300" width="380" height="56" rx="4" fill="#FAF8F5" stroke="#DDD9D4"/>
+        <text x="40" y="323" font-weight="700">1 · Protection</text>
+        <text x="40" y="344" fill="#55524F">tariffs shield infant industries</text>
+        <rect x="20" y="180" width="380" height="56" rx="4" fill="#FAF8F5" stroke="#DDD9D4"/>
+        <text x="40" y="203" font-weight="700">2 · Industrial lead</text>
+        <text x="40" y="224" fill="#55524F">"productive power" accumulates</text>
+        <rect x="20" y="60" width="380" height="56" rx="4" fill="#FFF" stroke="#E26030" stroke-width="2"/>
+        <text x="40" y="83" font-weight="700">3 · Free trade urged on others</text>
+        <text x="40" y="104" fill="#55524F">the ladder is kicked away (List 1841)</text>
+        <line x1="210" y1="300" x2="210" y2="244" stroke="#E26030" stroke-width="2.5" marker-end="url(#arr)"/>
+        <line x1="210" y1="180" x2="210" y2="124" stroke="#E26030" stroke-width="2.5" marker-end="url(#arr)"/>
+      </g>
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#E26030"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+  <div class="foot"><span>List 1841 · Helleiner 2023, ch. 3</span><span class="fno">9</span></div>
+</section>
+
+<!-- 10 · MARXISM -->
+<section class="slide">
+  <h1>Marxism: Theories of Imperialism</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Lenin 1917: imperialism as capitalism's "highest stage," driven by finance capital <span class="cite">(Lenin 1917)</span></li>
+      <li>Luxemburg 1913: capital accumulation requires expansion into non-capitalist territories <span class="cite">(Luxemburg 1913)</span></li>
+      <li>Shift in adaptation: urban proletariat → agrarian peasantry — M.N. Roy, Mao</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Lenin 1917 · Luxemburg 1913 · Helleiner 2023, ch. 4</span><span class="fno">10</span></div>
+</section>
+
+<!-- 11 · BEYOND WHEEL -->
+<section class="slide">
+  <h1>Pre-1945 Perspectives Beyond the Triad</h1>
+  <div class="rule"></div>
+  <div class="body" style="align-items:center">
+    <svg viewBox="0 0 1060 470" width="1060" height="470" role="img" aria-label="Five perspectives arranged around the three orthodoxies: autarkism, environmentalism, feminism, pan-movements, regionalism">
+      <circle cx="530" cy="235" r="86" fill="#FAF8F5" stroke="#1A1919" stroke-width="2"/>
+      <text x="530" y="228" font-size="19" font-weight="700" text-anchor="middle" fill="#1A1919">Liberalism</text>
+      <text x="530" y="252" font-size="19" font-weight="700" text-anchor="middle" fill="#1A1919">Neomercantilism</text>
+      <text x="530" y="276" font-size="19" font-weight="700" text-anchor="middle" fill="#1A1919">Marxism</text>
+      <g stroke="#E26030" stroke-width="2">
+        <line x1="530" y1="149" x2="530" y2="100"/>
+        <line x1="612" y1="209" x2="700" y2="186"/>
+        <line x1="612" y1="261" x2="700" y2="284"/>
+        <line x1="448" y1="261" x2="360" y2="284"/>
+        <line x1="448" y1="209" x2="360" y2="186"/>
+      </g>
+      <g text-anchor="middle" fill="#1A1919">
+        <text x="530" y="62" font-size="21" font-weight="700" fill="#E26030">Autarkism</text>
+        <text x="530" y="86" font-size="16" fill="#55524F">national self-sufficiency, beyond protection</text>
+        <text x="875" y="150" font-size="21" font-weight="700" fill="#E26030">Environmentalism</text>
+        <text x="875" y="174" font-size="16" fill="#55524F">ecological cost of industrial capitalism</text>
+        <text x="875" y="330" font-size="21" font-weight="700" fill="#E26030">Feminism</text>
+        <text x="875" y="354" font-size="16" fill="#55524F">women's labor in the world economy</text>
+        <text x="185" y="330" font-size="21" font-weight="700" fill="#E26030">Pan-movements</text>
+        <text x="185" y="354" font-size="16" fill="#55524F">Pan-African · Pan-Islamic · Pan-Asian</text>
+        <text x="185" y="150" font-size="21" font-weight="700" fill="#E26030">Regionalism</text>
+        <text x="185" y="174" font-size="16" fill="#55524F">regional economic integration</text>
+      </g>
+    </svg>
+  </div>
+  <div class="foot"><span>Helleiner 2023, chs. 5–9</span><span class="fno">11</span></div>
+</section>
+
+<!-- 12 · FEMINISM / ENVIRONMENTALISM -->
+<section class="slide">
+  <h1>Feminism · Environmentalism, pre-1945</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Feminist political economists: global wealth relied on unpaid and undervalued women's labor</li>
+      <li>Environmental critics: industrial capitalism linked to resource depletion and long-term impoverishment</li>
+      <li>Both literatures predate the field's 1970s formalization</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, chs. 7–8</span><span class="fno">12</span></div>
+</section>
+
+<!-- 13 · PAN-MOVEMENTS -->
+<section class="slide">
+  <h1>Pan-Movements</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Pan-Africanism: Du Bois, Garvey — economic solidarity across the African diaspora</li>
+      <li>Pan-Islamism, Pan-Asianism: transnational religious or civilizational identity as economic basis</li>
+      <li>Unit of solidarity: not the nation-state</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 9</span><span class="fno">13</span></div>
+</section>
+
+<!-- 14 · SCALE -->
+<section class="slide">
+  <h1>Economic Scale: Nation, Region, Autarky</h1>
+  <div class="rule"></div>
+  <div class="body" style="align-items:center;justify-content:center">
+    <svg viewBox="0 0 1080 400" width="1080" height="400" role="img" aria-label="Three circles of increasing closure: national protectionism, regional integration, autarky">
+      <g text-anchor="middle">
+        <circle cx="200" cy="180" r="66" fill="none" stroke="#55524F" stroke-width="3"/>
+        <text x="200" y="292" font-size="20" font-weight="700" fill="#1A1919">National protection</text>
+        <text x="200" y="318" font-size="16" fill="#55524F">tariffs within open trade</text>
+        <circle cx="540" cy="180" r="96" fill="#E26030" opacity="0.15"/>
+        <circle cx="540" cy="180" r="96" fill="none" stroke="#E26030" stroke-width="3"/>
+        <text x="540" y="292" font-size="20" font-weight="700" fill="#1A1919">Economic regionalism</text>
+        <text x="540" y="318" font-size="16" fill="#55524F">integration blocs: East Asia, Europe, Americas</text>
+        <circle cx="890" cy="180" r="126" fill="#E26030" opacity="0.3"/>
+        <circle cx="890" cy="180" r="126" fill="none" stroke="#E26030" stroke-width="4"/>
+        <text x="890" y="334" font-size="20" font-weight="700" fill="#1A1919">Autarky</text>
+        <text x="890" y="360" font-size="16" fill="#55524F">withdrawal from trade; self-sufficiency</text>
+      </g>
+      <text x="60" y="382" font-size="16" fill="#8A8683">Degree of closure increases left to right</text>
+    </svg>
+  </div>
+  <div class="foot"><span>Helleiner 2023, chs. 5–6</span><span class="fno">14</span></div>
+</section>
+
+<!-- 15 · VOCABULARY -->
+<section class="slide">
+  <h1>Vocabulary, Week 1</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="def">
+      <tr><td class="term">IPE</td><td>Politics and economics at the global level</td></tr>
+      <tr><td class="term">"Rebirth" thesis</td><td>1970s IPE as revival of pre-1945 debates <span class="cite">(Strange)</span></td></tr>
+      <tr><td class="term">Productive power</td><td>Capacity to produce, valued above existing wealth <span class="cite">(List 1841)</span></td></tr>
+      <tr><td class="term">Infant industry protection</td><td>Temporary protection while new industries develop</td></tr>
+      <tr><td class="term">Autarky</td><td>National self-sufficiency; withdrawal from trade</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Helleiner 2023</span><span class="fno">15</span></div>
+</section>
+
+<!-- 16 · CASE DIVIDER -->
+<section class="slide">
+  <div class="kicker">Case</div>
+  <h1>Carney at Davos, January 20, 2026</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Speaker: Prime Minister Mark Carney, Canada · World Economic Forum, Davos</li>
+      <li>Context: U.S. tariff escalation; territorial pressure on Greenland <span class="cite">(Carney 2026)</span></li>
+      <li>Video: <a href="https://www.youtube.com/watch?v=NvSRurS-5g4" style="color:var(--oxy-orange);text-decoration:none">youtube.com/watch?v=NvSRurS-5g4</a></li>
+    </ul>
+    <blockquote>
+      "We are in the midst of a rupture, not a transition."
+      <span class="attr">— Carney, WEF address, Davos, Jan. 20, 2026</span>
+    </blockquote>
+  </div>
+  <div class="foot"><span>Carney 2026</span><span class="fno">16</span></div>
+</section>
+
+<!-- 17 · HAVEL -->
+<section class="slide">
+  <h1>Carney's Metaphor: Havel 1978</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Havel 1978: greengrocer posts "Workers of the world, unite!" — compliance, not belief <span class="cite">("The Power of the Powerless")</span></li>
+      <li>Carney: middle powers "placed the sign in the window" of the rules-based order, knowing it "partially false" <span class="cite">(Carney 2026)</span></li>
+    </ul>
+    <blockquote>
+      "Friends, it is time for companies and countries to take their signs down."
+      <span class="attr">— Carney, Davos, Jan. 20, 2026</span>
+    </blockquote>
+  </div>
+  <div class="foot"><span>Havel 1978 · Carney 2026</span><span class="fno">17</span></div>
+</section>
+
+<!-- 18 · CARNEY QUOTES -->
+<section class="slide">
+  <h1>Carney, Davos 2026: Key Passages</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <blockquote style="font-size:23px;margin-bottom:14px">"The strong do what they can, and the weak suffer what they must."<span class="attr">— Thucydides, quoted in Carney 2026</span></blockquote>
+    <blockquote style="font-size:23px;margin-bottom:14px">"You cannot 'live within the lie' of mutual benefit through integration when integration becomes the source of your subordination."<span class="attr">— Carney 2026</span></blockquote>
+    <blockquote style="font-size:23px">"A country that cannot feed itself, fuel itself, or defend itself has few options."<span class="attr">— Carney 2026</span></blockquote>
+  </div>
+  <div class="foot"><span>Carney 2026</span><span class="fno">18</span></div>
+</section>
+
+<!-- 19 · MAPPING -->
+<section class="slide">
+  <h1>Carney 2026 Mapped to Course Frameworks</h1>
+  <div class="rule"></div>
+  <div class="body" style="align-items:center;justify-content:center">
+    <svg viewBox="0 0 1100 440" width="1100" height="440" role="img" aria-label="Carney's speech mapped to a liberal critique, a neomercantilist program, and his own hybrid label">
+      <rect x="465" y="180" width="170" height="64" fill="#FFF" stroke="#E26030" stroke-width="2.5" rx="4"/>
+      <text x="550" y="218" font-size="21" font-weight="700" text-anchor="middle" fill="#1A1919">Carney 2026</text>
+      <g stroke="#8A8683" stroke-width="2">
+        <line x1="465" y1="200" x2="330" y2="130"/>
+        <line x1="635" y1="200" x2="770" y2="130"/>
+        <line x1="550" y1="244" x2="550" y2="320"/>
+      </g>
+      <g fill="#1A1919">
+        <text x="300" y="76" font-size="20" font-weight="700" fill="#E26030" text-anchor="middle">Critique of the liberal order</text>
+        <text x="300" y="104" font-size="16.5" text-anchor="middle" fill="#55524F">order "partially false"; rules enforced</text>
+        <text x="300" y="126" font-size="16.5" text-anchor="middle" fill="#55524F">asymmetrically by the strong (Carney 2026)</text>
+        <text x="800" y="76" font-size="20" font-weight="700" fill="#E26030" text-anchor="middle">Neomercantilist program</text>
+        <text x="800" y="104" font-size="16.5" text-anchor="middle" fill="#55524F">"building strength at home";</text>
+        <text x="800" y="126" font-size="16.5" text-anchor="middle" fill="#55524F">"strategic autonomy" in energy, AI (Carney 2026)</text>
+        <text x="550" y="356" font-size="20" font-weight="700" fill="#E26030" text-anchor="middle">Self-description: "values-based realism"</text>
+        <text x="550" y="384" font-size="16.5" text-anchor="middle" fill="#55524F">sovereignty commitment + "fortresses" to survive (Carney 2026)</text>
+      </g>
+    </svg>
+  </div>
+  <div class="foot"><span>Carney 2026 · frameworks: Helleiner 2023</span><span class="fno">19</span></div>
+</section>
+
+<!-- 20 · SEMINAR -->
+<section class="slide">
+  <h1>Seminar Questions</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="qgrid">
+      <div><span class="qnum">01</span>Is "values-based realism" neomercantilism under another name?</div>
+      <div><span class="qnum">02</span>Who defines "universal values" in a fragmented world economy?</div>
+      <div><span class="qnum">03</span>If the "ladder" is kicked away again in 2026 — where does that leave the Global South?</div>
+    </div>
+    <blockquote style="margin-top:44px;font-size:22px">"Nostalgia is not a strategy."<span class="attr">— Carney, Davos, Jan. 20, 2026</span></blockquote>
+  </div>
+  <div class="foot"><span>Discussion</span><span class="fno">20</span></div>
+</section>
+
+<!-- 21 · COURSE TERMS -->
+<section class="slide">
+  <h1>Course Terms, DWA 103</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cards">
+      <div class="card"><h2>Public good</h2><p>Non-excludable, non-rivalrous — clean air, national security.</p></div>
+      <div class="card"><h2>Free-rider problem</h2><p>Benefiting from public goods without paying — NATO spending, climate agreements.</p></div>
+      <div class="card"><h2>Principal–agent problem</h2><p>Agent acts on own interest under asymmetric information.</p></div>
+      <div class="card"><h2>Path dependence</h2><p>Choices at time T constrained by T−1 — QWERTY, USD hegemony.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Course glossary</span><span class="fno">21</span></div>
+</section>
+
+<!-- 22 · NEXT WEEK -->
+<section class="slide">
+  <h1>Week 2: Classical Foundations</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Adam Smith, <em>The Wealth of Nations</em> (1776)</li>
+      <li>David Ricardo: comparative advantage (1817)</li>
+      <li>Internal debates of early liberalism</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Reading: see syllabus</span><span class="fno">22</span></div>
+</section>
+
+<!-- 23 · SOURCES -->
+<section class="slide">
+  <h1>Sources</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts" style="font-size:19px">
+      <li>Helleiner, E. 2023. <em>The Contested World Economy: The Deep and Global Roots of International Political Economy.</em> Cambridge UP.</li>
+      <li>Smith, A. 1776. <em>An Inquiry into the Nature and Causes of the Wealth of Nations.</em></li>
+      <li>List, F. 1841. <em>The National System of Political Economy.</em></li>
+      <li>Luxemburg, R. 1913. <em>The Accumulation of Capital.</em> · Lenin, V.I. 1917. <em>Imperialism, the Highest Stage of Capitalism.</em></li>
+      <li>Havel, V. 1978. "The Power of the Powerless." · Carney, M. 2026. Address to the World Economic Forum, Davos, Jan. 20 — <a href="https://www.youtube.com/watch?v=NvSRurS-5g4" style="color:var(--oxy-orange);text-decoration:none">youtube.com/watch?v=NvSRurS-5g4</a></li>
+      <li>Waltz, K. 1979. <em>Theory of International Politics.</em> · Keohane, R. 1984. <em>After Hegemony.</em> · Wendt, A. 1992. "Anarchy Is What States Make of It." <em>International Organization.</em></li>
+    </ul>
+  </div>
+  <div class="foot"><span>DWA 103 · Week 1</span><span class="fno">23</span></div>
+</section>
+
+</div>
+
+<div id="help">← → navigate · Home/End · P print</div>
+<div id="hud"></div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var hud = document.getElementById('hud');
+  var stage = document.getElementById('stage');
+  slides.forEach(function(s, k){
+    var f = s.querySelector('.fno');
+    if (f) f.textContent = k + 1;
+  });
+  var i = 0;
+  var h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) i = h - 1;
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    hud.textContent = (i + 1) + ' / ' + slides.length;
+    if (history.replaceState) history.replaceState(null, '', '#' + (i + 1));
+  }
+  function fit(){
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.97;
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') { show(i + 1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') { show(i - 1); e.preventDefault(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'p' || e.key === 'P') window.print();
+  });
+  document.addEventListener('click', function(e){
+    if (e.clientX > window.innerWidth * 0.25) show(i + 1); else show(i - 1);
+  });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function(){
+    var n = parseInt(location.hash.slice(1), 10);
+    if (n >= 1 && n <= slides.length) show(n - 1);
+  });
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>
