@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 1 · The State of Democracy 2026</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;   /* series: earlier year */
+    --s2025: #a33232;   /* series: 2025 */
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  .hero { font-size: clamp(6rem, 18vw, 15rem); font-weight: 700; line-height: 1; color: var(--accent); font-variant-numeric: normal; }
+  .hero-label { font-size: clamp(1.2rem, 2.4vw, 1.9rem); line-height: 1.35; margin-top: .8rem; max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .v.down { color: var(--accent); }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 24ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .divider .footer-tag { color: #f0e2e2; }
+  /* charts */
+  .chartwrap { margin-top: 1.6rem; max-width: 880px; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+  @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 1</p>
+  <h1>The State of Democracy<br>2026</h1>
+  <p class="sub">All findings from: V-Dem Institute, <em>Democracy Report 2026: “Unraveling the Democratic Era?”</em> (10th edition, March 2026)<br>
+  32 million+ data points · 202 countries and territories, 1789–2025 · 4,200+ country experts · 600+ attributes of democracy</p>
+</section>
+
+<!-- 2 · 1978 -->
+<section class="slide">
+  <p class="kicker">The headline</p>
+  <div class="hero">1978</div>
+  <p class="hero-label">“Democracy is back to 1978 levels for the average global citizen. The gains of the ‘third wave of democratization’, starting 1974 in Portugal, are almost eradicated.”</p>
+  <div class="statrow">
+    <div class="stat"><div class="v">50+ yrs</div><div class="l">Western Europe &amp; North America: lowest level of democracy for the average citizen in over 50 years</div></div>
+    <div class="stat"><div class="v">−30%</div><div class="l">global decline in population-weighted democracy from its 2003 peak</div></div>
+  </div>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 4, 7–8</p>
+</section>
+
+<!-- 3 · The ledger -->
+<section class="slide">
+  <h2>The world in 2025: 92 autocracies, 87 democracies</h2>
+  <div class="statrow" style="margin-top:.4rem">
+    <div class="stat"><div class="v">74%</div><div class="l">of the world population — 6 billion people — live in autocracies</div></div>
+    <div class="stat"><div class="v">28% &gt; 26%</div><div class="l">more people live in closed autocracies (2.3 bn) than in all democracies combined (2.2 bn)</div></div>
+    <div class="stat"><div class="v">7%</div><div class="l">live in liberal democracies (0.6 bn) — lowest in over 50 years</div></div>
+  </div>
+  <div class="chartwrap">
+    <div class="legend" id="leg-regime"></div>
+    <div class="chart" id="chart-regime" role="img" aria-label="Stacked bar of world population by regime type in 2025: liberal democracy 7 percent, electoral democracy 19 percent, electoral autocracy 46 percent, closed autocracy 28 percent"></div>
+  </div>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 4, 10–11 (Figures 4–6). Electoral autocracy is the most populous regime type (3.8 bn); the USA’s reclassification moves 343 m into the electoral-democracy column.</p>
+</section>
+
+<!-- 3b · Regime types explainer -->
+<section class="slide">
+  <p class="kicker">The vocabulary · V-Dem’s “Regimes of the World”</p>
+  <h2>Four regime types, one ladder</h2>
+  <div style="margin-top:.4rem;max-width:1000px">
+    <div style="display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule)">
+      <span style="flex:0 0 14px;width:14px;height:14px;border-radius:3px;background:#2a5da8;position:relative;top:1px"></span>
+      <p style="font-size:clamp(1rem,1.8vw,1.4rem);line-height:1.4"><strong>Liberal democracy</strong> — free and fair elections <em>plus</em> rule of law: courts and legislatures that constrain the executive, and protected individual rights. <span style="color:var(--muted)">(Where 7% of humanity lives.)</span></p>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule)">
+      <span style="flex:0 0 14px;width:14px;height:14px;border-radius:3px;background:#5e9fe0;position:relative;top:1px"></span>
+      <p style="font-size:clamp(1rem,1.8vw,1.4rem);line-height:1.4"><strong>Electoral democracy</strong> — multiparty elections that are genuinely free and fair, with real freedoms of expression and association — but weaker checks on those who win. <span style="color:var(--muted)">(Where V-Dem now places the USA.)</span></p>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule)">
+      <span style="flex:0 0 14px;width:14px;height:14px;border-radius:3px;background:#e0793f;position:relative;top:1px"></span>
+      <p style="font-size:clamp(1rem,1.8vw,1.4rem);line-height:1.4"><strong>Electoral autocracy</strong> — elections are held, but the playing field is rigged: media, opposition, and courts tilted toward incumbents. The world’s most common regime type. <span style="color:var(--muted)">(Russia, Türkiye — and India?)</span> <a href="https://www.youtube.com/shorts/Y98LpFN1pN4" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600;text-decoration-thickness:1px">Is India an electoral autocracy? ▶</a></p>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:baseline;padding:.8rem 0">
+      <span style="flex:0 0 14px;width:14px;height:14px;border-radius:3px;background:#96302a;position:relative;top:1px"></span>
+      <p style="font-size:clamp(1rem,1.8vw,1.4rem);line-height:1.4"><strong>Closed autocracy</strong> — no multiparty elections for those who actually rule; opposition politics is shut out altogether. <span style="color:var(--muted)">(China, Saudi Arabia, North Korea.)</span></p>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:1.2rem">The democracy/autocracy line: are multiparty elections <strong>free and fair</strong>? The liberal add-on: is the <strong>winner constrained</strong>?</p>
+  <p class="footer-tag">Lührmann, Tannenberg &amp; Lindberg, “Regimes of the World” (2018); V-Dem, Democracy Report 2026, pp. 10–11</p>
+</section>
+
+<!-- 4 · Great Reversal -->
+<section class="slide">
+  <h2>“The Great Reversal”</h2>
+  <div class="chartwrap">
+    <div class="legend" id="leg-reversal"></div>
+    <div class="chart" id="chart-reversal" role="img" aria-label="Paired bars comparing 2005 and 2025 counts of countries: democratizing 27 versus 18; autocratizing 12 versus 44; freedom of expression deteriorating 7 versus 44; freedom of expression improving 25 versus 11; quality of elections deteriorating 11 versus 22; quality of elections improving 31 versus 7"></div>
+  </div>
+  <ul class="big" style="margin-top:1.2rem">
+    <li>“Almost all aspects of democracy register far-reaching declines during the last decade — a dramatic reversal compared to 2000.”</li>
+    <li><strong>Torture</strong> is now increasingly used to suppress political opposition — 33 countries substantially degenerating in 2025.</li>
+  </ul>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 4, 12–13 (Executive Summary; Figures 8–9)</p>
+</section>
+
+<!-- 5 · Where people live -->
+<section class="slide">
+  <h2>Twenty years, two worlds</h2>
+  <p class="sub" style="margin-top:0">Share of world population living in…</p>
+  <div class="chartwrap">
+    <div class="legend" id="leg-pop"></div>
+    <div class="chart" id="chart-pop" role="img" aria-label="Paired bars comparing 2005 and 2025 shares of world population: living in autocracies 50 versus 74 percent; in autocratizing countries 9 versus 41 percent; in democracies 50 versus 26 percent; in liberal democracies 17 versus 7 percent; in democratizing countries 11 versus 5 percent"></div>
+  </div>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, p. 5 (Executive Summary figures)</p>
+</section>
+
+<!-- 6 · Third wave of autocratization -->
+<section class="slide">
+  <h2>The third wave of autocratization</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v down">44</div><div class="l">countries autocratizing — nearly a quarter of the world’s nations</div></div>
+    <div class="stat"><div class="v down">41%</div><div class="l">of world population (3.4 bn) live in autocratizing countries — a record</div></div>
+    <div class="stat"><div class="v down">39%</div><div class="l">of world GDP — and 26% of world land area — is in autocratizing countries</div></div>
+  </div>
+  <ul class="big" style="margin-top:1.6rem">
+    <li>“The world has never before seen as many countries autocratizing at the same time.” Research evidence: the current wave is <strong>“worse than the 1930s”</strong> in length, scope, and magnitude.</li>
+    <li><strong>10 new autocratizers</strong> in 2025 — among them five European countries: <strong>Croatia, Italy, Slovakia, Slovenia, and the UK</strong> — plus the USA.</li>
+    <li>Most common tactics: <strong>media censorship</strong> (32 of 44 countries, 73%) and <strong>repression of civil society</strong> (30 countries, 68%).</li>
+  </ul>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 4, 17–18, 21–22 (Box 5; Tables 2–3)</p>
+</section>
+
+<!-- 7 · USA -->
+<section class="slide">
+  <p class="kicker">In focus · autocratization in the USA</p>
+  <div class="statrow" style="margin-top:0">
+    <div class="stat"><div class="v down">−24%</div><div class="l">decline in the USA’s Liberal Democracy Index within one year</div></div>
+    <div class="stat"><div class="v down">20th → 51st</div><div class="l">USA’s world rank on the LDI, of 179 nations</div></div>
+    <div class="stat"><div class="v down">1965</div><div class="l">the year the USA’s level of democracy has fallen back to</div></div>
+  </div>
+  <div class="split" style="margin-top:1.4rem;align-items:start">
+    <ul class="big" style="font-size:0">
+      <li style="font-size:clamp(1rem,1.7vw,1.35rem)">“The USA loses its long-term status as a liberal democracy — for the first time in over 50 years.”</li>
+      <li style="font-size:clamp(1rem,1.7vw,1.35rem)">“The speed with which American democracy is currently dismantled is unprecedented in modern history.”</li>
+      <li style="font-size:clamp(1rem,1.7vw,1.35rem)">“Electoral components of democracy, however, remain stable — for now.”</li>
+    </ul>
+    <div class="chartwrap" style="margin-top:0">
+      <div class="legend" id="leg-usa"></div>
+      <div class="chart" id="chart-usa" role="img" aria-label="Dumbbell chart of US index components, 2023 versus 2025: Legislative Constraints 0.86 to 0.61; Freedom of Expression 0.94 to 0.73; Civil Rights and Equality 0.94 to 0.82; Judicial Constraints 0.90 to 0.84"></div>
+      <p style="font-size:.85rem;color:var(--muted);margin-top:.5rem">Legislative Constraints: largest single-year drop in US history, lowest in over 100 years · Freedom of Expression: lowest since the end of WWII · Civil Rights: back to late-1960s levels</p>
+    </div>
+  </div>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 4–5, 33–37 (Section 5; Figures 22, 24–25)</p>
+</section>
+
+<!-- 8 · Democratizers -->
+<section class="slide">
+  <h2>The other side of the ledger</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v">18</div><div class="l">countries democratizing — home to just 5% of world population</div></div>
+    <div class="stat"><div class="v">3</div><div class="l">new democratizers in 2025 — Botswana, Guatemala, Mauritius — all U-turns</div></div>
+    <div class="stat"><div class="v">70%</div><div class="l">success rate for autocracies that start a democratization episode</div></div>
+  </div>
+  <ul class="big" style="margin-top:1.6rem">
+    <li>“The world is facing <strong>15 years of stagnation</strong> for democratization.”</li>
+    <li>U-turns — reversals of autocratization — are the main good news: <strong>Mauritius, Poland, and Thailand</strong> lead in magnitude of improvement; <strong>South Korea</strong> “defended its democracy in 2025, following the failed 2024 martial law attempt.”</li>
+    <li>“Yet <strong>Zambia</strong> illustrates how fragile U-turns can be” — backsliding again while technically still qualifying as a U-turn.</li>
+    <li>Media freedom and deliberation are improving in more than <strong>60%</strong> of all democratizing countries.</li>
+  </ul>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 5, 22, 27–31 (Section 4; Tables 6, 9)</p>
+</section>
+
+<!-- 9 · Europe & the giants -->
+<section class="slide">
+  <h2>Established democracies in trouble</h2>
+  <ul class="big" style="margin-top:.2rem">
+    <li>Autocratization now affects <strong>seven EU member states</strong> — and two of the EU’s main allies, <strong>the UK and the USA</strong>.</li>
+    <li>In Western Europe &amp; North America, the three autocratizers — <strong>Italy, the UK, and the USA</strong> — account for <strong>59% of the region’s population</strong>.</li>
+    <li>“Four of the five world’s most populous countries are autocracies (<strong>India, China, Indonesia, and Pakistan</strong>), and the USA is rapidly autocratizing.”</li>
+    <li><strong>Watchlist 2026</strong> — potential autocratizers: Bulgaria, Cyprus, Namibia, <strong>Portugal</strong>, Russia, Sierra Leone, Sudan, Vanuatu. Potential democratizers: <strong>Chad, Gabon, South Korea</strong>.</li>
+  </ul>
+  <p class="footer-tag">V-Dem, Democracy Report 2026, pp. 4, 8–9, 19–20, 41 (Section 2; Appendix Watchlist)</p>
+</section>
+
+<!-- 10 · Center of gravity -->
+<section class="slide divider">
+  <p class="kicker">Why this is a course about globalization too</p>
+  <blockquote class="smaller">“The ‘center of gravity’ for human experience and global governance has shifted heavily toward authoritarianism. Many large, populous, and economically powerful countries are autocratizing. Several of these countries possess the economic and political weight to reshape international organizations, norms, and trade, effectively altering the global order.”
+  <cite>V-Dem Institute, Democracy Report 2026, p. 8</cite>
+  </blockquote>
+</section>
+
+<!-- 11 · Globalization: trade -->
+<section class="slide">
+  <p class="kicker">Globalization in 2026 · I</p>
+  <h2>Trade: record volumes, rising walls</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v">$35 tn</div><div class="l">global trade in 2025 — an all-time record (goods + services)</div></div>
+    <div class="stat"><div class="v">4.6% → 1.9%</div><div class="l">world merchandise trade volume growth, 2025 → WTO forecast for 2026</div></div>
+    <div class="stat"><div class="v">11.8%</div><div class="l">average effective US tariff rate (Apr 2026) — highest since the early 1940s</div></div>
+  </div>
+  <ul class="big" style="margin-top:1.6rem">
+    <li>Restrictive import measures now cover <strong>$4.6 trillion</strong> of trade — <strong>19.4% of world imports</strong>, up 6.9 points in a year.</li>
+    <li>Rewiring, not collapse: US–China trade fell ~<strong>$165 bn</strong> in 2025 — but the US replaced about <strong>two-thirds</strong> of the gap with alternative suppliers; ASEAN exports +14%.</li>
+    <li>The Busan truce (Trump–Xi, Oct 30, 2025) cut average US tariffs on China from 57% to <strong>47%</strong>; the pause runs to <strong>Nov 10, 2026</strong>.</li>
+  </ul>
+  <p class="footer-tag">Sources: UNCTAD Global Trade Update (Dec 2025); WTO Global Trade Outlook (Mar 2026) &amp; update (Jul 2026); Yale Budget Lab (Apr 8, 2026); WTO Trade Monitoring (Jul 2025); McKinsey Global Institute (2026); China Briefing (Nov 2025)</p>
+</section>
+
+<!-- 12 · Globalization: China -->
+<section class="slide">
+  <p class="kicker">Globalization in 2026 · II</p>
+  <h2>China: the pivot of the trading system</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v">$1.2 tn</div><div class="l">China’s 2025 trade surplus — the first ever above $1 trillion</div></div>
+    <div class="stat"><div class="v">14.6%</div><div class="l">of world merchandise exports — the largest exporter ($3.77 tn in 2025, +6.1%)</div></div>
+    <div class="stat"><div class="v">45%</div><div class="l">of global manufacturing output by 2030, on UNIDO’s forecast (US: 11%)</div></div>
+  </div>
+  <ul class="big" style="margin-top:1.6rem">
+    <li>Redirection, 2025: exports to the <strong>US −20%</strong> · trade with <strong>Africa +18.4%</strong> · ASEAN trade above <strong>$1.02 tn</strong> · Belt &amp; Road partners now take <strong>51.9%</strong> of China’s trade.</li>
+    <li>Leverage: <strong>rare-earth</strong> export controls suspended for one year under the truce (to Nov 10, 2026); US chip controls continue — Nvidia’s H200 cleared for China with a <strong>25% surcharge</strong> (Jan 2026).</li>
+  </ul>
+  <blockquote class="smaller" style="margin-top:1.4rem">“We must practice true multilateralism, and enhance the authority and effectiveness of the multilateral trading system with the WTO at its core.”
+  <cite>Xi Jinping, APEC Economic Leaders’ Meeting, Gyeongju, October 31, 2025</cite>
+  </blockquote>
+  <p class="footer-tag">Sources: GACC via China Briefing (Jan 2026); Bloomberg (Jan 14, 2026); WTO (2025); UNIDO (2024); UNCTAD (Jan 2026); CNBC (Nov 10, 2025; Jan 14, 2026); Xinhua (Oct 31, 2025)</p>
+</section>
+
+<!-- 13 · The China model · growth -->
+<section class="slide">
+  <p class="kicker">The competitor · the “China model” · I</p>
+  <h2>Growth without democratization</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v">26×</div><div class="l">China’s GDP, 1995 → 2025: $0.74 tn → $19.5 tn (current US$) — from 2.4% to 16.5% of world GDP</div></div>
+    <div class="stat"><div class="v">$613 → $13,862</div><div class="l">GDP per capita, 1995 → 2025 — a 23-fold rise in a single generation</div></div>
+    <div class="stat"><div class="v">800 mn</div><div class="l">people lifted out of extreme poverty since 1980 — close to three-quarters of the world’s total reduction</div></div>
+  </div>
+  <div class="chartwrap">
+    <div class="chart" id="chart-growth" role="img" aria-label="Bar chart of China's average annual real GDP growth: 8.1 percent over the last 30 years, 7.6 percent over the last 20, 5.6 percent over the last 10"></div>
+  </div>
+  <blockquote class="smaller" style="margin-top:1.1rem">“The central issue is the fact that the People’s Republic of China can no longer act as a beacon for illiberal forces around the world, whether they be guerrillas in some Asian jungle or middle class students in Paris.”
+  <cite>Fukuyama, “The End of History?” (1989) — Thursday’s reading</cite>
+  </blockquote>
+  <p class="footer-tag">Sources: World Bank, World Development Indicators (accessed Aug 2026) — GDP and growth figures; World Bank, <em>Four Decades of Poverty Reduction in China</em> (2022)</p>
+</section>
+
+<!-- 14 · The China model · hub + implications -->
+<section class="slide">
+  <p class="kicker">The competitor · the “China model” · II</p>
+  <h2>The global system’s central node is now an autocracy</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v">145 / 205</div><div class="l">economies traded more with China than with the US in 2023 — about 70%</div></div>
+    <div class="stat"><div class="v">112</div><div class="l">of them traded more than <em>twice</em> as much with China — up from 92 in 2018</div></div>
+  </div>
+  <div class="chartwrap">
+    <div class="legend" id="leg-hub"></div>
+    <div class="chart" id="chart-hub" role="img" aria-label="Two stacked bars comparing 2001 and 2023: in 2001 more than 80 percent of economies traded more with the United States; by 2023 about 71 percent traded more with China"></div>
+  </div>
+  <ul class="big" style="margin-top:1.2rem">
+    <li style="font-size:clamp(1rem,1.7vw,1.35rem)"><strong>For Week 1:</strong> Fukuyama’s mechanism ran through markets — trade was supposed to pull liberalism along. If the system’s hub is a one-party state, which way does the arrow point?</li>
+    <li style="font-size:clamp(1rem,1.7vw,1.35rem)">Is the “China model” a rival <strong>idea</strong> with universal aspirations (the only thing that would falsify Fukuyama) or a growth record that cannot be replicated elsewhere? (→ the Week 10 debate)</li>
+  </ul>
+  <p class="footer-tag">Sources: Lowy Institute, <em>China versus America on Global Trade</em> (2024), based on IMF Direction of Trade Statistics</p>
+</section>
+
+<div class="counter" id="counter">1 / 15</div>
+<div class="hint">↑ ↓ or space to navigate</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- charts (all data verbatim from V-Dem Democracy Report 2026) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470';
+  var C2005 = '#2f6bb3', C2025 = '#a33232'; // validated pair
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  // horizontal bar with 4px-rounded data end (right), square baseline (left)
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function legend(id, items) {
+    var box = document.getElementById(id);
+    if (!box) return;
+    items.forEach(function (it) {
+      var s = document.createElement('span');
+      s.innerHTML = '<span class="sw" style="background:' + it[1] + '"></span>' + it[0];
+      box.appendChild(s);
+    });
+  }
+
+  /* --- paired horizontal bars: rows = [label, v2005, v2025] --- */
+  function pairedBars(id, rows, opts) {
+    var box = document.getElementById(id);
+    if (!box) return;
+    var labelW = opts.labelW || 300, plotW = 520, pad = 8;
+    var barH = 15, pairGap = 3, groupGap = 22;
+    var groupH = barH * 2 + pairGap;
+    var H = rows.length * (groupH + groupGap) - groupGap + pad * 2;
+    var W = labelW + plotW + 70;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img' }, box);
+    var max = opts.max;
+    rows.forEach(function (row, i) {
+      var y = pad + i * (groupH + groupGap);
+      var lab = el('text', { x: labelW - 12, y: y + groupH / 2 + 5, 'text-anchor': 'end',
+        'font-size': '15', fill: INK }, svg);
+      txt(lab, row[0]);
+      [[row[1], C2005, opts.eraA], [row[2], C2025, opts.eraB]].forEach(function (b, j) {
+        var w = Math.max(2, b[0] / max * plotW);
+        var by = y + j * (barH + pairGap);
+        barPath(labelW, by, w, barH, svg, b[1], row[0] + ' · ' + b[2] + ': ' + b[0] + (opts.unit || ''));
+        var v = el('text', { x: labelW + w + 8, y: by + barH - 3, 'font-size': '14',
+          'font-weight': '700', fill: INK }, svg);
+        txt(v, b[0] + (opts.unit || ''));
+      });
+    });
+  }
+
+  /* --- Slide 3: stacked bar, world population by regime type 2025 --- */
+  (function () {
+    var box = document.getElementById('chart-regime');
+    if (!box) return;
+    var data = [
+      ['Liberal democracy', 7, '#2a5da8'],
+      ['Electoral democracy', 19, '#5e9fe0'],
+      ['Electoral autocracy', 46, '#e0793f'],
+      ['Closed autocracy', 28, '#96302a']
+    ];
+    legend('leg-regime', data.map(function (d) { return [d[0], d[2]]; }));
+    var W = 880, H = 96, barY = 14, barH = 46, gap = 2;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var x = 0;
+    data.forEach(function (d, i) {
+      var w = d[1] / 100 * (W - gap * (data.length - 1));
+      var r = el('rect', { x: x, y: barY, width: w, height: barH, fill: d[2], rx: 3 }, svg);
+      txt(el('title', {}, r), d[0] + ': ' + d[1] + '% of world population');
+      var cx = x + w / 2;
+      var pct = el('text', { x: cx, y: barY + barH / 2 + 6, 'text-anchor': 'middle',
+        'font-size': '17', 'font-weight': '700', fill: '#ffffff' }, svg);
+      txt(pct, d[1] + '%');
+      x += w + gap;
+    });
+    var cap = el('text', { x: 0, y: H - 8, 'font-size': '14', fill: MUTED }, svg);
+    txt(cap, 'World population by regime type, 2025 (Regimes of the World)');
+  })();
+
+  /* --- Slide 4: the Great Reversal, 2005 vs 2025 --- */
+  legend('leg-reversal', [['2005', C2005], ['2025', C2025]]);
+  pairedBars('chart-reversal', [
+    ['Countries democratizing', 27, 18],
+    ['Countries autocratizing', 12, 44],
+    ['Freedom of expression deteriorating', 7, 44],
+    ['Freedom of expression improving', 25, 11],
+    ['Quality of elections deteriorating', 11, 22],
+    ['Quality of elections improving', 31, 7]
+  ], { max: 44, unit: '', labelW: 320, eraA: '2005', eraB: '2025' });
+
+  /* --- Slide 5: population shares 2005 vs 2025 --- */
+  legend('leg-pop', [['2005', C2005], ['2025', C2025]]);
+  pairedBars('chart-pop', [
+    ['…autocracies', 50, 74],
+    ['…autocratizing countries', 9, 41],
+    ['…democracies', 50, 26],
+    ['…liberal democracies', 17, 7],
+    ['…democratizing countries', 11, 5]
+  ], { max: 74, unit: '%', labelW: 260, eraA: '2005', eraB: '2025' });
+
+  /* --- Slide 7: USA dumbbell, 2023 vs 2025 --- */
+  (function () {
+    var box = document.getElementById('chart-usa');
+    if (!box) return;
+    legend('leg-usa', [['2023–24', C2005], ['2025', C2025]]);
+    var rows = [
+      ['Legislative Constraints', 0.86, 0.61],
+      ['Freedom of Expression', 0.94, 0.73],
+      ['Civil Rights & Equality', 0.94, 0.82],
+      ['Judicial Constraints', 0.90, 0.84]
+    ];
+    var W = 560, rowH = 64, padT = 6, H = rows.length * rowH + padT + 24;
+    var x0 = 40, x1 = W - 60;
+    function X(v) { return x0 + (v - 0.5) / 0.5 * (x1 - x0); } // scale 0.5–1.0
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    // axis
+    [0.5, 0.75, 1.0].forEach(function (t) {
+      el('line', { x1: X(t), y1: padT, x2: X(t), y2: H - 22, stroke: '#d9dde3', 'stroke-width': 1 }, svg);
+      txt(el('text', { x: X(t), y: H - 6, 'text-anchor': 'middle', 'font-size': '13', fill: MUTED }, svg), t.toFixed(2));
+    });
+    rows.forEach(function (row, i) {
+      var y = padT + i * rowH + 38;
+      txt(el('text', { x: x0, y: y - 16, 'font-size': '14.5', fill: INK }, svg), row[0]);
+      var xa = X(row[1]), xb = X(row[2]);
+      var ln = el('line', { x1: xa, y1: y, x2: xb, y2: y, stroke: '#b9838a', 'stroke-width': 2.5 }, svg);
+      txt(el('title', {}, ln), row[0] + ': ' + row[1].toFixed(2) + ' (2023–24) → ' + row[2].toFixed(2) + ' (2025)');
+      var ca = el('circle', { cx: xa, cy: y, r: 6.5, fill: C2005, stroke: '#fcfbf9', 'stroke-width': 2 }, svg);
+      txt(el('title', {}, ca), row[0] + ' · 2023–24: ' + row[1].toFixed(2));
+      var cb = el('circle', { cx: xb, cy: y, r: 6.5, fill: C2025, stroke: '#fcfbf9', 'stroke-width': 2 }, svg);
+      txt(el('title', {}, cb), row[0] + ' · 2025: ' + row[2].toFixed(2));
+      txt(el('text', { x: xa + 11, y: y + 5, 'font-size': '13.5', 'font-weight': '700', fill: INK }, svg), row[1].toFixed(2));
+      txt(el('text', { x: xb - 11, y: y + 5, 'text-anchor': 'end', 'font-size': '13.5', 'font-weight': '700', fill: INK }, svg), row[2].toFixed(2));
+    });
+  })();
+
+  /* --- Slide 13: average annual real GDP growth, 30/20/10-year windows (World Bank WDI) --- */
+  (function () {
+    var box = document.getElementById('chart-growth');
+    if (!box) return;
+    var rows = [
+      ['Last 30 years (1995–2025)', 8.1],
+      ['Last 20 years (2005–2025)', 7.6],
+      ['Last 10 years (2015–2025)', 5.6]
+    ];
+    var labelW = 260, plotW = 480, barH = 22, gap = 12, pad = 6;
+    var H = rows.length * (barH + gap) - gap + pad * 2 + 22;
+    var W = labelW + plotW + 80;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img' }, box);
+    var max = 10;
+    rows.forEach(function (row, i) {
+      var y = pad + i * (barH + gap);
+      txt(el('text', { x: labelW - 12, y: y + barH / 2 + 5, 'text-anchor': 'end',
+        'font-size': '15', fill: INK }, svg), row[0]);
+      var w = row[1] / max * plotW;
+      barPath(labelW, y, w, barH, svg, C2025, row[0] + ': ' + row[1] + '% average annual real GDP growth');
+      txt(el('text', { x: labelW + w + 10, y: y + barH / 2 + 5, 'font-size': '15',
+        'font-weight': '700', fill: INK }, svg), row[1] + '%');
+    });
+    txt(el('text', { x: labelW, y: H - 6, 'font-size': '14', fill: MUTED }, svg),
+      'Average annual real GDP growth (World Bank WDI)');
+  })();
+
+  /* --- Slide 14: which giant do economies trade more with, 2001 vs 2023 (Lowy / IMF DOTS) --- */
+  (function () {
+    var box = document.getElementById('chart-hub');
+    if (!box) return;
+    var CUS = C2005, CCN = C2025;
+    legend('leg-hub', [['Trade more with the United States', CUS], ['Trade more with China', CCN]]);
+    // rows: [year label, US share %, China share %, US label, China label]
+    var rows = [
+      ['2001', 80, 20, '80%+', '<20%'],
+      ['2023', 29, 71, '29%', '71%']
+    ];
+    var labelW = 70, plotW = 760, barH = 34, gap = 14, pad = 4, segGap = 2;
+    var H = rows.length * (barH + gap) - gap + pad * 2 + 24;
+    var W = labelW + plotW;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img' }, box);
+    rows.forEach(function (row, i) {
+      var y = pad + i * (barH + gap);
+      txt(el('text', { x: labelW - 14, y: y + barH / 2 + 6, 'text-anchor': 'end',
+        'font-size': '16', 'font-weight': '700', fill: INK }, svg), row[0]);
+      var wUS = row[1] / 100 * (plotW - segGap);
+      var wCN = row[2] / 100 * (plotW - segGap);
+      var rUS = el('rect', { x: labelW, y: y, width: wUS, height: barH, fill: CUS, rx: 3 }, svg);
+      txt(el('title', {}, rUS), row[0] + ' · trade more with the US: ' + row[3] + ' of economies');
+      var rCN = el('rect', { x: labelW + wUS + segGap, y: y, width: wCN, height: barH, fill: CCN, rx: 3 }, svg);
+      txt(el('title', {}, rCN), row[0] + ' · trade more with China: ' + row[4] + ' of economies');
+      txt(el('text', { x: labelW + wUS / 2, y: y + barH / 2 + 6, 'text-anchor': 'middle',
+        'font-size': '16', 'font-weight': '700', fill: '#ffffff' }, svg), row[3]);
+      txt(el('text', { x: labelW + wUS + segGap + wCN / 2, y: y + barH / 2 + 6, 'text-anchor': 'middle',
+        'font-size': '16', 'font-weight': '700', fill: '#ffffff' }, svg), row[4]);
+    });
+    txt(el('text', { x: labelW, y: H - 6, 'font-size': '14', fill: MUTED }, svg),
+      'Share of 205 economies, by larger two-way goods-trade partner');
+  })();
+})();
+</script>
+
+</body>
+</html>
