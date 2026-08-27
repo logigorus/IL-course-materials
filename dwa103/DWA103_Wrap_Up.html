@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWA 103 — Course Wrap-Up | Spring 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #c17817;
+            --alert: #b23a3a;
+            --bg: #fafaf7;
+            --muted: #6b6b6b;
+            --card: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg);
+            color: #222;
+            line-height: 1.55;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 2.2rem;
+            line-height: 1.15;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .intro {
+            background: var(--card);
+            border-left: 4px solid var(--primary);
+            padding: 1.1rem 1.3rem;
+            margin-bottom: 2rem;
+            font-size: 1.02rem;
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            color: var(--primary);
+            font-size: 1.35rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.4rem;
+            margin: 2rem 0 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid #e5e1d7;
+        }
+
+        .item {
+            background: var(--card);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .item::before {
+            content: "";
+            position: absolute;
+            left: -1.78rem;
+            top: 1.4rem;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+        }
+
+        .item.alert { border-left-color: var(--alert); }
+        .item.alert::before { background: var(--alert); }
+
+        .item.primary { border-left-color: var(--primary); }
+        .item.primary::before { background: var(--primary); }
+
+        .date {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.3rem;
+        }
+
+        .item.alert .date { color: var(--alert); }
+
+        .title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 0.35rem;
+        }
+
+        .detail {
+            font-size: 0.96rem;
+            color: #333;
+        }
+
+        .detail em {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .hard-deadline {
+            display: inline-block;
+            background: var(--alert);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.15rem 0.55rem;
+            border-radius: 2px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .availability {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem 1.5rem;
+            border-radius: 3px;
+            margin-top: 2rem;
+        }
+
+        .availability h2 {
+            color: white;
+            border-bottom-color: var(--accent);
+            margin-top: 0;
+        }
+
+        .availability .row {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.98rem;
+        }
+
+        .availability .row:last-child { border-bottom: none; }
+
+        .availability .row .label {
+            color: #ffd27a;
+            font-weight: 600;
+            min-width: 140px;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+        }
+
+        .availability .cutoff {
+            margin-top: 1rem;
+            background: rgba(255,255,255,0.08);
+            padding: 0.9rem 1rem;
+            border-left: 3px solid var(--accent);
+            font-size: 0.96rem;
+        }
+
+        .availability .cutoff strong {
+            color: #ffd27a;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .survey {
+            background: var(--card);
+            border: 2px solid var(--accent);
+            border-radius: 3px;
+            padding: 1.4rem 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .survey-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .survey-text {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .survey-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 0.65rem 1.4rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 2px;
+            letter-spacing: 0.02em;
+            transition: background 0.15s ease;
+        }
+
+        .survey-btn:hover {
+            background: #a66413;
+        }
+
+        @media (max-width: 560px) {
+            h1 { font-size: 1.7rem; }
+            .availability .row { flex-direction: column; gap: 0.1rem; }
+            .availability .row .label { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="eyebrow">DWA 103 · Global Political Economy · Spring 2026</div>
+            <h1>Course Wrap-Up</h1>
+
+        </header>
+
+        <h2>What's Left</h2>
+
+        <div class="timeline">
+
+            <div class="item primary">
+                <div class="date">THIS WEEK & NEXT</div>
+                <div class="title">Group Presentations</div>
+                <div class="detail">
+                    <strong>Today</strong> and <strong>Tuesday, April 28</strong> — in class.
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="date">THURSDAY, APRIL 30 · 11:59 PM</div>
+                <div class="title">Reading Journals — Final Deadline</div>
+                <div class="detail">
+                    Due Tuesday, April 28 with the standard <strong>+48-hour grace period</strong> — final deadline <strong>April 30, 11:59 PM</strong>. Submit the final updated version in the shared folders.
+                </div>
+            </div>
+
+            <div class="item alert">
+                <div class="date">FRIDAY, MAY 8 · 11:59 PM <span class="hard-deadline">No Extension</span></div>
+                <div class="title">Final Literature Review Paper</div>
+                <div class="detail">
+                    Hard deadline. <strong>No extension possible.</strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="availability">
+            <h2>Availability</h2>
+
+            <div class="row">
+                <div class="label">Office Hours</div>
+                <div>Next week: regular office hours. Also available <strong>Monday, May 4</strong> &amp; <strong>Tuesday, May 5</strong> — sign up in advance.</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Email</div>
+                <div>Last day I can answer: <strong>Wednesday, May 6 at 2:00 PM</strong>.</div>
+            </div>
+
+            <div class="cutoff">
+                After <strong>May 6, 2:00 PM</strong>, I'll be off-grid.
+            </div>
+        </div>
+
+        <div class="survey">
+            <div class="survey-label">One More Thing</div>
+            <div class="survey-text">Please take five minutes to fill out this very brief survey on AI.</div>
+            <a class="survey-btn" href="https://forms.gle/2YaToEHAEFQQ16sg9" target="_blank" rel="noopener">Open the Survey →</a>
+        </div>
+
+        <footer>
+            DWA 103: Global Political Economy &nbsp;|&nbsp; Occidental College &nbsp;|&nbsp; Spring 2026<br>
+            Professor Igor Logvinenko &nbsp;|&nbsp; ilogvinenko@oxy.edu
+        </footer>
+    </div>
+</body>
+</html>

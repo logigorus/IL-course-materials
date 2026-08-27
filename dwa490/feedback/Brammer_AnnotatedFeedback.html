@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annotated Feedback — Brammer, Brothers in Arms</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f4f4f6; color: #1a1a1a; line-height: 1.6; }
+
+  /* Header */
+  .header { background: #1e293b; color: #fff; padding: 2.5rem 3rem 2rem; }
+  .header h1 { font-size: 1.6rem; margin-bottom: .3rem; }
+  .header .meta { font-size: .95rem; color: #94a3b8; margin-bottom: 1.2rem; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+  .legend span { display: flex; align-items: center; gap: .4rem; font-size: .85rem; }
+  .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .dot-green { background: #16a34a; }
+  .dot-gold  { background: #ca8a04; }
+  .dot-orange { background: #ea580c; }
+  .dot-purple { background: #7c3aed; }
+
+  /* Container */
+  .container { max-width: 1320px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* Section block */
+  .section-block { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 2rem; overflow: hidden; }
+  .section-label { background: #1e293b; color: #fff; padding: .75rem 1.5rem; font-weight: 600; font-size: 1.05rem; letter-spacing: .02em; }
+
+  /* Two-column grid */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; }
+  .draft-col { padding: 1.5rem; border-right: 1px solid #e2e8f0; font-size: .93rem; color: #334155; }
+  .draft-col p { margin-bottom: .9rem; }
+  .comments-col { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+  /* Highlights */
+  .highlight-strength  { background: #dcfce7; padding: 1px 3px; border-radius: 3px; }
+  .highlight-revision  { background: #fef9c3; padding: 1px 3px; border-radius: 3px; }
+  .highlight-structural { background: #ffedd5; padding: 1px 3px; border-radius: 3px; }
+
+  /* Comment cards */
+  .comment-card { border-radius: 8px; padding: 1rem 1.1rem; font-size: .9rem; line-height: 1.55; }
+  .comment-strength  { background: #f0fdf4; border-left: 4px solid #16a34a; }
+  .comment-revision  { background: #fefce8; border-left: 4px solid #ca8a04; }
+  .comment-structural { background: #fff7ed; border-left: 4px solid #ea580c; }
+  .comment-missing   { background: #f5f3ff; border-left: 4px solid #7c3aed; }
+  .comment-card .tag { font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .3rem; }
+  .tag-green  { color: #16a34a; }
+  .tag-gold   { color: #ca8a04; }
+  .tag-orange { color: #ea580c; }
+  .tag-purple { color: #7c3aed; }
+  .comment-card .title { font-weight: 600; margin-bottom: .25rem; }
+  .comment-card .body  { color: #475569; }
+
+  /* Empty section */
+  .empty-section { background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #f1f5f9 10px, #f1f5f9 20px); min-height: 100px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-style: italic; padding: 1.5rem; }
+
+  /* Next Steps */
+  .next-steps { background: #1e293b; color: #fff; border-radius: 10px; padding: 2rem 2.5rem; margin-top: 2.5rem; }
+  .next-steps h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+  .next-steps ol { padding-left: 1.3rem; }
+  .next-steps li { margin-bottom: .8rem; line-height: 1.6; font-size: .95rem; color: #cbd5e1; }
+  .next-steps li strong { color: #fff; }
+
+  .elided { color: #94a3b8; font-style: italic; }
+
+  @media (max-width: 820px) {
+    .two-col { grid-template-columns: 1fr; }
+    .draft-col { border-right: none; border-bottom: 1px solid #e2e8f0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <h1>Annotated Draft Feedback</h1>
+  <div class="meta">
+    <strong>Student:</strong> James Brammer &nbsp;|&nbsp;
+    <strong>Paper:</strong> <em>Brothers in Arms / Брати по зброї</em> &nbsp;|&nbsp;
+    <strong>Draft date:</strong> April 14, 2026 &nbsp;|&nbsp;
+    <strong>Course:</strong> DWA 490 — Senior Comprehensive Project
+  </div>
+  <div class="legend">
+    <span><span class="dot dot-green"></span> Strength</span>
+    <span><span class="dot dot-gold"></span> Revision</span>
+    <span><span class="dot dot-orange"></span> Structural</span>
+    <span><span class="dot dot-purple"></span> Missing</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== INTRODUCTION ==================== -->
+<div class="section-block">
+  <div class="section-label">Introduction: Russo-Ukrainian War (pp. 1–2)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>Since the escalation of the Russo-Ukrainian war in February 2022, Ukraine has faced one of the largest displacement crises in Europe since the Second World War. Millions of Ukrainians have been forced to flee their homes, with many becoming internally displaced persons (IDPs) seeking safety in western regions of the country. Cities near the western border, such as Uzhhorod near the Slovakian border, have transformed into critical hubs for displaced populations, humanitarian logistics and civilian support networks. These regions, once peripheral to Ukraine's political and economic center, now play an essential role in sustaining the country's social and institutional resilience.</p>
+      <p>While such scholarly and media attention has focused on military developments and geopolitical implications, far less attention has been given to the everyday experiences of civilians adapting to wartime conditions. In particular, the role of non-militant service providers (individuals who continue to operate clinics, businesses and community support structures) remains underexplored in existing research on conflict and resilience. These actors often function as informal pillars of social stability, helping displaced populations rebuild livelihoods and maintain a sense of normalcy despite ongoing violence.</p>
+      <p><span class="highlight-revision">This research examines how wartime conditions shape the resilient and supportive strategies of Ukrainian civilians, particularly among internally displaced populations and the community members who support them.</span> Using a comparative case study approach, this research focuses on two Ukrainian civilians in Uzhhorod whose work has become integral for their local community. This research question guiding this case study is: <span class="highlight-revision">How do wartime conditions shape the resilient and supportive strategies of Ukrainian civilians and how do these strategies undermine continued Russian aggression?</span></p>
+      <p><span class="highlight-strength">This research argues that wartime conditions have intensified, rather than weakened, civilian resilience and mutual support networks in Ukraine.</span> Through the story of two brothers whose professional roles have evolved during the war, this research demonstrates how individuals and communities adapt to uncertainty and reduced international support by developing new forms of cooperation and solidarity.</p>
+      <p>The cases examined illustrate how resilience is not simply the ability to endure hardship, but the capacity to transform adversity into collective action. In doing so, Ukrainian civilians continue to undermine the strategic objectives of Russian aggression by sustaining social cohesion, rebuilding livelihoods and therefore reinforcing national identity.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-strength">
+        <div class="tag tag-green">★ Strength</div>
+        <div class="title">Clear stakes and well-framed gap</div>
+        <div class="body">Your opening paragraphs effectively establish the displacement crisis and then identify a genuine gap in the literature — the everyday experiences of non-militant service providers. This is a compelling setup that gives the reader a clear reason to care about the project. Protect this framing in revision.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Thesis needs sharpening — two claims, one vague</div>
+        <div class="body">Your thesis has two parts: (1) wartime conditions intensified civilian resilience, and (2) these strategies "undermine continued Russian aggression." The first claim is specific and supportable. The second is much harder to demonstrate with two case studies of a doctor and a barber in Uzhhorod. How exactly does running a clinic "undermine" Russian strategic objectives? You need to either define what "undermine" means concretely in this context (e.g., sustaining social cohesion that Russia's strategy depends on fracturing) or narrow the claim to what your evidence can actually show.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Research question repeats rather than advances</div>
+        <div class="body">The research question on p. 2 ("How do wartime conditions shape the resilient and supportive strategies...") is nearly identical to the sentence that introduces it one line earlier. This is a phrasing issue, but it also signals that the question hasn't been refined beyond the general topic. A stronger research question would specify what kind of shaping you're looking for — adaptation? intensification? transformation? — and would drop or qualify the "undermine Russian aggression" component unless you plan to measure that.</div>
+      </div>
+
+      <div class="comment-card comment-structural">
+        <div class="tag tag-orange">⚠ Structural</div>
+        <div class="title">Case study appears before literature review and methods</div>
+        <div class="body">Your introduction previews the argument well, but the paper then moves into the case study of the clinic (p. 4) before the reader encounters the literature review or methodology. This means the reader doesn't yet have the analytical tools to understand why these cases matter. Consider whether the Historical/Regional Context section and Case Study section should come after the lit review and methods, so the reader encounters your framework before your evidence.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HISTORICAL CONTEXT ==================== -->
+<div class="section-block">
+  <div class="section-label">Historical and Regional Context: Uzhhorod (pp. 2–3)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>Since the full-scale invasion began in 2022, western Ukrainian cities have received millions of internally displaced persons. Uzhhorod has become an important logistical and humanitarian hub. The city's relative distance from active combat zones makes it one of the safer regions within the country, while its proximity to European Union borders facilitates international aid and refugee transit.</p>
+      <p>However, this rapid population increase has placed significant pressure on local infrastructure as Uzhhorod's wartime population has increased from 100,000 to 160,000. Despite these pressures, civil society organizations in western Ukraine have played a crucial role in supporting IDPs through volunteer networks that provide food distribution, transportation assistance and housing coordination.</p>
+      <p>Local business and service providers have also adapted their operations to meet the needs of displaced communities. Clinics offer rehabilitation services to injured civilians and soldiers, while small enterprises employ IDPs who have lost their previous livelihoods. These efforts demonstrate how civilian institutions contribute to wartime resilience.</p>
+      <p>International assistance has been a critical component of Ukraine's wartime resilience. Military aid, humanitarian funding and diplomatic support from Western allies have enabled the Ukrainian government to sustain both military and civilian institutions. However, <span class="highlight-revision">fluctuations in international support, particularly within the United States has created uncertainty regarding long-term assistance.</span> These changes highlight the importance of domestic resilience mechanisms that allow communities to adapt even when external support declines.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-strength">
+        <div class="tag tag-green">★ Strength</div>
+        <div class="title">Concrete detail on population shift</div>
+        <div class="body">The statistic that Uzhhorod's population grew from 100,000 to 160,000 is exactly the kind of specific detail that makes the stakes concrete. Good instinct to include this — it immediately conveys the scale of pressure on local infrastructure.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">This section describes but doesn't analyze</div>
+        <div class="body">Right now this reads as background information — helpful, but it doesn't do analytical work. What does the context of Uzhhorod specifically tell us about your argument that wartime conditions intensify resilience? You could strengthen this by connecting the regional features (border proximity, population surge, infrastructure strain) to the specific mechanisms of adaptation you observe in your cases. Why does it matter that this is Uzhhorod rather than, say, Lviv?</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Fluctuating U.S. support needs specifics</div>
+        <div class="body">You mention "fluctuations in international support, particularly within the United States" but don't specify what those fluctuations are. This is an important part of your argument about why domestic resilience matters. Name the specific policy shifts or political dynamics you're referencing — congressional aid debates, changes in administration posture, etc. — and cite accordingly. Also note the subject-verb agreement issue: "fluctuations... has created" should be "have created."</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CASE STUDY: CLINIC ==================== -->
+<div class="section-block">
+  <div class="section-label">Case Study: The International Family Medicine Clinic in Uzhhorod (pp. 4–5)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>The International Family Medicine Clinic in Uzhhorod is a volunteer driven medical initiative created by one of our documentary subjects, Dr. Pavlo Kolesnyk. He devised the clinic in response to the sudden influx of IDPs following the escalation of the Russo-Ukrainian war in 2022. The clinic represents a significant example of how civilian professionals adapted their expertise to address humanitarian needs generated by wartime displacement.</p>
+      <p>At the onset of the full-scale invasion, millions of Ukrainians fled eastern and southern regions of the country, seeking safety in western cities near the European Union border. Uzhhorod quickly became one of the primary destinations for displaced civilians traveling through the Slovak-Ukrainian corridor. The rapid population increase created immediate pressure on local infrastructure and healthcare services. In the early weeks of the war, local authorities and institutions struggled to respond to the scale of the humanitarian emergency, leaving gaps in medical care for refugees arriving in the city.</p>
+      <p>In response to this crisis, a group of volunteer physicians led by Dr. Kolesnyk began organizing medical assistance for displaced civilians. As the number of IDPs continued to grow, the volunteer initiative evolved into a more structured medical response. Temporary volunteer medical centers were established in several locations across the city, including shelters for refugees and humanitarian aid centers such as the Owl's Nest relief hub. The clinic filled an important gap by offering accessible and continuous medical care for IDPs.</p>
+      <p><span class="highlight-revision">From an analytical perspective, The International Family Medicine Clinic demonstrates how wartime conditions intensify civilian resilience and efforts of solidarity in their local communities.</span> What began as an improved volunteer initiative evolved into a permanent healthcare institution serving thousands of displaced civilians. The clinic's rapid development highlights the adaptive capacity of Ukrainian civil society and the ability of local actors to mobilize resources in response to humanitarian crises. In the broader context of this research, the clinic illustrates how service providers become key actors in sustaining civilian resilience during wartime.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-strength">
+        <div class="tag tag-green">★ Strength</div>
+        <div class="title">Good narrative arc — volunteer initiative to permanent institution</div>
+        <div class="body">The trajectory from ad hoc volunteer response to established clinic is compelling and directly supports your thesis about intensification. This is the kind of concrete evidence that makes your argument tangible. Protect this narrative structure in revision.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Narration dominates — where is the analysis?</div>
+        <div class="body">Most of this section tells the story of the clinic chronologically ("at the onset... in response... as the number grew...") but doesn't interrogate what the case reveals about your argument. The final paragraph gestures at analysis ("from an analytical perspective") but mostly restates the thesis. Push yourself: What specific features of Dr. Kolesnyk's response illustrate intensified resilience vs. simply coping? What would a case of non-intensified resilience look like by comparison? Your reader needs to see you doing interpretive work, not just summarizing what happened.</div>
+      </div>
+
+      <div class="comment-card comment-structural">
+        <div class="tag tag-orange">⚠ Structural</div>
+        <div class="title">This section repeats the historical context</div>
+        <div class="body">The second paragraph here — about millions fleeing, Uzhhorod becoming a destination, infrastructure pressure — covers nearly identical ground as the Historical Context section. You're spending valuable space saying the same thing twice. In revision, the context section should do this work once, and the case study section should jump straight into the clinic's story and its analytical significance.</div>
+      </div>
+
+      <div class="comment-card comment-missing">
+        <div class="tag tag-purple">◯ Missing</div>
+        <div class="title">Serhii's case study is absent</div>
+        <div class="body">Your introduction promises a comparative case study of two brothers — Pavlo and Serhii. But only Pavlo's clinic gets a dedicated case study section. Where is the equivalent section on Serhii? What does he do, and how does his experience illustrate the same (or different) dynamics of wartime resilience? Without this second case, the "comparative" framing collapses. This is a significant gap that needs to be filled before the final draft.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LITERATURE REVIEW ==================== -->
+<div class="section-block">
+  <div class="section-label">Literature Review: Resilience and Civil Society in Conflict (pp. 5–7)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>The concept of resilience has become increasingly central in scholarship on conflict and humanitarian crises. Social resilience refers to the capacity of individuals and communities to adapt to disruption while maintaining essential functions and social structures. Rather than viewing populations solely as victims of conflict, resilience theory emphasizes the agency of communities in responding to adversity.</p>
+      <p>In the context of armed conflict, resilience often manifests through informal support networks, local institutions, and adaptive strategies that enable communities to cope with displacement, economic disruption, and insecurity. These forms of resilience frequently emerge from civil society rather than formal state structures. As a result, service providers such as medical practitioners play a crucial role in sustaining community stability during wartime.</p>
+      <p>Research on civilian resistance also highlights the importance of non-violent forms of defiance and support demonstrates that civilian participation and non-violent resistance movements can significantly shape the trajectory of conflicts. In Ukraine, such participation often occurs through volunteer networks, humanitarian initiatives and local service provision rather than direct political mobilization.</p>
+      <p><strong>Migration and IDPs:</strong> The war has produced millions of IDPs within Ukraine. Studies of forced migration emphasize that displacement experiences vary significantly depending on socioeconomic status, access to networks and local infrastructure. IDPs frequently rely on host communities and local service providers to navigate housing, employment, healthcare, and social integration.</p>
+      <p class="elided">[Paragraphs on western Ukrainian cities as safe havens and host community strategies continue...]</p>
+      <p><strong>Civilian Behavior in Wartime Ukraine:</strong> Recent scholarship on the Russo-Ukrainian war highlights the strength of Ukrainian civil society and the rapid mobilization of volunteers following the invasion. Volunteer networks have provided logistical support to the military, humanitarian air to displaced populations and psychological assistance to those affected by violence.</p>
+      <p>However, existing research tends to focus primarily on organized NGOs and large scale civil society movements. Less attention has been given to the everyday roles of small service providers, individuals whose businesses or professions become informal support structures for communities experiencing displacement. Understanding these micro-level adaptations is essential for capturing the broader social dynamics of wartime resilience.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-strength">
+        <div class="tag tag-green">★ Strength</div>
+        <div class="title">Clear identification of the micro-level gap</div>
+        <div class="body">Your observation that existing research focuses on large NGOs and organized movements while neglecting small service providers is well-articulated and directly justifies your project. This is the scholarly gap your comp is designed to fill — make sure this claim stays prominent.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Summary pattern — sources sit side by side rather than in conversation</div>
+        <div class="body">The literature review currently follows a "one concept per paragraph" structure: resilience theory says X, civilian resistance research says Y, forced migration literature says Z. Each paragraph introduces a concept, but the sources don't talk to each other. This is the "annotated bibliography" pattern — you need synthesis. For example: How does Adger's social resilience framework connect to Chenoweth and Stephan's work on civilian resistance? Where do these literatures diverge, and where does your project sit in that tension? Try building paragraphs around themes or debates rather than individual sources.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Thin research base — needs more peer-reviewed scholarship</div>
+        <div class="body">Your bibliography lists only 8 sources, several of which are institutional reports (UNHCR, WONCA Europe) or a Brookings blog post. For a senior comp, you need substantially more peer-reviewed scholarship. Look for work on wartime social capital (e.g., Aldrich's work on social capital and disaster recovery), civilian agency in conflict zones (Kalyvas, Arjona), and the specific literature on Ukrainian civil society mobilization post-2014 (Onuch, Kudelia). The lit review should be engaging with 15–25 sources minimum.</div>
+      </div>
+
+      <div class="comment-card comment-structural">
+        <div class="tag tag-orange">⚠ Structural</div>
+        <div class="title">Subsection headers fragment the review</div>
+        <div class="body">Breaking the lit review into "Migration and IDPs," "Civilian Behavior in Wartime Ukraine," and "Documentary as Analytical Method" creates three mini-reviews that don't build on each other. A stronger approach would be to organize thematically: one section on resilience frameworks, one on civilian agency in conflict, and one that identifies the gap your cases address. The documentary methods discussion belongs in the Methods section, not the lit review.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DOCUMENTARY METHOD ==================== -->
+<div class="section-block">
+  <div class="section-label">Documentary as Analytical Method (pp. 7–8)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>Documentary storytelling provides a valuable qualitative lens through which to examine these dynamics. Visual ethnography and documentary film have long been used as tools for capturing lived experiences that may not be fully represented in traditional academic research.</p>
+      <p>In the context of conflict studies, documentary methods allow researchers to record firsthand testimony, observe community interactions and contextualize individual experiences within broader social structures. While documentaries do not replace systematic research methods, they provide a complementary form of evidence that highlights the human dimensions of geopolitical events.</p>
+      <p>The documentary component of this project therefore serves both as a narrative device and as a qualitative data source, capturing the voices and experiences of individuals navigating wartime Ukraine.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-structural">
+        <div class="tag tag-orange">⚠ Structural</div>
+        <div class="title">Move this into the Methods section</div>
+        <div class="body">This material belongs in your Methods section, not in the literature review. The lit review should engage with scholarship — the documentary discussion is about your methodological approach. Folding this into Methods will also let you be more specific about how the documentary functions as data: What did you capture? How are you analyzing the footage? What are the limitations of documentary as evidence for the claims you're making?</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Methodological justification is too general</div>
+        <div class="body">You cite Nichols' <em>Introduction to Documentary</em>, which is a broad textbook. That's fine as background, but you also need to engage with scholarship that specifically discusses documentary or visual ethnography as a research method in conflict studies. What are the epistemological implications of using film as data? How do you handle the tension between narrative storytelling and analytical rigor? These are methodological questions that need explicit treatment.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== METHODS ==================== -->
+<div class="section-block">
+  <div class="section-label">Methods &amp; Hypothesis (p. 8)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>This study employs a comparative case study methodology, a qualitative research strategy that allows for in-depth analysis of specific actors or institutions within a broader social context. Through an in-depth case study of two brothers supporting their local community in Uzhhorod, this study explores how resilience manifests among civilians without broad international governmental or NGO support. Both brothers represent distinct professional roles in very different industries but share a common environment shaped by wartime disruption.</p>
+      <p><strong>Hypothesis:</strong> This study hypothesizes that wartime pressures intensify civic resilience and mutual support networks among Ukrainian civilians, particularly among communities experiencing displacement. Although the strategies used to adapt may vary based on socioeconomic background and professional role, the overall effect of wartime continuous is the stretching of local solidarity and collective action.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Case selection logic is missing — why these two brothers?</div>
+        <div class="body">You say you're using a comparative case study methodology, but you haven't explained why these particular cases were selected or what makes the comparison analytically productive. In case study research (per Seawright &amp; Gerring), case selection should be purposive — can you identify your cases as "most similar" (same context, different outcomes), "diverse" (different pathways to the same outcome), or something else? What is your independent variable, and what is your dependent variable? Right now the reader knows you're studying two brothers, but not what comparing them is designed to reveal.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Hypothesis restates the thesis — what's being tested?</div>
+        <div class="body">Your hypothesis ("wartime pressures intensify civic resilience") is nearly identical to your thesis statement from the introduction. A hypothesis should be testable and falsifiable — what evidence would disconfirm it? What would non-intensification look like? Also, "the overall effect of wartime continuous is the stretching of local solidarity" — this sentence has a wording issue ("wartime continuous"?) and the metaphor of "stretching" is unclear. Do you mean expansion? Deepening? Be precise.</div>
+      </div>
+
+      <div class="comment-card comment-missing">
+        <div class="tag tag-purple">◯ Missing</div>
+        <div class="title">No discussion of data sources, interview protocols, or analytical framework</div>
+        <div class="body">A methods section needs to specify: What data did you collect? (Interviews, documentary footage, archival materials, observations?) How did you collect it? (Semi-structured interviews? How many? With whom? Over what time period?) How are you analyzing it? (Thematic coding? Process tracing? Narrative analysis?) What are the limitations? This section is currently two paragraphs — it needs to be substantially expanded to meet the standard for a senior comp.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DOCUMENTARY PROCESS ==================== -->
+<div class="section-block">
+  <div class="section-label">Documentary Process (pp. 9–10)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>The documentary produced as part of this research, <em>Brothers in Arms Брати по зброї</em>, uses the story of two brothers, Pavlo and Serhii, to illustrate the intensified resilience and solidarity that wartime conditions bring to Ukrainian civilians. The brothers represent different pathways through which civilians contribute to wartime resilience. Although their professional roles differ, their efforts converge in their shared commitment to supporting their community and country.</p>
+      <p>The brothers initiative exemplifies the interplay between individual effort and community solidarity. Early in the war, recognizing the vulnerability of Ukrainian civilians and the need for adaptive protective measures, Pavlo and Serhii organized a local concert in Uzhhorod. The purpose of the event was both symbolic and practical: to foster morale within the community while raising funds for a drone net, a defensive technology designed to protect civilians and infrastructure from aerial attacks. Through the concert, the brothers successfully mobilized over 13,000 hryvnia ($300) from local residents, demonstrating how community fundraisers can yield tangible protective benefits.</p>
+      <p class="elided">[Discussion of Brothers in Arms as bridge between research and public engagement continues...]</p>
+      <p><span class="highlight-strength">The film emphasizes that resilience in Ukraine does not emerge despite the war but <em>in response</em> to it.</span> The challenges of displacement, economic uncertainty and international political shifts have compelled communities to develop new forms of cooperation and solidarity. By focusing on everyday actions rather than dramatic battlefield coverage like most news content, the documentary highlights the quieter forms of resistance that sustain societies during years of prolonged conflict.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-strength">
+        <div class="tag tag-green">★ Strength</div>
+        <div class="title">Strong formulation: resilience "in response to" not "despite"</div>
+        <div class="body">The distinction that resilience emerges <em>in response to</em> the war rather than <em>despite</em> it is the sharpest analytical insight in the paper. This is doing real intellectual work — it reframes resilience as generative rather than merely defensive. Build more of your analysis around this idea.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Concert anecdote needs analytical framing</div>
+        <div class="body">The drone-net concert is a vivid detail, but you present it descriptively without connecting it to your analytical framework. What does this event reveal about the mechanisms of wartime resilience? Is it an example of social capital mobilization? Collective action overcoming free-rider problems? Community self-defense as a form of civilian resistance (per Chenoweth &amp; Stephan)? The anecdote is strong — now do the interpretive work to tell the reader what it means for your argument.</div>
+      </div>
+
+      <div class="comment-card comment-structural">
+        <div class="tag tag-orange">⚠ Structural</div>
+        <div class="title">This section blurs documentary description with case analysis</div>
+        <div class="body">This section tries to do two things at once: describe the documentary filmmaking process and present analytical findings about the brothers' resilience. These are different tasks. Consider separating them: the filmmaking process and methodology belong in your Methods section; the substantive findings about the brothers' initiatives belong in a dedicated Case Study / Analysis section. Mixing them makes it hard for the reader to know when you're being a filmmaker and when you're being an analyst.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== IMPLICATIONS / CONCLUSION ==================== -->
+<div class="section-block">
+  <div class="section-label">Implications / Conclusion (p. 11)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>This case study examines how wartime conditions shape the resilient and supportive strategies of Ukrainian civilians. Through the focus on the two brothers, this case study demonstrates how wartime pressures have intensified civic resilience rather than undermining it. Although individuals adapt in different ways depending on their professional roles and circumstances, a shared commitment to mutual support and national survival remains strong in Ukraine.</p>
+      <p>The experiences documented in this study suggest that civilian institutions such as The International Family Medicine Clinic in Uzhhorod play an invaluable role in sustaining societies during times of conflict. As the war continues, these everyday forms of resilience will remain an essential part of Ukraine's fight for territorial sovereignty and ultimately, its survival.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Conclusion restates rather than extends</div>
+        <div class="body">This section summarizes the thesis but doesn't push the argument further. A strong conclusion for a DWA comp should do more: What are the implications for how we understand civilian agency in protracted conflicts? What does your case suggest about the limits of resilience — can communities sustain this indefinitely? How might declining international support change the dynamics you've described? What does your research contribute to resilience theory or the comparative politics of wartime civil society? Push beyond summary.</div>
+      </div>
+
+      <div class="comment-card comment-missing">
+        <div class="tag tag-purple">◯ Missing</div>
+        <div class="title">No engagement with limitations or alternative explanations</div>
+        <div class="body">A senior comp needs to acknowledge what it cannot show. Are there alternative explanations for the resilience you've observed — pre-existing social capital in Uzhhorod, the particular characteristics of the Transcarpathian region, the brothers' professional advantages? What are the limitations of a two-person case study for broader claims about Ukrainian civilian resilience? Addressing these honestly strengthens rather than weakens the paper.</div>
+      </div>
+
+      <div class="comment-card comment-missing">
+        <div class="tag tag-purple">◯ Missing</div>
+        <div class="title">Serhii's story never materializes</div>
+        <div class="body">The paper repeatedly promises a comparative study of two brothers, but Serhii appears only in the documentary process section and only in connection with the joint concert. We never learn what Serhii does professionally, how his work has been shaped by the war, or what his case specifically reveals about resilience. Without a developed second case, this is a single case study of Dr. Kolesnyk's clinic, not a comparative study. Developing Serhii's case fully is essential for the final draft.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BIBLIOGRAPHY ==================== -->
+<div class="section-block">
+  <div class="section-label">Bibliography (p. 12)</div>
+  <div class="two-col">
+    <div class="draft-col">
+      <p>Adger, W. Neil. "Social and Ecological Resilience: Are They Related?" <em>Progress in Human Geography</em> 24.3 (2000): 347–364.</p>
+      <p>Betts, Alexander, and Paul Collier. <em>Refuge: Rethinking Refugee Policy in a Changing World.</em> Oxford: Oxford University Press, 2017.</p>
+      <p>Betts, Alexander, Louise Bloom, Josiah Kaplan, and Naohiko Omata. "<em>Internal Displacement in Ukraine: Patterns, Policies, and Challenges.</em>" <em>Forced Migration Review</em> 70 (2022): 12–15.</p>
+      <p>Chenoweth, Erica, and Maria J. Stephan. <em>Why Civil Resistance Works: The Strategic Logic of Nonviolent Conflict.</em> 2011.</p>
+      <p>Nichols, Bill. <em>Introduction to Documentary.</em> 3rd ed. 2017.</p>
+      <p>Kuzio, Taras. <em>Russian Nationalism and the Russian-Ukrainian War.</em> 2022.</p>
+      <p>Pifer, Steven. "Positive Developments for Ukraine in a Time of Challenge." <em>Brookings</em>, 13 Nov. 2025.</p>
+      <p>UNHCR. "<em>Ukraine Situation: Internal Displacement and Humanitarian Response.</em>" 2024.</p>
+      <p>WONCA Europe. "<em>International Family Medicine Clinic for Refugees in Uzhhorod (Ukraine): Our Path.</em>" 2023.</p>
+      <p>Zarembo, Kateryna, and Eric Martin. "Civil Society and Sense of Community in Ukraine: From Dormancy to Action." <em>European Societies</em> 26.2 (2024): 203–229.</p>
+    </div>
+    <div class="comments-col">
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Bibliography is too thin for a senior comp</div>
+        <div class="body">Ten sources is not sufficient for a DWA senior comprehensive project. You need to substantially expand your research base — aim for at least 20–25 sources, with the majority being peer-reviewed journal articles or academic books. Key areas where you need more sources: comparative case study methodology (Yin, George &amp; Bennett), resilience in conflict (Aldrich, Bourbeau), civilian agency and wartime governance (Kalyvas, Arjona, Mampilly), Ukrainian civil society post-Maidan (Onuch, Kudelia, Way), and qualitative/ethnographic methods.</div>
+      </div>
+
+      <div class="comment-card comment-revision">
+        <div class="tag tag-gold">✎ Revision</div>
+        <div class="title">Citation style inconsistencies</div>
+        <div class="body">Some entries include full publisher information (Betts &amp; Collier) while others don't (Chenoweth &amp; Stephan, Kuzio). Standardize throughout — if you're using Chicago, every entry needs place of publication, publisher, and date. Also check that your footnotes and bibliography match: ensure every footnoted source appears in the bibliography and vice versa.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== NEXT STEPS ==================== -->
+<div class="next-steps">
+  <h2>Next Steps: Priority Actions for Final Draft</h2>
+  <ol>
+    <li><strong>Develop Serhii's case study fully.</strong> This is the most critical gap. Your paper promises a comparative study of two brothers but only delivers one case. Write a dedicated section on Serhii — what he does, how the war has changed his work, what his experience reveals about resilience — at the same level of detail as the clinic section. Without this, the comparative framework doesn't hold.</li>
+    <li><strong>Sharpen the thesis and drop or qualify the "undermine Russian aggression" claim.</strong> Your strongest argument is that wartime conditions intensify civilian resilience through specific mechanisms (adaptation, mutual aid, community mobilization). The claim that this "undermines Russian aggression" is much harder to support with your evidence. Either define a concrete, demonstrable mechanism by which civilian resilience undermines strategic objectives, or narrow the thesis to what your cases can show.</li>
+    <li><strong>Expand and restructure the literature review.</strong> Move from summary to synthesis — organize around themes and debates, not individual sources. Add at least 10–15 more peer-reviewed sources, particularly on case study methodology, resilience theory in conflict settings, and Ukrainian civil society. The documentary methods discussion should be moved to the Methods section.</li>
+    <li><strong>Build out the Methods section substantially.</strong> Specify your data sources (interviews, documentary footage, observations), collection procedures, analytical approach, and limitations. Articulate your case selection logic using established comparative methodology — explain why comparing these two brothers is analytically productive and what kind of variation you're examining.</li>
+    <li><strong>Reorganize the paper to put framework before evidence.</strong> The current structure places the case study before the literature review and methods, which means the reader encounters your evidence before your analytical tools. Consider: Introduction → Literature Review → Methods → Historical Context → Case Studies (Pavlo, then Serhii) → Analysis → Conclusion.</li>
+  </ol>
+</div>
+
+</div><!-- end container -->
+</body>
+</html>

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWA 490: Senior Comprehensives | Spring 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oxy-orange: #E26030;
+            --oxy-orange-dark: #C94D20;
+            --oxy-orange-light: #F5D4C8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6a6a6a;
+            --bg-light: #fafafa;
+            --bg-cream: #fdf8f5;
+            --border-light: #e5e5e5;
+            --accent-blue: #2563eb;
+            --success-green: #059669;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--oxy-orange) 0%, var(--oxy-orange-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .course-code {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .course-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Quick Links Bar */
+        .quick-links {
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .quick-links-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .quick-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            color: var(--oxy-orange);
+            border-bottom-color: var(--oxy-orange);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Info Cards Row */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-light);
+        }
+
+        .info-card h3 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--oxy-orange);
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .info-card a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--oxy-orange);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            transition: background 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--oxy-orange-dark);
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-light);
+        }
+
+        .section h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--oxy-orange-light);
+        }
+
+        .section h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .section ul, .section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .section li {
+            margin-bottom: 0.4rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            background: var(--bg-cream);
+            border-left: 4px solid var(--oxy-orange);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+
+        .callout.info {
+            background: #eff6ff;
+            border-left-color: var(--accent-blue);
+        }
+
+        .callout.success {
+            background: #ecfdf5;
+            border-left-color: var(--success-green);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: var(--bg-cream);
+        }
+
+        th {
+            font-weight: 600;
+            text-align: left;
+            padding: 0.9rem 1rem;
+            border-bottom: 2px solid var(--oxy-orange-light);
+            color: var(--text-primary);
+        }
+
+        td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        .deadline-row {
+            background: var(--oxy-orange-light) !important;
+            font-weight: 600;
+        }
+
+        .deadline-row td {
+            color: var(--oxy-orange-dark);
+        }
+
+        /* Schedule Phases */
+        .phase-header {
+            background: linear-gradient(135deg, var(--oxy-orange) 0%, var(--oxy-orange-dark) 100%);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .phase-header:first-of-type {
+            margin-top: 1rem;
+        }
+
+        .phase-header.break {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            text-align: center;
+        }
+
+        .phase-header.completion {
+            background: linear-gradient(135deg, var(--success-green) 0%, #047857 100%);
+        }
+
+        .week-num {
+            display: inline-block;
+            background: var(--oxy-orange);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .topic-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .deliverable {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .major-deadline {
+            color: var(--oxy-orange-dark);
+            font-weight: 600;
+        }
+
+        /* Grade Breakdown */
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .grade-item {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .grade-percent {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--oxy-orange);
+            line-height: 1;
+        }
+
+        .grade-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .grade-item.major {
+            background: var(--oxy-orange-light);
+            border-color: var(--oxy-orange);
+        }
+
+        /* Resources Grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-light);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .resource-link:hover {
+            border-color: var(--oxy-orange);
+            background: var(--bg-cream);
+            color: var(--oxy-orange-dark);
+        }
+
+        .resource-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Writing System Section */
+        .writing-tip {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .writing-tip-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .writing-tip-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .writing-tip-content p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Foldable/Collapsible Elements */
+        details.foldable {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        details.foldable summary {
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s ease;
+        }
+
+        details.foldable summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.foldable summary::after {
+            content: "▸";
+            margin-left: auto;
+            transition: transform 0.2s ease;
+            color: var(--oxy-orange);
+        }
+
+        details.foldable[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        details.foldable summary:hover {
+            background: var(--bg-cream);
+        }
+
+        .foldable-content {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .foldable-content p {
+            margin-bottom: 1rem;
+        }
+
+        .foldable-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .foldable-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .foldable-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-light);
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: var(--oxy-orange);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2rem;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .quick-links-inner {
+                justify-content: flex-start;
+            }
+
+            .grade-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.6rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="course-code">Diplomacy &amp; World Affairs</div>
+            <h1 class="course-title">DWA 490: Senior Comprehensives</h1>
+            <p class="course-subtitle">Spring 2026 · Occidental College</p>
+            <span class="header-badge">🎓 Capstone Seminar · 4 Units</span>
+        </div>
+    </header>
+
+    <!-- Quick Links Navigation -->
+    <nav class="quick-links">
+        <div class="quick-links-inner">
+            <a href="#overview">Overview</a>
+            <a href="#deadlines">Deadlines</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#grading">Grading</a>
+            <a href="#honors">Honors</a>
+            <a href="#resources">Resources</a>
+            <a href="#writing">Writing System</a>
+            <a href="#ai-policy">AI Policy</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Info Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <h3>📍 Instructor</h3>
+                <p><strong>Igor Logvinenko</strong></p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#1a7376757d6c73747f7471755a756263347f7e6f"><span class="__cf_email__" data-cfemail="d4bdb8bbb3a2bdbab1babfbb94bbacadfab1b0a1">[email&#160;protected]</span></a></p>
+                <p>Office: Johnson 210</p>
+            </div>
+            <div class="info-card">
+                <h3>🕐 Office Hours</h3>
+                <p>Tuesdays 3:15–4:40 PM</p>
+                <p><em>Reserved for comps meetings</em></p>
+                <a href="https://calendar.app.google/SiDcSCM8RF9eaFUB8" class="btn" target="_blank">Book Office Hours</a>
+                    <a href="https://drive.google.com/drive/folders/1roHrM0SsZxnrv7hwT6iv12Jr0CtoL2fK?usp=sharing" class="btn" target="_blank">Course Readings</a>
+            </div>
+            <div class="info-card">
+                <h3>📚 Course Links</h3>
+                <p><a href="https://drive.google.com/drive/folders/1AhlLK80nc9-SbTFDNMdhDojv4S4q4qn4?usp=sharing">Example Theses (Recent)</a></p>
+                <p><a href="https://scholar.oxy.edu/handle/20.500.12711/159">Oxy Scholar Archive</a></p>
+            </div>
+        </div>
+
+        <!-- Course Overview -->
+        <section class="section" id="overview">
+            <h2>Course Overview</h2>
+            <p>DWA 490 represents the culmination of the Diplomacy and World Affairs major. This capstone seminar guides students through the transition from consumers of scholarly knowledge to independent producers of original research.</p>
+            <p>Students will demonstrate mastery of a specialized subfield by developing an original thesis grounded in relevant theoretical frameworks and supported by rigorous analysis of primary and secondary sources. The Senior Comprehensive requires sustained independent scholarship and reflects the full scope of analytical and research skills acquired throughout the DWA curriculum.</p>
+
+            <div class="callout">
+                <p><strong>Course Expectations:</strong> DWA 490 is a 4-unit course requiring approximately <strong>12 hours of work per week</strong>.</p>
+            </div>
+
+            <h3>Track 1: Academic Thesis</h3>
+            <p>A <strong>30–50 page</strong> comprehensive thesis based on original research, academic research, or an internship focused on a topic that culminates your DWA studies.</p>
+            <ul>
+                <li>A clear research question</li>
+                <li>A theoretical framework</li>
+                <li>A review of appropriate theoretical or policy literature</li>
+                <li>A relevant case study (or case studies)</li>
+            </ul>
+
+            <h3>Track 2: Multimedia Option</h3>
+            <p>A <strong>20–30 minute</strong> film, podcast, or other multimedia format on a topic that flows out of your DWA studies, accompanied by a <strong>12-page paper</strong> summarizing the project's theoretical connection to your DWA studies.</p>
+            <ul>
+                <li>Work must begin during the fall semester</li>
+                <li>Limited to four students per year (departmental approval required)</li>
+                <li>Previous experience in documentary making recommended</li>
+                <li>Human Subjects Committee approval required</li>
+            </ul>
+        </section>
+
+        <!-- Key Deadlines -->
+        <section class="section" id="deadlines">
+            <h2>Spring 2026 Key Deadlines</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Milestone</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tue, Jan 20</strong></td>
+                        <td>First Day of Classes — Joint Session</td>
+                        <td>—</td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><strong>Thu, Feb 5</strong></td>
+                        <td>📌 Extensive Outline Due</td>
+                        <td><strong>10%</strong></td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><strong>Thu, Mar 5</strong></td>
+                        <td>📌 Rough Draft Due</td>
+                        <td><strong>15%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Mar 9–13</td>
+                        <td>☀️ Spring Break (No Classes)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><strong>Tue, Apr 14</strong></td>
+                        <td>📌 Final Draft Due</td>
+                        <td><strong>60%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Mon, Apr 20</td>
+                        <td>Comps Grades Due to Registrar (P/PD/F)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Tue, Apr 21</td>
+                        <td>Founders Day (No Classes)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><strong>Tue, Apr 28</strong></td>
+                        <td>🎉 Poster Presentation — Last Day of Classes</td>
+                        <td><strong>5%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Grade Breakdown -->
+        <section class="section" id="grading">
+            <h2>Grade Breakdown</h2>
+            <div class="grade-grid">
+                <div class="grade-item">
+                    <div class="grade-percent">5%</div>
+                    <div class="grade-label">Fall Proposal</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percent">10%</div>
+                    <div class="grade-label">Extensive Outline</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percent">15%</div>
+                    <div class="grade-label">Rough Draft</div>
+                </div>
+                <div class="grade-item major">
+                    <div class="grade-percent">60%</div>
+                    <div class="grade-label">Final Draft</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percent">5%</div>
+                    <div class="grade-label">Peer Review</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percent">5%</div>
+                    <div class="grade-label">Poster Presentation</div>
+                </div>
+            </div>
+
+            <div class="callout info">
+                <p><strong>Peer Review (5%):</strong> 2 pages of comments and edits on a peer's draft. Tracked through Canvas.</p>
+            </div>
+
+            <h3>Extensive Outline Components</h3>
+            <ul>
+                <li>Issue description</li>
+                <li>Research question</li>
+                <li>Annotated bibliography</li>
+                <li>Methodology / case selection</li>
+            </ul>
+
+            <h3>Rough Draft Components</h3>
+            <ul>
+                <li>Introduction with thesis statement</li>
+                <li>Literature review</li>
+                <li>Methodology section</li>
+                <li>Case study analysis (preliminary)</li>
+                <li>Tentative conclusions</li>
+            </ul>
+
+            <h3>Two-Grade System</h3>
+            <p>Students receive <strong>two grades</strong> on their transcripts:</p>
+            <ol>
+                <li><strong>Pass / Pass with Distinction / Fail:</strong> Determined collectively by DWA faculty supervising senior comps projects. Both "Honors" and "Distinction" recipients receive "Pass with Distinction" (PD).</li>
+                <li><strong>Letter Grade:</strong> Determined by your individual thesis supervisor and submitted to the Registrar at a later date.</li>
+            </ol>
+        </section>
+
+        <!-- Weekly Schedule -->
+        <section class="section" id="schedule">
+            <h2>Weekly Schedule <a href="https://drive.google.com/drive/folders/1roHrM0SsZxnrv7hwT6iv12Jr0CtoL2fK?usp=sharing" class="btn" target="_blank" style="font-size: 0.5em; vertical-align: middle; margin-left: 10px;">Course Readings</a></h2>
+
+            <div class="phase-header">📚 Phase 1: Foundation (Weeks 1–3)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">Week</th>
+                        <th style="width: 110px;">Date</th>
+                        <th>Topic</th>
+                        <th>Deliverable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="week-num">1</span></td>
+                        <td>Tue, Jan 20</td>
+                        <td><span class="topic-title">Joint Session</span><br><span class="deliverable">Course overview, expectations, semester plan</span></td>
+                        <td>Revised thesis statement <em>(Thu 1/22)</em></td>
+                    </tr>
+                    <tr>
+                        <td><span class="week-num">2</span></td>
+                        <td>Tue, Jan 27</td>
+                        <td>
+                            <span class="topic-title">Variation, Variation, Variation</span><br>
+                            <span class="deliverable">Research design fundamentals</span>
+                            <details class="foldable" style="margin-top: 0.75rem; background: #f8fafc; border-radius: 6px;">
+                                <summary style="padding: 0.5rem 0.75rem; font-size: 0.85rem;">📖 Required Readings (~32 pp.)</summary>
+                                <div style="padding: 0.75rem; font-size: 0.85rem;">
+                                    <p style="margin-bottom: 0.5rem;"><strong>Gerring (2004)</strong> "What Is a Case Study and What Is It Good For?" <em>APSR</em> 98(2): 341-354. <strong>Entire article.</strong></p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0.75rem; color: #555;">
+                                        <li>What makes a case study; research design typology (Table 1)</li>
+                                        <li>Exploratory vs. confirmatory research</li>
+                                    </ul>
+                                    <p style="margin-bottom: 0.5rem;"><strong>Seawright &amp; Gerring (2008)</strong> "Case Selection Techniques in Case Study Research." <em>PRQ</em> 61(2): 294-308. <strong>pp. 294-300 only.</strong></p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0.75rem; color: #555;">
+                                        <li>Why purposive case selection matters; seven case types (Table 1)</li>
+                                    </ul>
+                                    <p style="margin-bottom: 0.5rem; color: #666; font-style: italic;"><strong>Optional:</strong></p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0; color: #666; font-style: italic;">
+                                        <li>Gerring (2012) "Mere Description," pp. 721-733 — for students doing descriptive theses</li>
+                                        <li>Collier (2011) "Understanding Process Tracing," Table 1 + pp. 823-830 — the four tests (hoop, smoking gun, etc.)</li>
+                                        <li>Van Evera, <em>Guide to Methods</em>, Ch. 2 (pp. 7-48) — deeper treatment of the four tests</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </td>
+                        <td>Email update to IL on changes to research plan <em>(Thu 1/29)</em></td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><span class="week-num">3</span></td>
+                        <td>Tue, Feb 3</td>
+                        <td>
+                            <span class="topic-title">Case Selection &amp; Justification</span>
+                            <br><a href="https://drive.google.com/file/d/1l9QgaiPWVqbP1kxQBoH7S3G_7PafGNlD/view?usp=drive_link" target="_blank" style="font-size: 0.85rem; color: var(--accent-blue); text-decoration: none; margin-top: 0.25rem; display: inline-block;">📊 Week 3 Slides</a>
+                            <details class="foldable" style="margin-top: 0.75rem; background: #fff; border-radius: 6px;">
+                                <summary style="padding: 0.5rem 0.75rem; font-size: 0.85rem;">📖 Required Readings (~8 pp.)</summary>
+                                <div style="padding: 0.75rem; font-size: 0.85rem;">
+                                    <p style="margin-bottom: 0.5rem;"><strong>Seawright &amp; Gerring (2008)</strong> "Case Selection Techniques." <strong>pp. 300-307</strong> (complete the article).</p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0.75rem; color: #555;">
+                                        <li>Detailed treatment: diverse, extreme, deviant, influential cases</li>
+                                        <li>Most similar / most different designs</li>
+                                        <li>Mixing case selection strategies</li>
+                                    </ul>
+                                    <p style="margin-bottom: 0; color: #666; font-style: italic;"><strong>Optional:</strong> Van Evera, <em>Guide to Methods</em>, Ch. 3 (pp. 77-88) — 11 case selection criteria.</p>
+                                </div>
+                            </details>
+                        </td>
+                        <td class="major-deadline">📌 Extensive Outline Due (10%) <em>(Thu 2/5)</em><br><a href="https://docs.google.com/document/d/1ierpr8-Q3XJ3kRLDKC6EwPhJvcKnHt8Y/edit?usp=sharing&ouid=108310625410781304473&rtpof=true&sd=true" target="_blank" style="font-size: 0.85rem; color: var(--accent-blue); text-decoration: none; margin-top: 0.25rem; display: inline-block;">📄 Download Template</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="phase-header">🔨 Phase 2: Building the Draft (Weeks 4–7)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">Week</th>
+                        <th style="width: 110px;">Date</th>
+                        <th>Topic</th>
+                        <th>Deliverable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="week-num">4</span></td>
+                        <td>Tue, Feb 10</td>
+                        <td><span class="topic-title"><em>Independent Writing &amp; Research Week</em></span><br><span class="deliverable">No class meeting — focus on case study research. Office hours available.</span></td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="week-num">5</span></td>
+                        <td>Tue, Feb 17</td>
+                        <td>
+                            <span class="topic-title">Literature Review</span><br>
+                            <span class="deliverable">Synthesizing sources, identifying debates</span>
+                            <details class="foldable" style="margin-top: 0.75rem; background: #f8fafc; border-radius: 6px;">
+                                <summary style="padding: 0.5rem 0.75rem; font-size: 0.85rem;">📖 Required Readings (~8 pp.)</summary>
+                                <div style="padding: 0.75rem; font-size: 0.85rem;">
+                                    <p style="margin-bottom: 0.5rem;"><strong>Cantero (SJSU)</strong> "How to Write a Literature Review." <strong>Entire guide (~7 pp.).</strong></p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0.75rem; color: #555;">
+                                        <li>What a lit review is (and isn't)</li>
+                                        <li>Three organizational types: chronological, thematic, methodological</li>
+                                        <li>Summary vs. synthesis vs. evaluation</li>
+                                    </ul>
+                                    <p style="margin-bottom: 0.5rem;"><strong>King (2006)</strong> "Publication, Publication." <em>PS: Political Science &amp; Politics</em> 39(1). <strong>Section 8 only (~1 p.).</strong></p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0; color: #555;">
+                                        <li>Key insight: Do NOT write a standalone "Literature Review" section</li>
+                                        <li>Weave sources into your argument instead</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </td>
+                        <td>Literature review draft <em>(Sun 2/22)</em></td>
+                    </tr>
+                    <tr>
+                        <td><span class="week-num">6</span></td>
+                        <td>Tue, Feb 24</td>
+                        <td><span class="topic-title"><em>Independent Writing &amp; Research Week</em></span><br><span class="deliverable">No class meeting — focus on drafting. Office hours available.</span></td>
+                        <td>—</td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><span class="week-num">7</span></td>
+                        <td>Tue, Mar 3</td>
+                        <td><span class="topic-title">Draft Workshop</span></td>
+                        <td class="major-deadline">📌 Rough Draft Due (15%) <em>(Thu 3/5)</em></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="phase-header break">☀️ Spring Break: March 9–13</div>
+
+            <div class="phase-header">✨ Phase 3: Refinement (Weeks 9–12)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">Week</th>
+                        <th style="width: 110px;">Date</th>
+                        <th>Topic</th>
+                        <th>Deliverable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="week-num">9</span></td>
+                        <td>Tue, Mar 17</td>
+                        <td><span class="topic-title"><em>Research Week</em></span><br><span class="deliverable">No class meeting — focus on writing and revision. Office hours available.</span></td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="week-num">10</span></td>
+                        <td>Tue, Mar 24</td>
+                        <td>
+                            <span class="topic-title">Research Design Check-In</span><br>
+                            <span class="deliverable">Final research design justification, case selection questions</span>
+                            <details class="foldable" style="margin-top: 0.75rem; background: #f8fafc; border-radius: 6px;">
+                                <summary style="padding: 0.5rem 0.75rem; font-size: 0.85rem;">📖 Required Reading (~10 pp.)</summary>
+                                <div style="padding: 0.75rem; font-size: 0.85rem;">
+                                    <p style="margin-bottom: 0.5rem;"><strong>Bolker (1998)</strong> <em>Writing Your Dissertation in Fifteen Minutes a Day</em>, Ch. 4: "Getting Started Writing." <strong>~10 pp.</strong></p>
+                                    <ul style="margin-left: 1.25rem; margin-bottom: 0; color: #555;">
+                                        <li>Freewriting to overcome writer's block</li>
+                                        <li>Setting small, achievable daily goals</li>
+                                        <li>Positive reinforcement over self-punishment</li>
+                                        <li>"Ten minutes a day is infinite improvement over nothing"</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </td>
+                        <td>Updated research design to IL <em>(optional, Thu 3/26)</em></td>
+                    </tr>
+                    <tr>
+                        <td><span class="week-num">11</span></td>
+                        <td>Tue, Mar 31</td>
+                        <td><span class="topic-title">Peer Review Day</span><br><span class="deliverable">Meet in class or coordinate with partner elsewhere</span></td>
+                        <td>2-page peer review (5%) <em>(Thu 4/2)</em></td>
+                    </tr>
+                    <tr>
+                        <td><span class="week-num">12</span></td>
+                        <td>Tue, Apr 7</td>
+                        <td><span class="topic-title">Final Class Meeting</span><br><span class="deliverable">Last questions, final push strategies</span></td>
+                        <td>Final revision plan <em>(Thu 4/9)</em></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="phase-header completion">🎯 Phase 4: Completion</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 170px;">Date</th>
+                        <th>Milestone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="deadline-row">
+                        <td><strong>Tue, Apr 14</strong></td>
+                        <td class="major-deadline">📌 Final Draft Due (60%)</td>
+                    </tr>
+                    <tr>
+                        <td>Mon, Apr 20</td>
+                        <td>Comps grades submitted to Registrar</td>
+                    </tr>
+                    <tr>
+                        <td>Tue, Apr 21</td>
+                        <td><em>Founders Day — No Classes</em></td>
+                    </tr>
+                    <tr class="deadline-row">
+                        <td><strong>Tue, Apr 28</strong></td>
+                        <td class="major-deadline">🎉 Poster Presentation (5%) — Senior Comps Celebration</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Honors and Distinction -->
+        <section class="section" id="honors">
+            <h2>Honors and Distinction</h2>
+            <p>Given the high standards for these projects, 'A' and 'A-' grades are the exception—generally, about <strong>1 in 10 theses</strong> receive an 'A' or 'A-'.</p>
+
+            <h3>Honors Eligibility</h3>
+            <ul>
+                <li>Comprehensive Project grade: <strong>A</strong></li>
+                <li>College GPA: <strong>3.25</strong> or higher</li>
+                <li>DWA GPA: <strong>3.50</strong> or higher</li>
+            </ul>
+
+            <h3>Distinction Eligibility</h3>
+            <ul>
+                <li>Comprehensive Project grade: <strong>A-</strong></li>
+                <li>College GPA: <strong>3.25</strong> or higher</li>
+                <li>DWA GPA: <strong>3.50</strong> or higher</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Calculating Your DWA GPA:</strong> Include only (1) required economics courses, (2) language courses up to 202, and (3) courses from other majors that count toward your DWA requirements. <em>Do NOT include</em> study abroad or U.N. Program classes.</p>
+            </div>
+        </section>
+
+        <!-- Building on Previous Work -->
+        <section class="section">
+            <h2>Building on Previous Work</h2>
+            <p>Students are <strong>encouraged</strong> to base their thesis on papers or projects on which they have previously worked, including:</p>
+            <ul>
+                <li>Previous course work</li>
+                <li>Summer research or travel</li>
+                <li>Internships (U.N. Program, NGOs, etc.)</li>
+                <li>Oxy abroad experiences</li>
+            </ul>
+
+            <div class="callout info">
+                <p><strong>Important:</strong> If you build on previous work, be aware that your Comprehensive is expected to go <strong>considerably beyond</strong> such projects. This will be much more than a simple extension and/or revision.</p>
+            </div>
+        </section>
+
+        <!-- The Independent Nature -->
+        <section class="section">
+            <h2>The Independent Nature of Comps</h2>
+            <p>Senior Comprehensives mark a fundamental shift in your relationship to academic work. In previous courses, faculty structured your learning: they assigned readings, set prompts, and guided you toward predetermined outcomes. Comps inverts this dynamic. <strong>You</strong> define the question. <strong>You</strong> design the research. <strong>You</strong> drive the project forward.</p>
+            
+            <p>Your faculty supervisor serves as a consultant and mentor—available to discuss ideas, suggest sources, and provide feedback on drafts. But they are not responsible for ensuring your success. There is no safety net of weekly assignments building toward a guaranteed result. The thesis you produce must be yours: conceived, researched, written, and defended by you.</p>
+
+            <div class="callout">
+                <p><strong>This is intentional.</strong> Comps simulates the conditions of professional intellectual work—where you must identify problems worth solving, marshal evidence, construct arguments, and deliver results without someone managing each step. The independence that feels uncomfortable now is precisely what employers, graduate programs, and colleagues will expect of you.</p>
+            </div>
+
+            <h3>What This Means in Practice</h3>
+            <ul>
+                <li><strong>Initiative is required.</strong> Don't wait for your supervisor to check in. Schedule meetings, come prepared with specific questions, and take ownership of the timeline.</li>
+                <li><strong>Feedback is guidance, not instruction.</strong> Your supervisor may suggest revisions, but you decide how to incorporate them. You are the author.</li>
+                <li><strong>Quality is your responsibility.</strong> Submitting drafts on schedule and following advice does not guarantee Honors or Distinction. The work must demonstrate genuine intellectual achievement.</li>
+                <li><strong>Expertise has limits.</strong> If your topic falls outside your supervisor's specialization, you must identify and consult with a second reader in another department.</li>
+            </ul>
+
+            <p>The students who thrive in comps are those who embrace this independence—who see the thesis not as an assignment to complete but as an opportunity to demonstrate what they're capable of producing on their own.</p>
+        </section>
+
+        <!-- Resources -->
+        <section class="section" id="resources">
+            <h2>Resources</h2>
+
+            <h3>Outstanding Thesis Examples</h3>
+            <div class="resources-grid">
+                <a href="https://drive.google.com/drive/folders/1AhlLK80nc9-SbTFDNMdhDojv4S4q4qn4?usp=sharing" class="resource-link" target="_blank">
+                    <span class="resource-icon">📁</span>
+                    <span>Recent DWA Theses (Google Drive)</span>
+                </a>
+                <a href="https://scholar.oxy.edu/handle/20.500.12711/159" class="resource-link" target="_blank">
+                    <span class="resource-icon">🎓</span>
+                    <span>Oxy Scholar Archive</span>
+                </a>
+            </div>
+
+            <h3>Writing Resources</h3>
+            <div class="resources-grid">
+                <a href="https://owl.purdue.edu/owl/general_writing/common_writing_assignments/research_papers/index.html" class="resource-link" target="_blank">
+                    <span class="resource-icon">📄</span>
+                    <span>Purdue OWL: Research Papers</span>
+                </a>
+                <a href="http://advice.writing.utoronto.ca/types-of-writing/literature-review/" class="resource-link" target="_blank">
+                    <span class="resource-icon">📚</span>
+                    <span>U of Toronto: Literature Review</span>
+                </a>
+                <a href="https://writing.wisc.edu/handbook/assignments/quotingsources/" class="resource-link" target="_blank">
+                    <span class="resource-icon">✏️</span>
+                    <span>UW-Madison: Quoting Sources</span>
+                </a>
+                <a href="http://belfercenter.ksg.harvard.edu/publication/156/writing_for_international_security.html" class="resource-link" target="_blank">
+                    <span class="resource-icon">🌐</span>
+                    <span>Harvard: Writing for International Security</span>
+                </a>
+            </div>
+
+            <h3>Campus Support</h3>
+            <div class="resources-grid">
+                <a href="http://www.oxy.edu/writing-center" class="resource-link" target="_blank">
+                    <span class="resource-icon">✍️</span>
+                    <span>Oxy Writing Center</span>
+                </a>
+                <a href="https://www.oxy.edu/library" class="resource-link" target="_blank">
+                    <span class="resource-icon">📖</span>
+                    <span>Oxy Library</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Writing System -->
+        <section class="section" id="writing">
+            <h2>Writing System: Consistency Over Everything</h2>
+            <p>The most successful comps students prioritize <strong>daily consistency</strong> over sporadic bursts of productivity. A simple 80/20 approach yields the best results.</p>
+
+            <div class="writing-tip">
+                <div class="writing-tip-icon">📊</div>
+                <div class="writing-tip-content">
+                    <h4>The 300-Word Rule</h4>
+                    <p>Write a minimum of <strong>300 words per day</strong>, every day. 300 words × 90 days = 27,000 words (well within the 30–50 page range).</p>
+                </div>
+            </div>
+
+            <div class="writing-tip">
+                <div class="writing-tip-icon">📈</div>
+                <div class="writing-tip-content">
+                    <h4>Track Your Progress</h4>
+                    <p>Use the <strong>Google Docs Word Count Tracker</strong> add-on: Extensions → Add-ons → Get add-ons → Search "Word Count Tracker" → Set daily goal of 300 words.</p>
+                </div>
+            </div>
+
+            <h3>Why This Works</h3>
+            <ul>
+                <li>Eliminates procrastination and last-minute scrambling</li>
+                <li>Keeps your thesis fresh in your mind</li>
+                <li>Builds momentum that makes writing easier over time</li>
+                <li>Reduces anxiety by breaking an overwhelming project into manageable daily tasks</li>
+            </ul>
+
+            <div class="callout success">
+                <p><strong>Remember:</strong> A mediocre 300 words today is better than a perfect 1,000 words "someday."</p>
+            </div>
+        </section>
+
+        <!-- AI Policy -->
+        <section class="section" id="ai-policy">
+            <h2>AI Use Policy</h2>
+            <p>Artificial intelligence tools are rapidly transforming how knowledge work gets done. This policy is designed to help you develop the skills that will matter most in an AI-augmented professional environment.</p>
+
+            <details class="foldable">
+                <summary>💡 Why This Matters for Your Career</summary>
+                <div class="foldable-content">
+                    <p>In the workplace you're entering, AI will be ubiquitous. It can generate content, summarize research, draft memos, and produce polished prose on demand. This is already happening.</p>
+                    <p>But here's what AI cannot do: <strong>stand behind the work.</strong></p>
+                    <p>The skills that will differentiate you are <strong>judgment</strong>, <strong>taste</strong>, and <strong>accountability</strong>:</p>
+                    <ul>
+                        <li><strong>Judgment</strong> — Knowing what questions to ask, which sources to trust, when an argument is sound versus superficially convincing</li>
+                        <li><strong>Taste</strong> — Recognizing quality, originality, and what actually matters in a field of inquiry</li>
+                        <li><strong>Accountability</strong> — Being the person who can defend the work, explain the choices, and take responsibility for the conclusions</li>
+                    </ul>
+                    <p>Your Senior Comprehensive is where you develop these capacities. If AI writes your thesis, you graduate without them. The question isn't whether AI <em>can</em> produce content—it's whether <strong>you</strong> will be the person others trust to stand behind it.</p>
+                </div>
+            </details>
+
+            <h3>Where AI Cannot Be Used</h3>
+            <p>The following represent the core intellectual work of your thesis and must be entirely your own:</p>
+            <ul>
+                <li><strong>Writing thesis content</strong> — Your argument, analysis, and prose must reflect your own voice and thinking</li>
+                <li><strong>Developing your research question or thesis statement</strong> — This is your original intellectual contribution</li>
+                <li><strong>Literature review</strong> — You must actually read, interpret, and synthesize sources yourself</li>
+                <li><strong>Case study analysis</strong> — Original analytical work is the point of the exercise</li>
+                <li><strong>Drawing conclusions</strong> — Must flow from your own reasoning</li>
+                <li><strong>Peer review feedback</strong> — Giving meaningful critique is how you learn to assess your own work</li>
+            </ul>
+
+            <h3>Where AI May Be Used (With Disclosure)</h3>
+            <p>The following uses support but do not replace your intellectual work. If you use AI for any of these purposes, note it in your acknowledgments:</p>
+            <ul>
+                <li><strong>Grammar, spelling, proofreading</strong> — Similar to Grammarly or spell-check</li>
+                <li><strong>Citation formatting</strong> — Checking consistency (Chicago, APA, etc.)</li>
+                <li><strong>Explaining unfamiliar concepts</strong> — As a learning aid when encountering difficult theory (but you must then read primary sources)</li>
+                <li><strong>Brainstorming in early stages</strong> — Generating ideas to react against, not adopt wholesale</li>
+                <li><strong>Stress-testing arguments</strong> — Asking AI to identify weaknesses or counterarguments in your draft</li>
+                <li><strong>Translation assistance</strong> — For non-English sources</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>The Key Principle:</strong> If AI could have written it, it's not a Senior Comprehensive. The value of comps is demonstrating that <em>you</em> can produce independent scholarship. The struggle is the learning.</p>
+            </div>
+        </section>
+
+        <!-- Academic Integrity -->
+        <section class="section">
+            <h2>Academic Integrity</h2>
+            <p>Academic dishonesty of any form will not be tolerated. You are expected to properly cite all sources incorporated into your working drafts and final thesis.</p>
+            <p><strong>Plagiarism</strong> occurs when the ideas, organization, or language of another are incorporated into one's work without properly crediting the original source. This includes:</p>
+            <ul>
+                <li>Re-writing or re-formatting material without acknowledgment</li>
+                <li>Using ideas or information (even in your own words) without citation</li>
+                <li>Any ideas or information that are not common knowledge must be acknowledged</li>
+            </ul>
+            <p>Penalties for academic misconduct are severe. Ignorance of principles and policies is not a defense. Consult your instructor if you have any doubts.</p>
+
+            <h3>College Policies</h3>
+            <div class="resources-grid">
+                <a href="https://www.oxy.edu/student-handbook/academic-ethics/academic-ethics" class="resource-link" target="_blank">
+                    <span class="resource-icon">⚖️</span>
+                    <span>Academic Ethics Policy</span>
+                </a>
+                <a href="https://www.oxy.edu/student-handbook/academic-ethics/academic-misconduct" class="resource-link" target="_blank">
+                    <span class="resource-icon">📋</span>
+                    <span>Academic Misconduct Policy</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><em>Deadlines are a student's responsibility: we expect all deadlines to be met in a professional, independent manner.</em></p>
+        <p style="margin-top: 1rem;">DWA 490 · Spring 2026 · <a href="https://www.oxy.edu/academics/departments-programs/diplomacy-world-affairs" target="_blank">Occidental College</a></p>
+    </footer>
+
+</body>
+</html>
