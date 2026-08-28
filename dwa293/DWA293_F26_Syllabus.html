@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DWA 293: The Energy Transition</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f8f9f7;
+    --surface: #ffffff;
+    --ink: #1c2420;
+    --ink-2: #4a564f;
+    --ink-3: #6d7a72;
+    --line: #dde3de;
+    --accent: #0f5e68;
+    --accent-soft: #e3edee;
+    --star: #b06f14;
+    --star-bg: #f6ecdc;
+    --grid: rgba(15, 94, 104, 0.045);
+    --grid-strong: rgba(15, 94, 104, 0.07);
+    --glow: rgba(176, 111, 20, 0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121815;
+      --surface: #1a221e;
+      --ink: #e7ece9;
+      --ink-2: #b4bfb8;
+      --ink-3: #8b978f;
+      --line: #2c362f;
+      --accent: #6cc4b6;
+      --accent-soft: #1d3234;
+      --star: #e0a458;
+      --star-bg: #33291a;
+      --grid: rgba(108, 196, 182, 0.05);
+      --grid-strong: rgba(108, 196, 182, 0.085);
+      --glow: rgba(224, 164, 88, 0.06);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121815;
+    --surface: #1a221e;
+    --ink: #e7ece9;
+    --ink-2: #b4bfb8;
+    --ink-3: #8b978f;
+    --line: #2c362f;
+    --accent: #6cc4b6;
+    --accent-soft: #1d3234;
+    --star: #e0a458;
+    --star-bg: #33291a;
+    --grid: rgba(108, 196, 182, 0.05);
+    --grid-strong: rgba(108, 196, 182, 0.085);
+    --glow: rgba(224, 164, 88, 0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(640px 320px at 85% -60px, var(--glow), transparent 70%),
+      repeating-linear-gradient(90deg, var(--grid-strong) 0, var(--grid-strong) 2px, transparent 2px, transparent 340px),
+      repeating-linear-gradient(0deg, var(--grid-strong) 0, var(--grid-strong) 2px, transparent 2px, transparent 340px),
+      repeating-linear-gradient(90deg, var(--grid) 0, var(--grid) 1px, transparent 1px, transparent 68px),
+      repeating-linear-gradient(0deg, var(--grid) 0, var(--grid) 1px, transparent 1px, transparent 68px)
+      var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
+  header.masthead { border-bottom: 3px solid var(--accent); padding-bottom: 24px; margin-bottom: 8px; }
+  .deco { display: block; width: 100%; height: auto; color: var(--accent); margin: 0 0 20px; }
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 10px;
+  }
+  h1 {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 600; font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.12; margin: 0 0 14px; text-wrap: balance;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; list-style: none; color: var(--ink-2); font-size: 14px; }
+  .meta strong { color: var(--ink); font-weight: 600; }
+  h2 {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 600; font-size: 25px; line-height: 1.2;
+    margin: 52px 0 6px; text-wrap: balance;
+  }
+  h2 + .rule { border: 0; border-top: 1px solid var(--line); margin: 0 0 18px; }
+  h3 {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin: 32px 0 10px;
+  }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  .note {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px; margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .note p { margin: 0 0 10px; }
+  .note p:last-child { margin-bottom: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .table-scroll { overflow-x: auto; margin: 4px 0 10px; }
+  th {
+    text-align: left; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 600; padding: 8px 14px 8px 0; border-bottom: 2px solid var(--line);
+    white-space: nowrap;
+  }
+  td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.week { white-space: nowrap; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .due { color: var(--star); font-weight: 600; }
+  .keydates { font-size: 14px; color: var(--ink-2); margin-top: 10px; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+    font-size: 14px; color: var(--ink-2); margin: 14px 0 6px;
+  }
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 700; line-height: 1;
+    padding: 4px 7px; border-radius: 3px; vertical-align: 1px;
+  }
+  .tag.core { background: var(--star-bg); color: var(--star); }
+  .tag.opt { background: var(--accent-soft); color: var(--accent); }
+  ul.readings { list-style: none; margin: 0 0 8px; padding: 0; }
+  ul.readings li {
+    padding: 10px 0 10px 14px; border-bottom: 1px solid var(--line);
+    border-left: 2px solid transparent;
+  }
+  ul.readings li.core { border-left-color: var(--star); }
+  ul.readings li .cite { display: block; }
+  ul.readings li .pin { color: var(--ink-2); }
+  ul.readings li .why { display: block; font-size: 13.5px; color: var(--ink-3); margin-top: 2px; }
+  ul.readings li .onfile {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); white-space: nowrap;
+  }
+  ol.checkpoints { margin: 0 0 14px; padding-left: 22px; }
+  ol.checkpoints > li { margin-bottom: 12px; max-width: 66ch; }
+  ol.checkpoints ul { margin: 8px 0 2px; padding-left: 18px; }
+  ol.checkpoints ul li { margin-bottom: 5px; }
+  ul.plain { margin: 0 0 14px; padding-left: 22px; }
+  ul.plain li { margin-bottom: 8px; max-width: 66ch; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  em.jrnl { font-style: italic; }
+  .totals { font-size: 14px; color: var(--ink-2); margin-top: 12px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <svg class="deco" viewBox="0 0 760 112" aria-hidden="true" role="presentation">
+      <defs>
+        <pattern id="pv" width="11" height="11" patternUnits="userSpaceOnUse">
+          <path d="M11 0H0V11" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <g stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.8">
+        <!-- sun -->
+        <circle cx="52" cy="36" r="15"/>
+        <g stroke-opacity="0.7">
+          <line x1="52" y1="12" x2="52" y2="5"/><line x1="52" y1="60" x2="52" y2="67"/>
+          <line x1="28" y1="36" x2="21" y2="36"/><line x1="76" y1="36" x2="83" y2="36"/>
+          <line x1="35" y1="19" x2="30" y2="14"/><line x1="69" y1="53" x2="74" y2="58"/>
+          <line x1="35" y1="53" x2="30" y2="58"/><line x1="69" y1="19" x2="74" y2="14"/>
+        </g>
+        <!-- solar panels -->
+        <g transform="translate(150,26)">
+          <g transform="skewX(-12)">
+            <rect width="110" height="58" fill="var(--accent-soft)"/>
+            <rect width="110" height="58" fill="url(#pv)" stroke="none"/>
+          </g>
+          <line x1="24" y1="58" x2="16" y2="77"/><line x1="84" y1="58" x2="76" y2="77"/>
+        </g>
+        <g transform="translate(300,26)">
+          <g transform="skewX(-12)">
+            <rect width="110" height="58" fill="var(--accent-soft)"/>
+            <rect width="110" height="58" fill="url(#pv)" stroke="none"/>
+          </g>
+          <line x1="24" y1="58" x2="16" y2="77"/><line x1="84" y1="58" x2="76" y2="77"/>
+        </g>
+        <g transform="translate(450,26)">
+          <g transform="skewX(-12)">
+            <rect width="110" height="58" fill="var(--accent-soft)"/>
+            <rect width="110" height="58" fill="url(#pv)" stroke="none"/>
+          </g>
+          <line x1="24" y1="58" x2="16" y2="77"/><line x1="84" y1="58" x2="76" y2="77"/>
+        </g>
+        <!-- battery -->
+        <g transform="translate(618,32)">
+          <rect x="0" y="6" width="78" height="56" rx="7" fill="var(--accent-soft)"/>
+          <rect x="78" y="24" width="9" height="20" rx="2" fill="var(--accent-soft)"/>
+          <rect x="12" y="18" width="14" height="32" fill="var(--star)" stroke="none"/>
+          <rect x="32" y="18" width="14" height="32" fill="var(--star)" stroke="none"/>
+          <rect x="52" y="18" width="14" height="32"/>
+        </g>
+        <!-- ground -->
+        <line x1="0" y1="103" x2="760" y2="103" stroke-opacity="0.35"/>
+      </g>
+    </svg>
+    <p class="eyebrow">Occidental College · Diplomacy &amp; World Affairs · Fall 2026</p>
+    <h1>DWA 293: Directed Research — The Energy Transition</h1>
+    <ul class="meta">
+      <li><strong>Instructor:</strong> Prof. Igor Logvinenko · ilogvinenko@oxy.edu</li>
+      <li><strong>Office:</strong> Johnson Hall, by appointment</li>
+      <li><strong>Units:</strong> 2 (CR/NC)</li>
+      <li><strong>Meetings:</strong> biweekly, Fridays 9:00–10:00 AM, on Zoom (first meeting Fri, Sep 4)</li>
+      <li><strong>Workload:</strong> ~6 hours/week per the College Credit Hour Policy</li>
+    </ul>
+  </header>
+
+  <h2>Schedule and Key Dates</h2>
+  <hr class="rule">
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>What happens</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="week">Fri, Sep 4</td><td><strong>Meeting 1</strong> — project overview; each student claims a case or mechanism</td></tr>
+        <tr><td class="week">Fri, Sep 11</td><td><span class="due">Checkpoint 1 due</span></td></tr>
+        <tr><td class="week">Fri, Sep 18</td><td><strong>Meeting 2</strong> — research plans discussed</td></tr>
+        <tr><td class="week">Fri, Oct 2</td><td><strong>Meeting 3</strong> — early sources, scope adjustments</td></tr>
+        <tr><td class="week">Fri, Oct 23</td><td><strong>Meeting 4</strong> — bibliographies discussed · <span class="due">Checkpoint 2 due end of day</span> (no meeting Oct 16 — fall break)</td></tr>
+        <tr><td class="week">Fri, Nov 6</td><td><strong>Meeting 5</strong> — memo outlines and drafting problems</td></tr>
+        <tr><td class="week">Fri, Nov 20</td><td><strong>Meeting 6</strong> — draft feedback (no meeting Nov 27 — Thanksgiving)</td></tr>
+        <tr><td class="week">Mon, Nov 30</td><td><strong>Meeting 7</strong> (last day of classes) — final debrief · <span class="due">Checkpoint 3 due Fri, Dec 4</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="keydates">All meetings 9:00–10:00 AM on Zoom. Registrar dates: add deadline for 2-unit courses Fri, Oct 9 · drop without a "W" by Fri, Oct 2 · fall break Oct 15–16 · grades due Dec 15.</p>
+
+  <h2>Accessing Documents and Readings</h2>
+  <hr class="rule">
+  <div class="note">
+    <p>Course documents (this syllabus, the concepts primer, and your per-student folders) live in the shared course folder on Google Drive. Put anything you want read before a meeting in your folder at least 24 hours ahead.</p>
+    <p>To find full text, start with the DOI or link given for each reading; from campus, most journal articles resolve through the library's subscriptions. If an item is not available, request it through interlibrary loan or ask a librarian for help. Locating sources, and knowing when to ask for help, is part of the research work of this course. Items marked <span class="onfile" style="text-transform:uppercase;font-weight:600;font-size:12px;letter-spacing:0.06em;color:var(--accent);">on file</span> are in the project source library; I can share those PDFs at our meetings.</p>
+  </div>
+
+  <h2>Reading List</h2>
+  <hr class="rule">
+  <p>Do not read everything. Starred items are the shared foundation; read them in full at the pointed pages. Optional items are background or case-specific — use them when your case calls for it. "→ §n" points to the section of the concepts primer the reading serves.</p>
+  <div class="legend">
+    <span><span class="tag core">★ core</span> read in full at the pointed pages</span>
+    <span><span class="tag opt">· optional</span> background / case-specific</span>
+  </div>
+  <p class="totals">The ★ core load totals roughly 200 pages across the semester, alongside your own 12–15-source bibliography.</p>
+
+  <h3>1 · Commitment, institutions, and the state</h3>
+  <ul class="readings">
+    <li class="core"><span class="cite"><span class="tag core">★</span> North, D. &amp; B. Weingast (1989), "Constitutions and Commitment," <em class="jrnl">Journal of Economic History</em> 49(4): <span class="pin">pp. 803–832 (30 pp.)</span>. <a href="https://doi.org/10.1017/S0022050700009451">DOI</a></span><span class="why">→ §2: origin of credible-commitment theory.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Jacobs, A. (2011), <em class="jrnl">Governing for the Long Term</em>, Cambridge UP — <span class="pin">ch. 2, "Theorizing Intertemporal Policy Choice," pp. 28–72; shorter entry: ch. 1, pp. 3–27</span>.</span><span class="why">→ §2: costs now, benefits decades away.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Hall, P. &amp; K. Thelen (2009), "Institutional Change in Varieties of Capitalism," <em class="jrnl">Socio-Economic Review</em> 7(1): <span class="pin">pp. 7–34</span>. <a href="https://doi.org/10.1093/ser/mwn020">DOI</a></span><span class="why">→ §4: policy stability and institutional change.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Öniş, Z. (1991), "The Logic of the Developmental State," <em class="jrnl">Comparative Politics</em> 24(1): <span class="pin">pp. 109–126 (review essay)</span>. <a href="https://doi.org/10.2307/422204">DOI</a></span><span class="why">→ §5: state capacity ("legislate it").</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Wade, R. (2018), "The Developmental State: Dead or Alive?" <em class="jrnl">Development and Change</em> 49(2): <span class="pin">pp. 518–546</span>. <a href="https://doi.org/10.1111/dech.12381">DOI</a></span><span class="why">→ §5: the developmental-state debate, updated.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Gabor, D. (2021), "The Wall Street Consensus," <em class="jrnl">Development and Change</em> 52(3): <span class="pin">pp. 429–459</span>. <a href="https://doi.org/10.1111/dech.12645">DOI</a></span><span class="why">→ §3: critique of de-risking.</span></li>
+  </ul>
+
+  <h3>2 · The politics of energy transitions</h3>
+  <ul class="readings">
+    <li class="core"><span class="cite"><span class="tag core">★</span> Aklin, M. &amp; J. Urpelainen (2013), "Political Competition, Path Dependence, and the Strategy of Sustainable Energy Transitions," <em class="jrnl">AJPS</em> 57(3): <span class="pin">pp. 643–658 (16 pp.)</span>. <a href="https://doi.org/10.1111/ajps.12002">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §5: the theory spine of "legislate it."</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> Breetz, H., M. Mildenberger &amp; L. Stokes (2018), "The Political Logics of Clean Energy Transitions," <em class="jrnl">Business and Politics</em> 20(4): <span class="pin">pp. 492–522 (31 pp.)</span>. <a href="https://doi.org/10.1017/bap.2018.14">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §5: how policy coalitions form and defend transitions.</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> Meckling, J., N. Kelsey, E. Biber &amp; J. Zysman (2015), "Winning Coalitions for Climate Policy," <em class="jrnl">Science</em> 349(6253): <span class="pin">pp. 1170–1171 (2 pp.)</span>. <a href="https://doi.org/10.1126/science.aab1336">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §5: "carrots buy sticks."</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> Shen, S.V. (2024), "Can Autocracy Handle Climate Change?" <em class="jrnl">PS: Political Science &amp; Politics</em> 57(4): <span class="pin">pp. 487–492 (6 pp.)</span>. <a href="https://doi.org/10.1017/S104909652400026X">DOI</a></span><span class="why">→ §6: regime type, policy outputs, and implementation.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Hochstetler, K. (2020), <em class="jrnl">Political Economies of Energy Transition</em>, Cambridge UP — <span class="pin">framework: ch. 1, pp. 1–29; incumbents and utilities: ch. 4, pp. 132–174</span>.</span><span class="why">→ §7: incumbent lock-in.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Steffen, B., T. Matsuo, D. Steinemann &amp; T. Schmidt (2018), "Opening New Markets for Clean Energy," <em class="jrnl">Business and Politics</em> 20(4): <span class="pin">pp. 553–587</span>. <a href="https://doi.org/10.1017/bap.2018.17">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §5: the comparison text for "import it."</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Burke, M. &amp; J. Stephens (2018), "Political Power and Renewable Energy Futures," <em class="jrnl">Energy Research &amp; Social Science</em> 35: <span class="pin">pp. 78–93</span>. <a href="https://doi.org/10.1016/j.erss.2017.10.018">DOI</a> Companion: Burke &amp; Stephens (2017), "Energy Democracy," <em class="jrnl">ERSS</em> 33: pp. 35–48 · <span class="onfile">on file</span></span><span class="why">→ §5: the theory spine of "sidestep it."</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Min, B. (2015), <em class="jrnl">Power and the Vote</em>, Cambridge UP — <span class="pin">ch. 2, "Public Goods, Elections, and the Poor," pp. 14–35</span>.</span><span class="why">→ §1: electricity as a political good, behind arrival vs. conversion.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Brass, J., S. Carley, L. MacLean &amp; E. Baldwin (2012), "Power for Development," <em class="jrnl">Annu. Rev. Environ. Resour.</em> 37: <span class="pin">pp. 107–136</span>. <a href="https://doi.org/10.1146/annurev-environ-051112-111930">DOI</a></span><span class="why">→ §5: evidence on distributed generation.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Gilley, B. (2012), "Authoritarian Environmentalism and China's Response to Climate Change," <em class="jrnl">Environmental Politics</em> 21(2): <span class="pin">pp. 287–307</span>; Beeson, M. (2010), "The Coming of Environmental Authoritarianism," <em class="jrnl">Environmental Politics</em> 19(2): <span class="pin">pp. 276–294</span> · <span class="onfile">on file</span></span><span class="why">→ §6: the environmental-authoritarianism debate.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Carley, S. &amp; D. Konisky (2020), "The Justice and Equity Implications of the Clean Energy Transition," <em class="jrnl">Nature Energy</em> 5(8): <span class="pin">pp. 569–577</span>. <a href="https://doi.org/10.1038/s41560-020-0641-6">DOI</a></span><span class="why">→ §5: distributional effects (grid secession).</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Juhász, R. &amp; N. Lane (2024), "The Political Economy of Industrial Policy," <em class="jrnl">Journal of Economic Perspectives</em> 38(4): <span class="pin">pp. 27–54</span>. <a href="https://doi.org/10.1257/jep.38.4.27">DOI</a></span><span class="why">→ §5: economics of industrial policy.</span></li>
+  </ul>
+
+  <h3>3 · Global political economy and geopolitics of energy</h3>
+  <ul class="readings">
+    <li class="core"><span class="cite"><span class="tag core">★</span> Keohane, R. &amp; D. Victor (2011), "The Regime Complex for Climate Change," <em class="jrnl">Perspectives on Politics</em> 9(1): <span class="pin">pp. 7–23 (17 pp.)</span>. <a href="https://doi.org/10.1017/S1537592710004068">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §4–5: external anchoring; the climate regime complex.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Colgan, J., R. Keohane &amp; T. Van de Graaf (2012), "Punctuated Equilibrium in the Energy Regime Complex," <em class="jrnl">Rev. Int. Organizations</em> 7(2): <span class="pin">pp. 117–143</span>. <a href="https://doi.org/10.1007/s11558-011-9130-9">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §4–5: the energy regime complex.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Newell, P. (2021), <em class="jrnl">Power Shift</em>, Cambridge UP — <span class="pin">ch. 2, "Theorising Energy Transitions," pp. 27–61</span>.</span><span class="why">→ §3: global political economy of transitions.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Hirschman, A. (1945/1980), <em class="jrnl">National Power and the Structure of Foreign Trade</em>, U. California Press — <span class="pin">Part I, ch. II, pp. 13–52; influence-effect core pp. 17–33</span>.</span><span class="why">→ §3: asymmetric interdependence.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Vakulchuk, R., I. Overland &amp; D. Scholten (2020), "Renewable Energy and Geopolitics: A Review," <em class="jrnl">Renew. Sustain. Energy Rev.</em> 122: <span class="pin">art. 109547</span>. <a href="https://doi.org/10.1016/j.rser.2019.109547">DOI</a></span><span class="why">→ §3: review of the renewables-geopolitics literature.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Jerzyniak, T. &amp; A. Herranz-Surrallés (2024), "EU Geoeconomic Power in the Clean Energy Transition," <em class="jrnl">JCMS</em> 62(4): <span class="pin">pp. 1028–1045</span>. <a href="https://doi.org/10.1111/jcms.13590">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §6: the EU toolkit as geoeconomic power.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Murphy, L.T. &amp; N. Elimä (2021), <em class="jrnl">In Broad Daylight: Uyghur Forced Labour and Global Solar Supply Chains</em>, Sheffield Hallam University — <span class="pin">Executive Summary, pp. 7–8</span> · <span class="onfile">on file</span></span><span class="why">→ §5: forced labour in solar supply chains.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Altiparmak, S.O., C.G. Thies &amp; S.T. Shutters (2025), "The Geoeconomics of Renewable Energy," <em class="jrnl">Sustainability</em> 17(13): <span class="pin">art. 5998</span>. <a href="https://doi.org/10.3390/su17135998">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §3: China–EU supply-chain leverage.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Americo, A., J. Johal &amp; C. Upper (2023), "The Energy Transition and Its Macroeconomic Effects," <em class="jrnl">BIS Papers</em> No. 135 <span class="pin">(27 pp.)</span>. <a href="https://www.bis.org/publ/bppdf/bispap135.htm">bis.org</a> · <span class="onfile">on file</span></span><span class="why">→ §3: macroeconomic effects of the transition.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Hochstetler, K. &amp; C. Inoue (2019), "South-South Relations and Global Environmental Governance," <em class="jrnl">Rev. Bras. Polít. Int.</em> 62(2): <span class="pin">e004</span>. <a href="https://doi.org/10.1590/0034-7329201900204">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §5: development finance coalitions from the South.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> IRENA (2024), <em class="jrnl">Geopolitics of the Energy Transition: Energy Security</em>. <a href="https://www.irena.org/Publications/2024/Apr/Geopolitics-of-the-energy-transition-Energy-security">irena.org</a></span><span class="why">→ §3: energy security and transition geopolitics.</span></li>
+  </ul>
+
+  <h3>4 · How solar got cheap, and where it goes</h3>
+  <ul class="readings">
+    <li class="core"><span class="cite"><span class="tag core">★</span> Nemet, G. (2019), <em class="jrnl">How Solar Energy Became Cheap</em>, Routledge — <span class="pin">ch. 1, "Introduction," and ch. 2, "Answer" (~35 pp.)</span>.</span><span class="why">→ §1: how solar hardware became cheap.</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> Helveston, J. &amp; J. Nahm (2019), "China's Key Role in Scaling Low-Carbon Energy Technologies," <em class="jrnl">Science</em> 366(6467): <span class="pin">pp. 794–796 (3 pp.)</span>. <a href="https://doi.org/10.1126/science.aaz1014">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §4: China's role in scaling low-carbon technology.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Nahm, J. (2021), <em class="jrnl">Collaborative Advantage</em>, Oxford UP (open access) — <span class="pin">ch. 3 and ch. 5</span>. <a href="https://academic.oup.com/book/39911">oup.com</a></span><span class="why">→ §4: national specialization in green manufacturing.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Nahm, J. &amp; E. Steinfeld (2014), "Scale-Up Nation," <em class="jrnl">World Development</em> 54: <span class="pin">pp. 288–300</span>. <a href="https://doi.org/10.1016/j.worlddev.2013.09.003">DOI</a></span><span class="why">→ §4: article-length version of the book's argument.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Way, R., M. Ives, P. Mealy &amp; J.D. Farmer (2022), "Empirically Grounded Technology Forecasts and the Energy Transition," <em class="jrnl">Joule</em> 6(9): <span class="pin">pp. 2057–2082</span>. <a href="https://doi.org/10.1016/j.joule.2022.08.009">DOI</a></span><span class="why">→ §4: technology cost forecasts.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Nijsse, F. et al. (2023), "The Momentum of the Solar Energy Transition," <em class="jrnl">Nature Communications</em> 14: 6542, <span class="pin">pp. 1–10 (core pp. 2–6)</span>. <a href="https://doi.org/10.1038/s41467-023-41971-7">DOI</a></span><span class="why">→ §4: projected solar growth.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Smil, V. (2016), "Examining Energy Transitions," <em class="jrnl">Energy Research &amp; Social Science</em> 22: <span class="pin">pp. 194–197 (4 pp.)</span>. <a href="https://doi.org/10.1016/j.erss.2016.08.017">DOI</a></span><span class="why">→ §4: counterpoint on transition speed; read against Nijsse.</span></li>
+  </ul>
+
+  <h3>5 · Accessible entry points</h3>
+  <ul class="readings">
+    <li class="core"><span class="cite"><span class="tag core">★</span> Chase, J. (2024), <em class="jrnl">Solar Power Finance Without the Jargon</em>, 2nd ed., World Scientific — <span class="pin">the project-finance / cost-of-energy chapter and the how-markets-set-power-prices (PPA) chapter (~18 pp.)</span>.</span><span class="why">→ §3: project finance, PPAs, and cost of energy.</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> IEA (2024), <em class="jrnl">Reducing the Cost of Capital</em> (Cost of Capital Observatory) — <span class="pin">Executive Summary (~10 pp.)</span>. <a href="https://www.iea.org/reports/reducing-the-cost-of-capital">iea.org</a></span><span class="why">→ §3: cost of capital in emerging markets.</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> US DOE (2023), <em class="jrnl">National Transmission Needs Study</em> — <span class="pin">Executive Summary, pp. ii–xi (10 pp.)</span> · <span class="onfile">on file</span></span><span class="why">→ §8: transmission as a separate constraint.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> IEA (2023), <em class="jrnl">Electricity Grids and Secure Energy Transitions</em> — <span class="pin">Executive Summary</span>. <a href="https://www.iea.org/reports/electricity-grids-and-secure-energy-transitions">iea.org</a></span><span class="why">→ §8: grid connection queues worldwide.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> St. John, J., "Lots of Demand, Too Little Grid," <em class="jrnl">Canary Media</em> · <span class="onfile">on file</span></span><span class="why">→ §8: the US interconnection backlog.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Choi, Zhou &amp; Laxton / WRI (2022), "How to De-Risk Low-Carbon Investments." <a href="https://www.wri.org/insights/de-risking-low-carbon-investments">wri.org</a></span><span class="why">→ §3: de-risking instruments.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> IEA (2022), <em class="jrnl">Solar PV Global Supply Chains</em> — <span class="pin">Executive Summary</span>. <a href="https://www.iea.org/reports/solar-pv-global-supply-chains">iea.org</a></span><span class="why">→ §4: the solar supply chain.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Rathi, A. (2023/2024), <em class="jrnl">Climate Capitalism</em>, John Murray / Greystone — <span class="pin">ch. 2, "The Bureaucrat"</span>.</span><span class="why">→ §4: China's clean-energy industrial policy.</span></li>
+  </ul>
+
+  <h3>6 · Region-specific (Croatia / Serbia / Greece)</h3>
+  <ul class="readings">
+    <li class="core"><span class="cite"><span class="tag core">★</span> Victoria, M. et al. (2020), "Early Decarbonisation of the European Energy System Pays Off," <em class="jrnl">Nature Communications</em> 11: 6223, <span class="pin">pp. 1–9 (core pp. 2–7)</span>. <a href="https://doi.org/10.1038/s41467-020-20015-4">DOI</a></span><span class="why">→ §6: the "small dose" reading of hydro-heavy grids.</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> Energy Community Secretariat (2025), <em class="jrnl">Annual Implementation Report</em> — <span class="pin">Serbia country profile</span>. <a href="https://www.energy-community.org">energy-community.org</a></span><span class="why">→ §6: rule transposition and enforcement in Serbia.</span></li>
+    <li class="core"><span class="cite"><span class="tag core">★</span> pv magazine (Oct 2025), "Croatia's Regulatory Deadlock Is Strangling Large-Scale Solar." <a href="https://www.pv-magazine.com/2025/10/21/res-croatia-solar-utility-scale-grid-access-european-commission-solvis-epc-developers/">pv-magazine.com</a></span><span class="why">→ §8: grid access and permitting in Croatia.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Fotis, G., T.I. Maris &amp; V. Mladenov (2025), "Risks, Obstacles and Challenges of the Electrical Energy Transition in Europe: Greece as a Case Study," <em class="jrnl">Sustainability</em> 17(12): <span class="pin">art. 5325 (32 pp.)</span>. <a href="https://doi.org/10.3390/su17125325">DOI</a> · <span class="onfile">on file</span></span><span class="why">→ §8: grid integration constraints in Greece.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> IEA (2023), <em class="jrnl">Greece 2023 Energy Policy Review</em> — <span class="pin">Executive Summary</span>. <a href="https://www.iea.org/reports/greece-2023">iea.org</a></span><span class="why">→ §6: Greek auctions, permitting, and grid reform.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> AURES II (2020), "Auctions for the Support of Renewable Energy in Greece." <a href="http://aures2project.eu/wp-content/uploads/2020/03/AURES_II_case_study_Greece.pdf">aures2project.eu</a></span><span class="why">→ §6: Greek renewable-energy auction design.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Gubenko, S. (2025), "Chinese-Led Energy Projects in the Western Balkans," <em class="jrnl">Journal of East-West Business</em> (online first). <a href="https://doi.org/10.1080/10669868.2025.2569830">DOI</a></span><span class="why">→ §5: Chinese finance and Serbia's Kostolac B3.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> Buchanan Ponczek, C. &amp; M. Siddi (2024), "Energy Justice through Policy," FIIA Working Paper 139 <span class="pin">(15 pp.)</span>. <a href="https://www.fiia.fi/en/publication/energy-justice-through-policy">fiia.fi</a> · <span class="onfile">on file</span></span><span class="why">→ §6: EU and US energy-justice policy compared.</span></li>
+    <li><span class="cite"><span class="tag opt">·</span> European Commission, NECP assessments (Croatia, Greece). <a href="https://commission.europa.eu/energy-climate-change-environment/implementation-eu-countries/energy-and-climate-governance-and-reporting/national-energy-and-climate-plans_en">europa.eu</a> Serbia's NECP is assessed by the Energy Community Secretariat.</span><span class="why">→ §6: NECP monitoring.</span></li>
+  </ul>
+
+  <h3>7 · Data sources</h3>
+  <p>Ember (capacity and generation) · IEA Cost of Capital Observatory · IRENA capacity and finance statistics · V-Dem (regime measures) · GOGLA (off-grid solar) · Eurostat · national TSO/regulator data: HROTE and HOPS (Croatia), EMS and EPS (Serbia), ADMIE and DAPEEP (Greece). The IEA and DOE reports in category 5 double as data sources for cost-of-capital and grid-queue figures.</p>
+
+  <h2>Course Description</h2>
+  <hr class="rule">
+  <p>This course brings you into an active faculty research project on the political economy of the renewable energy transition in Eastern Europe, Central Asia, and Africa. You take one defined slice of the project — a country case or a policy mechanism (prosumer compensation, storage deployment, transition financing) — and execute it from a research plan through an annotated bibliography to a final research memo of about 2,500 words.</p>
+  <p>A faculty-led research trip to Croatia in May–June 2027 (through the Richter program) is planned for fieldwork on the region's energy transition. Work in this course supports an application; participation is not guaranteed.</p>
+  <p>This is a directed research course: the instructor supplies the research agenda, source suggestions, and feedback; you supply the work. Per the College's Credit Hour Policy, a 2-unit course means roughly 6 hours of work per week (~84 hours over the semester), nearly all of it independent reading, source-gathering, and writing. There are no lectures.</p>
+
+  <h2>How This Course Runs</h2>
+  <hr class="rule">
+  <p>You are in charge of your research. The group meets roughly every other week. Come to each meeting with something on the table: progress made, sources found, or a specific problem you are stuck on. Between meetings, email after you have tried to resolve the question yourself, and say what you tried.</p>
+  <p>At meetings the instructor gives direction and feedback, reads anything placed in the shared folder before the meeting, and discusses where your piece fits in the larger project.</p>
+
+  <h2>Checkpoints</h2>
+  <hr class="rule">
+  <p>All three are required for Credit.</p>
+  <ol class="checkpoints">
+    <li><strong>Research plan</strong> (2–3 pages) — <span class="due">Fri, Sep 11</span>. A plan for the semester's work on your case or mechanism, covering:
+      <ul>
+        <li>Your case or mechanism and its scope: the country and period, or the mechanism and where you will observe it.</li>
+        <li>Your research question, stated in one sentence, and 2–3 sentences on how it connects to the larger project.</li>
+        <li>A first pass through the framework: what the arrival and conversion ledgers show (or where you will look); who must believe what promise, for how long, guaranteed by whom; and which source of commitment — imported, joined, legislated, sidestepped — you expect to matter.</li>
+        <li>Your first five sources, with 1–2 sentences each on what you expect the source to contribute.</li>
+        <li>The data sources (category 7 of the reading list) you plan to use and what you expect them to show.</li>
+        <li>One falsifiable expectation: a statement of what evidence would prove your initial read wrong.</li>
+        <li>A week-by-week plan to the end of the semester, keyed to the meeting and checkpoint dates above.</li>
+        <li>Open questions and anticipated obstacles, to discuss at Meeting 2.</li>
+      </ul>
+    </li>
+    <li><strong>Annotated bibliography + outline</strong> (12–15 sources, 1-page memo outline) — <span class="due">Fri, Oct 23</span>. Scholarly and policy sources; 2–3 sentences per entry on what it contributes.</li>
+    <li><strong>Research memo</strong> (8–10 pages) — <span class="due">Fri, Dec 4</span>. A self-contained, cited memo on your slice of the project, written so a reader new to the case understands what happened, why, and what it means for the larger project.</li>
+  </ol>
+
+  <h2>Earning Credit (CR)</h2>
+  <hr class="rule">
+  <ul class="plain">
+    <li>All three checkpoints submitted on time at college-level quality.</li>
+    <li>Attendance at biweekly meetings, prepared. One absence with advance notice is acceptable; a second requires a conversation.</li>
+    <li>The 24-hour pre-meeting submission rule respected.</li>
+  </ul>
+  <p>No Credit results from a missing checkpoint, a pattern of unprepared or canceled meetings, or work that does not reach credible quality after the offered revision.</p>
+
+  <h2>Policies</h2>
+  <hr class="rule">
+  <p><strong>AI tools.</strong> You may use AI tools for search, summarization, and feedback on drafts. You may not submit AI-generated text as your memo prose, and you are responsible for verifying every citation and factual claim. Fabricated or unverified citations are an academic integrity violation.</p>
+  <p><strong>Academic integrity.</strong> Occidental's academic conduct policies apply. When in doubt about sourcing or collaboration, ask before submitting.</p>
+  <p><strong>Accommodations.</strong> Students registered with Disability Services should send accommodation letters in the first two weeks; deadlines can be adjusted.</p>
+</div>
+
+</body>
+</html>
