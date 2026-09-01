@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DWA 103 · Week 2 · Liberalisms</title>
+<style>
+  :root{
+    --oxy-orange:#E26030;   /* Occidental orange, PMS 7579 C */
+    --ink:#1A1919;          /* Occidental black */
+    --ink-2:#55524F;
+    --ink-3:#8A8683;
+    --line:#DDD9D4;
+    --paper:#FFFFFF;
+    --paper-2:#FAF8F5;
+    --surround:#141312;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--surround);
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    overflow:hidden;
+  }
+  #stage{
+    position:absolute;top:50%;left:50%;
+    width:1280px;height:720px;
+    transform-origin:center center;
+  }
+  .slide{
+    position:absolute;inset:0;
+    width:1280px;height:720px;
+    background:var(--paper);
+    padding:64px 84px 56px;
+    display:none;
+    flex-direction:column;
+  }
+  .slide.active{display:flex}
+  .kicker{
+    font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--oxy-orange);font-weight:600;margin-bottom:10px;
+  }
+  h1{font-size:34px;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+  .rule{width:64px;height:3px;background:var(--oxy-orange);margin:18px 0 26px;border-radius:2px}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:flex-start}
+  .facts{list-style:none;font-size:23px;line-height:1.5;max-width:1040px}
+  .facts li{margin-bottom:16px;padding-left:26px;position:relative}
+  .facts li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:3px;background:var(--oxy-orange);border-radius:2px}
+  .cite{color:var(--ink-3);font-size:.82em;white-space:nowrap}
+  blockquote{
+    font-family:Georgia,"Times New Roman",serif;font-style:italic;
+    font-size:26px;line-height:1.45;color:var(--ink);
+    border-left:3px solid var(--oxy-orange);padding-left:24px;margin:10px 0 6px;max-width:980px;
+  }
+  blockquote .attr{display:block;font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;font-style:normal;font-size:17px;color:var(--ink-2);margin-top:12px}
+  .foot{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:13.5px;color:var(--ink-3);letter-spacing:.02em;margin-top:auto;padding-top:18px;
+  }
+  .foot .fno{color:var(--oxy-orange);font-weight:600}
+  svg text{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif}
+  .cols{display:flex;gap:36px;margin-top:8px}
+  .col{flex:1;border-top:3px solid var(--oxy-orange);padding-top:18px}
+  .col.gray{border-top-color:var(--line)}
+  .col h2{font-size:23px;margin-bottom:12px}
+  .col p{font-size:19px;line-height:1.45;color:var(--ink-2);margin-bottom:10px}
+  .col .names{font-size:17px;color:var(--ink);line-height:1.5}
+  table.def{border-collapse:collapse;width:100%;font-size:20px;margin-top:4px}
+  table.def th{text-align:left;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:0 18px 10px 0;border-bottom:2px solid var(--ink)}
+  table.def td{padding:14px 18px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+  table.def td.term{font-weight:700;white-space:nowrap;width:280px}
+  table.def td .cite{white-space:normal}
+  table.matrix{border-collapse:collapse;width:100%;font-size:17.5px;table-layout:fixed;margin-top:2px}
+  table.matrix th{font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:8px 10px;border-bottom:2px solid var(--ink);text-align:left}
+  table.matrix th.rowh{width:170px}
+  table.matrix td{padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
+  table.matrix td.rowh{font-weight:700;color:var(--ink)}
+  table.matrix td b{font-weight:600}
+  table.matrix td span{display:block;color:var(--ink-2);font-size:15px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
+  .card{background:var(--paper-2);border:1px solid var(--line);border-top:3px solid var(--oxy-orange);padding:20px 24px}
+  .card h2{font-size:22px;margin-bottom:8px}
+  .card p{font-size:18.5px;line-height:1.42;color:var(--ink-2)}
+  .qnum{color:var(--oxy-orange);font-weight:700;font-size:26px;display:block;margin-bottom:8px}
+  .qgrid{display:flex;gap:44px;margin-top:14px}
+  .qgrid div{flex:1;font-size:21px;line-height:1.5}
+  .title-slide{justify-content:center}
+  .title-slide .kicker{font-size:17px}
+  .title-slide h1{font-size:54px;max-width:980px}
+  .title-slide .sub{font-size:24px;color:var(--ink-2);margin-top:22px;line-height:1.5;font-family:Georgia,serif}
+  #hud{
+    position:fixed;right:18px;bottom:14px;color:#8a8683;
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;
+    user-select:none;z-index:5;
+  }
+  #help{position:fixed;left:18px;bottom:14px;color:#5c5956;font-size:12px;z-index:5}
+  .depth{display:inline-block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line);padding:2px 8px;border-radius:3px;margin-left:10px;vertical-align:middle}
+  @media print{
+    body{background:#fff;overflow:visible}
+    #stage{position:static;transform:none!important;width:auto;height:auto}
+    .slide{display:flex;position:relative;page-break-after:always;margin:0 auto}
+    #hud,#help{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 0 · BRIDGE FROM WEEK 1 -->
+<section class="slide">
+  <div class="kicker">Last week → This week</div>
+  <h1>From the Three Orthodoxies to Liberalism in Depth</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Week 1: liberalism, neomercantilism, Marxism as the three pre-1945 orthodoxies</li>
+      <li>Week 2: liberalism's classical intellectual origins (Helleiner, ch. 2), its global diffusion and adaptation (ch. 3), and its 20th-century IR/IPE descendants (Aggarwal &amp; Dupont; Lake)</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, chs. 2–3</span><span class="fno">0</span></div>
+</section>
+
+<!-- 1 · TITLE -->
+<section class="slide title-slide">
+  <div class="kicker">DWA 103 · The Contested World Economy · Occidental College</div>
+  <h1>Week 2: Liberalisms</h1>
+  <div class="rule"></div>
+  <div class="sub">Helleiner, <em>The Contested World Economy</em>, chs. 2–3 (pp. 19–55) · Aggarwal &amp; Dupont, "Collaboration and Coordination in the Global Political Economy" · Lake, "Open Economy Politics: A Critical Review" (depth)</div>
+  <div class="foot"><span>DWA 103 · Fall 2026</span><span class="fno">1</span></div>
+</section>
+
+<!-- 2 · READING MAP -->
+<section class="slide">
+  <h1>Reading Map for the Week</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="def">
+      <tr><td class="term">CWE ch. 2</td><td>European classical economic liberalism: Smith, Ricardo, Cobden, Mill, Bagehot <span class="cite">(pp. 19–36)</span></td></tr>
+      <tr><td class="term">CWE ch. 3</td><td>Non-European reception and adaptation: Americas, South Asia, Africa/Ottoman lands, East Asia <span class="cite">(pp. 37–55)</span></td></tr>
+      <tr><td class="term">Aggarwal &amp; Dupont</td><td>Why cooperation is hard, and how institutions solve it — the analytic bridge from history of ideas to IPE theory</td></tr>
+      <tr><td class="term">Lake <span class="depth">Depth</span></td><td>Open Economy Politics: linking international structure, domestic interests, and policy outcomes <span class="cite">(graduate-level; optional)</span></td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Syllabus, Week 2</span><span class="fno">2</span></div>
+</section>
+
+<!-- 3 · SHARED BELIEFS -->
+<section class="slide">
+  <h1>Classical Economic Liberalism: Core Beliefs</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>First perspective on political economy to reach a worldwide audience</li>
+      <li>Smith's <em>Wealth of Nations</em> (1776) achieved near-universal recognition by the early 20th century</li>
+    </ul>
+    <div class="cols" style="margin-top:10px">
+      <div class="col"><h2>1</h2><p>Free trade generates global prosperity</p></div>
+      <div class="col"><h2>2</h2><p>Free markets promote international peace</p></div>
+      <div class="col"><h2>3</h2><p>Economic freedom secures individual freedom</p></div>
+    </div>
+    <p style="font-size:16px;color:var(--ink-3);margin-top:18px">Beyond these three, disagreements existed among liberals.</p>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2</span><span class="fno">3</span></div>
+</section>
+
+<!-- 4 · SMITH: MARKET MECHANISM -->
+<section class="slide">
+  <h1>Smith: How Markets Generate Prosperity</h1>
+  <div class="rule"></div>
+  <div class="body" style="flex-direction:row;gap:40px">
+    <ul class="facts" style="max-width:560px">
+      <li>Natural propensity "to truck, barter, and exchange"</li>
+      <li>Division of labor → productivity</li>
+      <li>Price mechanism → decentralized coordination</li>
+      <li>Self-interest → collective benefit</li>
+    </ul>
+    <div style="flex:1">
+      <h2 style="font-size:20px;margin-bottom:10px;color:var(--ink-2)">Three legitimate duties of government</h2>
+      <ul class="facts" style="font-size:19px">
+        <li>Protection from foreign invasion</li>
+        <li>Administration of justice</li>
+        <li>Public works "which it can never be for the interest of any individual" to provide</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Smith 1776 · Helleiner 2023, ch. 2</span><span class="fno">4</span></div>
+</section>
+
+<!-- 5 · INVISIBLE HAND -->
+<section class="slide">
+  <h1>The "Invisible Hand"</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Used once in <em>The Wealth of Nations</em></li>
+      <li>Rulers "exposed to innumerable delusions"; no "human wisdom or knowledge" sufficient for central planning</li>
+    </ul>
+    <blockquote>
+      "It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own self-interest."
+      <span class="attr">— Adam Smith, <em>The Wealth of Nations</em>, 1776</span>
+    </blockquote>
+  </div>
+  <div class="foot"><span>Smith 1776 · Helleiner 2023: 20</span><span class="fno">5</span></div>
+</section>
+
+<!-- 6 · FREE TRADE CASE -->
+<section class="slide">
+  <h1>Smith's Case for Free Trade</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="def">
+      <tr><td class="term">Efficient allocation</td><td>Restrictions give protected firms "monopoly of the home market," drawing capital from more valuable uses</td></tr>
+      <tr><td class="term">Consumer benefit</td><td>Free trade prevents consumers being "sacrificed" to inefficient domestic monopolies</td></tr>
+      <tr><td class="term">Outlet for surplus</td><td>Trade employs resources that would otherwise sit idle</td></tr>
+      <tr><td class="term">Dynamic gains</td><td>Competitive pressure, larger markets, "mutual communication of knowledge, and of all sorts of improvements" <span class="cite">(Smith 1776)</span></td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2, pp. 20–23</span><span class="fno">6</span></div>
+</section>
+
+<!-- 7 · FREE TRADE AND FREEDOM -->
+<section class="slide">
+  <h1>Free Trade and Individual Freedom</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Protectionism = an "oppressive policy" against natural liberty to trade <span class="cite">(Smith 1776)</span></li>
+      <li>Rooted in natural law: "the right to engage in commerce pertains equally to all peoples" <span class="cite">(Grotius 1604, in Helleiner 2023: 21)</span></li>
+      <li>Anti-rent-seeking: protection defends elite monopoly privileges over the interests of the many</li>
+      <li>Applied globally: colonial trade restrictions on America a "manifest violation of the most sacred rights of mankind," published months before the Declaration of Independence <span class="cite">(Smith 1776; Helleiner 2023: 22)</span></li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2, pp. 21–23</span><span class="fno">7</span></div>
+</section>
+
+<!-- 8 · SMITH'S EXCEPTIONS -->
+<section class="slide">
+  <h1>Smith's Exceptions to Free Trade</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="def">
+      <tr><td class="term">Retaliation</td><td>Justified only if likely to get a trading partner's restrictions lifted</td></tr>
+      <tr><td class="term">Gradual transition</td><td>Sudden liberalization after long protection could cause mass job loss; "freedom of trade should be restored only by slow gradations" <span class="cite">(Smith 1776)</span></td></tr>
+      <tr><td class="term">Tax equalization</td><td>Tariffs to offset foreign goods taxed lower abroad</td></tr>
+      <tr><td class="term">National defense</td><td>Endorsed England's Navigation Acts: "the wisest of all the commercial regulations of England" <span class="cite">(Smith 1776)</span></td></tr>
+    </table>
+    <p style="font-size:15px;color:var(--ink-3);margin-top:14px">Smith evaluated policy by state wealth <em>and</em> power — more cautious than many 19th-century followers.</p>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2, pp. 24–26</span><span class="fno">8</span></div>
+</section>
+
+<!-- 9 · RICARDO -->
+<section class="slide">
+  <h1>Ricardo: Comparative Advantage</h1>
+  <div class="rule"></div>
+  <div class="body" style="flex-direction:row;gap:44px;align-items:center">
+    <div style="max-width:480px">
+      <ul class="facts">
+        <li>Complete specialization, even if one country is absolutely more efficient at both goods</li>
+        <li>Gains extend to "the universal society of nations"</li>
+      </ul>
+      <p style="font-size:15px;color:var(--ink-3);margin-top:14px">Watson 2017: Ricardo's abstraction omits the coercive 1703 treaty and Brazilian-gold financing behind the actual England–Portugal trade.</p>
+    </div>
+    <svg viewBox="0 0 480 340" width="480" height="340" role="img" aria-label="Diagram: Portugal specializes in wine, England in cloth, both trade for mutual gain">
+      <g text-anchor="middle" font-size="18" fill="#1A1919">
+        <rect x="20" y="40" width="190" height="90" rx="4" fill="#FAF8F5" stroke="#DDD9D4"/>
+        <text x="115" y="72" font-weight="700">Portugal</text>
+        <text x="115" y="98" fill="#55524F" font-size="16">specializes: wine</text>
+        <rect x="270" y="40" width="190" height="90" rx="4" fill="#FAF8F5" stroke="#DDD9D4"/>
+        <text x="365" y="72" font-weight="700">England</text>
+        <text x="365" y="98" fill="#55524F" font-size="16">specializes: cloth</text>
+        <line x1="210" y1="85" x2="270" y2="85" stroke="#E26030" stroke-width="2.5" marker-end="url(#arrR)" marker-start="url(#arrL)"/>
+        <text x="240" y="70" font-size="15" fill="#E26030">trade</text>
+      </g>
+      <rect x="70" y="220" width="340" height="70" rx="4" fill="#FFF" stroke="#E26030" stroke-width="2"/>
+      <text x="240" y="252" font-size="18" font-weight="700" text-anchor="middle" fill="#1A1919">Mutual gains from trade</text>
+      <text x="240" y="276" font-size="15" text-anchor="middle" fill="#55524F">even if Portugal is absolutely more efficient at both</text>
+      <line x1="115" y1="130" x2="200" y2="220" stroke="#8A8683" stroke-width="2"/>
+      <line x1="365" y1="130" x2="280" y2="220" stroke="#8A8683" stroke-width="2"/>
+      <defs>
+        <marker id="arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E26030"/></marker>
+        <marker id="arrL" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E26030"/></marker>
+      </defs>
+    </svg>
+  </div>
+  <div class="foot"><span>Ricardo 1817 · Helleiner 2023, ch. 2, p. 27</span><span class="fno">9</span></div>
+</section>
+
+<!-- 10 · MILL AND COBDEN -->
+<section class="slide">
+  <h1>Mill and Cobden: Trade as Peace</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Mill: free trade "rapidly rendering war obsolete, by strengthening and multiplying the personal interests which are in natural opposition to it" <span class="cite">(Mill [1871]1965: 581)</span></li>
+      <li>Mill's exceptions: national defense ("invidious exception"); temporary protection for a "young and rising nation" <span class="cite">(Mill, in Helleiner 2023: 29)</span></li>
+      <li>Cobden: repeal of the Corn Laws (1846); 1860 Cobden–Chevalier treaty with an unconditional most-favored-nation clause</li>
+      <li>Cobden called free trade a "divine law" for the world</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2, pp. 28–32</span><span class="fno">10</span></div>
+</section>
+
+<!-- 11 · CONTESTED CASE: OPIUM WARS -->
+<section class="slide">
+  <div class="kicker">Contested Case</div>
+  <h1>Free Trade by Force: The Opium Wars</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Britain forced open Chinese markets, 1839–42 and 1856–60</li>
+      <li>Many British liberals supported the action against a government seen as blocking its own people's benefit from trade</li>
+      <li>Cobden opposed the Second Opium War, rejecting the "barbarian" label for China and calling Britain's force the "barbaric act"</li>
+    </ul>
+    <blockquote>
+      "In many cases, the eagerness of England in the Free-trade cause only does that cause harm."
+      <span class="attr">— Walter Bagehot, on the 100th anniversary of <em>The Wealth of Nations</em>, in Helleiner 2023: 31</span>
+    </blockquote>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2, pp. 31–32</span><span class="fno">11</span></div>
+</section>
+
+<!-- 12 · BAGEHOT'S CRITIQUE -->
+<section class="slide">
+  <h1>Bagehot: Is Liberalism Universal?</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Economic liberalism a theory "proved of, and applicable to, particular societies only" — those with "grown-up competitive commerce" <span class="cite">(Bagehot [1876]1885: 6, 31, 27, 9)</span></li>
+      <li>Called it "English political economy" — contrast with Smith's claim to universal relevance</li>
+      <li>A more modest claim than Cobden's "divine law"</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 2, p. 31</span><span class="fno">12</span></div>
+</section>
+
+<!-- 12b · BRYAN CASE -->
+<section class="slide">
+  <div class="kicker">Contested Case · Domestic Backlash</div>
+  <h1>Bryan and the Gold Standard, 1896</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Democratic National Convention, July 9, 1896: William Jennings Bryan argues against the gold standard, for free coinage of silver</li>
+      <li>Debtor farmers of the South and West vs. Eastern creditor and financial interests — a domestic fight over a pillar of liberal international monetary order</li>
+      <li>Video (1921 recording, audio restored): <a href="https://www.youtube.com/watch?v=UV2wRCcWJa8" style="color:var(--oxy-orange);text-decoration:none">youtube.com/watch?v=UV2wRCcWJa8</a></li>
+    </ul>
+    <blockquote>
+      "You shall not press down upon the brow of labor this crown of thorns; you shall not crucify mankind upon a cross of gold."
+      <span class="attr">— William Jennings Bryan, Democratic National Convention, July 9, 1896</span>
+    </blockquote>
+  </div>
+  <div class="foot"><span>Bryan 1896</span><span class="fno">12b</span></div>
+</section>
+
+<!-- 13 · GLOBAL ADAPTATIONS MAP -->
+<section class="slide">
+  <h1>Liberalism's Global Reception, by Region</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="matrix">
+      <tr><th class="rowh"></th><th>Americas</th><th>South Asia</th><th>Africa / Ottoman</th><th>East Asia</th></tr>
+      <tr>
+        <td class="rowh">Key figures</td>
+        <td><b>T. Cooper</b> <span>US South — defended slavery</span><b>Bolívar · Prieto · Bilbao</b> <span>anti-colonial liberty</span></td>
+        <td><b>Rammohun Roy</b> <span>developmental liberalism</span><b>Naoroji</b> <span>"drain theory"</span></td>
+        <td><b>Equiano</b> <span>free trade vs. slave trade</span><b>Crummell</b> <span>Liberia</span><b>D'Ghies</b> <span>Ottoman reform</span></td>
+        <td><b>Yan Fu</b> <span>1901 Wealth of Nations trans.</span><b>Taguchi Ukichi</b> <span>Japan</span></td>
+      </tr>
+      <tr>
+        <td class="rowh">Adaptation</td>
+        <td>Free trade tied to independence from colonial trade restrictions</td>
+        <td>Free trade + active state modernization; critique of colonial "drain"</td>
+        <td>"Legitimate commerce" to replace slave trade; liberal reform via empire</td>
+        <td>Liberalism as path to national wealth and power; local intellectual roots claimed</td>
+      </tr>
+    </table>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 3, pp. 37–55</span><span class="fno">13</span></div>
+</section>
+
+<!-- 13b · EQUIANO PERFORMANCE -->
+<section class="slide">
+  <div class="kicker">Case</div>
+  <h1>Equiano, <em>The Interesting Narrative</em>, 1789</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>One of the first published narratives of an enslaved person's experience of the Middle Passage</li>
+      <li>Equiano used free-trade language against slavery: "legitimate commerce" with Africa as a substitute for the slave trade <span class="cite">(Equiano [1789]2001)</span></li>
+      <li>Performance: actor Jyuddah Jaymes reads extracts from <em>The Interesting Narrative</em> — <a href="https://www.youtube.com/watch?v=EPkIouAElGA" style="color:var(--oxy-orange);text-decoration:none">youtube.com/watch?v=EPkIouAElGA</a></li>
+    </ul>
+  </div>
+  <div class="foot"><span>Equiano [1789]2001 · Helleiner 2023, ch. 3, p. 47</span><span class="fno">13b</span></div>
+</section>
+
+<!-- 14 · NAOROJI DRAIN THEORY -->
+<section class="slide">
+  <div class="kicker">Case</div>
+  <h1>Naoroji's "Drain Theory," 1867</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>First detailed economic critique of colonialism by a colonized subject</li>
+      <li>British rule drained Indian wealth via remittances and debt-service payments to Britain</li>
+      <li>Engaged Mill's own liberal framework to argue India needed infant-industry protection: "free trade between England and India in a matter like this is something like a race between a starving, exhausting invalid and a strong man with a horse to ride on" <span class="cite">(Naoroji, in Helleiner 2023: 45)</span></li>
+    </ul>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 3, pp. 44–46</span><span class="fno">14</span></div>
+</section>
+
+<!-- 15 · LIBERAL IMPERIALISM DEBATE -->
+<section class="slide">
+  <h1>Liberal Imperialism: A Debate Inside Liberalism</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col"><h2>Mill</h2><p>Colonial "despotism" justified paternalistically — colonized peoples "not yet ready" for self-government; worked for the East India Company, 1823–58</p></div>
+      <div class="col"><h2>Roy · Naoroji</h2><p>Engaged liberal imperialism sympathetically at first, hoping British rule could be a progressive force; Naoroji later called for self-rule</p></div>
+      <div class="col"><h2>Cobden</h2><p>Opposed the use of force to spread free trade; rejected the "barbarian" framing of China</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Helleiner 2023, ch. 3, pp. 42–46</span><span class="fno">15</span></div>
+</section>
+
+<!-- 16 · LIBERAL IPE THREE STRANDS -->
+<section class="slide">
+  <h1>20th-Century Liberal IPE: Three Strands</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Central question: how can states cooperate under anarchy?</li>
+    </ul>
+    <table class="def" style="margin-top:6px">
+      <tr><td class="term">Commercial liberalism</td><td>Trade creates interdependence; war becomes costly</td></tr>
+      <tr><td class="term">Institutional liberalism</td><td>Rules, norms, and organizations facilitate cooperation</td></tr>
+      <tr><td class="term">Republican liberalism</td><td>Domestic regime type shapes foreign policy; democracies don't fight each other</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Aggarwal &amp; Dupont</span><span class="fno">16</span></div>
+</section>
+
+<!-- 17 · COOPERATION PROBLEMS -->
+<section class="slide">
+  <h1>Why Is Cooperation Difficult?</h1>
+  <div class="rule"></div>
+  <div class="body" style="flex-direction:row;gap:44px">
+    <table class="def" style="max-width:560px">
+      <tr><td class="term">Prisoner's Dilemma</td><td>Mutual cooperation best, but defection is the dominant strategy</td></tr>
+      <tr><td class="term">Stag Hunt</td><td>Coordination game; cooperation preferred only if assured of the other side</td></tr>
+    </table>
+    <div style="flex:1">
+      <h2 style="font-size:20px;margin-bottom:10px;color:var(--ink-2)">Two stumbling blocks</h2>
+      <ul class="facts" style="font-size:19px">
+        <li>Uncertainty — can I trust others to cooperate?</li>
+        <li>Free riding — why pay costs if I can benefit from others' efforts?</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Aggarwal &amp; Dupont</span><span class="fno">17</span></div>
+</section>
+
+<!-- 17b · PAYOFF MATRIX -->
+<section class="slide">
+  <h1>Payoff Matrix: Prisoner's Dilemma</h1>
+  <div class="rule"></div>
+  <div class="body" style="align-items:center;justify-content:center">
+    <table style="border-collapse:collapse;margin:0 auto 6px;font-size:19px">
+      <tr>
+        <td></td><td></td>
+        <td colspan="2" style="text-align:center;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-bottom:8px">Country B</td>
+      </tr>
+      <tr>
+        <td></td><td></td>
+        <td style="text-align:center;font-weight:600;padding:2px 44px 12px">Cooperate</td>
+        <td style="text-align:center;font-weight:600;padding:2px 44px 12px">Defect</td>
+      </tr>
+      <tr>
+        <td rowspan="2" style="font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;padding-right:10px">
+          <div style="transform:rotate(180deg);writing-mode:vertical-rl">Country A</div>
+        </td>
+        <td style="font-weight:600;padding:0 16px 0 0;white-space:nowrap">Cooperate</td>
+        <td style="background:#DCEEE1;border:2px solid #fff;padding:20px 38px;text-align:center">
+          <div style="font-size:25px;font-weight:700;color:#1A1919">3, 3</div>
+          <div style="font-size:13.5px;color:#2E7D4F;margin-top:5px">mutual cooperation</div>
+        </td>
+        <td style="background:#FBE0D6;border:2px solid #fff;padding:20px 38px;text-align:center">
+          <div style="font-size:25px;font-weight:700;color:#1A1919">0, 5</div>
+          <div style="font-size:13.5px;color:#B4592A;margin-top:5px">A cooperates, B defects</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;padding:0 16px 0 0;white-space:nowrap">Defect</td>
+        <td style="background:#FBE0D6;border:2px solid #fff;padding:20px 38px;text-align:center">
+          <div style="font-size:25px;font-weight:700;color:#1A1919">5, 0</div>
+          <div style="font-size:13.5px;color:#B4592A;margin-top:5px">A defects, B cooperates</div>
+        </td>
+        <td style="background:#F2D4D4;border:2px solid #fff;padding:20px 38px;text-align:center">
+          <div style="font-size:25px;font-weight:700;color:#1A1919">1, 1</div>
+          <div style="font-size:13.5px;color:#A13B3B;margin-top:5px">mutual defection</div>
+        </td>
+      </tr>
+    </table>
+    <p style="font-size:14px;color:var(--ink-3);max-width:1000px;text-align:center;margin-top:10px">Payoffs illustrative; higher = better for that country. Applied discussion cases: tariff escalation in the Canada–US trade dispute · WTO/USMCA dispute-settlement rules as an institutional tie raising the cost of defection · Canada's push to build new trade institutions and partners outside the US-centered order.</p>
+  </div>
+  <div class="foot"><span>Aggarwal &amp; Dupont · illustrative payoffs</span><span class="fno">17b</span></div>
+</section>
+
+<!-- 18 · INSTITUTIONS SOLVE COOPERATION -->
+<section class="slide">
+  <h1>How Institutions Solve Cooperation Problems</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="def">
+      <tr><td class="term">Reduce info costs</td><td>Fora for communication; open procedures</td></tr>
+      <tr><td class="term">Enable monitoring</td><td>Track compliance; identify defectors</td></tr>
+      <tr><td class="term">Facilitate enforcement</td><td>Reputation costs; authorized retaliation</td></tr>
+      <tr><td class="term">Repeated interaction</td><td>"Shadow of the future" enables tit-for-tat reciprocation</td></tr>
+      <tr><td class="term">Issue-linkage</td><td>Trade-offs across policy areas</td></tr>
+    </table>
+    <p style="font-size:15px;color:var(--ink-3);margin-top:12px">Caveat: institutions have no <em>per se</em> power to compel states to obey.</p>
+  </div>
+  <div class="foot"><span>Aggarwal &amp; Dupont</span><span class="fno">18</span></div>
+</section>
+
+<!-- 19 · LAKE OEP -->
+<section class="slide">
+  <h1>Lake: Open Economy Politics <span class="depth">Depth</span></h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Trade policy reflects domestic political coalitions, not just an undifferentiated "national interest"</li>
+    </ul>
+    <table class="def" style="margin-top:6px">
+      <tr><td class="term">International</td><td>Structure of the global economy; rules of trade</td></tr>
+      <tr><td class="term">Domestic</td><td>Distribution of interests and preferences among groups</td></tr>
+      <tr><td class="term">Sectoral</td><td>Who wins and loses from a given trade policy?</td></tr>
+    </table>
+    <p style="font-size:15px;color:var(--ink-3);margin-top:12px">Applied to Helleiner: explains why Britain moved to free trade in the 1840s (industrial interests) while others resisted (agricultural interests, infant industries).</p>
+  </div>
+  <div class="foot"><span>Lake 2009 (RIO 4[3]: 219–244)</span><span class="fno">19</span></div>
+</section>
+
+<!-- 20 · SYNTHESIS TABLE -->
+<section class="slide">
+  <h1>Connecting the Three Readings</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="matrix">
+      <tr><th class="rowh"></th><th>Helleiner (history of ideas)</th><th>Lake (OEP)</th><th>Aggarwal &amp; Dupont</th></tr>
+      <tr>
+        <td class="rowh">Mechanism</td>
+        <td><b>Smith's invisible hand</b> <span>decentralized coordination</span></td>
+        <td><b>Domestic interests</b> <span>drive trade policy</span></td>
+        <td><b>Institutions</b> <span>enable coordination</span></td>
+      </tr>
+      <tr>
+        <td class="rowh">Peace claim</td>
+        <td><b>Cobden</b> <span>"free trade = peace"</span></td>
+        <td><b>Commercial liberalism</b> <span>strand</span></td>
+        <td><b>Interdependence</b> <span>raises cost of defection</span></td>
+      </tr>
+      <tr>
+        <td class="rowh">Exceptions</td>
+        <td><b>Defense, infant industry</b> <span>Smith, Mill, Naoroji</span></td>
+        <td><b>Domestic politics</b> <span>explains variation</span></td>
+        <td><b>When institutions</b> <span>succeed or fail</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="foot"><span>Helleiner 2023 · Lake 2009 · Aggarwal &amp; Dupont</span><span class="fno">20</span></div>
+</section>
+
+<!-- 21 · VOCABULARY -->
+<section class="slide">
+  <h1>Vocabulary, Week 2</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <table class="def">
+      <tr><td class="term">Invisible hand</td><td>Decentralized market coordination of self-interested action <span class="cite">(Smith 1776)</span></td></tr>
+      <tr><td class="term">Comparative advantage</td><td>Mutual gains from trade even without absolute efficiency advantage <span class="cite">(Ricardo 1817)</span></td></tr>
+      <tr><td class="term">Most-favored-nation clause</td><td>Commits parties to extend future trade privileges to each other <span class="cite">(Cobden–Chevalier, 1860)</span></td></tr>
+      <tr><td class="term">Drain theory</td><td>Colonial wealth transfer from colony to metropole <span class="cite">(Naoroji 1867)</span></td></tr>
+      <tr><td class="term">Open Economy Politics</td><td>Explains trade policy via domestic distributive coalitions</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>Helleiner 2023 · Lake 2009</span><span class="fno">21</span></div>
+</section>
+
+<!-- 22 · SEMINAR QUESTIONS -->
+<section class="slide">
+  <h1>Seminar Questions</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="qgrid">
+      <div><span class="qnum">01</span>How do 19th-century internal liberal debates (Ch. 2) anticipate contemporary disagreements about globalization?</div>
+      <div><span class="qnum">02</span>Does Lake's OEP framework explain why Britain adopted free trade while others resisted?</div>
+      <div><span class="qnum">03</span>Naoroji used Mill's own arguments against colonial policy — what does that say about liberalism's internal tensions?</div>
+    </div>
+  </div>
+  <div class="foot"><span>Discussion</span><span class="fno">22</span></div>
+</section>
+
+<!-- 22a · DISCUSSION QUESTION EXPECTATIONS -->
+<section class="slide">
+  <div class="kicker">Course Structure</div>
+  <h1>Discussion Questions: What's Expected</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Alternate weekly between two roles: Connector and Applier</li>
+      <li>Connector: connect previous readings (and specific passages) to this week's material; construct a question that stimulates discussion</li>
+      <li>Applier: apply this week's framework to a real-world event, contemporary or historical, from a reputable outlet</li>
+      <li>Post your question to the shared <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit" style="color:var(--oxy-orange);text-decoration:none">Discussion Questions doc</a> before Thursday's class</li>
+    </ul>
+    <p style="font-size:15px;color:var(--ink-3);margin-top:18px">One doc, all semester — find this week's heading, add your name, role, and question (include your article link if you're the Applier).</p>
+  </div>
+  <div class="foot"><span>Course structure, syllabus</span><span class="fno">22a</span></div>
+</section>
+
+<!-- 22b · APPLIER EXERCISE -->
+<section class="slide">
+  <div class="kicker">Exercise · Individual Work</div>
+  <h1>Applier Connector: Find Your Own Case</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Applier role: apply the week's framework to a real-world event, reported in a reputable outlet, "in a way that provokes discussion and even disagreement"</li>
+      <li>Individually: open <em>The Economist</em> and skim this week's coverage</li>
+      <li>Select one article connecting to liberalism, free trade, or institutional cooperation</li>
+      <li>Write one Applier discussion question: name the article, state which strand of liberalism (or which critique of it) applies, and why</li>
+    </ul>
+    <p style="font-size:15px;color:var(--ink-3);margin-top:18px">Post it to the shared Discussion Questions doc before Thursday's class.</p>
+  </div>
+  <div class="foot"><span>Course structure, syllabus</span><span class="fno">22</span></div>
+</section>
+
+<!-- 23 · NEXT WEEK -->
+<section class="slide">
+  <h1>Week 3: Political Economy and Security</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts">
+      <li>Realism and Neomercantilism</li>
+      <li>Hamilton, List — protection and the "ladder"</li>
+      <li>No class Thursday, Sep 10</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Reading: see syllabus</span><span class="fno">23</span></div>
+</section>
+
+<!-- 24 · SOURCES -->
+<section class="slide">
+  <h1>Sources</h1>
+  <div class="rule"></div>
+  <div class="body">
+    <ul class="facts" style="font-size:19px">
+      <li>Helleiner, E. 2023. <em>The Contested World Economy: The Deep and Global Roots of International Political Economy.</em> Cambridge UP, chs. 2–3.</li>
+      <li>Smith, A. 1776. <em>An Inquiry into the Nature and Causes of the Wealth of Nations.</em></li>
+      <li>Ricardo, D. [1817]1908. <em>On the Principles of Political Economy and Taxation.</em></li>
+      <li>Mill, J.S. [1871]1965. <em>Principles of Political Economy.</em> · Bagehot, W. [1876]1885. <em>Economic Studies.</em></li>
+      <li>Naoroji, D. 1887/1901. <em>Poverty and Un-British Rule in India.</em></li>
+      <li>Equiano, O. [1789]2001. <em>The Interesting Narrative of the Life of Olaudah Equiano.</em> Performance excerpt, Jyuddah Jaymes — <a href="https://www.youtube.com/watch?v=EPkIouAElGA" style="color:var(--oxy-orange);text-decoration:none">youtube.com/watch?v=EPkIouAElGA</a></li>
+      <li>Bryan, W. J. 1896. Address to the Democratic National Convention, Chicago, July 9 — <a href="https://www.youtube.com/watch?v=UV2wRCcWJa8" style="color:var(--oxy-orange);text-decoration:none">youtube.com/watch?v=UV2wRCcWJa8</a></li>
+      <li>Aggarwal, V., and C. Dupont. "Collaboration and Coordination in the Global Political Economy."</li>
+      <li>Lake, D. A. 2009. "Open Economy Politics: A Critical Review." <em>The Review of International Organizations</em> 4(3): 219–244.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>DWA 103 · Week 2</span><span class="fno">24</span></div>
+</section>
+
+</div>
+
+<div id="help">← → navigate · Home/End · P print</div>
+<div id="hud"></div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var hud = document.getElementById('hud');
+  var stage = document.getElementById('stage');
+  slides.forEach(function(s, k){
+    var f = s.querySelector('.fno');
+    if (f) f.textContent = k + 1;
+  });
+  var i = 0;
+  var h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) i = h - 1;
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    hud.textContent = (i + 1) + ' / ' + slides.length;
+    if (history.replaceState) history.replaceState(null, '', '#' + (i + 1));
+  }
+  function fit(){
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.97;
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') { show(i + 1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') { show(i - 1); e.preventDefault(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'p' || e.key === 'P') window.print();
+  });
+  document.addEventListener('click', function(e){
+    if (e.clientX > window.innerWidth * 0.25) show(i + 1); else show(i - 1);
+  });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function(){
+    var n = parseInt(location.hash.slice(1), 10);
+    if (n >= 1 && n <= slides.length) show(n - 1);
+  });
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>

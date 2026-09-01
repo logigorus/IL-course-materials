@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 2 · Contesting Globalization</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colrule { font-size: .82rem; font-style: italic; color: var(--muted); margin-bottom: .8rem; line-height: 1.35; }
+  .colq { font-family: var(--serif); font-size: clamp(.92rem, 1.35vw, 1.08rem); line-height: 1.4; }
+  ol.candidates { list-style: none; padding: 0; margin-top: 1.2rem; counter-reset: cand; }
+  ol.candidates li { counter-increment: cand; font-size: clamp(.88rem, 1.2vw, 1.02rem); line-height: 1.38; padding: .4rem 0 .4rem 2.1rem; position: relative; border-bottom: 1px dashed var(--rule); }
+  ol.candidates li:last-child { border-bottom: none; }
+  ol.candidates li::before { content: counter(cand); position: absolute; left: 0; top: .4rem; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; text-align: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .8rem; }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 2 · Tue Sep 1 &amp; Thu Sep 3</p>
+  <h1>Contesting<br>Globalization</h1>
+  <p class="sub">Three levels of analysis: structure, state, society</p>
+</section>
+
+<!-- 2 · Three levels diagram -->
+<section class="slide">
+  <p class="kicker">A framework for the week</p>
+  <h2>Three levels of analysis</h2>
+  <div class="chartwrap" style="max-width:900px">
+    <div class="chart" id="chart-levels" role="img" aria-label="Three stacked levels connected by downward arrows labeled second image reversed: Structure containing anarchy, the gold standard, and climate; State containing the liberal state and regional trade blocs; Society containing self-protection and populist backlash"></div>
+  </div>
+  <p class="footer-tag">Levels of analysis after Waltz, <em>Man, the State, and War</em> (1959); "second image reversed" after Gourevitch, <em>International Organization</em> 32, no. 4 (1978)</p>
+</section>
+
+<!-- 3 · Timeline -->
+<section class="slide">
+  <p class="kicker">Level 1 · Structure — anarchy &amp; the gold standard</p>
+  <div class="chartwrap" style="max-width:1080px">
+    <div class="chart" id="chart-timeline" role="img" aria-label="Timeline from 1815 to 1914: 1815 Napoleonic Wars end, start of the Hundred Years Peace; 1879 gold standard adopted by most industrial states; 1873 to 1896 international price deflation, contemporaries' Great Depression; 1896 Bryan's Populist campaign, Cross of Gold; 1914 World War One begins, end of the Hundred Years Peace"></div>
+  </div>
+  <p class="footer-tag">Frieden, <em>Global Capitalism</em> (2007), pp. 1–27; Polanyi, <em>The Great Transformation</em> (Beacon Press 2001 ed.), Ch. 1, p. 3</p>
+</section>
+
+<!-- 4 · Polanyi: four institutions -->
+<section class="slide">
+  <p class="kicker">Level 1 · Structure</p>
+  <blockquote>Nineteenth-century civilization rested on four institutions. The first was the balance-of-power system&hellip; The second was the international gold standard&hellip; The third was the self-regulating market&hellip; The fourth was the liberal state.&hellip; Of these institutions the gold standard proved crucial; its fall was the proximate cause of the catastrophe.
+  <cite>Polanyi, <em style="font-style:normal">The Great Transformation</em> (1944): 3</cite>
+  </blockquote>
+</section>
+
+<!-- 5 · Climate -->
+<section class="slide divider">
+  <p class="kicker">Level 1 · Structure — climate</p>
+  <blockquote class="smaller">Another factor curbing globalization is climate change. Extreme weather will increasingly upend logistics as ports flood, rails buckle, and airplanes are more frequently grounded by storms.&hellip; Policies designed to slow the planet's warming by cutting emissions are raising global transportation prices, incentivizing companies to manufacture goods closer to consumer markets.
+  <cite>O'Neil, "The Myth of the Global," <em style="font-style:normal">Foreign Affairs</em> (Jul/Aug 2022)</cite>
+  </blockquote>
+</section>
+
+<!-- 6 · Polanyi: the liberal state -->
+<section class="slide">
+  <p class="kicker">Level 2 · The state</p>
+  <blockquote>The fourth was the liberal state.
+  <cite>Polanyi, <em style="font-style:normal">The Great Transformation</em> (1944): 3</cite>
+  </blockquote>
+</section>
+
+<!-- 7 · Rule of Three -->
+<section class="slide">
+  <p class="kicker">Level 2 · The state — regional blocs</p>
+  <h2>"The Rule of Three"</h2>
+  <div class="chartwrap" style="max-width:920px">
+    <div class="chart" id="chart-rule3" role="img" aria-label="Three circles: Europe, nearly two-thirds of EU trade stays within the union; Asia, internal trade share risen from 45 percent in 1990 to nearly 60 percent today; North America, around 40 percent by 2018 after a 2009 low of 39 percent"></div>
+  </div>
+  <p class="footer-tag">O'Neil, "The Myth of the Global," <em>Foreign Affairs</em> (Jul/Aug 2022); Asia figure citing the Asian Development Bank</p>
+</section>
+
+<!-- 8 · Post-2008 -->
+<section class="slide">
+  <p class="kicker">Level 2 · The state — after 2008</p>
+  <h2>Since the 2008 financial crisis</h2>
+  <div class="statrow" style="margin-top:.4rem">
+    <div class="stat"><div class="v">3-to-1</div><div class="l">new protectionist measures vs. liberalizing ones (Global Trade Alert)</div></div>
+    <div class="stat"><div class="v">2015</div><div class="l">the WTO's Doha Round of talks "sputtered to a close"</div></div>
+    <div class="stat"><div class="v">2018</div><div class="l">WTO Appellate Body unable to function — US has not approved new judges</div></div>
+  </div>
+  <p class="footer-tag">O'Neil, "The Myth of the Global," <em>Foreign Affairs</em> (Jul/Aug 2022)</p>
+</section>
+
+<!-- 9 · Polanyi: stark utopia -->
+<section class="slide divider">
+  <p class="kicker">Level 3 · Society</p>
+  <blockquote>But the fount and matrix of the system was the self-regulating market.&hellip; Our thesis is that the idea of a self-adjusting market implied a stark utopia. Such an institution could not exist for any length of time without annihilating the human and natural substance of society.
+  <cite>Polanyi, <em style="font-style:normal">The Great Transformation</em> (1944): 3</cite>
+  </blockquote>
+</section>
+
+<!-- 10 · Frieden's examples -->
+<section class="slide">
+  <p class="kicker">Level 3 · Society — Frieden's examples</p>
+  <ul class="big">
+    <li>European farmers displaced by cheap New World grain — migration to the cities, and to the New World</li>
+    <li><strong>1896</strong> — William Jennings Bryan's Populist campaign against the gold standard (the "Cross of Gold" campaign)</li>
+  </ul>
+  <p class="footer-tag">Frieden, <em>Global Capitalism</em> (2007), pp. 1–27</p>
+</section>
+
+<!-- 11 · Cross of Gold -->
+<section class="slide">
+  <p class="kicker">Level 3 · Society — Bryan's Cross of Gold, 1896</p>
+  <h2>Cross of Gold</h2>
+  <ul class="big">
+    <li>July 9, 1896 — Bryan, 36, closes the Democratic platform debate over gold vs. free silver, Chicago</li>
+    <li>Nominated for president the next day, on the 5th ballot; lost to McKinley that November</li>
+  </ul>
+  <blockquote class="smaller" style="margin-top:1.4rem">You shall not press down upon the brow of labor this crown of thorns; you shall not crucify mankind upon a cross of gold.
+  <cite>William Jennings Bryan, Democratic National Convention, July 9, 1896</cite>
+  </blockquote>
+  <p class="footer-tag">Video: Bryan's 1921 studio recording of the speech (restored audio; no recording of the 1896 original exists) — <a href="https://www.youtube.com/watch?v=UV2wRCcWJa8" target="_blank" rel="noopener">youtube.com/watch?v=UV2wRCcWJa8</a></p>
+</section>
+
+<!-- 12 · Fictitious commodities -->
+<section class="slide">
+  <p class="kicker">Level 3 · Society — the theoretical payoff</p>
+  <blockquote>Labor is only another name for a human activity which goes with life itself&hellip; land is only another name for nature, which is not produced by man&hellip; The commodity description of labor, land, and money is entirely fictitious.
+  <cite>Polanyi, <em style="font-style:normal">The Great Transformation</em> (1944), Ch. 6: 75&ndash;76</cite>
+  </blockquote>
+</section>
+
+<!-- 13 · Equiano: labor as commodity, literalized -->
+<section class="slide">
+  <p class="kicker">Level 3 · Society &mdash; labor as commodity, literalized</p>
+  <h2>Olaudah Equiano</h2>
+  <p class="sub">Polanyi calls labor a &ldquo;fictitious commodity.&rdquo; Atlantic slavery did not stop at labor &mdash; it sold the person.</p>
+  <ul class="big" style="margin-top:1.2rem">
+    <li>By his own account, born c. 1745 in Essaka, an Igbo town in present-day Nigeria; kidnapped with his sister at age 11</li>
+    <li>Sold repeatedly; crossed the Atlantic as a child aboard a slave ship</li>
+    <li>Purchased his own freedom in 1766, for &pound;40</li>
+    <li>Published <em>The Interesting Narrative of the Life of Olaudah Equiano</em> in 1789, timed to Parliament&rsquo;s debate on the slave trade &mdash; among the first bestselling books published in English by a Black author, and a founding text of the British abolition movement</li>
+    <li>The birthplace claim is contested: historian Vincent Carretta has found naval and baptismal records suggesting a South Carolina birth &mdash; which Carretta reads as evidence of Equiano&rsquo;s skill as a political writer, not proof the Narrative is false</li>
+  </ul>
+  <p class="footer-tag">Equiano, <em>The Interesting Narrative</em> (1789); Oxford Faculty of English, &ldquo;The Interesting Narrative,&rdquo; Ten-Minute Book Club (on the Carretta research)</p>
+</section>
+
+<!-- 14 · Equiano: the auction block -->
+<section class="slide divider">
+  <p class="kicker">Level 3 · Society &mdash; the auction block</p>
+  <blockquote class="smaller">&ldquo;We were not many days in the merchant&rsquo;s custody before we were sold after their usual manner, which is this:&mdash;on a signal given, (as the beat of a drum) the buyers rush at once into the yard where the slaves are confined, and make choice of that parcel they like best.&rdquo;
+  <br><br>
+  &ldquo;The closeness of the place, and the heat of the climate, added to the number in the ship, which was so crowded that each had scarcely room to turn himself, almost suffocated us.&rdquo;
+  <cite>Olaudah Equiano, <em style="font-style:normal">The Interesting Narrative of the Life of Olaudah Equiano</em> (1789), Ch. II</cite>
+  </blockquote>
+  <p class="footer-tag">Video: Jyuddah Jaymes performs extracts from the Narrative &mdash; <a href="https://www.youtube.com/watch?v=EPkIouAElGA" target="_blank" rel="noopener">youtube.com/watch?v=EPkIouAElGA</a></p>
+</section>
+
+<!-- 15 · Xi realist reframe -->
+<section class="slide">
+  <p class="kicker">Xi, reframed</p>
+  <h2>A structural read</h2>
+  <ul class="big">
+    <li>Realism: agnostic about whether the market is open or closed, gold standard or not — concerned with the distribution of power among states</li>
+    <li>Davos, Jan. 2017 — days before Trump's inauguration, weeks after the Brexit vote</li>
+  </ul>
+  <blockquote class="smaller" style="margin-top:1.6rem">Whether you like it or not, the global economy is the big ocean that you cannot escape from.
+  <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
+  </blockquote>
+  <p class="footer-tag">Realism framing: cf. Waltz, <em>Theory of International Politics</em> (1979)</p>
+</section>
+
+<!-- 16 · Xi double-edged sword -->
+<section class="slide divider">
+  <p class="kicker">Xi Jinping, Davos keynote, Jan. 17, 2017</p>
+  <blockquote class="smaller">But we should also recognize that economic globalization is a double-edged sword.
+  <br><br>
+  "As a line in an old Chinese poem goes, 'Honey melons hang on bitter vines; sweet dates grow on thistles and thorns.'"
+  <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
+  </blockquote>
+</section>
+
+<!-- 17 · Xi dark room + causation -->
+<section class="slide">
+  <p class="kicker">Xi Jinping, Davos keynote, Jan. 17, 2017</p>
+  <blockquote class="smaller">Pursuing protectionism is like locking oneself in a dark room. While wind and rain may be kept outside, that dark room will also block light and air.
+  <br><br>
+  "It is not an inevitable outcome of economic globalization; rather, it is the consequence of excessive chase of profit by financial capital and grave failure of financial regulation."
+  <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
+  </blockquote>
+</section>
+
+<!-- 18 · Xi growth + open door -->
+<section class="slide divider">
+  <p class="kicker">Xi Jinping, Davos keynote, Jan. 17, 2017</p>
+  <div class="statrow" style="margin-top:0">
+    <div class="stat"><div class="v">&gt;30%</div><div class="l">"China contributed to over 30 percent of global growth every year on average" since the international financial crisis</div></div>
+  </div>
+  <blockquote class="smaller" style="margin-top:1.8rem">China will keep its door wide open and not close it.
+  <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
+  </blockquote>
+</section>
+
+<!-- 19 · Closing synthesis -->
+<section class="slide">
+  <p class="kicker">This week, mapped</p>
+  <h2>Four texts, three levels</h2>
+  <table class="biblio">
+    <tr><th>Text</th><th>Level(s)</th><th>Role</th></tr>
+    <tr><td>Polanyi (1944)</td><td>Structure → State → Society</td><td>Theorizes the cascade across all three</td></tr>
+    <tr><td>Frieden (2007)</td><td>Structure → Society</td><td>Historical case: the gold standard → the populist backlash</td></tr>
+    <tr><td>O'Neil (2022)</td><td>Structure + State</td><td>Climate and geography (structure); regional blocs (state policy)</td></tr>
+    <tr><td>Xi (2017)</td><td>Structure, realist reading</td><td>A state's move within great-power competition</td></tr>
+  </table>
+</section>
+
+<!-- 20 · Connector/Applier illustrated -->
+<section class="slide">
+  <p class="kicker">Thursday · discussion format, modeled</p>
+  <h2>Connector and Applier, illustrated</h2>
+  <div class="twocol">
+    <div class="col">
+      <p class="collabel">Connector</p>
+      <p class="colrule">"Connect previous readings…at least three such connections." — syllabus</p>
+      <p class="colq">Levitsky &amp; Way, V-Dem, and Fukuyama all describe political backsliding; Polanyi argues the market half of that order is inherently unstable. If a self-regulating market always triggers a protective "double movement," is the backsliding V-Dem measures downstream of an economic logic Fukuyama never reckoned with — or are markets and democracies breaking down for separate reasons?</p>
+    </div>
+    <div class="col">
+      <p class="collabel">Applier</p>
+      <p class="colrule">"Apply the material…to real-world events…explain why and how." — syllabus</p>
+      <p class="colq">Trump justified the April 2025 tariffs as protecting Americans from a market that had "looted, pillaged…and plundered" the country (NPR); Polanyi's double movement predicts exactly this kind of protective backlash. But the EU and Canada answered with tariffs of their own — does inter-state retaliation still count as Polanyi's societal self-protection, or does it break the model?</p>
+    </div>
+  </div>
+  <p class="footer-tag">Rubric language: DWA 227 syllabus. Examples instructor-composed for illustration, not student submissions. Tariff facts: NPR, Apr. 2, 2025.</p>
+</section>
+
+<!-- 21 · Exercise instructions -->
+<section class="slide">
+  <p class="kicker">Thursday · in-class exercise</p>
+  <h2>Spot the Applier</h2>
+  <ul class="big">
+    <li>In your discussion group: read the five candidate questions on the next slide</li>
+    <li>Identify the one genuine Applier question — and name which rubric line each of the other four fails</li>
+    <li>8 minutes, then report out: one group defends its pick</li>
+  </ul>
+</section>
+
+<!-- 22 · Exercise candidates -->
+<section class="slide">
+  <p class="kicker">Thursday · in-class exercise — the five candidates</p>
+  <h2>Which one is the Applier?</h2>
+  <ol class="candidates">
+    <li>Levitsky &amp; Way, V-Dem, and Fukuyama describe political backsliding; Frieden describes an economic backlash that never fully resolved. Was Fukuyama's error about markets as much as regimes?</li>
+    <li>TSMC is building three fabs in Phoenix (~$65B, plus up to $6.6B in CHIPS Act funding) instead of expanding in Taiwan — a real case of O'Neil's regionalization. Is that market logic, or the same self-protective impulse Polanyi describes, applied by a state instead of a society?</li>
+    <li>The 2025 tariffs prove Polanyi was right about the gold standard.</li>
+    <li>How does O'Neil's regionalization data compare to the trade patterns Frieden describes for 1870&ndash;1914?</li>
+    <li>Like the gold standard, the 2025 tariffs raised consumer prices — Yale Budget Lab put the cost at $2,700&ndash;$3,400 per household a year (NPR).</li>
+  </ol>
+  <p class="footer-tag">TSMC Arizona figures: TSMC/Dept. of Commerce announcement (2026). Tariff figures: NPR, Apr. 2, 2025.</p>
+</section>
+
+<div class="counter" id="counter">1 / 22</div>
+<div class="hint">↑ ↓ or space to navigate</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (quotes/figures sourced per slide; framework diagrams sourced to their own citation) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var C2005 = '#2f6bb3', C2025 = '#a33232';
+  var SW = ['#2a5da8', '#5e9fe0', '#e0793f', '#96302a'];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  /* --- Slide 2: three levels of analysis, stacked --- */
+  (function () {
+    var box = document.getElementById('chart-levels');
+    if (!box) return;
+    var W = 900, bandW = 620, bx = (W - bandW) / 2;
+    var bandH = 92, gap = 56;
+    var bands = [
+      { name: 'STRUCTURE', items: 'Anarchy  ·  The gold standard  ·  Climate', color: SW[0] },
+      { name: 'STATE', items: 'The liberal state  ·  Regional trade blocs', color: SW[2] },
+      { name: 'SOCIETY', items: 'Self-protection  ·  Populist backlash', color: SW[3] }
+    ];
+    var H = bands.length * bandH + (bands.length - 1) * gap + 20;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    bands.forEach(function (b, i) {
+      var y = 10 + i * (bandH + gap);
+      var r = el('rect', { x: bx, y: y, width: bandW, height: bandH, rx: 10, fill: b.color }, svg);
+      txt(el('title', {}, r), b.name + ': ' + b.items);
+      txt(el('text', { x: W / 2, y: y + 34, 'text-anchor': 'middle', 'font-size': '19',
+        'font-weight': '700', fill: '#fff', 'letter-spacing': '1.5' }, svg), b.name);
+      txt(el('text', { x: W / 2, y: y + 62, 'text-anchor': 'middle', 'font-size': '14.5',
+        fill: '#fbecec' }, svg), b.items);
+      if (i < bands.length - 1) {
+        var ay1 = y + bandH + 8, ay2 = y + bandH + gap - 8;
+        el('line', { x1: W / 2, y1: ay1, x2: W / 2, y2: ay2 - 8, stroke: MUTED, 'stroke-width': 2 }, svg);
+        el('path', { d: 'M' + (W / 2 - 6) + ',' + (ay2 - 8) + ' L' + (W / 2) + ',' + ay2 + ' L' + (W / 2 + 6) + ',' + (ay2 - 8) + ' Z', fill: MUTED }, svg);
+        txt(el('text', { x: W / 2 + 16, y: (ay1 + ay2) / 2 + 4, 'font-size': '12.5',
+          'font-style': 'italic', fill: MUTED }, svg), 'second image reversed');
+      }
+    });
+  })();
+
+  /* --- Slide 3: timeline, 1815-1914 --- */
+  (function () {
+    var box = document.getElementById('chart-timeline');
+    if (!box) return;
+    var events = [
+      [1815, '1815', 'Napoleonic Wars end', 'start of the "Hundred Years’ Peace"', 'up', 1],
+      [1879, '1879', 'Gold standard adopted', 'by most industrial states', 'down', 1],
+      [1884.5, '1873–96', 'International price deflation', 'contemporaries’ "Great Depression"', 'up', 1],
+      [1896, '1896', 'Bryan’s Populist campaign', '"Cross of Gold" — gold vs. silver', 'down', 2],
+      [1914, '1914', 'World War I begins', 'end of the "Hundred Years’ Peace"', 'up', 1]
+    ];
+    var W = 1150, H = 320, y0 = 150, x0 = 70, x1 = W - 70;
+    var yMin = 1815, yMax = 1914;
+    function X(year) { return x0 + (year - yMin) / (yMax - yMin) * (x1 - x0); }
+    function rowY(up, tier, which) {
+      var d = [20, 40, 60][which] + (tier - 1) * 60;
+      return up ? y0 - d : y0 + d;
+    }
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    el('line', { x1: x0, y1: y0, x2: x1, y2: y0, stroke: '#d9dde3', 'stroke-width': 2 }, svg);
+    events.forEach(function (ev, i) {
+      var x = X(ev[0]);
+      var up = ev[4] === 'up';
+      var tier = ev[5] || 1;
+      var anchor = (i === 0) ? 'start' : (i === events.length - 1) ? 'end' : 'middle';
+      var tx = (anchor === 'start') ? x - 6 : (anchor === 'end') ? x + 6 : x;
+      el('line', { x1: x, y1: y0 - 6, x2: x, y2: y0 + 6, stroke: MUTED, 'stroke-width': 1.5 }, svg);
+      var c = el('circle', { cx: x, cy: y0, r: 6, fill: ACCENT, stroke: '#fcfbf9', 'stroke-width': 2 }, svg);
+      txt(el('title', {}, c), ev[1] + ' — ' + ev[2]);
+      txt(el('text', { x: tx, y: rowY(up, tier, 2), 'text-anchor': anchor, 'font-size': '17', 'font-weight': '700', fill: ACCENT }, svg), ev[1]);
+      txt(el('text', { x: tx, y: rowY(up, tier, 1), 'text-anchor': anchor, 'font-size': '14', 'font-weight': '700', fill: INK }, svg), ev[2]);
+      var sub = el('text', { x: tx, y: rowY(up, tier, 0), 'text-anchor': anchor, 'font-size': '11.5', fill: MUTED }, svg);
+      txt(sub, ev[3]);
+      if (tier === 2) {
+        el('line', { x1: x, y1: y0 + 6, x2: x, y2: rowY(up, tier, 0) + 4, stroke: '#e5c9c9', 'stroke-width': 1, 'stroke-dasharray': '2,2' }, svg);
+      }
+    });
+  })();
+
+  /* --- Slide 7: Rule of Three --- */
+  (function () {
+    var box = document.getElementById('chart-rule3');
+    if (!box) return;
+    var regions = [
+      { name: 'Europe', figure: 'nearly ⅔', sub: 'of EU trade stays within the union', color: SW[0] },
+      { name: 'Asia', figure: '45% → ~60%', sub: '1990 → today, internal trade share (ADB)', color: SW[2] },
+      { name: 'North America', figure: '~40%', sub: 'internal trade share, 2018 (after a 2009 low of 39%)', color: SW[3] }
+    ];
+    var W = 920, H = 340, cy = 150, gap = W / 3;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    regions.forEach(function (r, i) {
+      var cx = gap * i + gap / 2;
+      var c = el('circle', { cx: cx, cy: cy, r: 92, fill: r.color, opacity: '0.92' }, svg);
+      txt(el('title', {}, c), r.name + ': ' + r.figure + ' — ' + r.sub);
+      txt(el('text', { x: cx, y: cy - 10, 'text-anchor': 'middle', 'font-size': '19',
+        'font-weight': '700', fill: '#fff' }, svg), r.figure);
+      txt(el('text', { x: cx, y: cy + 14, 'text-anchor': 'middle', 'font-size': '13',
+        fill: '#fff' }, svg), r.name);
+      wrap(r.sub, 26).forEach(function (ln, j) {
+        txt(el('text', { x: cx, y: cy + 122 + j * 16, 'text-anchor': 'middle',
+          'font-size': '12.5', fill: MUTED }, svg), ln);
+      });
+    });
+  })();
+})();
+</script>
+
+</body>
+</html>

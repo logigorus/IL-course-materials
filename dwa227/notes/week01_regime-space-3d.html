@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regime Space</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#f6f4ef; --panel:rgba(255,255,255,.86); --panel-line:#ddd8ce;
+    --ink:#232019; --muted:#6f6a60; --accent:#8a2f2f;
+    --grid:#d9d3c7; --cube:#aaa294; --axis:#5c564b; --drop:#c9c2b4;
+    --row3:#2a5da8; --row2:#5e9fe0; --row1:#e0793f; --row0:#96302a;
+    --btn-bg:rgba(255,255,255,.9); --btn-ink:#3a362e; --btn-on:#8a2f2f;
+    --shadow:0 6px 24px rgba(35,32,25,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#17181c; --panel:rgba(30,31,38,.88); --panel-line:#33353d;
+      --ink:#e9e7e1; --muted:#a09a8f; --accent:#c2564c;
+      --grid:#282a31; --cube:#4a4d57; --axis:#b6b1a6; --drop:#3a3d46;
+      --row3:#4a7fd4; --row2:#74b0ea; --row1:#e8895a; --row0:#c04a41;
+      --btn-bg:rgba(30,31,38,.9); --btn-ink:#d5d2ca; --btn-on:#c2564c;
+      --shadow:0 6px 24px rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#17181c; --panel:rgba(30,31,38,.88); --panel-line:#33353d;
+    --ink:#e9e7e1; --muted:#a09a8f; --accent:#c2564c;
+    --grid:#282a31; --cube:#4a4d57; --axis:#b6b1a6; --drop:#3a3d46;
+    --row3:#4a7fd4; --row2:#74b0ea; --row1:#e8895a; --row0:#c04a41;
+    --btn-bg:rgba(30,31,38,.9); --btn-ink:#d5d2ca; --btn-on:#c2564c;
+    --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  html,body{height:100%;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    overflow:hidden;}
+  #stage{position:fixed; inset:0;}
+  #stage canvas{display:block; cursor:grab;}
+  #stage canvas:active{cursor:grabbing;}
+
+  .hud{position:fixed; z-index:5; pointer-events:none;}
+  .hud > *{pointer-events:auto;}
+
+  #titleblock{top:20px; left:24px; max-width:340px;}
+  .kicker{font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin:0 0 4px;}
+  h1{font-family:"Source Serif 4",Georgia,serif; font-weight:700;
+    font-size:clamp(22px,2.4vw,30px); line-height:1.1; margin:0; text-wrap:balance;}
+  .sub{font-size:12.5px; color:var(--muted); margin:6px 0 0; line-height:1.45;}
+
+  #legend{top:20px; right:24px; width:252px; background:var(--panel);
+    border:1px solid var(--panel-line); border-radius:10px; padding:14px 16px;
+    box-shadow:var(--shadow); backdrop-filter:blur(6px);}
+  #legend h2{font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--muted); font-weight:600; margin:0 0 10px;}
+  .axisrow{display:flex; gap:10px; margin-bottom:10px;}
+  .axisrow:last-child{margin-bottom:0;}
+  .axismark{flex:0 0 auto; width:16px; height:16px; margin-top:2px;}
+  .axismark svg{display:block;}
+  .axisrow b{display:block; font-size:12.5px; font-weight:600;}
+  .axisrow span{display:block; font-size:11.5px; color:var(--muted); line-height:1.4;}
+
+  #card{bottom:76px; right:24px; width:288px; background:var(--panel);
+    border:1px solid var(--panel-line); border-radius:10px; padding:14px 16px 12px;
+    box-shadow:var(--shadow); backdrop-filter:blur(6px); display:none;}
+  #card.show{display:block;}
+  #card .head{display:flex; align-items:center; gap:8px; margin-bottom:6px;}
+  #card .dot{width:11px; height:11px; border-radius:50%; flex:0 0 auto;}
+  #card b{font-family:"Source Serif 4",Georgia,serif; font-size:18px; font-weight:700;}
+  #card .chip{margin-left:auto; font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+    font-weight:600; padding:2px 7px; border-radius:99px; color:#fff;}
+  #card .why{font-size:12.5px; line-height:1.5; margin:0 0 10px; color:var(--ink);}
+  #card table{width:100%; border-collapse:collapse; font-size:11.5px;}
+  #card td{padding:2px 0; color:var(--muted);}
+  #card td.v{text-align:right; font-family:"IBM Plex Mono",monospace;
+    font-variant-numeric:tabular-nums; color:var(--ink);}
+  #card .close{position:absolute; top:8px; right:10px; border:0; background:none;
+    color:var(--muted); font-size:15px; cursor:pointer; padding:2px 5px;}
+  #card{position:fixed;}
+
+  #controls{bottom:20px; left:50%; transform:translateX(-50%);
+    display:flex; gap:8px; align-items:center;}
+  #controls button{background:var(--btn-bg); color:var(--btn-ink);
+    border:1px solid var(--panel-line); border-radius:99px; padding:7px 15px;
+    font:500 12.5px "IBM Plex Sans",sans-serif; cursor:pointer;
+    box-shadow:var(--shadow); backdrop-filter:blur(6px); transition:color .15s,border-color .15s;}
+  #controls button:hover{color:var(--btn-on); border-color:var(--btn-on);}
+  #controls button.on{color:var(--btn-on); border-color:var(--btn-on); font-weight:600;}
+  #controls button:focus-visible{outline:2px solid var(--btn-on); outline-offset:2px;}
+
+  #hint{bottom:58px; left:50%; transform:translateX(-50%); font-size:11px;
+    color:var(--muted); letter-spacing:.03em; white-space:nowrap;}
+
+  #srcline{bottom:20px; left:24px; max-width:300px; font-size:10.5px;
+    color:var(--muted); line-height:1.45;}
+
+  @media (max-width:900px){
+    #legend{display:none;}
+    #srcline{display:none;}
+    #card{right:12px; bottom:96px; width:min(288px, calc(100vw - 24px));}
+  }
+</style>
+
+</head>
+<body>
+<div id="stage"></div>
+
+<div class="hud" id="titleblock">
+  <p class="kicker">DWA 227 · Regimes in three dimensions</p>
+  <h1>Regime Space</h1>
+  <p class="sub">Every regime is a point in this cube: how far the executive is checked by courts &amp; parliament, how far it answers to the public, and how much state there is to govern with.</p>
+</div>
+
+<div class="hud" id="legend">
+  <h2>The three dimensions</h2>
+  <div class="axisrow">
+    <div class="axismark"><svg width="16" height="16" viewBox="0 0 16 16"><line x1="1" y1="8" x2="15" y2="8" stroke="var(--accent)" stroke-width="2"/><path d="M11 4l4 4-4 4" fill="none" stroke="var(--accent)" stroke-width="2"/></svg></div>
+    <div><b>Horizontal accountability</b>
+    <span>Executive constrained by courts, the legislature, and oversight bodies.</span></div>
+  </div>
+  <div class="axisrow">
+    <div class="axismark"><svg width="16" height="16" viewBox="0 0 16 16"><line x1="8" y1="15" x2="8" y2="1" stroke="var(--accent)" stroke-width="2"/><path d="M4 5l4-4 4 4" fill="none" stroke="var(--accent)" stroke-width="2"/></svg></div>
+    <div><b>Vertical accountability</b>
+    <span>Executive answers to the public: free &amp; fair elections at predictable intervals, free press, civil society, equal access to the ballot.</span></div>
+  </div>
+  <div class="axisrow">
+    <div class="axismark"><svg width="16" height="16" viewBox="0 0 16 16"><line x1="2" y1="13" x2="13" y2="4" stroke="var(--accent)" stroke-width="2"/><path d="M13.5 9V3.5H8" fill="none" stroke="var(--accent)" stroke-width="2"/></svg></div>
+    <div><b>State capacity</b>
+    <span>Whether there is a state that can implement, enforce, and deliver at all.</span></div>
+  </div>
+</div>
+
+<div class="hud" id="card">
+  <button class="close" aria-label="Close">✕</button>
+  <div class="head"><span class="dot"></span><b class="cname"></b><span class="chip"></span></div>
+  <p class="why"></p>
+  <table>
+    <tr><td>Horizontal accountability</td><td class="v" data-k="x"></td></tr>
+    <tr><td>Vertical accountability</td><td class="v" data-k="y"></td></tr>
+    <tr><td>State capacity (WGI)</td><td class="v" data-k="z"></td></tr>
+  </table>
+</div>
+
+<div class="hud" id="hint">drag to rotate · scroll to zoom · click a country</div>
+
+<div class="hud" id="controls">
+  <button data-view="iso" class="on">Full 3D</button>
+  <button data-view="acc">Accountability plane</button>
+  <button data-view="state">State axis</button>
+</div>
+
+<p class="hud" id="srcline">Accountability: V-Dem v16 point estimates, 2025 (v2x_horacc, v2x_veracc). State capacity proxy: World Bank Worldwide Governance Indicators 2024, Government Effectiveness. All axes ≈ −2.5 to +2.5; 0 ≈ world average. Colors: V-Dem Regimes of the World.</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var S = 2.5; // data half-range -> maps to [-1,1]
+
+  var DATA = [
+    {name:"Denmark", x:2.166, y:1.537, z:1.91, row:3, lox:.02, loy:-.155,
+     why:"Highest of the six on all three dimensions: courts and parliament, elections and press, administration. Reference point of “getting to Denmark” (Fukuyama 2011)."},
+    {name:"United States", x:0.546, y:1.426, z:1.36, row:2,
+     why:"Elections, press, and civil society score near Denmark’s (+1.43 vs +1.54). Checks by courts and Congress score 1.6 points lower (V-Dem 2025)."},
+    {name:"Hungary", x:0.217, y:0.675, z:0.50, row:1,
+     why:"Contested elections continue (vertical +0.68); constraint by courts and parliament +0.22. Classified an electoral autocracy by V-Dem since 2018."},
+    {name:"Russia", x:-1.223, y:-0.216, z:-0.32, row:1, lox:-.13,
+     why:"Horizontal accountability −1.22, lowest of the six. Elections held; V-Dem 2025 codes them neither free nor fair. State capacity near world average."},
+    {name:"China", x:-0.792, y:-1.314, z:0.90, row:0,
+     why:"Lowest of the six on vertical accountability (−1.31): no executive elections, no free press. State capacity +0.90 — above the world average and above Hungary’s."},
+    {name:"Somalia", x:0.247, y:-0.782, z:-1.95, row:0,
+     why:"Horizontal accountability +0.25 — above Hungary’s. State capacity −1.95, lowest of the six. “Without a state, no modern democracy is possible” (Linz & Stepan 1996: 17)."}
+  ];
+
+  var ROW = [
+    {label:"Closed autocracy",    varName:"--row0"},
+    {label:"Electoral autocracy", varName:"--row1"},
+    {label:"Electoral democracy", varName:"--row2"},
+    {label:"Liberal democracy",   varName:"--row3"}
+  ];
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function cssVar(n){
+    return getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  }
+  function theme(){
+    return {
+      bg: cssVar("--bg"), ink: cssVar("--ink"), muted: cssVar("--muted"),
+      grid: cssVar("--grid"), cube: cssVar("--cube"), axis: cssVar("--axis"),
+      drop: cssVar("--drop"), accent: cssVar("--accent"),
+      rows: [cssVar("--row0"), cssVar("--row1"), cssVar("--row2"), cssVar("--row3")]
+    };
+  }
+  var T = theme();
+
+  var stage = document.getElementById("stage");
+  var renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  stage.appendChild(renderer.domElement);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(38, window.innerWidth/window.innerHeight, .1, 100);
+
+  scene.add(new THREE.AmbientLight(0xffffff, .75));
+  var dir = new THREE.DirectionalLight(0xffffff, .55);
+  dir.position.set(3, 5, 2);
+  scene.add(dir);
+
+  // ---------- helpers ----------
+  function lineMat(color, opacity){
+    return new THREE.LineBasicMaterial({color:new THREE.Color(color),
+      transparent: opacity < 1, opacity: opacity});
+  }
+  function makeLabel(text, opts){
+    opts = opts || {};
+    var px = opts.px || 30, weight = opts.weight || "500";
+    var font = weight + " " + px + "px " + (opts.mono ? "'IBM Plex Mono',monospace" : "'IBM Plex Sans',sans-serif");
+    var c = document.createElement("canvas"), ctx = c.getContext("2d");
+    ctx.font = font;
+    if (opts.spacing) { try { ctx.letterSpacing = opts.spacing; } catch(e){} }
+    var w = Math.ceil(ctx.measureText(opts.upper ? text.toUpperCase() : text).width) + 20
+          + (opts.spacing ? Math.ceil(text.length * parseFloat(opts.spacing)) : 0);
+    c.width = w * 2; c.height = (px + 18) * 2;
+    ctx = c.getContext("2d");
+    ctx.scale(2,2);
+    if (opts.spacing) { try { ctx.letterSpacing = opts.spacing; } catch(e){} }
+    ctx.font = font;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillStyle = opts.color || T.ink;
+    ctx.fillText(opts.upper ? text.toUpperCase() : text, w/2, (px+18)/2);
+    var tex = new THREE.CanvasTexture(c);
+    tex.minFilter = THREE.LinearFilter;
+    var spr = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false, sizeAttenuation:false}));
+    // constant screen size: world units per css px at unit distance for current fov/viewport
+    var k = (2 * Math.tan(camera.fov * Math.PI / 360)) / window.innerHeight;
+    spr.scale.set(w * k, (px + 18) * k, 1);
+    spr.renderOrder = 5;
+    return spr;
+  }
+
+  // ---------- static geometry, rebuilt on theme change ----------
+  var world = new THREE.Group();
+  scene.add(world);
+
+  var pts = [];          // {mesh, halo, data}
+  var fadeLabels = [];   // {spr, axis} — fade when axis points at camera
+  var raycaster = new THREE.Raycaster();
+  var mouseV = new THREE.Vector2();
+
+  function buildWorld(){
+    while (world.children.length) {
+      var ch = world.children.pop();
+      world.remove(ch);
+    }
+    pts = []; fadeLabels = [];
+    scene.background = new THREE.Color(T.bg);
+
+    // bounding cube
+    var box = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.BoxGeometry(2,2,2)),
+      lineMat(T.cube, .8));
+    world.add(box);
+
+    // floor grid at y=-1
+    var grid = new THREE.GridHelper(2, 8,
+      new THREE.Color(T.grid), new THREE.Color(T.grid));
+    grid.position.y = -1;
+    world.add(grid);
+
+    // center axes with arrow tips
+    [["x", new THREE.Vector3(1,0,0)],
+     ["y", new THREE.Vector3(0,1,0)],
+     ["z", new THREE.Vector3(0,0,1)]].forEach(function(a){
+      var d = a[1];
+      var g = new THREE.BufferGeometry().setFromPoints([d.clone().multiplyScalar(-1.12), d.clone().multiplyScalar(1.12)]);
+      world.add(new THREE.Line(g, lineMat(T.axis, .9)));
+      var cone = new THREE.Mesh(new THREE.ConeGeometry(.028,.09,10),
+        new THREE.MeshBasicMaterial({color:new THREE.Color(T.axis)}));
+      cone.position.copy(d.clone().multiplyScalar(1.12));
+      if (a[0]==="x") cone.rotation.z = -Math.PI/2;
+      if (a[0]==="z") cone.rotation.x = Math.PI/2;
+      world.add(cone);
+    });
+
+    // axis titles + pole labels
+    var AX = new THREE.Vector3(1,0,0), AY = new THREE.Vector3(0,1,0), AZ = new THREE.Vector3(0,0,1);
+    function put(spr, x,y,z, fadeAxis){
+      spr.position.set(x,y,z); world.add(spr);
+      if (fadeAxis) fadeLabels.push({spr:spr, axis:fadeAxis});
+    }
+    put(makeLabel("HORIZONTAL ACCOUNTABILITY", {px:12, weight:"600", color:T.muted, upper:true, spacing:"1.5px"}), .62, -1.06, 1.06, AX);
+    put(makeLabel("constrained by courts & parliament", {px:12, color:T.muted}), 1.24, .1, 0, AX);
+    put(makeLabel("executive unconstrained", {px:12, color:T.muted}), -1.24, .1, 0, AX);
+
+    put(makeLabel("VERTICAL ACCOUNTABILITY", {px:12, weight:"600", color:T.muted, upper:true, spacing:"1.5px"}), 0, 1.3, 0);
+    put(makeLabel("accountable to the public", {px:12, color:T.muted}), 0, 1.18, 0);
+    put(makeLabel("unaccountable", {px:12, color:T.muted}), 0, -1.2, 0);
+
+    put(makeLabel("STATE CAPACITY", {px:12, weight:"600", color:T.muted, upper:true, spacing:"1.5px"}), -1.06, -1.06, .55, AZ);
+    put(makeLabel("capable state", {px:12, color:T.muted}), 0, .1, 1.24, AZ);
+    put(makeLabel("no state", {px:12, color:T.muted}), 0, .1, -1.24, AZ);
+
+    // data points
+    DATA.forEach(function(d){
+      var p = new THREE.Vector3(d.x/S, d.y/S, d.z/S);
+      var col = new THREE.Color(T.rows[d.row]);
+
+      var m = new THREE.Mesh(new THREE.SphereGeometry(.058, 24, 18),
+        new THREE.MeshStandardMaterial({color:col, roughness:.45, metalness:.05}));
+      m.position.copy(p);
+      m.userData = d;
+      world.add(m);
+
+      // selection halo (hidden until selected)
+      var halo = new THREE.Mesh(new THREE.SphereGeometry(.078, 24, 18),
+        new THREE.MeshBasicMaterial({color:col, transparent:true, opacity:.28, depthWrite:false}));
+      halo.position.copy(p);
+      halo.visible = false;
+      world.add(halo);
+
+      // drop line + floor marker
+      var dg = new THREE.BufferGeometry().setFromPoints([p, new THREE.Vector3(p.x,-1,p.z)]);
+      world.add(new THREE.Line(dg, lineMat(T.drop, .85)));
+      var disc = new THREE.Mesh(new THREE.CircleGeometry(.022, 16),
+        new THREE.MeshBasicMaterial({color:col, transparent:true, opacity:.5}));
+      disc.rotation.x = -Math.PI/2;
+      disc.position.set(p.x, -.995, p.z);
+      world.add(disc);
+
+      var lab = makeLabel(d.name, {px:14.5, weight:"600", color:T.ink});
+      lab.position.set(p.x + (d.lox||0), p.y + .105 + (d.loy||0), p.z);
+      world.add(lab);
+
+      pts.push({mesh:m, halo:halo, data:d});
+    });
+  }
+  buildWorld();
+
+  // ---------- camera orbit ----------
+  var sph = {r:4.4, theta:.62, phi:1.12};
+  var target = null; // tween target
+  var autoRotate = !reduceMotion;
+
+  function applyCam(){
+    camera.position.set(
+      sph.r * Math.sin(sph.phi) * Math.sin(sph.theta),
+      sph.r * Math.cos(sph.phi),
+      sph.r * Math.sin(sph.phi) * Math.cos(sph.theta));
+    camera.lookAt(0, -.05, 0);
+  }
+  applyCam();
+
+  var VIEWS = {
+    iso:   {r:4.4, theta:.62, phi:1.12},
+    acc:   {r:4.6, theta:0.001, phi:Math.PI/2 - .001},
+    state: {r:4.6, theta:Math.PI/2, phi:Math.PI/2 - .001}
+  };
+  var buttons = document.querySelectorAll("#controls button");
+  buttons.forEach(function(b){
+    b.addEventListener("click", function(){
+      buttons.forEach(function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      autoRotate = false;
+      var v = VIEWS[b.dataset.view];
+      if (reduceMotion){ sph.r=v.r; sph.theta=v.theta; sph.phi=v.phi; target=null; applyCam(); }
+      else target = {r:v.r, theta:v.theta, phi:v.phi, t:0};
+    });
+  });
+
+  // drag / touch
+  var dragging = false, moved = false, px = 0, py = 0, pinch = 0;
+  var el = renderer.domElement;
+
+  el.addEventListener("pointerdown", function(e){
+    dragging = true; moved = false; px = e.clientX; py = e.clientY;
+    autoRotate = false; target = null;
+    el.setPointerCapture(e.pointerId);
+  });
+  el.addEventListener("pointermove", function(e){
+    if(!dragging) return;
+    var dx = e.clientX - px, dy = e.clientY - py;
+    if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+    px = e.clientX; py = e.clientY;
+    sph.theta -= dx * .0055;
+    sph.phi = Math.min(Math.PI - .15, Math.max(.15, sph.phi - dy * .0055));
+    applyCam();
+  });
+  el.addEventListener("pointerup", function(e){
+    dragging = false;
+    if (!moved) pick(e.clientX, e.clientY);
+  });
+  el.addEventListener("wheel", function(e){
+    e.preventDefault();
+    sph.r = Math.min(8.5, Math.max(2.4, sph.r * (1 + e.deltaY * .001)));
+    applyCam();
+  }, {passive:false});
+  el.addEventListener("touchstart", function(e){
+    if (e.touches.length === 2){
+      pinch = Math.hypot(e.touches[0].clientX - e.touches[1].clientX,
+                         e.touches[0].clientY - e.touches[1].clientY);
+    }
+  }, {passive:true});
+  el.addEventListener("touchmove", function(e){
+    if (e.touches.length === 2 && pinch){
+      var d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX,
+                         e.touches[0].clientY - e.touches[1].clientY);
+      sph.r = Math.min(8.5, Math.max(2.4, sph.r * pinch / d));
+      pinch = d; applyCam();
+      e.preventDefault();
+    }
+  }, {passive:false});
+
+  // ---------- selection ----------
+  var card = document.getElementById("card");
+  var selected = null;
+
+  function pick(cx, cy){
+    mouseV.x = (cx / window.innerWidth) * 2 - 1;
+    mouseV.y = -(cy / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouseV, camera);
+    raycaster.params.Points = raycaster.params.Points || {};
+    var hits = raycaster.intersectObjects(pts.map(function(p){ return p.mesh; }));
+    if (hits.length) select(hits[0].object.userData);
+    else deselect();
+  }
+  function fmt(v){ return (v > 0 ? "+" : "") + v.toFixed(2); }
+  function select(d){
+    selected = d;
+    pts.forEach(function(p){ p.halo.visible = (p.data === d); });
+    var col = T.rows[d.row];
+    card.querySelector(".dot").style.background = col;
+    card.querySelector(".cname").textContent = d.name;
+    var chip = card.querySelector(".chip");
+    chip.textContent = ROW[d.row].label;
+    chip.style.background = col;
+    card.querySelector(".why").textContent = d.why;
+    card.querySelector('[data-k="x"]').textContent = fmt(d.x);
+    card.querySelector('[data-k="y"]').textContent = fmt(d.y);
+    card.querySelector('[data-k="z"]').textContent = fmt(d.z);
+    card.classList.add("show");
+  }
+  function deselect(){
+    selected = null;
+    pts.forEach(function(p){ p.halo.visible = false; });
+    card.classList.remove("show");
+  }
+  card.querySelector(".close").addEventListener("click", deselect);
+
+  // ---------- theme changes ----------
+  function refreshTheme(){
+    T = theme();
+    buildWorld();
+    if (selected) select(selected);
+  }
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", refreshTheme);
+  new MutationObserver(function(muts){
+    muts.forEach(function(m){ if (m.attributeName === "data-theme") refreshTheme(); });
+  }).observe(document.documentElement, {attributes:true});
+
+  // ---------- resize + loop ----------
+  window.addEventListener("resize", function(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  function ease(t){ return t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
+  function shortAngle(a, b){
+    var d = (b - a) % (Math.PI*2);
+    if (d > Math.PI) d -= Math.PI*2;
+    if (d < -Math.PI) d += Math.PI*2;
+    return d;
+  }
+  var tw0 = null;
+  function tick(){
+    requestAnimationFrame(tick);
+    if (autoRotate){ sph.theta += .0028; applyCam(); }
+    if (target){
+      if (!tw0) tw0 = {r:sph.r, theta:sph.theta, phi:sph.phi};
+      target.t += 1/50;
+      var k = ease(Math.min(1, target.t));
+      sph.r = tw0.r + (target.r - tw0.r) * k;
+      sph.theta = tw0.theta + shortAngle(tw0.theta, target.theta) * k;
+      sph.phi = tw0.phi + (target.phi - tw0.phi) * k;
+      applyCam();
+      if (target.t >= 1){ target = null; tw0 = null; }
+    }
+    var camDir = new THREE.Vector3();
+    camera.getWorldDirection(camDir);
+    fadeLabels.forEach(function(f){
+      var d = Math.abs(camDir.dot(f.axis));
+      f.spr.material.opacity = Math.max(0, Math.min(1, (1 - d - .04) / .22));
+    });
+    renderer.render(scene, camera);
+  }
+  tick();
+})();
+</script>
+
+</body>
+</html>
