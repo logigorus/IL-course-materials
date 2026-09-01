@@ -73,6 +73,10 @@
   .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
   .colrule { font-size: .82rem; font-style: italic; color: var(--muted); margin-bottom: .8rem; line-height: 1.35; }
   .colq { font-family: var(--serif); font-size: clamp(.92rem, 1.35vw, 1.08rem); line-height: 1.4; }
+  .band { margin-top: 1rem; border: 1px solid #e0c9c9; background: var(--accent-soft); border-radius: 10px; padding: .8rem 1.2rem .9rem; }
+  .band .items { display: flex; gap: clamp(1rem, 3vw, 2.4rem); flex-wrap: wrap; margin-top: .45rem; }
+  .band .item { flex: 1; min-width: 240px; font-size: clamp(.86rem, 1.25vw, 1rem); line-height: 1.35; color: var(--ink); }
+  .band .item strong { color: var(--accent); }
   ol.candidates { list-style: none; padding: 0; margin-top: 1.2rem; counter-reset: cand; }
   ol.candidates li { counter-increment: cand; font-size: clamp(.88rem, 1.2vw, 1.02rem); line-height: 1.38; padding: .4rem 0 .4rem 2.1rem; position: relative; border-bottom: 1px dashed var(--rule); }
   ol.candidates li:last-child { border-bottom: none; }
@@ -105,7 +109,7 @@
   <p class="footer-tag">Levels of analysis after Waltz, <em>Man, the State, and War</em> (1959); "second image reversed" after Gourevitch, <em>International Organization</em> 32, no. 4 (1978)</p>
 </section>
 
-<!-- 3 · Timeline -->
+<!-- 3 · Timeline, 1815-1914 -->
 <section class="slide">
   <p class="kicker">Level 1 · Structure — anarchy &amp; the gold standard</p>
   <div class="chartwrap" style="max-width:1080px">
@@ -122,19 +126,37 @@
   </blockquote>
 </section>
 
-<!-- 5 · Climate -->
+<!-- 5 · Polanyi: the double movement -->
+<section class="slide">
+  <p class="kicker">A framework for the week &middot; Polanyi</p>
+  <h2>The double movement</h2>
+  <div class="twocol" style="margin-top:.8rem">
+    <div class="col">
+      <p class="collabel">Marketizing movement (laissez-faire)</p>
+      <p class="colq" style="font-size:clamp(.9rem,1.3vw,1.04rem)"><strong>Goal</strong> &mdash; expand the self-regulating market; disembed the economy from social, political, and cultural institutions<br><strong>Drivers</strong> &mdash; capital owners, financial institutions, free-market advocates<br><strong>Methods</strong> &mdash; deregulation, free trade, privatization, less state intervention</p>
+    </div>
+    <div class="col">
+      <p class="collabel">Protective countermovement</p>
+      <p class="colq" style="font-size:clamp(.9rem,1.3vw,1.04rem)"><strong>Goal</strong> &mdash; re-embed the economy in social and legal limits; protect human life, nature, and productive enterprise<br><strong>Drivers</strong> &mdash; workers, farmers, civic organizations, state regulators &mdash; across the political spectrum<br><strong>Methods</strong> &mdash; labor law, environmental protection, social insurance, tariffs, central-bank controls</p>
+    </div>
+  </div>
+  <div class="band">
+    <p class="collabel" style="margin-bottom:.15rem">The trigger &mdash; fictitious commodities</p>
+    <p class="colq" style="font-size:clamp(.9rem,1.3vw,1.04rem); margin:0">&ldquo;The commodity description of labor, land, and money is entirely fictitious.&rdquo; &mdash; Ch. 6: 75&ndash;76</p>
+    <div class="items">
+      <div class="item"><strong>Labor</strong> &mdash; human life and activity. Unregulated: wage collapse, unsafe work, social decay</div>
+      <div class="item"><strong>Land</strong> &mdash; nature. Unregulated: resource exhaustion, pollution, ecological collapse</div>
+      <div class="item"><strong>Money</strong> &mdash; purchasing power and credit. Unregulated: speculation, business failure, unemployment</div>
+    </div>
+  </div>
+  <p class="footer-tag">Schema after Polanyi, <em>The Great Transformation</em> (1944): fictitious commodities, Ch. 6, pp. 75&ndash;76 (quoted); the double movement, Ch. 11 &mdash; not in the course folder; paraphrase, not quotation.</p>
+</section>
+
+<!-- 6 · Climate -->
 <section class="slide divider">
   <p class="kicker">Level 1 · Structure — climate</p>
   <blockquote class="smaller">Another factor curbing globalization is climate change. Extreme weather will increasingly upend logistics as ports flood, rails buckle, and airplanes are more frequently grounded by storms.&hellip; Policies designed to slow the planet's warming by cutting emissions are raising global transportation prices, incentivizing companies to manufacture goods closer to consumer markets.
   <cite>O'Neil, "The Myth of the Global," <em style="font-style:normal">Foreign Affairs</em> (Jul/Aug 2022)</cite>
-  </blockquote>
-</section>
-
-<!-- 6 · Polanyi: the liberal state -->
-<section class="slide">
-  <p class="kicker">Level 2 · The state</p>
-  <blockquote>The fourth was the liberal state.
-  <cite>Polanyi, <em style="font-style:normal">The Great Transformation</em> (1944): 3</cite>
   </blockquote>
 </section>
 
@@ -168,43 +190,33 @@
   </blockquote>
 </section>
 
-<!-- 10 · Frieden's examples -->
+<!-- 10 · Frieden's examples + Cross of Gold -->
 <section class="slide">
-  <p class="kicker">Level 3 · Society — Frieden's examples</p>
-  <ul class="big">
-    <li>European farmers displaced by cheap New World grain — migration to the cities, and to the New World</li>
-    <li><strong>1896</strong> — William Jennings Bryan's Populist campaign against the gold standard (the "Cross of Gold" campaign)</li>
-  </ul>
-  <p class="footer-tag">Frieden, <em>Global Capitalism</em> (2007), pp. 1–27</p>
-</section>
-
-<!-- 11 · Cross of Gold -->
-<section class="slide">
-  <p class="kicker">Level 3 · Society — Bryan's Cross of Gold, 1896</p>
+  <p class="kicker">Level 3 · Society — Frieden's examples; Bryan's Cross of Gold, 1896</p>
   <h2>Cross of Gold</h2>
   <ul class="big">
+    <li>European farmers displaced by cheap New World grain — migration to the cities, and to the New World</li>
     <li>July 9, 1896 — Bryan, 36, closes the Democratic platform debate over gold vs. free silver, Chicago</li>
     <li>Nominated for president the next day, on the 5th ballot; lost to McKinley that November</li>
   </ul>
   <blockquote class="smaller" style="margin-top:1.4rem">You shall not press down upon the brow of labor this crown of thorns; you shall not crucify mankind upon a cross of gold.
   <cite>William Jennings Bryan, Democratic National Convention, July 9, 1896</cite>
   </blockquote>
-  <p class="footer-tag">Video: Bryan's 1921 studio recording of the speech (restored audio; no recording of the 1896 original exists) — <a href="https://www.youtube.com/watch?v=UV2wRCcWJa8" target="_blank" rel="noopener">youtube.com/watch?v=UV2wRCcWJa8</a></p>
+  <p class="footer-tag">Frieden, <em>Global Capitalism</em> (2007), pp. 1–27. Video: Bryan's 1921 studio recording of the speech (restored audio; no recording of the 1896 original exists) — <a href="https://www.youtube.com/watch?v=UV2wRCcWJa8" target="_blank" rel="noopener">youtube.com/watch?v=UV2wRCcWJa8</a></p>
 </section>
 
-<!-- 12 · Fictitious commodities -->
+<!-- 11 · Fictitious commodities -->
 <section class="slide">
-  <p class="kicker">Level 3 · Society — the theoretical payoff</p>
+  <p class="kicker">Level 3 · Society — fictitious commodities</p>
   <blockquote>Labor is only another name for a human activity which goes with life itself&hellip; land is only another name for nature, which is not produced by man&hellip; The commodity description of labor, land, and money is entirely fictitious.
   <cite>Polanyi, <em style="font-style:normal">The Great Transformation</em> (1944), Ch. 6: 75&ndash;76</cite>
   </blockquote>
 </section>
 
-<!-- 13 · Equiano: labor as commodity, literalized -->
+<!-- 12 · Equiano: labor as commodity, literalized -->
 <section class="slide">
-  <p class="kicker">Level 3 · Society &mdash; labor as commodity, literalized</p>
+  <p class="kicker">Level 3 · Society &mdash; Equiano, 1789</p>
   <h2>Olaudah Equiano</h2>
-  <p class="sub">Polanyi calls labor a &ldquo;fictitious commodity.&rdquo; Atlantic slavery did not stop at labor &mdash; it sold the person.</p>
   <ul class="big" style="margin-top:1.2rem">
     <li>By his own account, born c. 1745 in Essaka, an Igbo town in present-day Nigeria; kidnapped with his sister at age 11</li>
     <li>Sold repeatedly; crossed the Atlantic as a child aboard a slave ship</li>
@@ -215,7 +227,7 @@
   <p class="footer-tag">Equiano, <em>The Interesting Narrative</em> (1789); Oxford Faculty of English, &ldquo;The Interesting Narrative,&rdquo; Ten-Minute Book Club (on the Carretta research)</p>
 </section>
 
-<!-- 14 · Equiano: the auction block -->
+<!-- 13 · Equiano: the auction block -->
 <section class="slide divider">
   <p class="kicker">Level 3 · Society &mdash; the auction block</p>
   <blockquote class="smaller">&ldquo;We were not many days in the merchant&rsquo;s custody before we were sold after their usual manner, which is this:&mdash;on a signal given, (as the beat of a drum) the buyers rush at once into the yard where the slaves are confined, and make choice of that parcel they like best.&rdquo;
@@ -226,9 +238,18 @@
   <p class="footer-tag">Video: Jyuddah Jaymes performs extracts from the Narrative &mdash; <a href="https://www.youtube.com/watch?v=EPkIouAElGA" target="_blank" rel="noopener">youtube.com/watch?v=EPkIouAElGA</a></p>
 </section>
 
-<!-- 15 · Xi realist reframe -->
+<!-- 14 · Timeline, 1999-2026 -->
 <section class="slide">
-  <p class="kicker">Xi, reframed</p>
+  <p class="kicker">Level 3 &middot; Society &mdash; 1999&ndash;2026</p>
+  <div class="chartwrap" style="max-width:1150px">
+    <div class="chart" id="chart-timeline2" role="img" aria-label="Timeline from 1999 to 2026: 1999 WTO protests in Seattle; 2008 global financial crisis; 2011 Occupy Wall Street; 2016 Brexit referendum; 2016 to 2017 Trump elected and inaugurated; 2018 to 2019 Bolsonaro elected and inaugurated; 2018 to 2025 US-China trade war, Section 301 tariffs through the 2025 tariff wave; 2020 COVID-19 pandemic declared"></div>
+  </div>
+  <p class="footer-tag">Wikipedia, "1999 Seattle WTO protests"; Federal Reserve History, on 2008; Wikipedia, "Occupy Wall Street," "2016 United Kingdom European Union membership referendum," "2018 Brazilian general election"; USTR, Section 301 actions; WHO, COVID-19 pandemic declaration, Mar. 11, 2020; NPR, Apr. 2, 2025 (cf. Slide 20)</p>
+</section>
+
+<!-- 15 · Xi realist reframe (coda) -->
+<section class="slide">
+  <p class="kicker">Coda &middot; Xi Jinping, Davos, Jan. 17, 2017 &mdash; reframed</p>
   <h2>A structural read</h2>
   <ul class="big">
     <li>Realism: agnostic about whether the market is open or closed, gold standard or not — concerned with the distribution of power among states</li>
@@ -237,30 +258,23 @@
   <blockquote class="smaller" style="margin-top:1.6rem">Whether you like it or not, the global economy is the big ocean that you cannot escape from.
   <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
   </blockquote>
-  <p class="footer-tag">Realism framing: cf. Waltz, <em>Theory of International Politics</em> (1979)</p>
+  <p class="footer-tag">Realism framing: cf. Waltz, <em>Theory of International Politics</em> (1979). Video: "Chinese president&rsquo;s Davos speech in 2 minutes," CNN Business &mdash; <a href="https://www.youtube.com/watch?v=bFwSd65551w" target="_blank" rel="noopener">youtube.com/watch?v=bFwSd65551w</a></p>
 </section>
 
-<!-- 16 · Xi double-edged sword -->
-<section class="slide divider">
-  <p class="kicker">Xi Jinping, Davos keynote, Jan. 17, 2017</p>
+<!-- 16 · Xi: concession, metaphor, denial -->
+<section class="slide">
+  <p class="kicker">Coda &middot; Xi Jinping, Davos keynote, Jan. 17, 2017</p>
   <blockquote class="smaller">But we should also recognize that economic globalization is a double-edged sword.
   <br><br>
-  "As a line in an old Chinese poem goes, 'Honey melons hang on bitter vines; sweet dates grow on thistles and thorns.'"
-  <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
-  </blockquote>
-</section>
-
-<!-- 17 · Xi dark room + causation -->
-<section class="slide">
-  <p class="kicker">Xi Jinping, Davos keynote, Jan. 17, 2017</p>
-  <blockquote class="smaller">Pursuing protectionism is like locking oneself in a dark room. While wind and rain may be kept outside, that dark room will also block light and air.
+  "Pursuing protectionism is like locking oneself in a dark room. While wind and rain may be kept outside, that dark room will also block light and air."
   <br><br>
   "It is not an inevitable outcome of economic globalization; rather, it is the consequence of excessive chase of profit by financial capital and grave failure of financial regulation."
   <cite>Xi Jinping, World Economic Forum, Jan. 17, 2017</cite>
   </blockquote>
+  <p class="footer-tag">Also from the speech: "As a line in an old Chinese poem goes, 'Honey melons hang on bitter vines; sweet dates grow on thistles and thorns.'"</p>
 </section>
 
-<!-- 18 · Xi growth + open door -->
+<!-- 17 · Xi growth + open door -->
 <section class="slide divider">
   <p class="kicker">Xi Jinping, Davos keynote, Jan. 17, 2017</p>
   <div class="statrow" style="margin-top:0">
@@ -271,7 +285,7 @@
   </blockquote>
 </section>
 
-<!-- 19 · Closing synthesis -->
+<!-- 18 · Closing synthesis -->
 <section class="slide">
   <p class="kicker">This week, mapped</p>
   <h2>Four texts, three levels</h2>
@@ -284,40 +298,33 @@
   </table>
 </section>
 
-<!-- 20 · Connector/Applier illustrated -->
+<!-- 19 · Roles per the syllabus -->
 <section class="slide">
-  <p class="kicker">Thursday · discussion format, modeled</p>
-  <h2>Connector and Applier, illustrated</h2>
-  <div class="twocol">
+  <p class="kicker">Thursday &middot; the two roles, per the syllabus</p>
+  <h2>Connector and Applier</h2>
+  <p class="sub" style="margin-top:.2rem; font-size:clamp(.95rem,1.5vw,1.2rem)">By <strong>Wednesday, 8pm</strong>: three questions framed in the context of the readings, about 300&ndash;500 words; roles alternate week to week. Graded complete/incomplete; two skips, no questions asked; no AI-generated text.</p>
+  <div class="twocol" style="margin-top:.9rem">
     <div class="col">
       <p class="collabel">Connector</p>
-      <p class="colrule">"Connect previous readings…at least three such connections." — syllabus</p>
-      <p class="colq">Levitsky &amp; Way, V-Dem, and Fukuyama all describe political backsliding; Polanyi argues the market half of that order is inherently unstable. If a self-regulating market always triggers a protective "double movement," is the backsliding V-Dem measures downstream of an economic logic Fukuyama never reckoned with — or are markets and democracies breaking down for separate reasons?</p>
+      <p class="colq">&ldquo;Your job is to ensure a continuous semester-long conversation rather than a series of reviews of individual readings. Connect previous readings (and specific passages) to the current week&rsquo;s readings. Your discussion questions should include at least three such connections. Construct a question that will stimulate discussion.&rdquo;</p>
     </div>
     <div class="col">
       <p class="collabel">Applier</p>
-      <p class="colrule">"Apply the material…to real-world events…explain why and how." — syllabus</p>
-      <p class="colq">Trump justified the April 2025 tariffs as protecting Americans from a market that had "looted, pillaged…and plundered" the country (NPR); Polanyi's double movement predicts exactly this kind of protective backlash. But the EU and Canada answered with tariffs of their own — does inter-state retaliation still count as Polanyi's societal self-protection, or does it break the model?</p>
+      <p class="colq">&ldquo;Apply the material assigned for the given week to real-world events (contemporary or historical, reported in reputable outlets). For each week, produce three such applications. Explain why and how the material applies. Your applications should stimulate discussion and even disagreement among your group members.&rdquo;</p>
     </div>
   </div>
-  <p class="footer-tag">Rubric language: DWA 227 syllabus. Examples instructor-composed for illustration, not student submissions. Tariff facts: NPR, Apr. 2, 2025.</p>
+  <div style="margin-top:1rem; padding-top:.7rem; border-top:1px solid var(--rule)">
+    <p class="collabel">Applier &mdash; one of this week&rsquo;s three, worked</p>
+    <p class="colq" style="font-size:clamp(.88rem,1.25vw,1.02rem)">Announcing the April 2 tariffs &mdash; a 10% minimum on all countries, 34% on China, 20% on the EU &mdash; Trump said that &ldquo;for decades, our country has been looted, pillaged &hellip; and plundered by nations near and far, both friend and foe alike&rdquo; (Kurtzleben, NPR). Polanyi argues that a self-regulating market &ldquo;could not exist for any length of time without annihilating the human and natural substance of society,&rdquo; so society moves to protect itself (<em>The Great Transformation</em>, Ch. 1: 3). Here the protecting is done by a state, and NPR reports that Canada &ldquo;has said it is prepared to impose its own retaliatory tariffs. So has the European Union.&rdquo; Is state-against-state retaliation still Polanyi&rsquo;s self-protection of society, or a different mechanism?</p>
+  </div>
+  <p class="footer-tag">Roles: DWA 227 syllabus, &ldquo;Course Structure.&rdquo; Reading applied: Polanyi, <em>The Great Transformation</em> (1944), Ch. 1, p. 3. Article: Danielle Kurtzleben, &ldquo;Trump unveils sweeping 10% tariff and &lsquo;reciprocal&rsquo; tariffs on dozens of nations,&rdquo; NPR, Apr. 2, 2025. Instructor-composed example.</p>
 </section>
 
-<!-- 21 · Exercise instructions -->
+<!-- 20 · Exercise: Spot the Applier -->
 <section class="slide">
-  <p class="kicker">Thursday · in-class exercise</p>
-  <h2>Spot the Applier</h2>
-  <ul class="big">
-    <li>In your discussion group: read the five candidate questions on the next slide</li>
-    <li>Identify the one genuine Applier question — and name which rubric line each of the other four fails</li>
-    <li>8 minutes, then report out: one group defends its pick</li>
-  </ul>
-</section>
-
-<!-- 22 · Exercise candidates -->
-<section class="slide">
-  <p class="kicker">Thursday · in-class exercise — the five candidates</p>
+  <p class="kicker">Thursday · in-class exercise — Spot the Applier</p>
   <h2>Which one is the Applier?</h2>
+  <p class="sub" style="margin-top:.1rem; font-size:clamp(.95rem,1.5vw,1.2rem)">In your discussion group, 8 minutes: find the one genuine Applier question, and name which rubric line each of the other four fails. Then one group defends its pick.</p>
   <ol class="candidates">
     <li>Levitsky &amp; Way, V-Dem, and Fukuyama describe political backsliding; Frieden describes an economic backlash that never fully resolved. Was Fukuyama's error about markets as much as regimes?</li>
     <li>TSMC is building three fabs in Phoenix (~$65B, plus up to $6.6B in CHIPS Act funding) instead of expanding in Taiwan — a real case of O'Neil's regionalization. Is that market logic, or the same self-protective impulse Polanyi describes, applied by a state instead of a society?</li>
@@ -328,7 +335,7 @@
   <p class="footer-tag">TSMC Arizona figures: TSMC/Dept. of Commerce announcement (2026). Tariff figures: NPR, Apr. 2, 2025.</p>
 </section>
 
-<div class="counter" id="counter">1 / 22</div>
+<div class="counter" id="counter">1 / 20</div>
 <div class="hint">↑ ↓ or space to navigate</div>
 
 <script>
@@ -465,6 +472,51 @@
         el('line', { x1: x, y1: y0 + 6, x2: x, y2: rowY(up, tier, 0) + 4, stroke: '#e5c9c9', 'stroke-width': 1, 'stroke-dasharray': '2,2' }, svg);
       }
     });
+  })();
+
+  /* --- Slide 14: timeline, 1999-2026 --- */
+  (function () {
+    var box = document.getElementById('chart-timeline2');
+    if (!box) return;
+    var events = [
+      [1999.9, '1999', 'WTO protests, Seattle', '"Battle in Seattle" halts the ministerial, Nov. 30', 'up', 1, 'start'],
+      [2008.7, '2008', 'Global Financial Crisis', 'Lehman Brothers collapses, Sept. 15', 'down', 1, 'middle'],
+      [2011.7, '2011', 'Occupy Wall Street', '"We are the 99%" — begins Sept. 17', 'up', 1, 'middle'],
+      [2016.5, '2016', 'Brexit referendum', 'UK votes to leave the EU, June 23', 'down', 1, 'middle'],
+      [2017.05, '2016\u201317', 'Trump elected, inaugurated', 'elected Nov. 8, 2016; sworn in Jan. 20, 2017', 'up', 2, 'middle'],
+      [2018.9, '2018\u201319', 'Bolsonaro elected, inaugurated', 'elected Oct. 28, 2018; sworn in Jan. 1, 2019', 'up', 1, 'middle'],
+      [2021.5, '2018\u20132025', 'U.S.\u2013China trade war', 'Section 301 tariffs (2018) through the 2025 tariff wave', 'down', 2, 'middle'],
+      [2020.2, '2020', 'COVID-19 pandemic declared', 'WHO declaration, March 11', 'down', 3, 'middle']
+    ];
+    var W = 1150, H = 380, y0 = 190, x0 = 70, x1 = W - 70;
+    var yMin = 1999, yMax = 2026;
+    function X(year) { return x0 + (year - yMin) / (yMax - yMin) * (x1 - x0); }
+    function rowY(up, tier, which) {
+      var d = [20, 40, 60][which] + (tier - 1) * 60;
+      return up ? y0 - d : y0 + d;
+    }
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    el('line', { x1: x0, y1: y0, x2: x1, y2: y0, stroke: '#d9dde3', 'stroke-width': 2 }, svg);
+    events.forEach(function (ev) {
+      var x = X(ev[0]);
+      var up = ev[4] === 'up';
+      var tier = ev[5] || 1;
+      var anchor = ev[6] || 'middle';
+      var tx = (anchor === 'start') ? x - 6 : (anchor === 'end') ? x + 6 : x;
+      el('line', { x1: x, y1: y0 - 6, x2: x, y2: y0 + 6, stroke: MUTED, 'stroke-width': 1.5 }, svg);
+      var c = el('circle', { cx: x, cy: y0, r: 6, fill: ACCENT, stroke: '#fcfbf9', 'stroke-width': 2 }, svg);
+      txt(el('title', {}, c), ev[1] + ' — ' + ev[2]);
+      txt(el('text', { x: tx, y: rowY(up, tier, 2), 'text-anchor': anchor, 'font-size': '17', 'font-weight': '700', fill: ACCENT }, svg), ev[1]);
+      txt(el('text', { x: tx, y: rowY(up, tier, 1), 'text-anchor': anchor, 'font-size': '14', 'font-weight': '700', fill: INK }, svg), ev[2]);
+      var sub = el('text', { x: tx, y: rowY(up, tier, 0), 'text-anchor': anchor, 'font-size': '11.5', fill: MUTED }, svg);
+      txt(sub, ev[3]);
+      if (tier > 1) {
+        el('line', { x1: x, y1: y0 + (up ? -6 : 6), x2: x, y2: rowY(up, tier, 0) + (up ? -4 : 4), stroke: '#e5c9c9', 'stroke-width': 1, 'stroke-dasharray': '2,2' }, svg);
+      }
+    });
+    var todayX = X(2026);
+    el('line', { x1: todayX, y1: y0 - 10, x2: todayX, y2: y0 + 10, stroke: ACCENT, 'stroke-width': 1.5, 'stroke-dasharray': '3,3' }, svg);
+    txt(el('text', { x: todayX, y: y0 + 34, 'text-anchor': 'end', 'font-size': '11', 'font-style': 'italic', fill: ACCENT }, svg), 'today');
   })();
 
   /* --- Slide 7: Rule of Three --- */
