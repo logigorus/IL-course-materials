@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 103 — Introduction to Global Political Economy — Fall 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --primary:#1e3a5f; --accent:#c17817; --text:#2a2a2a; --light-bg:#fdfbf7; --border:#e0ddd5; --hover:#f5f3ed; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Work Sans',system-ui,sans-serif; line-height:1.7; color:var(--text); background:var(--light-bg); }
+.container { max-width:860px; margin:0 auto; padding:0 1.5rem; }
+.skip-link { position:absolute; left:-9999px; background:var(--primary); color:#fff; padding:.5rem 1rem; z-index:200; }
+.skip-link:focus { left:.5rem; top:.5rem; }
+header { background:var(--primary); color:#fff; padding:2.2rem 0; }
+h1 { font-family:'Crimson Pro',Georgia,serif; font-size:2.2rem; font-weight:700; line-height:1.2; margin-bottom:.3rem; }
+.subtitle { font-size:1.05rem; opacity:.9; margin-bottom:1rem; }
+.course-meta { font-size:.95rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:.1rem 2rem; }
+.course-meta div { line-height:1.45; padding:.15rem 0; }
+header a { color:#fff; }
+nav { position:sticky; top:0; background:#fff; border-bottom:2px solid var(--border); z-index:100; }
+nav .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+nav ul { list-style:none; display:flex; flex-wrap:wrap; }
+nav a { display:block; padding:.55rem .65rem; text-decoration:none; color:var(--text); font-weight:500; font-size:.84rem; border-bottom:3px solid transparent; }
+nav a:hover, nav a:focus { background:var(--hover); border-bottom-color:var(--accent); }
+.toggles button { font:inherit; font-size:.8rem; padding:.3rem .6rem; border:1px solid var(--border); background:#fff; border-radius:4px; cursor:pointer; color:var(--primary); margin-left:.25rem; white-space:nowrap; }
+.toggles button:hover { background:var(--hover); }
+main { padding:2.2rem 0 3rem; }
+section { margin-bottom:2.6rem; scroll-margin-top:4.5rem; }
+h2 { font-family:'Crimson Pro',Georgia,serif; font-size:1.8rem; color:var(--primary); margin-bottom:1rem; padding-bottom:.4rem; border-bottom:3px solid var(--accent); }
+h3 { font-family:'Crimson Pro',Georgia,serif; font-size:1.3rem; color:var(--primary); margin:1.5rem 0 .5rem; }
+h4 { color:var(--primary); margin:1rem 0 .3rem; }
+p, ul, ol { margin-bottom:1rem; }
+ul, ol { padding-left:1.5rem; }
+li { margin-bottom:.35rem; }
+a { color:var(--primary); }
+code { font-size:.9em; background:var(--hover); padding:.1em .35em; border-radius:3px; }
+table { width:100%; border-collapse:collapse; margin:1rem 0 1.5rem; font-size:.95rem; }
+th, td { border:1px solid var(--border); padding:.5rem .75rem; text-align:left; vertical-align:top; }
+th { background:var(--hover); color:var(--primary); }
+/* "How this course runs" strip → cards */
+.runs ul { list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:.9rem; }
+.runs li { background:#fff; border-left:4px solid var(--accent); padding:.85rem 1rem; border-radius:0 4px 4px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); font-size:.95rem; margin:0; }
+.runs li > strong:first-child { display:block; color:var(--primary); font-family:'Crimson Pro',Georgia,serif; font-size:1.15rem; margin-bottom:.2rem; }
+/* schedule */
+.week-title { background:#fff; border-left:4px solid var(--primary); padding:.6rem 1rem; margin:1.4rem 0 .5rem; border-radius:0 4px 4px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); font-size:1.15rem; }
+.part { font-family:'Crimson Pro',Georgia,serif; color:var(--primary); font-size:1.15rem; margin:2rem 0 .5rem; letter-spacing:.02em; text-transform:uppercase; }
+/* two views: Essentials hides .extra sections; Full shows everything */
+body.view-essentials .extra, body.view-essentials .extra-link { display:none; }
+body.view-full .essentials-note { display:none; }
+.view-switch { display:flex; gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; flex-shrink:0; }
+.view-switch button { font:inherit; font-size:.82rem; padding:.35rem .8rem; border:0; background:#fff; color:var(--primary); cursor:pointer; }
+.view-switch button[aria-pressed="true"] { background:var(--primary); color:#fff; }
+.view-switch button:hover:not([aria-pressed="true"]) { background:var(--hover); }
+.essentials-note { background:var(--hover); border-left:4px solid var(--accent); padding:.75rem 1rem; margin:0 0 1.5rem; font-size:.92rem; }
+.full-note { font-size:.85rem; color:#666; margin:0 0 1rem; }
+footer { border-top:2px solid var(--border); padding:1.5rem 0 3rem; font-size:.9rem; color:#555; }
+@media print {
+  nav, .skip-link, .essentials-note, .full-note { display:none; }
+  body.view-essentials .extra { display:block; }
+  header { background:none; color:var(--text); padding:1rem 0; }
+  header a { color:var(--text); }
+  body { background:#fff; }
+  .week-title, .runs li { box-shadow:none; }
+  .runs ul { display:block; }
+  .runs li { page-break-inside:avoid; margin-bottom:.6rem; }
+  .course-meta { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body class="view-essentials">
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <div class="container">
+    <h1>DWA 103 — Introduction to Global Political Economy</h1>
+    <div class="subtitle">Diplomacy and World Affairs, Occidental College — Fall 2026</div>
+    <div class="course-meta">
+      <div><strong>Professor:</strong> Igor Logvinenko</div>
+      <div><strong>Email:</strong> ilogvinenko@oxy.edu</div>
+      <div><strong>Office:</strong> 210 Johnson Hall</div>
+      <div><strong>Meetings:</strong> Tuesdays &amp; Thursdays, 10:05–11:25 AM (Johnson 303)</div>
+      <div><strong>Office Hours:</strong> Wednesdays and Thursdays — some on Zoom, some in person. Check the schedule and book a slot <a href="https://calendar.app.google/NoaCnmF8w5HrUezr6">here</a>.</div>
+      <div><strong>Course website:</strong> <a href="https://igorlogvinenko.com/IL-course-materials/dwa103/DWA103_F26_Syllabus.html">igorlogvinenko.com/IL-course-materials/dwa103/DWA103_F26_Syllabus.html</a> — this page is the syllabus of record; assignment prompts are posted here too.</div>
+      <div><strong>Discussion questions:</strong> posted weekly to the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">DWA 103 Discussion Questions doc</a> — same doc all semester.</div>
+    </div>
+  </div>
+</header>
+<nav aria-label="Syllabus sections">
+  <div class="container">
+  <ul>
+    <li><a href="#key-course-info">Key info</a></li>
+    <li><a href="#assignments-grading">Assignments</a></li>
+    <li><a href="#course-structure">Structure</a></li>
+    <li><a href="#required-text">Texts</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li class="extra-link"><a href="#about">About</a></li>
+    <li class="extra-link"><a href="#ai-policy">AI policy</a></li>
+    <li class="extra-link"><a href="#policies">Policies</a></li>
+    <li class="extra-link"><a href="#news">News access</a></li>
+    <li class="extra-link"><a href="#support">Support</a></li>
+    <li class="extra-link"><a href="#college-policies">College policies</a></li>
+  </ul>
+  <div class="view-switch" role="group" aria-label="Syllabus view"><button type="button" id="view-essentials" aria-pressed="true">Essentials</button><button type="button" id="view-full" aria-pressed="false">Full syllabus</button></div>
+  </div>
+</nav>
+<main id="main" class="container">
+<p class="essentials-note"><strong>Essentials view</strong> — what you need week to week. The course description, AI rules, course and college policies, news access, and support services are in the <a href="#" data-view="full">full syllabus</a>, which is the syllabus of record.</p>
+<section id="key-course-info" class="runs">
+<h2>Key Course Info</h2>
+<ul>
+<li><strong>Weekly discussion question</strong> before Thursday's class, in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">DWA 103 Discussion Questions doc</a> under that week's heading (name, role, question; Appliers add the article link).</li>
+<li><strong>Readings</strong> the required books are listed below; all other assigned readings are in the <a href="https://drive.google.com/drive/folders/1VxvZOfOawIzOHTbpBv6cjlMB3doLPrWa?usp=sharing">course readings Google Drive folder</a> (Oxy login), organized by week.</li>
+<li><strong>Written work</strong> (DWA-event responses, annotated bibliography, final draft) — email it to <a href="mailto:ilogvinenko@oxy.edu">ilogvinenko@oxy.edu</a> as a PDF or Word file by <strong>11:59 pm</strong> on the due date. Subject line: <code>DWA103 – [assignment] – [your last name]</code>. You'll get a one-line acknowledgment; if you don't within 24 hours, resend.</li>
+<li><strong>Late work</strong> 48-hour grace period, no questions asked; after that, one letter grade per 24 hours; no grace on the final draft (due at the deadline, Thu Dec 10). Full policy under <em>Course Policies</em> below.</li>
+<li><strong>Reaching me</strong> office hours are on Wednesdays and Thursdays, some on Zoom and some in person; check the schedule and <a href="https://calendar.app.google/NoaCnmF8w5HrUezr6">book a slot here</a>. Email answered within 24 hours on weekdays, 48 on weekends.</li>
+<li><strong>Key dates</strong> <strong>Quiz 1</strong> Thu Sep 17 · <strong>Blue-book midterm</strong> Thu Oct 8 · <strong>Quiz 2</strong> Thu Oct 29 · <strong>Annotated bibliography</strong> Thu Nov 5 · <strong>Presentations</strong> Nov 17, 19 &amp; 24 · <strong>Final literature review</strong> Thu Dec 10.</li>
+</ul>
+
+</section>
+<section id="assignments-grading">
+<h2>Assignments &amp; Grading</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participation (incl. two DWA-event responses)</td>
+<td>25%</td>
+<td>Every meeting; event responses by email within a week of each event</td>
+</tr>
+<tr>
+<td>Two in-class quizzes</td>
+<td>10%</td>
+<td>Thu Sep 17 · Thu Oct 29</td>
+</tr>
+<tr>
+<td>Blue-book midterm</td>
+<td>25%</td>
+<td>Thu Oct 8 (question pool circulated in advance)</td>
+</tr>
+<tr>
+<td>Literature review — annotated bibliography</td>
+<td>10%</td>
+<td>Thu Nov 5</td>
+</tr>
+<tr>
+<td>Literature review — presentation</td>
+<td>10%</td>
+<td>Nov 17, 19 &amp; 24</td>
+</tr>
+<tr>
+<td>Literature review — final draft</td>
+<td>20%</td>
+<td>Thu Dec 10 (finals period; no grace period)</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>100%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A: 93–100 | A−: 90–92.9 | B+: 87–89.9 | B: 83–86.9 | B−: 80–82.9<br />
+C+: 77–79.9 | C: 73–76.9 | C−: 70–72.9<br />
+D+: 67–69.9 | D: 60–66.9 | F: below 60</p>
+<p><strong>Final exam.</strong> There is no final exam in this course. The final literature review is due Thursday, December 10, during the finals period.</p>
+<h3>The assignments</h3>
+<p><strong>1. Participation (25%)</strong></p>
+<p>About 20 percent will come from active and productive participation in class. Strong: you build on your notes rather than read them aloud, you cite a passage, you take up someone else's point and push it. Adequate: prepared, and speaking, but sticking to the talking points only. Weak: present but silent, or talking without prepared questions. Attendance at relevant campus speaker events counts a great deal - we have lots of fascinating events this semester. You are the intended audience for these speakers. </p>
+<p>Five percent will come from attendance at DWA events. Over the semester, attend at least two DWA-sponsored events related to global politics (broadly understood) and submit a one-page (single-spaced) response by email within a week of each — naming the talk title and speaker(s), briefly describing the event's purpose, and connecting it to a theme from the course. Essays are graded complete/not complete; two completed essays earn an A on this part of the participation grade.</p>
+<p><strong>Attendance.</strong> You must attend class meetings. Life happens, such as illness, family emergencies, days of faith and conscience. Tell me as early as you can and we'll find another way for you to demonstrate the week's preparation. What I can't do is grade a semester of absences generously at the end, so if you're missing more than two weeks' worth of meetings, come talk to me or don't be surprised by your grade. </p>
+<p><strong>2. Two In-Class Quizzes (10%)</strong></p>
+<p>Short handwritten quizzes: a few identifications plus one paragraph, in the first 10-15 minutes of class. I will see if I can include brief ungraded warm-ups (on paper, start of class). I will count the higher of your two scores double and drop the lower half.</p>
+<p><strong>3. Blue-Book Midterm (25%)</strong>
+In-class, handwritten, <strong>Thursday, October 8</strong> (before Fall Break). I will circulate the question pool in advance.</p>
+<p><strong>4. Literature Review (40%)</strong>
+The main writing assignment is a <strong>2500-3000-word</strong> review of the literature on a GPE topic (excluding bibliography), expanding on a course topic or one of your own choosing, after consulting with me. Three parts:
+- Description &amp; annotated bibliography (10%) — due <strong>Thursday, November 5</strong>
+- Presentation, (10%) — week of <strong>November 17</strong>
+- Final draft in narrative form (20%) — due <strong>Thursday, December 10</strong> (finals period)</p>
+
+</section>
+<section id="course-structure">
+<h2>Course Structure</h2>
+<p>I will begin most Tuesday classes with an overview of the week's material. Thursdays are generally devoted to the discussion in groups. Students are expected to come to Thursday's class ready to talk having prepared discussion questions framed around the readings, alternating between two roles from week to week.</p>
+<p><strong>Connector</strong> — Ensures a continuous, semester-long conversation rather than a series of stand-alone reviews. Connect previous readings (and specific passages) to the current week's material, and construct a question that will stimulate discussion.</p>
+<p><strong>Applier</strong> — Applies the week's material to real-world events (contemporary or historical, reported in reputable outlets). Explain why and how the framework applies, in a way that provokes discussion and even disagreement.</p>
+<p><strong>Post your discussion question here every week, before Thursday's class:</strong> <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">DWA 103 Discussion Questions doc</a> — find the week's heading and add your name, role, and question (include your article link if you're the Applier). I pull from this doc to run Thursday's discussion.</p>
+
+</section>
+<section id="required-text">
+<h2>Required Text</h2>
+<ul>
+<li>Helleiner, Eric. 2023. <em>The Contested World Economy: The Deep and Global Roots of International Political Economy.</em> Cambridge: Cambridge University Press. (Referred to as <strong>CWE</strong>.)</li>
+</ul>
+<p>Available at the bookstore, on course reserve, or online (rental, ebook, or hardcopy).</p>
+<p>All other assigned readings — articles, chapters, reports — are collected in the <a href="https://drive.google.com/drive/folders/1VxvZOfOawIzOHTbpBv6cjlMB3doLPrWa?usp=sharing">course readings Google Drive folder</a>, organized by week.</p>
+
+</section>
+<section id="schedule">
+<h2>Schedule</h2>
+<p><strong>Reading load.</strong> Read the assigned readings and at least one from the <strong>Depth (optional)</strong> list. Quizzes, the midterm, and on-deck discussion draw on the Core readings only. Read the Core carefully rather than the whole list quickly.</p>
+<p><strong>Fall speaker events (Young Initiative &amp; campus):</strong> attendance counts toward engagement. All talks are 12–1pm. Confirmed — <strong>Thu Sep 17:</strong> Sergii Glebov (UC Irvine/Odesa National University), "Russia's War on Ukraine and European (In)Security" (room Choi); <strong>Thu Sep 24:</strong> Jason Bell, <em>Operation Sparrow</em> author talk; <strong>Thu Oct 29:</strong> Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em> on how modern autocrats rule through political spin; <strong>Wed Nov 4:</strong> Leah Stokes (UCSB) on <em>The Carbon Wave</em> — how the largest US climate investment was built; <strong>Thu Nov 12:</strong> Phillip Ayoub (UCL) on the global resistance to LGBTIQ rights.</p>
+<p class="part">PART I — THEORETICAL PERSPECTIVES ON GPE</p>
+<h3 class="week-title">Week 1 (Aug 25 &amp; 27) — Introductions: Contesting Globalization</h3>
+<ul>
+<li>Introductions and course logistics</li>
+<li>CWE, Ch. 1 (pp. 1–16)</li>
+<li>Frieden, J. A. 2007. <em>Global Capitalism: Its Fall and Rise in the Twentieth Century.</em> (pp. 1–27)</li>
+<li>Keohane and Nye, "Globalization: What's New? What's Not? (And So What?)" <em>Foreign Policy</em> (Spring 2000): 104–118</li>
+<li>Farrell and Newman, "Chained to Globalization," <em>Foreign Affairs</em> (February 2020) <em>(optional)</em></li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3 class="week-title">Week 2 (Sep 1 &amp; 3) — Liberalisms</h3>
+<ul>
+<li>CWE, Chs. 2–3 (pp. 19–55)</li>
+<li>Aggarwal, V., and C. Dupont. "Collaboration and Coordination in the Global Political Economy"</li>
+<li>Lake, D. A. 2009. "Open Economy Politics: A Critical Review." <em>The Review of International Organizations</em> 4(3): 219–244 <em>(Depth — optional; written for a graduate audience)</em></li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3>Week 3 (Sep 8; <strong>no class Thu Sep 10</strong>) — Political Economy and Security: Realism &amp; Mercantilism</h3>
+<ul>
+<li>CWE, Ch. 4</li>
+<li>Drezner, D. W. 2010. "Mercantilist and Realist Perspectives on the Global Political Economy." <em>Oxford Research Encyclopedia of International Studies</em></li>
+<li>Kirshner, J. 2009. "Realist Political Economy: Traditional Themes and Contemporary Challenges." <em>Handbook of International Political Economy</em>, pp. 36–47</li>
+<li>Hirschman, A. O. 1980 [1945]. <em>National Power and the Structure of Foreign Trade.</em> (pp. 13–52) <em>(optional)</em></li>
+<li><strong>Thu Sep 10 — no class meeting (instructor away at conference); documentary lab.</strong> Discussion questions are still due in the shared doc as usual.</li>
+</ul>
+<h3 class="week-title">Week 4 (Sep 15 &amp; 17) — Ideas and Identity: Constructivisms</h3>
+<ul>
+<li>CWE, one chapter from Part 2 (Chs. 8–13, your choice)</li>
+<li>Abdelal, R. 2009. "Constructivism as an Approach to International Political Economy." In <em>Handbook of International Political Economy</em>, ed. M. Blyth, pp. 57–71</li>
+<li>Nelson, S. C. 2014. "Playing Favorites: How Shared Beliefs Shape the IMF's Lending Decisions." <em>International Organization</em> 68(2): 297–328</li>
+<li>Tickner, J. A. 2004. "The Gendered Frontiers of Globalization." <em>Globalizations</em> 1(1): 15–23 <em>(Depth — optional)</em></li>
+<li><strong><em>Quiz 1 — Thursday Sep 17</em></strong></li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3 class="week-title">Week 5 (Sep 22 &amp; 24) — Global Capitalism as Social Structure: Marxism</h3>
+<ul>
+<li>CWE, Chs. 6–7 (pp. 87–122)</li>
+<li>Wallerstein, I. 2013. "World-Systems Analysis." <em>Sociopedia.isa</em>, 1–8</li>
+<li>Przeworski, A. 2020. "What Have I Learned from Marx and What Still Stands?" <em>Politics &amp; Society</em></li>
+<li>Táíwò and Bright, "A Response to Michael Walzer," <em>Dissent</em> (2022) <em>(optional)</em></li>
+<li><em>Midterm question pool circulated Thursday Sep 24</em></li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<p class="part">PART II — SELECT ISSUE AREAS IN GPE</p>
+<h3 class="week-title">Week 6 (Sep 29 &amp; Oct 1) — Trade</h3>
+<ul>
+<li>"Why Trade Is Good for You," <em>The Economist</em> (October 1, 1998)</li>
+<li>Rodrik, D. 2012. "Why Doesn't Everyone Get the Case for Free Trade?" Ch. 3 in <em>The Globalization Paradox.</em></li>
+<li>Milner, H. 1999. "The Political Economy of International Trade." <em>Annual Review of Political Science</em> 2: 91–114</li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3 class="week-title">Week 7 (Oct 6 &amp; 8) — Global Finance</h3>
+<ul>
+<li><strong>Tuesday:</strong> Bhagwati, J. 1998. "The Capital Myth." <em>Foreign Affairs</em> 77(3); Kirshner, J. 2003. "Money Is Politics." <em>Review of International Political Economy</em> 10(4): 645–660; Oatley, T., et al. 2013. "The Political Economy of Global Finance: A Network Model." <em>Perspectives on Politics</em> 11(1): 133–153</li>
+<li><strong><em>Blue-book midterm — Thursday, October 8</em></strong></li>
+</ul>
+<h3 class="week-title">Week 8 (Oct 13 — instructor away at conference; Fall Break Oct 15–16) — No Class</h3>
+<ul>
+<li><em>No class Tuesday Oct 13 — instructor away at conference</em></li>
+<li><em>No class Thursday Oct 15 — Fall Break</em></li>
+</ul>
+<h3 class="week-title">Week 9 (Oct 20 &amp; 22) — Global Capitalism, Democracy, and Dictatorship</h3>
+<ul>
+<li>Friedman, M. <em>Capitalism and Freedom</em>, Ch. 1</li>
+<li>Krugman, P. 1994. "The Myth of Asia's Miracle." <em>Foreign Affairs</em> (Nov/Dec): 62–78</li>
+<li>Rodrik, D. "The Myth of Authoritarian Growth." <em>Project Syndicate</em></li>
+<li>Ansell, B., and D. Samuels. 2010. "Inequality and Democratization: A Contractarian Approach." <em>Comparative Political Studies</em> 43(12): 1543–1574 <em>(optional)</em></li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3 class="week-title">Week 10 (Oct 27 &amp; 29) — Global Economic Development</h3>
+<ul>
+<li>Olson, M. 1993. "Dictatorship, Democracy, and Development." <em>American Political Science Review</em> 87(3)</li>
+<li>Basu, K. 2006. "Globalization, Poverty and Inequality: What Is the Relationship? What Can Be Done?" <em>World Development</em> 34(8)</li>
+<li>Stiglitz, J. E. 2008. "Is There a Post-Washington Consensus Consensus?" In <em>The Washington Consensus Reconsidered</em>, pp. 41–56</li>
+<li><strong><em>Quiz 2 — Thursday Oct 29</em></strong></li>
+<li><strong>Thu Oct 29 — Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em>, public talk 12–1pm (Young Initiative)</strong> — on how modern autocrats rule through spin; attendance counts toward engagement.</li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3 class="week-title">Week 11 (Nov 3 &amp; 5) — Global Energy System Transformation</h3>
+<ul>
+<li>Scholten, D. "The Geopolitics of the Energy Transition"</li>
+<li>Clabough, A. "It's Complicated: The US 2024 Electoral Outlook &amp; Consequences for Energy and Climate Security"</li>
+<li>Singh, J. T. N. 2023. "Recentring the Industrial Policy Paradigm within IPE and Development Studies." <em>Third World Quarterly</em> 44(9): 2015–2030</li>
+<li><strong>Wed Nov 4, 12–1pm — Leah Stokes (UCSB), <em>The Carbon Wave</em></strong> (Young Initiative). It is the applied companion to this unit — Scholten gives you the geopolitics of the transition in the abstract, Stokes gives you one country actually legislating it. Attendance counts toward engagement.</li>
+<li><strong><em>Annotated bibliography due Thursday Nov 5</em></strong></li>
+<li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
+</ul>
+<h3 class="week-title">Week 12 (Nov 10 &amp; 12) — Literature Review Workshops</h3>
+<ul>
+<li>Tuesday: literature review workshop (framing, sources, research design)</li>
+<li>Thursday: peer workshop on draft bibliographies. You'll complete a short structured worksheet on two classmates' bibliographies — is the research question answerable, are the sources scholarly, what's missing — and bring it to class. This is where a weak topic gets caught while there's still time.</li>
+</ul>
+<h3 class="week-title">Week 13 (Nov 17 &amp; 19) — Presentations</h3>
+<ul>
+<li>Student literature-review presentations (5 minutes each, hard stop, plus questions)</li>
+</ul>
+<h3 class="week-title">Week 14 (Nov 24 only — Thanksgiving Nov 25–27) — Presentations &amp; Wrap-Up</h3>
+<ul>
+<li>Remaining presentations + course wrap-up</li>
+</ul>
+<p><strong>Final literature review due during finals period — Thursday, December 10</strong> <em>(3,000–4,000 words; no 48-hour extension for the final draft; graded on the rubric distributed with the assignment)</em></p>
+
+</section>
+<p class="full-note">The sections below are hidden in the Essentials view. They are part of this syllabus.</p>
+<section class="extra" id="about">
+<h2>About the course</h2>
+
+<h3>Course Description</h3>
+<p>This is an undergraduate survey of the field of Global Political Economy (GPE). It is required for Diplomacy and World Affairs majors, and most enrolled students are DWA majors. It is intended for students who already have some background in International Relations and Economics and who want to explore the major theoretical, empirical, and policy perspectives on GPE.</p>
+<p>The first part of the course covers the foundational theories of global political economy. The goal is to understand how theory is framed, how it "works," and what its potential inferences for practice might be. The second part explores  globalization as a field of study with a focus on trade, finance, energy, and economic development.</p>
+<p>During the second half of the semester, students also write a literature review project on a topic of their choice. Examples include: China–US rivalry; global kleptocracy; the green/circular economy; gender and the global economy; corporate citizenship and responsibility; the rise of populism/authoritarianism; the sustainable development goals (SDGs); social and economic rights; and more. This is an opportunity for you to explore a topic that is not covered in the regular course of the semester; or dive deeper into an aspect of something we did cover. </p>
+<p>This course fulfills the Global Connections (CPGC) requirement of the college.</p>
+<h3>Course Objectives</h3>
+<p>This course covers the major theoretical traditions in global political economy (liberalism, realism/mercantilism, constructivism, and Marxism) and then applies them to trade, finance, energy, and development. It also trains the research and writing skills required by the literature review assignment.</p>
+<h3>Student Learning Outcomes</h3>
+<p>By the end of the course, you will be able to:</p>
+<ol>
+<li><strong>Identify and contrast</strong> the core claims of the four main GPE traditions, and say what evidence would count for or against each</li>
+<li><strong>Summarize and evaluate</strong> a scholarly argument in the field (claims, evidence, and assumptions) in writing and out loud</li>
+<li><strong>Locate, assess, and cite</strong> scholarly sources on a GPE topic</li>
+<li><strong>Write a 2,500–3,000-word literature review</strong> that organizes a body of scholarship around a research puzzle in the conventions of the social sciences</li>
+<li><strong>Apply</strong> a GPE framework to current or past events and defend the application</li>
+</ol>
+<h3>Course Workload</h3>
+<p>DWA 103 is a 4-unit course. On average, you should expect to spend at least twelve (12) hours a week (including in-class time) on this course.</p>
+
+</section>
+
+<section class="extra" id="ai-policy">
+<h2>Use of AI tools</h2>
+
+<h3>Why this course is (mostly) an AI-free zone</h3>
+<p>I use some AI tools in research and teaching, but I also have had the advantage of being educated in the pre-AI era. I use them as an expert checking output against knowledge I already have. You are not yet experts. You are here to build that knowledge first. Your main goal in this course should be to do things that AI cannot do for you: build and defend your own causal arguments about politics and the world economy. Skills like reading closely, weighing evidence, constructing an argument, and being able to defend it in real time can develop only through practice. Experiencing that friction is the point of your education and growth. AI is genuinely useful for simulating expert workflows, but  it takes away the "practice reps" that generate expertise in the first place. So this semester, we will be doing a lot more in-class testing, presentations and discussion without any aids. The take-home writing will be deliberately lower-stakes and structured in stages. </p>
+<h3>The  rules</h3>
+<ol>
+<li><strong>In-class work</strong> (discussion, quizzes, the blue-book midterm, presentations): closed-book except where stated, and no AI — it's you, paper, and the room.</li>
+<li><strong>Take-home writing:</strong> I expect it to be written without generative AI. I will not be able to verify this, which is exactly why these assignments are built in stages. You are welcome to use AI to learn, look for sources, verify data, generate illustrations to help your absorption of material, but you are always responsible for whatever winds up on the page with your name on it. </li>
+<li><strong>No detectors.</strong> I will never run your work through an AI detector (they are unreliable and biased against non-native speakers and neurodivergent writers). If something in your work doesn't sound like you, we will have a conversation and I will ask you to walk me through your argument.</li>
+<li><strong>When in doubt, ask first.</strong> A two-minute question before the fact is never an integrity problem.</li>
+</ol>
+<h3>What's allowed, by assignment</h3>
+<table>
+<thead>
+<tr>
+<th>Assignment</th>
+<th>Setting</th>
+<th>AI allowed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participation / discussion (on-deck)</td>
+<td>In class</td>
+<td>— (n/a: live)</td>
+</tr>
+<tr>
+<td>Quizzes</td>
+<td>In class, handwritten</td>
+<td>No (closed)</td>
+</tr>
+<tr>
+<td>Blue-book midterm</td>
+<td>In class, handwritten</td>
+<td>No (closed)</td>
+</tr>
+<tr>
+<td>Lit review: annotated bibliography</td>
+<td>Take-home</td>
+<td>No use of AI to generate text.</td>
+</tr>
+<tr>
+<td>Lit review: presentation</td>
+<td>In class, oral</td>
+<td>No (live)</td>
+</tr>
+<tr>
+<td>Lit review: final draft</td>
+<td>Take-home</td>
+<td>No use of AI to generate text.</td>
+</tr>
+<tr>
+<td>Documentaries and talks attendance</td>
+<td>Take-home, handwritten half-page</td>
+<td>No AI.</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section class="extra" id="policies">
+<h2>Course policies</h2>
+
+<h3>Communication</h3>
+<p>I will do my best to reply to all email within 24 hours on weekdays, 48 on weekends. If you have not heard from me after that, please follow up. You can sign up for office hours or ask questions during class.</p>
+<h3>Late Assignments</h3>
+<p>You have a grace period of <strong>48 hours</strong> to turn in assignments after the deadline, no questions asked. For every 24-hour period <em>after</em> the end of the grace period, I will deduct a letter grade. This policy does <strong>not</strong> apply to the final draft of the literature review.</p>
+<h3>Academic Integrity</h3>
+<h4>Statement of the Shared Academic Integrity Commitment</h4>
+<p>Academic Integrity is a shared community value. It is built around trust and respect between members of the Occidental Community, and embodies a commitment to honesty and integrity in every aspect of one's academic life.</p>
+<p>All members of the Occidental community are committed to uphold the highest degree of academic integrity. Unless stipulated otherwise, the academic work done for all assignments is expected to be the student's own; students are expected to give proper credit to the ideas and work of others.</p>
+<p>Signing the Academic Integrity Commitment at the beginning of every semester represents a student's affirmation to uphold the shared values of honesty and integrity. When signing the Integrity Commitment associated with work in a course, students are affirming that they have not cheated, plagiarized, fabricated, or falsified information; nor assisted others in these actions.</p>
+<p>Refer to Student Handbook for the framing of the commitment, definitions of Academic Ethics, and Process for alleged violations of the commitment.</p>
+<h4>And a word from me</h4>
+<p>People cut corners when they feel underprepared or out of time. I can help with both if you come early. I would much rather spend that 15 minutes with you than hours in misconduct hearings. If you're unsure whether something counts as a source or how to cite something properly, just ask. </p>
+<h3>Laptop &amp; Smartphone Use</h3>
+<p>Laptops and smartphones may not be used during lectures (except with accommodations or prior approval). Please take notes on paper. Lots of research suggests that screens reduce attention spans even of people around you. You should have your laptop with you for in-class writing and discussion work. I will let you know when you can use it. </p>
+<h3>Mid-semester reports and incompletes</h3>
+<p><strong>Mid-semester progress reports.</strong> Mid-semester progress reports are not intended to be used as determinative or predictive of the final grade in a course, but to provide an opportunity for the faculty to communicate an approximate estimation of progress by the students in the course by the midpoint of the current semester. I will submit yours during the Fall 2026 window (October 5–18) — after the midterm, so it reflects real information. Please look at it before you meet with your academic advisor.</p>
+<p><strong>Incompletes.</strong> You are eligible for an incomplete if you have completed at least one-third of the graded work, that work is of passing quality, and the Dean of Students Office has verified a personal circumstance that prevented you from finishing. Even then, the decision is mine. In this course an incomplete makes sense only when the only outstanding work is the final paper. If you're falling behind before the withdrawal deadline, come talk to me. Withdrawing is often the better outcome.</p>
+
+</section>
+
+<section class="extra" id="news">
+<h2>Newspaper and magazine access</h2>
+
+<p>Occidental College provides free access to several major news outlets. You are expected to use these resources for the Applier role and throughout the course.</p>
+<h4>The Atlantic</h4>
+<p>Visit <a href="https://accounts.theatlantic.com/institutional-login">accounts.theatlantic.com/institutional-login</a>, type in "Occidental College," click Continue, and sign in with your Oxy credentials. Alternatively, go to <a href="https://www.theatlantic.com">theatlantic.com</a>, click "Sign In," scroll down to "Sign in through your institution," search for Occidental, and log in.</p>
+<h4>The Economist</h4>
+<ol>
+<li>Visit <a href="https://www.economist.com">economist.com</a> and click Log in</li>
+<li>Enter your Oxy email and leave the password field blank — you will be redirected to the Oxy login page</li>
+<li>Enter your Oxy credentials</li>
+</ol>
+<h4>Los Angeles Times</h4>
+<ol>
+<li>Visit <a href="http://latimes.com/Oxy25">latimes.com/Oxy25</a></li>
+<li>Enter your Oxy email address</li>
+<li>Create a password when prompted and click "Agree and Continue"</li>
+<li>Enter redemption code <strong>OXYSS25</strong> and complete the form with your name and zip code</li>
+</ol>
+<h4>New York Times</h4>
+<p><strong>New subscribers:</strong>
+1. Visit <a href="https://accessnyt.com">accessnyt.com</a>
+2. Search for and select Occidental College
+3. Click "Create Account" and enter your @oxy.edu email
+4. Create a password and validate your account via the confirmation email
+5. Select Student or Faculty/Staff and complete sign-up</p>
+
+</section>
+
+<section class="extra" id="support">
+<h2>Student support services</h2>
+
+<p><strong>Where to go, and what each place is for.</strong> Stuck on a draft, including "I have nothing yet": the Writing Center. Can't find sources: book a research consultation through the library, or use Ask a Librarian. Behind on time or organization: the Academic Success Coach (academiccoaching@oxy.edu). Need a laptop: the Library lends them. Digital tools and media work: the Center for Digital Liberal Arts. Community and belonging: the Intercultural Community Center. Strongest students I have had take advantage of these resources. </p>
+
+</section>
+
+<section class="extra" id="college-policies">
+<h2>Required College Policies</h2>
+
+<h3>Civil Rights &amp; Title IX</h3>
+<p>In the event that you write or speak about having experienced discrimination or harassment on the basis of a protected characteristic or sexual misconduct (including sexual assault, dating/domestic violence, stalking, sexual exploitation or any other form of sexual and/or gender-based harassment), as a designated Responsible Employee, I must inform the Civil Rights &amp; Title IX Office. They will contact you to let you know about resources and support services at Oxy, as well as reporting options both on and off-campus. You have no obligation to respond to the Civil Rights &amp; Title IX Office or to meet with them to discuss support services and reporting options.</p>
+<p>If you do not want the Civil Rights &amp; Title IX Office contacted, instead of disclosing this information to your instructor, either through conversation or a class assignment, you can speak confidentially with:</p>
+<ul>
+<li>Oxy's Survivor Advocate, Project SAFE (survivoradvocate@oxy.edu)</li>
+<li>Emmons Counseling (For appointments, call: 323-259-2657)</li>
+<li>Rev. Dr. Susan Young, Office of Religious and Spiritual Life (young@oxy.edu)</li>
+<li>Oxy 24/7 Confidential Hotline (323-341-4141)</li>
+</ul>
+<p>The College's civil rights policies, along with additional resources, can be found at: https://www.oxy.edu/civil-rights-title-ix. If you would like to contact the Civil Rights &amp; Title IX Office directly, you may email Civil Rights &amp; Title IX Coordinator Alexandra Fulcher at afulcher@oxy.edu or call 323-259-1338.</p>
+<h3>Special Accommodations/Learning Differences</h3>
+<p>Occidental College (Oxy) complies with the Americans with Disabilities Act of 1990 as amended, Section 504 of the Rehabilitation Act of 1973 as amended, and other applicable state and federal law prohibiting discrimination against individuals with disabilities.</p>
+<ul>
+<li>All accommodation requests including academic, housing (ESA &amp; Services Animal) and temporary accommodations are managed by the Disability Services Office. It is a student's responsibility to request accommodations via the Disability Services website. For information about additional accommodations and support services, students can email accessibility@oxy.edu.</li>
+<li>Oxy's Psychological Testing Program: We offer low cost psychological testing for students who qualify. Any student who thinks they may have a learning, or psychological disability may complete Oxy's Psych Testing Application to be added to the waitlist.</li>
+<li>Academic Success Coaching: Our Academic Success Coach assists students in developing skills and strategies to enhance their academic performance. They provide personalized guidance on time management, organization, study techniques, goal setting, and self-regulation. By collaborating with students, our coach helps identify and overcome obstacles to academic success, fostering a supportive environment that promotes personal and educational growth. Contact: academiccoaching@oxy.edu</li>
+</ul>
+<p><em>If something about how this course is designed or taught is getting in the way of your doing your best work, tell me — with or without a formal accommodation. I can often fix it.</em></p>
+<h3>Accommodations for Reasons of Faith and Conscience</h3>
+<p>Consistent with Occidental College's commitment to creating an academic community that is respectful of and welcoming to persons of differing backgrounds, we believe that students should be excused from class for reasons of faith and conscience without academic consequence. While it is not feasible to schedule coursework around all days of conviction for a class as a whole, faculty will honor requests from individual students to reschedule coursework, to be absent from classes that conflict with the identified days. Information about this policy and a religious and spiritual holiday calendar are available on the ORSL website.</p>
+
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    DWA 103 — Introduction to Global Political Economy — Occidental College, Fall 2026. Both views are the same document; the <em>Full syllabus</em> view (and any printout) is the syllabus of record. Generated from the canonical Markdown on September 2, 2026.
+  </div>
+</footer>
+<script>
+(function(){
+  var KEY = 'syllabus-view';
+  var body = document.body, bE = document.getElementById('view-essentials'), bF = document.getElementById('view-full');
+  function setView(v, remember){
+    body.classList.remove('view-essentials','view-full'); body.classList.add('view-'+v);
+    bE.setAttribute('aria-pressed', v==='essentials'); bF.setAttribute('aria-pressed', v==='full');
+    if (remember) { try { localStorage.setItem(KEY, v); } catch(e){} }
+  }
+  var v = 'essentials';
+  try { v = localStorage.getItem(KEY) || v; } catch(e){}
+  var q = /[?&]view=(essentials|full)/.exec(location.search); if (q) v = q[1];
+  setView(v, false);
+  bE.addEventListener('click', function(){ setView('essentials', true); });
+  bF.addEventListener('click', function(){ setView('full', true); });
+  document.querySelectorAll('a[data-view]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); setView(a.getAttribute('data-view'), true); window.scrollTo(0,0); }); });
+  // a link into a hidden section switches to Full
+  function openTarget(){ var id = location.hash.slice(1); if(!id) return; var el = document.getElementById(id); if(!el) return;
+    if (el.closest && el.closest('.extra')) { setView('full', false); el.scrollIntoView(); } }
+  window.addEventListener('hashchange', openTarget); openTarget();
+  // printing always prints the full syllabus
+  var prev; window.addEventListener('beforeprint', function(){ prev = body.classList.contains('view-full') ? 'full' : 'essentials'; setView('full', false); });
+  window.addEventListener('afterprint', function(){ setView(prev, false); });
+})();
+</script>
+</body>
+</html>

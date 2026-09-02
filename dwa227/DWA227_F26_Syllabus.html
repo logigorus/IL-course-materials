@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 — Authoritarianism in the Age of Globalization — Fall 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --primary:#1e3a5f; --accent:#c17817; --text:#2a2a2a; --light-bg:#fdfbf7; --border:#e0ddd5; --hover:#f5f3ed; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Work Sans',system-ui,sans-serif; line-height:1.7; color:var(--text); background:var(--light-bg); }
+.container { max-width:860px; margin:0 auto; padding:0 1.5rem; }
+.skip-link { position:absolute; left:-9999px; background:var(--primary); color:#fff; padding:.5rem 1rem; z-index:200; }
+.skip-link:focus { left:.5rem; top:.5rem; }
+header { background:var(--primary); color:#fff; padding:2.2rem 0; }
+h1 { font-family:'Crimson Pro',Georgia,serif; font-size:2.2rem; font-weight:700; line-height:1.2; margin-bottom:.3rem; }
+.subtitle { font-size:1.05rem; opacity:.9; margin-bottom:1rem; }
+.course-meta { font-size:.95rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:.1rem 2rem; }
+.course-meta div { line-height:1.45; padding:.15rem 0; }
+header a { color:#fff; }
+nav { position:sticky; top:0; background:#fff; border-bottom:2px solid var(--border); z-index:100; }
+nav .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+nav ul { list-style:none; display:flex; flex-wrap:wrap; }
+nav a { display:block; padding:.55rem .65rem; text-decoration:none; color:var(--text); font-weight:500; font-size:.84rem; border-bottom:3px solid transparent; }
+nav a:hover, nav a:focus { background:var(--hover); border-bottom-color:var(--accent); }
+.toggles button { font:inherit; font-size:.8rem; padding:.3rem .6rem; border:1px solid var(--border); background:#fff; border-radius:4px; cursor:pointer; color:var(--primary); margin-left:.25rem; white-space:nowrap; }
+.toggles button:hover { background:var(--hover); }
+main { padding:2.2rem 0 3rem; }
+section { margin-bottom:2.6rem; scroll-margin-top:4.5rem; }
+h2 { font-family:'Crimson Pro',Georgia,serif; font-size:1.8rem; color:var(--primary); margin-bottom:1rem; padding-bottom:.4rem; border-bottom:3px solid var(--accent); }
+h3 { font-family:'Crimson Pro',Georgia,serif; font-size:1.3rem; color:var(--primary); margin:1.5rem 0 .5rem; }
+h4 { color:var(--primary); margin:1rem 0 .3rem; }
+p, ul, ol { margin-bottom:1rem; }
+ul, ol { padding-left:1.5rem; }
+li { margin-bottom:.35rem; }
+a { color:var(--primary); }
+code { font-size:.9em; background:var(--hover); padding:.1em .35em; border-radius:3px; }
+table { width:100%; border-collapse:collapse; margin:1rem 0 1.5rem; font-size:.95rem; }
+th, td { border:1px solid var(--border); padding:.5rem .75rem; text-align:left; vertical-align:top; }
+th { background:var(--hover); color:var(--primary); }
+/* "How this course runs" strip → cards */
+.runs ul { list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:.9rem; }
+.runs li { background:#fff; border-left:4px solid var(--accent); padding:.85rem 1rem; border-radius:0 4px 4px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); font-size:.95rem; margin:0; }
+.runs li > strong:first-child { display:block; color:var(--primary); font-family:'Crimson Pro',Georgia,serif; font-size:1.15rem; margin-bottom:.2rem; }
+/* schedule */
+.week-title { background:#fff; border-left:4px solid var(--primary); padding:.6rem 1rem; margin:1.4rem 0 .5rem; border-radius:0 4px 4px 0; box-shadow:0 1px 4px rgba(0,0,0,.05); font-size:1.15rem; }
+.part { font-family:'Crimson Pro',Georgia,serif; color:var(--primary); font-size:1.15rem; margin:2rem 0 .5rem; letter-spacing:.02em; text-transform:uppercase; }
+/* two views: Essentials hides .extra sections; Full shows everything */
+body.view-essentials .extra, body.view-essentials .extra-link { display:none; }
+body.view-full .essentials-note { display:none; }
+.view-switch { display:flex; gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; flex-shrink:0; }
+.view-switch button { font:inherit; font-size:.82rem; padding:.35rem .8rem; border:0; background:#fff; color:var(--primary); cursor:pointer; }
+.view-switch button[aria-pressed="true"] { background:var(--primary); color:#fff; }
+.view-switch button:hover:not([aria-pressed="true"]) { background:var(--hover); }
+.essentials-note { background:var(--hover); border-left:4px solid var(--accent); padding:.75rem 1rem; margin:0 0 1.5rem; font-size:.92rem; }
+.full-note { font-size:.85rem; color:#666; margin:0 0 1rem; }
+footer { border-top:2px solid var(--border); padding:1.5rem 0 3rem; font-size:.9rem; color:#555; }
+@media print {
+  nav, .skip-link, .essentials-note, .full-note { display:none; }
+  body.view-essentials .extra { display:block; }
+  header { background:none; color:var(--text); padding:1rem 0; }
+  header a { color:var(--text); }
+  body { background:#fff; }
+  .week-title, .runs li { box-shadow:none; }
+  .runs ul { display:block; }
+  .runs li { page-break-inside:avoid; margin-bottom:.6rem; }
+  .course-meta { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body class="view-essentials">
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <div class="container">
+    <h1>DWA 227 — Authoritarianism in the Age of Globalization</h1>
+    <div class="subtitle">Diplomacy and World Affairs, Occidental College — Fall 2026</div>
+    <div class="course-meta">
+      <div><strong>Professor:</strong> Igor Logvinenko</div>
+      <div><strong>Email:</strong> ilogvinenko@oxy.edu</div>
+      <div><strong>Office:</strong> 210 Johnson Hall</div>
+      <div><strong>Meetings:</strong> Tuesdays &amp; Thursdays, 1:20–2:40 PM (Johnson 104)</div>
+      <div><strong>Office Hours:</strong> Wednesdays and Thursdays — some on Zoom, some in person. Check the schedule and book a slot <a href="https://calendar.app.google/NoaCnmF8w5HrUezr6">here</a>.</div>
+      <div><strong>Course website:</strong> <a href="https://igorlogvinenko.com/IL-course-materials/dwa227/DWA227_F26_Syllabus.html">igorlogvinenko.com/IL-course-materials/dwa227/DWA227_F26_Syllabus.html</a> — this page is the syllabus of record; assignment prompts are posted here too.</div>
+      <div><strong>Connector/Applier posts:</strong> posted weekly to a single <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared Google Doc</a> — same doc all semester, one running document.</div>
+    </div>
+  </div>
+</header>
+<nav aria-label="Syllabus sections">
+  <div class="container">
+  <ul>
+    <li><a href="#key-course-info">Key info</a></li>
+    <li><a href="#assignments-grading">Assignments</a></li>
+    <li><a href="#course-structure">Structure</a></li>
+    <li><a href="#required-texts">Texts</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li class="extra-link"><a href="#about">About</a></li>
+    <li class="extra-link"><a href="#ai-policy">AI policy</a></li>
+    <li class="extra-link"><a href="#policies">Policies</a></li>
+    <li class="extra-link"><a href="#news">News access</a></li>
+    <li class="extra-link"><a href="#support">Support</a></li>
+    <li class="extra-link"><a href="#college-policies">College policies</a></li>
+  </ul>
+  <div class="view-switch" role="group" aria-label="Syllabus view"><button type="button" id="view-essentials" aria-pressed="true">Essentials</button><button type="button" id="view-full" aria-pressed="false">Full syllabus</button></div>
+  </div>
+</nav>
+<main id="main" class="container">
+<p class="essentials-note"><strong>Essentials view</strong> — what you need week to week. The course description, AI rules, course and college policies, news access, and support services are in the <a href="#" data-view="full">full syllabus</a>, which is the syllabus of record.</p>
+<section id="key-course-info" class="runs">
+<h2>Key Course Info</h2>
+<ul>
+<li><strong>Weekly posts</strong> by <strong>Wednesday 8pm</strong>, in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared Connector/Applier doc</a> under that week's heading. Two free skips.</li>
+<li><strong>Readings</strong> the required books are listed below; all other assigned readings are in the <a href="https://drive.google.com/drive/folders/1SCzxzxwxmJdyHe0I_EJxWuu__ldNTlTe?usp=sharing">course readings Google Drive folder</a> (Oxy login), organized by week.</li>
+<li><strong>Written work</strong> (book review, annotated bibliography, final draft) — email it to <a href="mailto:ilogvinenko@oxy.edu">ilogvinenko@oxy.edu</a> as a PDF or Word file by <strong>11:59 pm</strong> on the due date. Subject line: <code>DWA227 – [assignment] – [your last name]</code>. You'll get a one-line acknowledgment; if you don't within 24 hours, resend.</li>
+<li><strong>Late work</strong> 48-hour grace period, no questions asked; after that, one letter grade per 24 hours; no grace on the final draft (due at the deadline, Thu Dec 10). Full policy under <em>Course Policies</em> below.</li>
+<li><strong>Reaching me</strong> office hours are on Wednesdays and Thursdays, some on Zoom and some in person; check the schedule and <a href="https://calendar.app.google/NoaCnmF8w5HrUezr6">book a slot here</a>. Email answered within 24 hours on weekdays, 48 on weekends.</li>
+<li><strong>Key dates</strong> <strong>Quiz 1</strong> Tue Sep 15 · <strong>Blue-book midterm</strong> Thu Oct 8 · <strong>Book review</strong> Thu Oct 22 · <strong>Quiz 2</strong> Tue Oct 27 · <strong>Annotated bibliography</strong> Thu Nov 5 · <strong>Panel defenses</strong> Nov 17, 19 &amp; 24 · <strong>Final literature review</strong> Thu Dec 10.</li>
+</ul>
+
+</section>
+<section id="assignments-grading">
+<h2>Assignments &amp; Grading</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connector/Applier posts</td>
+<td>10%</td>
+<td>Weekly, Wednesday 8pm (two free skips)</td>
+</tr>
+<tr>
+<td>Participation</td>
+<td>15%</td>
+<td>Every meeting; standing reported at midterm</td>
+</tr>
+<tr>
+<td>Two in-class quizzes</td>
+<td>10%</td>
+<td>Tue Sep 15 · Tue Oct 27</td>
+</tr>
+<tr>
+<td>Book review</td>
+<td>10%</td>
+<td>Thu Oct 22</td>
+</tr>
+<tr>
+<td>Blue-book midterm</td>
+<td>15%</td>
+<td>Thu Oct 8 (question pool out Sep 24)</td>
+</tr>
+<tr>
+<td>Literature review — annotated bibliography</td>
+<td>10%</td>
+<td>Thu Nov 5</td>
+</tr>
+<tr>
+<td>Literature review — panel defense</td>
+<td>10%</td>
+<td>Nov 17, 19 &amp; 24</td>
+</tr>
+<tr>
+<td>Literature review — final draft</td>
+<td>20%</td>
+<td>Thu Dec 10 (finals period; no grace period)</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>100%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A: 93–100 | A−: 90–92.9 | B+: 87–89.9 | B: 83–86.9 | B−: 80–82.9<br />
+C+: 77–79.9 | C: 73–76.9 | C−: 70–72.9<br />
+D+: 67–69.9 | D: 60–66.9 | F: below 60</p>
+<p><strong>Final exam.</strong> There is no final exam in this course. The final literature review is due Thursday, December 10, during the finals period; nothing else is scheduled then, so don't make plans that would conflict with the submission.</p>
+<h3>The assignments</h3>
+<p><strong>1. Connector/Applier Posts (10%)</strong><br />
+Your weekly discussion questions, <strong>due Wednesday at 8pm</strong>, graded complete/incomplete as the semester goes. You may skip two weeks, no questions asked. I review them Thursday morning and bring what I find into the room — I don't write comments back, because the discussion <em>is</em> the feedback. Posts are your ticket to discussion; you'll be asked to build on them live.</p>
+<p><strong>2. Participation (15%)</strong><br />
+I grade preparation and contribution, not volume. Strong: you build on your post rather than read it aloud, you cite a passage, you take up someone else's point and push it. Adequate: prepared, and speaking on your on-deck days. Weak: present but silent, or talking without the text. I record a mark for each of you at the end of every meeting, in the room — I don't reconstruct participation in December. You'll get your cumulative standing once at midterm, in time to change it. Speaker event attendance counts. If speaking in a group is hard for you, tell me in week 2 — there are other ways to be visibly prepared and I'll use them.</p>
+<p><strong>Attendance.</strong> Come to class; this course is a seminar and the work we do in the room can't be made up from notes. Life happens — illness, family emergencies, official Oxy events, days of faith and conscience. Tell me as early as you can and we'll find another way for you to demonstrate the week's preparation. If you're missing more than two weeks' worth of meetings, come talk to me about whether this is the right semester for the course.</p>
+<p><strong>3. Two In-Class Quizzes (10%)</strong><br />
+Short handwritten quizzes: identifications plus one paragraph. Ideas count, penmanship doesn't. A makeup slot is available for documented conflicts. <strong>One weak quiz should not decide your semester: I count the higher of your two scores double and the lower half.</strong>
+- <strong>Quiz 1 — Tuesday, September 15</strong> (moved off Thursday to clear the Glebov visit)
+- <strong>Quiz 2 — Tuesday, October 27</strong> <em>(fixed: the Thu Oct 29 guest visit is confirmed, so the quiz stays on Tuesday.)</em></p>
+<p><strong>4. Book Review (10%)</strong><br />
+In about 1000 words, review <em>Spin Dictators</em>, <em>The Narrow Corridor</em>, or <em>Autocracy, Inc.</em> Due: Thursday, October 22.</p>
+<p><strong>5. Blue-Book Midterm (15%)</strong><br />
+In-class, handwritten, Thursday, October 8. The question pool is circulated two weeks in advance (Sep 24); exam questions are drawn from the pool, and the exam draws heavily on the three required books. You may bring one handwritten page of notes. We will hold an ungraded practice session early in the term (Thu Sep 3).</p>
+<p><strong>6. Literature Review with Oral Defense (40%)</strong><br />
+The main writing assignment is a <strong>3,000–4,000-word</strong> review of the literature on a topic in the academic study of authoritarianism (excluding bibliography) — expanding on a course topic or one of your own choosing, after consulting with me. Three parts:
+- Annotated bibliography (10%) — due <strong>Thursday, November 5</strong>
+- <strong>Panel defense</strong> (10%) — <strong>November 17, 19, and 24</strong>
+- Final draft in narrative form (20%) — due <strong>Thursday, December 10</strong> (finals period)</p>
+<p><strong>How the panel defense works.</strong> You'll be grouped with three or four classmates working on related topics. Each of you gives a <strong>4–5 minute statement</strong> of your question, your argument, and the weakest point in your own case. Then the panel takes <strong>8–10 minutes of open questions</strong> — from me and from the room, and from each other. You are expected to have read your panelists' bibliographies and to have a question ready for each of them. I grade live, on a one-page rubric, during the session.</p>
+<p>This is harder than reading a paper aloud and it's the point of the course: defending a claim you built, in real time, to people who know the material. It is also the one assessment that cannot be outsourced to anyone or anything.</p>
+<p><em>A word on feedback. You get detailed comments three times, where you can still act on them: on the annotated bibliography, in the Week 12 workshop, and in the panel questions. The final draft is graded on a one-page rubric, distributed with the assignment, plus a short holistic comment. Comments written after the course ends are comments nobody can use. If you want them anyway, ask me in January and you'll have them.</em></p>
+<p><strong>Recovery.</strong> The midterm question pool goes out two weeks early because I want you preparing against known questions, not guessing. After the midterm I'll send each of you a short read on where you stand and what to do about it, early enough to act on.</p>
+
+</section>
+<section id="course-structure">
+<h2>Course Structure</h2>
+<p>I will begin most Tuesday classes with an overview of the material for the week. On Thursdays, students will work in and out of pre-assigned discussion groups. By <strong>Wednesday at 8pm</strong>, each student will need to post 3 questions framed in the context of the readings (about 300–500 words). From week to week, you will alternate between two roles:</p>
+<p>Post your questions to the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared Connector/Applier doc</a> under that week's heading — see the doc for exact formatting instructions.</p>
+<p><strong>Connector</strong> — Your job is to ensure a continuous semester-long conversation rather than a series of reviews of individual readings. Connect previous readings (and specific passages) to the current week's readings. Your discussion questions should include at least three such connections. Construct a question that will stimulate discussion.</p>
+<p><strong>Applier</strong> — Apply the material assigned for the given week to real-world events (contemporary or historical, reported in reputable outlets). For each week, produce three such applications. Explain why and how the material applies. Your applications should stimulate discussion and even disagreement among your group members.</p>
+
+</section>
+<section id="required-texts">
+<h2>Required Texts</h2>
+<ul>
+<li>Guriev, Sergei, and Daniel Treisman. 2022. <em>Spin Dictators: The Changing Face of Tyranny in the 21st Century.</em> Princeton: Princeton University Press.</li>
+<li>Acemoglu, Daron, and James A. Robinson. 2019. <em>The Narrow Corridor: States, Societies, and the Fate of Liberty.</em> New York: Penguin Press.</li>
+<li>Applebaum, Anne. 2024. <em>Autocracy, Inc.: The Dictators Who Want to Run the World.</em> New York: Doubleday.</li>
+</ul>
+<p>All other assigned readings — articles, chapters, reports — are collected in the <a href="https://drive.google.com/drive/folders/1SCzxzxwxmJdyHe0I_EJxWuu__ldNTlTe?usp=sharing">course readings Google Drive folder</a>, organized by week.</p>
+
+</section>
+<section id="schedule">
+<h2>Schedule</h2>
+<p><em>[Dated against the official Oxy Fall 2026 calendar (classes Aug 25 – Nov 30; Fall Break Oct 15–16; Thanksgiving Nov 25–27; finals Dec 3–10). TR pattern: last class meeting is Tue Nov 24. Books: Spin Dictators (wks 3, 5, 9), The Narrow Corridor (wks 4, 10), Autocracy, Inc. (wks 7, 14).]</em></p>
+<p><strong>Reading load.</strong> Read the assigned readings and at least one from the <strong>Depth (optional)</strong> list. Quizzes, the midterm, and on-deck discussion draw on the Core readings only. Read the Core carefully rather than the whole list quickly.</p>
+<p><strong>A note on provisional dates.</strong> Most guest visits are now confirmed — Glebov (Sep 17), Treisman (Oct 29), Stokes (Nov 4), and Ayoub (Nov 12) are all set, and <strong>Quiz 2 is fixed on Tuesday, October 27</strong>. Any session still marked <em>provisional</em> below will be settled no later than <strong>Thursday, September 17</strong>, announced in class and posted here.</p>
+<p><strong>Guest speakers this term.</strong> Public talks, all noon–1pm: Thu Sep 17, Glebov (Ukraine and European security) · <strong>Thu Oct 29, Daniel Treisman (<em>Spin Dictators</em>)</strong> · <strong>Wed Nov 4, Leah Stokes (<em>The Carbon Wave</em>) — note the Wednesday</strong> · Thu Nov 12, Phillip Ayoub (global resistance to LGBTIQ rights). Glebov, Treisman, and Ayoub also visit our 1:20 class; Stokes does not. Separately, Jason Bell (<em>Operation Sparrow</em>) joins us in class on Thu Sep 24, possibly with a public talk the same day <em>(provisional)</em>. Attendance at the public talks counts toward engagement.</p>
+<h3 class="week-title">Week 1 (Aug 25 &amp; 27) — Introductions</h3>
+<ul>
+<li>Introductions and Course Logistics</li>
+<li>Fukuyama, "The End of History?" <em>The National Interest</em>, no. 16 (1989)</li>
+<li>V-Dem Institute, <em>Democracy Report 2026</em> (executive summary + global trends)</li>
+<li>Levitsky and Way, "Democracy's Surprising Resilience." <em>Journal of Democracy</em> 34, no. 4 (2023)</li>
+</ul>
+<h3 class="week-title">Week 2 (Sep 1 &amp; 3) — Contesting Globalization</h3>
+<ul>
+<li>Frieden, J. A. 2007. <em>Global Capitalism: Its Fall and Rise in the Twentieth Century.</em> (pp. 1–27)</li>
+<li>O'Neil, Shannon K. "The Myth of the Global." <em>Foreign Affairs</em>, June 2022</li>
+<li>Polanyi, Karl. <em>The Great Transformation</em> (1944), Chs. 1 &amp; 6</li>
+<li>Xi Jinping, "Shoulder Responsibility of Our Times, Promote Global Growth." Davos keynote, 2017</li>
+<li><em>Practice blue-book session (ungraded), Thursday Sep 3 — includes five short questions about this syllabus. Learn where the due dates are now, under exam conditions, and you won't be emailing me about them in November.</em></li>
+</ul>
+<h3>Week 3 (Sep 8; <strong>no class Thu Sep 10</strong>) — Authoritarianisms: From Fear to Spin</h3>
+<ul>
+<li><em>Spin Dictators</em>, opening chapters (the fear→spin argument)</li>
+<li>Linz, Juan. Definitional pages on authoritarian regimes, from "An Authoritarian Regime: Spain" (1964) / <em>Totalitarian and Authoritarian Regimes</em> (1975)</li>
+<li>Friedrich, Carl J., and Zbigniew Brzezinski. <em>Totalitarian Dictatorship and Autocracy</em> (1956), Ch. 2 (the six-point totalitarian syndrome)</li>
+<li>Frantz, Erica, Andrea Kendall-Taylor, and Joseph Wright. <em>The Origins of Elected Strongmen</em> (2024), intro <em>(optional — the personalism variable)</em></li>
+<li><strong>Thu Sep 10 — no class meeting (instructor away at conference); asynchronous documentary lab</strong> <em>(see Course Structure note: structured viewing guide; your half-page of connections to Spin Dictators is your ticket to Tuesday's discussion and counts as that week's post)</em></li>
+</ul>
+<h3 class="week-title">Week 4 (Sep 15 &amp; 17) — Capitalism Under Democracy and Dictatorship</h3>
+<ul>
+<li><em>The Narrow Corridor</em>, Chs. 1–2 (pp. 1–73)</li>
+<li>Friedman, Milton. <em>Capitalism and Freedom</em>, Ch. 1</li>
+<li>Olson, Mancur. "Dictatorship, Democracy, and Development." <em>APSR</em> 87, no. 3 (1993)</li>
+<li>Martínez, Luis R. "How Much Should We Trust the Dictator's GDP Growth Estimates?" <em>Journal of Political Economy</em> 130, no. 10 (2022) — BFI research summary + paper introduction</li>
+<li><strong><em>Quiz 1 — Tuesday Sep 15</em></strong> <em>(moved from Thu Sep 17 to clear the Glebov visit)</em></li>
+<li><strong>Thu Sep 17 — guest: Sergii Glebov</strong> (Visiting Assoc. Prof., UC Irvine; Assoc. Prof., Odesa I. I. Mechnikow National University), <em>"Russia's War on Ukraine and European (In)Security"</em> — via Young Initiative. Public talk 12–1pm, class visit 1:20. Attendance at the public talk counts toward engagement.</li>
+</ul>
+<h3 class="week-title">Week 5 (Sep 22 &amp; 24) — Spin in Practice: Media, Information, and Legitimation</h3>
+<ul>
+<li><em>Spin Dictators</em>, middle chapters (media control, propaganda, manipulating democracy's language)</li>
+<li>Miłosz, Czesław. <em>The Captive Mind</em> (1953), "Ketman" chapter</li>
+<li>Applebaum, Anne. "The New Propaganda War." <em>The Atlantic</em>, June 2024</li>
+<li>Guriev and Treisman, "Informational Autocrats." <em>JEP</em> 33, no. 4 (2019) <em>(optional — condensed version of the book's argument)</em></li>
+<li>Orwell, George. "Politics and the English Language" (1946) <em>(optional)</em></li>
+<li>Havel, Václav. "The Power of the Powerless" (1978), greengrocer §§ I–VII <em>(Depth — optional)</em></li>
+<li><strong>Thu Sep 24 — guest: Jason Bell</strong>, author of <em>Operation Sparrow</em> (an Oxy alum's WWII story — D-Day and end-of-war Hungary), hosted in class; possible public talk the same day <em>(provisional)</em></li>
+<li><strong><em>Midterm question pool circulated Thu Sep 24</em></strong></li>
+</ul>
+<h3 class="week-title">Week 6 (Sep 29 &amp; Oct 1) — Democracy &amp; Authoritarianism in Africa</h3>
+<ul>
+<li>Opalo, Ken. "The Truth About Africa's Coups." <em>Journal of Democracy</em> 35, no. 2 (2024)</li>
+<li>Ero, Comfort, and Murithi Mutiga. "The Crisis of African Democracy." <em>Foreign Affairs</em> 103, no. 1 (2024) <em>(run as structured disagreement with Opalo)</em></li>
+<li>Elischer, Sebastian. "Populist Civil Society, the Wagner Group, and Post-Coup Politics in Mali." OECD iLibrary (2023)</li>
+<li>Bleck, Jaimie et al. "Drinking Tea with the Neighbors." <em>APSR</em> (2023): 1–20 <em>(Depth — optional)</em></li>
+</ul>
+<h3 class="week-title">Week 7 (Oct 6 &amp; 8) — Autocracy, Inc.: Kleptocracy &amp; Global Finance</h3>
+<ul>
+<li>Tuesday: <em>Autocracy, Inc.</em>, first half (the networked autocrats, kleptocratic finance); Sharafutdinova and Dawisha, "The Escape from Institution-Building in a Globalized World." <em>Perspectives on Politics</em> 15, no. 2 (2017): 361–78; Hirschman, Albert O. <em>Exit, Voice, and Loyalty</em> (1970), Chs. 1–3 excerpt (offshore finance as the oligarch's <em>exit</em>)</li>
+<li><strong><em>Blue-book midterm — Thursday Oct 8</em></strong></li>
+</ul>
+<h3 class="week-title">Weeks 8–9 (Oct 13; Fall Break Oct 15–16; Oct 20 &amp; 22)</h3>
+<p><strong>Confirmed: Tuesday, October 13 is a no-class day (instructor away at conference).</strong> It is replaced by an asynchronous documentary lab (viewing guide + handwritten half-page of connections, counts as that week's post).</p>
+<ul>
+<li><strong>Oct 20 &amp; 22 — Digital Authoritarianism &amp; Surveillance</strong> <em>(Tuesday opens with a short midterm debrief)</em>:</li>
+<li><em>Spin Dictators</em>, technology/surveillance chapter</li>
+<li>Schlumberger, Oliver, Mirjam Edel, Ahmed Maati, and Koray Saglam. "How Authoritarianism Transforms: A Framework for the Study of Digital Dictatorship." <em>Government and Opposition</em> 59, no. 3 (2024): 761–83 (open access)</li>
+<li>Yang, Eddie, and Margaret E. Roberts. "The Authoritarian Data Problem." <em>Journal of Democracy</em> 34, no. 4 (2023)</li>
+<li>Anastasopoulos, Jason, and Bryan Lian. "The Limits of Authoritarian AI." <em>Journal of Democracy</em> 37, no. 2 (April 2026)</li>
+<li>Birhane, Abeba. "Algorithmic Colonisation of Africa." <em>The Elephant</em>, August 21, 2020 <em>(optional — Global South angle)</em></li>
+<li><strong><em>Book Review due Thu Oct 22</em></strong></li>
+</ul>
+<h3 class="week-title">Week 10 (Oct 27 &amp; 29) — Democratic Breakdown and Autocratization</h3>
+<ul>
+<li><em>The Narrow Corridor</em> (Red Queen selections — how corridors are exited)</li>
+<li>Little, Andrew T., and Anne Meng, "Measuring Democratic Backsliding" and reply/rejoinder package (with Miller response and Knutsen et al./V-Dem reply). <em>PS: Political Science &amp; Politics</em> (2024) — run as an in-class debate</li>
+<li>Levitsky, Steven, and Lucan Way. "The Path to American Authoritarianism." <em>Foreign Affairs</em>, February 2025</li>
+<li>Rome anchor: Watts, Edward J. "Lessons in the Decline of Democracy From the Ruined Roman Republic." <em>Smithsonian Magazine</em>, November 2018 <em>(Depth — optional; drawn from</em> Mortal Republic<em>, 2018)</em></li>
+<li><strong><em>Quiz 2 — Tuesday Oct 27</em></strong> <em>(fixed — the Thursday guest visit below is confirmed)</em></li>
+<li><strong>Thu Oct 29 — guest: Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em></strong> — via Young Initiative. Public talk 12–1pm, class visit 1:20. <strong>Confirmed.</strong> Attendance at the public talk counts toward engagement. You have been reading his book since Week 3; come with a question.</li>
+</ul>
+<h3 class="week-title">Week 11 (Nov 3 &amp; 5) — Courts and Autocracy</h3>
+<ul>
+<li>Dichio and Logvinenko, "Stewards, Defenders, Progenitors, and Collaborators: Courts in the Age of Democratic Decline." <em>Law &amp; Policy</em> (2024) — framing essay of the special issue</li>
+<li>One or two case-study articles from the special issue <em>(TBD)</em></li>
+<li>Scheppele, Kim Lane. "Autocratic Legalism." <em>University of Chicago Law Review</em> 85 (2018) <em>(suggested pairing)</em></li>
+<li>Beard, Mary. <em>SPQR</em> (2015), Ch. 1, "Cicero's Finest Hour" (Catiline, emergency powers, executions without trial)</li>
+<li>Cicero, <em>In Verrem</em> I <em>or</em> Plutarch, <em>Sulla</em> 31–33 (the proscriptions) — final pick TBD</li>
+<li><strong>Wed Nov 4, 12–1pm — optional talk: Leah Stokes (UCSB), <em>The Carbon Wave</em></strong> — via Young Initiative. <strong>Note the day: this one is a Wednesday, not our usual Thursday</strong>, and there is no class visit attached. Attendance counts toward engagement. Not required and not on any exam; go if the politics of climate policy interests you.</li>
+<li><strong><em>Annotated bibliography due Thu Nov 5</em></strong></li>
+</ul>
+<h3 class="week-title">Week 12 (Nov 10 &amp; 12) — Literature Review Workshop</h3>
+<ul>
+<li><strong>Tue Nov 10:</strong> literature review workshop (framing, sources, research design) + structured peer review. You'll complete a short worksheet on two classmates' bibliographies — is the research question answerable, are the sources scholarly, what's missing — and bring it to class. These are your panel-mates, so this doubles as preparation for the defense.</li>
+<li><strong>Thu Nov 12 — guest: Phillip Ayoub</strong> (Professor, University College London), <em>"The Global Resistance to LGBTIQ Rights"</em> — via Young Initiative; public talk 12–1pm, class visit 1:20–2:40.</li>
+<li>Ayoub, Phillip, and Kristina Stoeckl. "The Global Resistance to LGBTIQ Rights." <em>Journal of Democracy</em> 35, no. 1 (January 2024) — assigned the week before.</li>
+</ul>
+<h3 class="week-title">Week 13 (Nov 17 &amp; 19) — Panel Defenses</h3>
+<ul>
+<li>Panels 1–5. Panel assignments and running order posted after the Nov 10 workshop.</li>
+<li><strong>Closing reading, assigned this week and covered in the Nov 24 discussion:</strong> <em>Autocracy, Inc.</em>, closing chapters (what the democracies should do); Mounk, Yascha. "The Dictators' Last Stand." <em>Foreign Affairs</em> 98, no. 5 (2019): 138–48</li>
+</ul>
+<h3 class="week-title">Week 14 (Nov 24 only — Thanksgiving Nov 25–27) — Final Panels &amp; Wrap-Up</h3>
+<ul>
+<li>Remaining panels, then closing discussion: authoritarianism and the future of globalization</li>
+<li>"Globalisation and Autocracy Are Locked Together. For How Much Longer?" <em>The Economist</em>, March 2022 <em>(Depth — optional)</em></li>
+</ul>
+<p><strong>Final Literature Review due during finals period — Thursday, December 10</strong> <em>(3,000–4,000 words; no 48-hour extension for the final draft; graded on the rubric distributed with the assignment)</em></p>
+
+</section>
+<p class="full-note">The sections below are hidden in the Essentials view. They are part of this syllabus.</p>
+<section class="extra" id="about">
+<h2>About the course</h2>
+
+<h3>Course Description</h3>
+<p>Thirty years after Francis Fukuyama proclaimed the "End of History," political authoritarianism remains viable while democracy is increasingly under threat around the world. In fact, only 7 percent of the global population resides in liberal democracies as of 2025. At the same time, many dictators have embraced hypermobility of capital, free trade, and modern information technology. Deepening globalization has also challenged long-established democratic systems, producing anti-establishment populist politics at the "local" level.</p>
+<p>How do authoritarian leaders react to the challenges of globalization in the 21st century? Does globalization undermine or enhance their hold on power? Will authoritarianism survive a long-term engagement with global markets? The aim of this course is to explore these and other related questions. </p>
+<p>This course fulfills the Global Connections (CPGC) requirement of the college.</p>
+<h3>Course Objectives</h3>
+<p>This course covers the political economy of contemporary authoritarianism; how modern autocrats hold power under conditions of global capital mobility, open trade, and networked information; how democracies erode; and what the scholarly literature can and cannot yet establish about either.</p>
+<h3>Student Learning Outcomes</h3>
+<p>By the end of the course, you will be able to:</p>
+<ol>
+<li><strong>Distinguish</strong> the main analytic categories in the study of non-democratic rule — totalitarian, authoritarian, personalist, "spin" — and say what evidence would place a given regime in one rather than another</li>
+<li><strong>Summarize and evaluate</strong> a scholarly argument in this literature — its question, claim, evidence, and weakest point — in writing and out loud, without notes</li>
+<li><strong>Assess a measurement dispute</strong> on its merits: what democratic backsliding indices claim to measure, where they disagree, and why it matters</li>
+<li><strong>Locate, assess, and cite</strong> scholarly sources on a research question about authoritarianism, and build an annotated bibliography that separates strong evidence from weak</li>
+<li><strong>Write a 3,000–4,000-word literature review</strong> and <strong>defend it live</strong> under questioning (CPGC: Global Connections)</li>
+</ol>
+<h3>Course Workload</h3>
+<p>DWA 227 is a 4-unit course. On average, you should expect to spend at least twelve (12) hours a week (including in-class time) on this course.</p>
+
+</section>
+
+<section class="extra" id="ai-policy">
+<h2>Use of AI tools</h2>
+
+<h3>Why this course is (mostly) an AI-free zone</h3>
+<p>This course teaches you to do something AI cannot do for you: build and defend your own causal arguments about politics and the world economy. That skill — reading closely, weighing evidence, constructing an argument, and standing behind it in real time — develops only through practice, and the practice only works if the thinking is yours. The friction is the point.</p>
+<p>I know AI tools are everywhere, and you will use them elsewhere — in other courses, in jobs, in life. I use them in my own research and administrative work, as an expert checking a tool's output against knowledge I already have. You are here to build that knowledge first. That's not hypocrisy; that's sequencing.</p>
+<p>Some of you took DWA 103 with me last spring, when this course ran the other experiment: AI as a collaborative partner, Gemini workshops and all, as part of the college's AI Institute pilot. This isn't a contradiction — it's the same experiment, continued. That semester taught me (and, judging by your feedback, many of you) that AI is genuinely useful for simulating expert workflows, and that it quietly eats the practice reps that build expertise in the first place. So this year the design changes: the tools go away where the learning happens, and the grade weight moves into the room. I'll be just as interested in your feedback on this version.</p>
+<p>So this course puts its grade weight where your unaided thinking is visible: in-class discussion, handwritten quizzes and exams, and oral presentation. Take-home writing is deliberately lower-stakes and structured in stages, so the work — and the learning — happens in a process I can see.</p>
+<h3>The ground rules</h3>
+<ol>
+<li><strong>In-class work</strong> (discussion, quizzes, the blue-book midterm, presentations and defenses): closed-book except where stated, and no AI — it's you, paper, and the room.</li>
+<li><strong>Take-home writing:</strong> I expect it to be written without generative AI — no drafting, rewriting, summarizing of readings, or outline generation by AI. You can use AI to search for sources, verify facts, or brainstorm — testing an idea, working through an argument, sketching an outline — but the writing on the page has to be yours. I am direct about the fact that I cannot verify this, which is exactly why these assignments carry modest weight and are built in stages. Doing them yourself is what prepares you for the parts of the course that carry the grade.</li>
+<li><strong>No detectors, ever.</strong> I will never run your work through an AI detector — they are unreliable and biased against non-native speakers and neurodivergent writers. If something in your work doesn't sound like you, my response is a conversation: I'll ask you to walk me through your argument. Being able to explain your own work is the standard — and it's one you should welcome.</li>
+<li><strong>When in doubt, ask first.</strong> A two-minute question before the fact is never an integrity problem. We'll discuss this policy together in week 1 — I want your honest read on it.</li>
+</ol>
+<h3>What's allowed, by assignment</h3>
+<table>
+<thead>
+<tr>
+<th>Assignment</th>
+<th>Setting</th>
+<th>AI allowed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connector/Applier posts</td>
+<td>Take-home, short</td>
+<td>No AI-generated text — these are your discussion voice; source-search and brainstorming OK.</td>
+</tr>
+<tr>
+<td>Participation / discussion</td>
+<td>In class</td>
+<td>— (live)</td>
+</tr>
+<tr>
+<td>Two quizzes</td>
+<td>In class, handwritten</td>
+<td>No (closed)</td>
+</tr>
+<tr>
+<td>Book review</td>
+<td>Take-home</td>
+<td>No AI-generated text; source-search and brainstorming OK. Reading the book is the assignment.</td>
+</tr>
+<tr>
+<td>Blue-book midterm</td>
+<td>In class, handwritten; 1-page handwritten notes OK</td>
+<td>No (closed)</td>
+</tr>
+<tr>
+<td>Lit review: annotated bibliography</td>
+<td>Take-home</td>
+<td>No AI-generated text. Library databases, Google Scholar, Zotero: yes.</td>
+</tr>
+<tr>
+<td>Lit review: presentation &amp; defense</td>
+<td>In class, oral</td>
+<td>No (live)</td>
+</tr>
+<tr>
+<td>Lit review: final draft</td>
+<td>Take-home</td>
+<td>No AI-generated text. Search/brainstorming and spell-check-level correction: fine.</td>
+</tr>
+<tr>
+<td>Documentary labs (travel days)</td>
+<td>Take-home, handwritten half-page</td>
+<td>No AI — watch, think, write by hand.</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section class="extra" id="policies">
+<h2>Course policies</h2>
+
+<h3>Communication</h3>
+<p>I will do my best to reply to all email within 24 hours on weekdays, 48 on weekends. If you have not heard from me after that, please follow up — it means I lost it, not that I'm ignoring you. I also leave time at the end of Thursday class meetings for questions.</p>
+<p><strong>Telling me how this is going.</strong> Twice I'll stop and ask, anonymously, on paper: end of week 3, when the Thursday format is new and still fixable, and the week after the midterm. Ten minutes, three questions — what's working, what's wasting your time, what should change. I read all of them and tell you the next class what I'm changing and what I'm keeping, and why. The official course evaluations come too late to help you; these don't. You don't have to wait for either — email works.</p>
+<h3>Late Assignments</h3>
+<p>You have a grace period of <strong>48 hours</strong> to turn in assignments after the deadline, no questions asked. For every 24-hour period <em>after</em> the end of the grace period, I will deduct a letter grade from your assignment. This policy does <strong>not</strong> apply to the final draft of the literature review, which is due at the deadline — grades are due to the Registrar five days later.</p>
+<h3>Academic Integrity</h3>
+<h4>Statement of the Shared Academic Integrity Commitment</h4>
+<p>Academic Integrity is a shared community value. It is built around trust and respect between members of the Occidental Community, and embodies a commitment to honesty and integrity in every aspect of one's academic life.</p>
+<p>All members of the Occidental community are committed to uphold the highest degree of academic integrity. Unless stipulated otherwise, the academic work done for all assignments is expected to be the student's own; students are expected to give proper credit to the ideas and work of others.</p>
+<p>Signing the Academic Integrity Commitment at the beginning of every semester represents a student's affirmation to uphold the shared values of honesty and integrity. When signing the Integrity Commitment associated with work in a course, students are affirming that they have not cheated, plagiarized, fabricated, or falsified information; nor assisted others in these actions.</p>
+<p>Refer to Student Handbook for the framing of the commitment, definitions of Academic Ethics, and Process for alleged violations of the commitment.</p>
+<h4>And a word from me</h4>
+<p>That's the college's language, and it governs. Here's the part I care about more: people cut corners when they feel underprepared or out of time, not because they woke up wanting to be dishonest. I can help with both if you come early — I would much rather spend that hour with you than the one after a misconduct report. Unsure whether something counts as a source, or whether a form of help is allowed? Ask. Asking first is never the problem.</p>
+<h3>Laptop &amp; Smartphone Use</h3>
+<p>Laptops and smartphones may not be used during class (except with accommodations or prior approval). Please take notes on paper. Screens pull in the people behind you as well as you, and slides go up before and after class so you're never copying to keep up. If paper notes don't work for you, email me — you don't owe me the reason. Bring your laptop for in-class writing and workshop days when asked.</p>
+<h3>Mid-semester reports and incompletes</h3>
+<p><strong>Mid-semester progress reports.</strong> Mid-semester progress reports are not intended to be used as determinative or predictive of the final grade in a course, but to provide an opportunity for the faculty to communicate an approximate estimation of progress by the students in the course by the midpoint of the current semester. I will submit yours during the Fall 2026 window (October 5–18) — after the midterm, so it reflects real information. Please look at it before you meet with your academic advisor.</p>
+<p><strong>Incompletes.</strong> You are eligible for an incomplete if you have completed at least one-third of the graded work, that work is of passing quality, and the Dean of Students Office has verified a personal circumstance that prevented you from finishing. Even then, the decision is mine. In this course an incomplete makes sense only when the outstanding work is the final paper — discussion, posts, quizzes, the midterm, and the panel defense can't be reconstructed after the semester ends. If you're falling behind before the withdrawal deadline, come talk to me; withdrawing is often the better outcome.</p>
+
+</section>
+
+<section class="extra" id="news">
+<h2>Newspaper and magazine access</h2>
+
+<p>Occidental College provides free access to several major news outlets. You are expected to use these resources for the Applier role and throughout the course.</p>
+<h4>The Atlantic</h4>
+<p>Visit <a href="https://accounts.theatlantic.com/institutional-login">accounts.theatlantic.com/institutional-login</a>, type in "Occidental College," click Continue, and sign in with your Oxy credentials.</p>
+<p>Alternatively, go to <a href="https://www.theatlantic.com">theatlantic.com</a>, click "Sign In," scroll down to "Sign in through your institution," search for Occidental, and log in with your credentials.</p>
+<h4>The Economist</h4>
+<ol>
+<li>Visit <a href="https://www.economist.com">economist.com</a> and click Log in</li>
+<li>Enter your Oxy email and leave the password field blank — you will be redirected to the Oxy login page</li>
+<li>Enter your Oxy credentials</li>
+</ol>
+<h4>Los Angeles Times</h4>
+<ol>
+<li>Visit <a href="http://latimes.com/Oxy25">latimes.com/Oxy25</a></li>
+<li>Enter your Oxy email address</li>
+<li>Create a password when prompted and click "Agree and Continue"</li>
+<li>Enter redemption code <strong>OXYSS25</strong> and complete the form with your name and zip code</li>
+</ol>
+<h4>New York Times</h4>
+<p><strong>New subscribers:</strong>
+1. Visit <a href="https://accessnyt.com">accessnyt.com</a>
+2. Search for and select Occidental College
+3. Click "Create Account" and enter your @oxy.edu email
+4. Create a password and validate your account via the confirmation email sent to your Oxy address
+5. Select Student or Faculty/Staff and complete sign-up</p>
+
+</section>
+
+<section class="extra" id="support">
+<h2>Student support services</h2>
+
+<p><strong>Where to go, and what each place is for.</strong> Stuck on a draft, including "I have nothing yet": the Writing Center. Can't find sources: book a research consultation through the library, or use Ask a Librarian. Behind on time or organization: the Academic Success Coach (academiccoaching@oxy.edu). Need a laptop: the Library lends them. Digital tools and media work: the Center for Digital Liberal Arts. Community and belonging: the Intercultural Community Center. These are what strong students use, not what struggling students fall back on. And come to me — week 4 beats week 12.</p>
+<p><em>One note particular to this course: we read about political violence, repression, and war, and some of you will have family histories inside these subjects. If a week's material is going to be hard for you in that way, tell me beforehand and we'll work out how you take part. You don't owe me an explanation.</em></p>
+
+</section>
+
+<section class="extra" id="college-policies">
+<h2>Required College Policies</h2>
+
+<h3>Civil Rights &amp; Title IX</h3>
+<p>In the event that you write or speak about having experienced discrimination or harassment on the basis of a protected characteristic or sexual misconduct (including sexual assault, dating/domestic violence, stalking, sexual exploitation or any other form of sexual and/or gender-based harassment), as a designated Responsible Employee, I must inform the Civil Rights &amp; Title IX Office. They will contact you to let you know about resources and support services at Oxy, as well as reporting options both on and off-campus. You have no obligation to respond to the Civil Rights &amp; Title IX Office or to meet with them to discuss support services and reporting options.</p>
+<p>If you do not want the Civil Rights &amp; Title IX Office contacted, instead of disclosing this information to your instructor, either through conversation or a class assignment, you can speak confidentially with:</p>
+<ul>
+<li>Oxy's Survivor Advocate, Project SAFE (survivoradvocate@oxy.edu)</li>
+<li>Emmons Counseling (For appointments, call: 323-259-2657)</li>
+<li>Rev. Dr. Susan Young, Office of Religious and Spiritual Life (young@oxy.edu)</li>
+<li>Oxy 24/7 Confidential Hotline (323-341-4141)</li>
+</ul>
+<p>The College's civil rights policies, along with additional resources, can be found at: https://www.oxy.edu/civil-rights-title-ix. If you would like to contact the Civil Rights &amp; Title IX Office directly, you may email Civil Rights &amp; Title IX Coordinator Alexandra Fulcher at afulcher@oxy.edu or call 323-259-1338.</p>
+<h3>Special Accommodations/Learning Differences</h3>
+<p>Occidental College (Oxy) complies with the Americans with Disabilities Act of 1990 as amended, Section 504 of the Rehabilitation Act of 1973 as amended, and other applicable state and federal law prohibiting discrimination against individuals with disabilities.</p>
+<ul>
+<li>All accommodation requests including academic, housing (ESA &amp; Services Animal) and temporary accommodations are managed by the Disability Services Office. It is a student's responsibility to request accommodations via the Disability Services website. For information about additional accommodations and support services, students can email accessibility@oxy.edu.</li>
+<li>Oxy's Psychological Testing Program: We offer low cost psychological testing for students who qualify. Any student who thinks they may have a learning, or psychological disability may complete Oxy's Psych Testing Application to be added to the waitlist.</li>
+<li>Academic Success Coaching: Our Academic Success Coach assists students in developing skills and strategies to enhance their academic performance. They provide personalized guidance on time management, organization, study techniques, goal setting, and self-regulation. By collaborating with students, our coach helps identify and overcome obstacles to academic success, fostering a supportive environment that promotes personal and educational growth. Contact: academiccoaching@oxy.edu</li>
+</ul>
+<p><em>If something about how this course is designed or taught is getting in the way of your doing your best work, tell me — with or without a formal accommodation. I can often fix it. This applies to the panel defense in particular: if speaking under questioning is a documented barrier for you, come see me in the first two weeks and we'll design an equivalent.</em></p>
+<h3>Accommodations for Reasons of Faith and Conscience</h3>
+<p>Consistent with Occidental College's commitment to creating an academic community that is respectful of and welcoming to persons of differing backgrounds, we believe that students should be excused from class for reasons of faith and conscience without academic consequence. While it is not feasible to schedule coursework around all days of conviction for a class as a whole, faculty will honor requests from individual students to reschedule coursework, to be absent from classes that conflict with the identified days. Information about this policy and a religious and spiritual holiday calendar are available on the ORSL website.</p>
+
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    DWA 227 — Authoritarianism in the Age of Globalization — Occidental College, Fall 2026. Both views are the same document; the <em>Full syllabus</em> view (and any printout) is the syllabus of record. Generated from the canonical Markdown on September 2, 2026.
+  </div>
+</footer>
+<script>
+(function(){
+  var KEY = 'syllabus-view';
+  var body = document.body, bE = document.getElementById('view-essentials'), bF = document.getElementById('view-full');
+  function setView(v, remember){
+    body.classList.remove('view-essentials','view-full'); body.classList.add('view-'+v);
+    bE.setAttribute('aria-pressed', v==='essentials'); bF.setAttribute('aria-pressed', v==='full');
+    if (remember) { try { localStorage.setItem(KEY, v); } catch(e){} }
+  }
+  var v = 'essentials';
+  try { v = localStorage.getItem(KEY) || v; } catch(e){}
+  var q = /[?&]view=(essentials|full)/.exec(location.search); if (q) v = q[1];
+  setView(v, false);
+  bE.addEventListener('click', function(){ setView('essentials', true); });
+  bF.addEventListener('click', function(){ setView('full', true); });
+  document.querySelectorAll('a[data-view]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); setView(a.getAttribute('data-view'), true); window.scrollTo(0,0); }); });
+  // a link into a hidden section switches to Full
+  function openTarget(){ var id = location.hash.slice(1); if(!id) return; var el = document.getElementById(id); if(!el) return;
+    if (el.closest && el.closest('.extra')) { setView('full', false); el.scrollIntoView(); } }
+  window.addEventListener('hashchange', openTarget); openTarget();
+  // printing always prints the full syllabus
+  var prev; window.addEventListener('beforeprint', function(){ prev = body.classList.contains('view-full') ? 'full' : 'essentials'; setView('full', false); });
+  window.addEventListener('afterprint', function(){ setView(prev, false); });
+})();
+</script>
+</body>
+</html>
