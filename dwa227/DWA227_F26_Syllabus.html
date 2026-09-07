@@ -21,9 +21,9 @@ h1 { font-family:'Crimson Pro',Georgia,serif; font-size:2.2rem; font-weight:700;
 .course-meta div { line-height:1.45; padding:.15rem 0; }
 header a { color:#fff; }
 nav { position:sticky; top:0; background:#fff; border-bottom:2px solid var(--border); z-index:100; }
-nav .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+nav .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; max-width:1100px; }
 nav ul { list-style:none; display:flex; flex-wrap:wrap; }
-nav a { display:block; padding:.55rem .65rem; text-decoration:none; color:var(--text); font-weight:500; font-size:.84rem; border-bottom:3px solid transparent; }
+nav a { display:block; padding:.55rem .5rem; text-decoration:none; color:var(--text); font-weight:500; font-size:.82rem; border-bottom:3px solid transparent; }
 nav a:hover, nav a:focus { background:var(--hover); border-bottom-color:var(--accent); }
 .toggles button { font:inherit; font-size:.8rem; padding:.3rem .6rem; border:1px solid var(--border); background:#fff; border-radius:4px; cursor:pointer; color:var(--primary); margin-left:.25rem; white-space:nowrap; }
 .toggles button:hover { background:var(--hover); }
@@ -50,6 +50,16 @@ th { background:var(--hover); color:var(--primary); }
 /* two views: Essentials hides .extra sections; Full shows everything */
 body.view-essentials .extra, body.view-essentials .extra-link { display:none; }
 body.view-full .essentials-note { display:none; }
+.quick-links { display:flex; gap:.35rem; flex-shrink:0; }
+.quick-links a.quick { display:inline-block; padding:.35rem .7rem; font-size:.82rem; font-weight:600; color:#fff; background:var(--accent); border-radius:6px; border-bottom:0; text-decoration:none; white-space:nowrap; }
+.quick-links a.quick:hover, .quick-links a.quick:focus { background:#a4650f; border-bottom:0; }
+.nav-right { display:flex; align-items:center; gap:.6rem; flex-shrink:0; }
+@media (max-width:760px) {
+  nav .container { flex-wrap:wrap; gap:.2rem .5rem; padding-bottom:.4rem; }
+  nav ul { width:100%; }
+  .nav-right { width:100%; justify-content:flex-start; flex-wrap:wrap; gap:.4rem; }
+  .quick-links a.quick { padding:.3rem .55rem; font-size:.78rem; }
+}
 .view-switch { display:flex; gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; flex-shrink:0; }
 .view-switch button { font:inherit; font-size:.82rem; padding:.35rem .8rem; border:0; background:#fff; color:var(--primary); cursor:pointer; }
 .view-switch button[aria-pressed="true"] { background:var(--primary); color:#fff; }
@@ -102,7 +112,7 @@ footer { border-top:2px solid var(--border); padding:1.5rem 0 3rem; font-size:.9
     <li class="extra-link"><a href="#support">Support</a></li>
     <li class="extra-link"><a href="#college-policies">College policies</a></li>
   </ul>
-  <div class="view-switch" role="group" aria-label="Syllabus view"><button type="button" id="view-essentials" aria-pressed="true">Essentials</button><button type="button" id="view-full" aria-pressed="false">Full syllabus</button></div>
+  <div class="nav-right"><div class="quick-links"><a class="quick" href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit" target="_blank" rel="noopener">Post questions ↗</a><a class="quick" href="https://drive.google.com/drive/folders/1SCzxzxwxmJdyHe0I_EJxWuu__ldNTlTe?usp=sharing" target="_blank" rel="noopener">Readings ↗</a></div><div class="view-switch" role="group" aria-label="Syllabus view"><button type="button" id="view-essentials" aria-pressed="true">Essentials</button><button type="button" id="view-full" aria-pressed="false">Full syllabus</button></div></div>
   </div>
 </nav>
 <main id="main" class="container">
@@ -185,7 +195,8 @@ D+: 67–69.9 | D: 60–66.9 | F: below 60</p>
 <p><strong>1. Connector/Applier Posts (10%)</strong><br />
 Your weekly discussion questions, <strong>due Wednesday at 8pm</strong>, graded complete/incomplete as the semester goes. You may skip two weeks, no questions asked. I review them Thursday morning and bring what I find into the room — I don't write comments back, because the discussion <em>is</em> the feedback. Posts are your ticket to discussion; you'll be asked to build on them live.</p>
 <p><strong>2. Participation (15%)</strong><br />
-I grade preparation and contribution, not volume. Strong: you build on your post rather than read it aloud, you cite a passage, you take up someone else's point and push it. Adequate: prepared, and speaking on your on-deck days. Weak: present but silent, or talking without the text. I record a mark for each of you at the end of every meeting, in the room — I don't reconstruct participation in December. You'll get your cumulative standing once at midterm, in time to change it. Speaker event attendance counts. If speaking in a group is hard for you, tell me in week 2 — there are other ways to be visibly prepared and I'll use them.</p>
+I grade preparation and contribution, not volume. Strong: you build on your post rather than read it aloud, you cite a passage, you take up someone else's point and push it. Adequate: prepared, and speaking. Weak: present but silent, or talking without the text. I record a mark for each of you at the end of every meeting, in the room — I don't reconstruct participation in December. You'll get your cumulative standing once at midterm, in time to change it. If speaking in a group is hard for you, tell me in week 2 — there are other ways to be visibly prepared and I'll use them.</p>
+<p><strong>Campus talks.</strong> Part of participation is showing up for the intellectual life of the department. Over the semester, attend at least <strong>two</strong> of the public talks listed under <em>Guest speakers this term</em> (or other DWA-sponsored events on global politics) and email me a <strong>one-page, single-spaced response within a week</strong> of each: name the talk and speaker, say briefly what was argued, and connect it to something we have read. Responses are graded complete/incomplete and count toward the participation grade. <strong>Extra credit:</strong> each additional talk beyond the two, with the same one-page response, adds <strong>one point (1%) to your final course grade, up to three points</strong>.</p>
 <p><strong>Attendance.</strong> Come to class; this course is a seminar and the work we do in the room can't be made up from notes. Life happens — illness, family emergencies, official Oxy events, days of faith and conscience. Tell me as early as you can and we'll find another way for you to demonstrate the week's preparation. If you're missing more than two weeks' worth of meetings, come talk to me about whether this is the right semester for the course.</p>
 <p><strong>3. Two In-Class Quizzes (10%)</strong><br />
 Short handwritten quizzes: identifications plus one paragraph. Ideas count, penmanship doesn't. A makeup slot is available for documented conflicts. <strong>One weak quiz should not decide your semester: I count the higher of your two scores double and the lower half.</strong>
@@ -194,7 +205,7 @@ Short handwritten quizzes: identifications plus one paragraph. Ideas count, penm
 <p><strong>4. Book Review (10%)</strong><br />
 In about 1000 words, review <em>Spin Dictators</em>, <em>The Narrow Corridor</em>, or <em>Autocracy, Inc.</em> Due: Thursday, October 22.</p>
 <p><strong>5. Blue-Book Midterm (15%)</strong><br />
-In-class, handwritten, Thursday, October 8. The question pool is circulated two weeks in advance (Sep 24); exam questions are drawn from the pool, and the exam draws heavily on the three required books. You may bring one handwritten page of notes. We will hold an ungraded practice session early in the term (Thu Sep 3).</p>
+In-class, handwritten, Thursday, October 8. The question pool is circulated two weeks in advance (Sep 24); exam questions are drawn from the pool, and the exam draws heavily on the three required books. You may bring one handwritten page of notes.</p>
 <p><strong>6. Literature Review with Oral Defense (40%)</strong><br />
 The main writing assignment is a <strong>3,000–4,000-word</strong> review of the literature on a topic in the academic study of authoritarianism (excluding bibliography) — expanding on a course topic or one of your own choosing, after consulting with me. Three parts:
 - Annotated bibliography (10%) — due <strong>Thursday, November 5</strong>
@@ -227,7 +238,7 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <section id="schedule">
 <h2>Schedule</h2>
 <p><em>[Dated against the official Oxy Fall 2026 calendar (classes Aug 25 – Nov 30; Fall Break Oct 15–16; Thanksgiving Nov 25–27; finals Dec 3–10). TR pattern: last class meeting is Tue Nov 24. Books: Spin Dictators (wks 3, 5, 9), The Narrow Corridor (wks 4, 10), Autocracy, Inc. (wks 7, 14).]</em></p>
-<p><strong>Reading load.</strong> Read the assigned readings and at least one from the <strong>Depth (optional)</strong> list. Quizzes, the midterm, and on-deck discussion draw on the Core readings only. Read the Core carefully rather than the whole list quickly.</p>
+<p><strong>Reading load.</strong> Read the assigned readings and at least one from the <strong>Depth (optional)</strong> list. Quizzes, the midterm, and class discussion draw on the Core readings only. Read the Core carefully rather than the whole list quickly.</p>
 <p><strong>A note on provisional dates.</strong> Most guest visits are now confirmed — Glebov (Sep 17), Treisman (Oct 29), Stokes (Nov 4), and Ayoub (Nov 12) are all set, and <strong>Quiz 2 is fixed on Tuesday, October 27</strong>. Any session still marked <em>provisional</em> below will be settled no later than <strong>Thursday, September 17</strong>, announced in class and posted here.</p>
 <p><strong>Guest speakers this term.</strong> Public talks, all noon–1pm: Thu Sep 17, Glebov (Ukraine and European security) · <strong>Thu Oct 29, Daniel Treisman (<em>Spin Dictators</em>)</strong> · <strong>Wed Nov 4, Leah Stokes (<em>The Carbon Wave</em>) — note the Wednesday</strong> · Thu Nov 12, Phillip Ayoub (global resistance to LGBTIQ rights). Glebov, Treisman, and Ayoub also visit our 1:20 class; Stokes does not. Separately, Jason Bell (<em>Operation Sparrow</em>) joins us in class on Thu Sep 24, possibly with a public talk the same day <em>(provisional)</em>. Attendance at the public talks counts toward engagement.</p>
 <h3 class="week-title">Week 1 (Aug 25 &amp; 27) — Introductions</h3>
@@ -238,6 +249,10 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li>Fukuyama, "The End of History?" <em>The National Interest</em>, no. 16 (1989)</li>
 <li>V-Dem Institute, <em>Democracy Report 2026</em> (executive summary + global trends)</li>
 <li>Levitsky and Way, "Democracy's Surprising Resilience." <em>Journal of Democracy</em> 34, no. 4 (2023)</li>
+<li>Huntington, Samuel P. "The Clash of Civilizations?" <em>Foreign Affairs</em> 72, no. 3 (1993): 22–49 <em>(Depth — optional — the other 1990s forecast)</em></li>
+<li>Krastev, Ivan, and Stephen Holmes. "Explaining Eastern Europe: Imitation and Its Discontents." <em>Journal of Democracy</em> 29, no. 3 (2018): 117–28 <em>(Depth — optional — post-1989 imitation and backlash)</em></li>
+<li>Treisman, Daniel. "How Great Is the Current Danger to Democracy? Assessing the Risk With Historical Data." <em>Comparative Political Studies</em> 56, no. 12 (2023): 1924–52 <em>(Depth — optional — base rates for democratic breakdown)</em></li>
+<li>Bianchi, Matías, Nic Cheeseman, and Jennifer Cyr. "The Myth of Democratic Resilience." <em>Journal of Democracy</em> 36, no. 3 (2025): 33–46 <em>(Depth — optional — reply to Levitsky and Way)</em></li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
 </ul>
 <h3 class="week-title">Week 2 (Sep 1 &amp; 3) — Contesting Globalization</h3>
@@ -247,16 +262,23 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li>O'Neil, Shannon K. "The Myth of the Global." <em>Foreign Affairs</em>, June 2022</li>
 <li>Polanyi, Karl. <em>The Great Transformation</em> (1944), Chs. 1 &amp; 6</li>
 <li>Xi Jinping, "Shoulder Responsibility of Our Times, Promote Global Growth." Davos keynote, 2017</li>
-<li><em>Practice blue-book session (ungraded), Thursday Sep 3 — includes five short questions about this syllabus. Learn where the due dates are now, under exam conditions, and you won't be emailing me about them in November.</em></li>
+<li>Rodrik, Dani. "How Far Will International Economic Integration Go?" <em>Journal of Economic Perspectives</em> 14, no. 1 (2000): 177–86 <em>(Depth — optional — the globalization trilemma)</em></li>
+<li>Farrell, Henry, and Abraham L. Newman. "Weaponized Interdependence: How Global Economic Networks Shape State Coercion." <em>International Security</em> 44, no. 1 (2019): 42–79 <em>(Depth — optional — networks as coercive tools)</em></li>
+<li>Milanovic, Branko. "The Clash of Capitalisms: The Real Fight for the Global Economy's Future." <em>Foreign Affairs</em> 99, no. 1 (January/February 2020) <em>(Depth — optional — liberal vs. political capitalism)</em></li>
+<li>Farrell, Henry, and Abraham Newman. "The Weaponized World Economy: Surviving the New Age of Economic Coercion." <em>Foreign Affairs</em> (September/October 2025) <em>(Depth — optional — economic coercion after 2022)</em></li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
 </ul>
 <h3>Week 3 (Sep 8; <strong>no class Thu Sep 10</strong>) — Authoritarianisms: From Fear to Spin</h3>
 <ul>
 <li><em>Spin Dictators</em>, opening chapters (the fear→spin argument)</li>
-<li>Linz, Juan. Definitional pages on authoritarian regimes, from "An Authoritarian Regime: Spain" (1964) / <em>Totalitarian and Authoritarian Regimes</em> (1975)</li>
-<li>Friedrich, Carl J., and Zbigniew Brzezinski. <em>Totalitarian Dictatorship and Autocracy</em> (1956), Ch. 2 (the six-point totalitarian syndrome)</li>
-<li>Frantz, Erica, Andrea Kendall-Taylor, and Joseph Wright. <em>The Origins of Elected Strongmen</em> (2024), intro <em>(optional — the personalism variable)</em></li>
-<li><strong>Thu Sep 10 — no class meeting (instructor away at conference); asynchronous documentary lab</strong> <em>(see Course Structure note: structured viewing guide; your half-page of connections to Spin Dictators is your ticket to Tuesday's discussion and counts as that week's post)</em></li>
+<li>Linz, Juan J., and Alfred Stepan. <em>Problems of Democratic Transition and Consolidation: Southern Europe, South America, and Post-Communist Europe</em> (Baltimore: Johns Hopkins University Press, 1996), pp. 38–54 (the regime-type typology)</li>
+<li>Pei, Minxin. "China: Totalitarianism's Long Shadow." <em>Journal of Democracy</em> 32, no. 2 (2021): 5–21 (post-totalitarian China and its revival under Xi)</li>
+<li>Frantz, Erica, Andrea Kendall-Taylor, and Joseph Wright. <em>The Origins of Elected Strongmen</em> (2024), intro <em>(Depth — optional — the personalism variable)</em></li>
+<li>Levitsky, Steven, and Lucan A. Way. "Elections Without Democracy: The Rise of Competitive Authoritarianism." <em>Journal of Democracy</em> 13, no. 2 (2002): 51–65 <em>(Depth — optional — the hybrid-regime concept)</em></li>
+<li>Geddes, Barbara, Joseph Wright, and Erica Frantz. "Autocratic Breakdown and Regime Transitions: A New Data Set." <em>Perspectives on Politics</em> 12, no. 2 (2014): 313–31 <em>(Depth — optional — party, military, personalist regimes)</em></li>
+<li>Levitsky, Steven, and Lucan Way. "The New Competitive Authoritarianism." <em>Journal of Democracy</em> 31, no. 1 (2020): 51–65 <em>(Depth — optional — the concept revisited)</em></li>
+<li><strong>Thu Sep 10 — no class meeting (instructor away at conference).</strong></li>
+<li><em>Connector/Applier posts are still due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm as usual.</em></li>
 </ul>
 <h3 class="week-title">Week 4 (Sep 15 &amp; 17) — Capitalism Under Democracy and Dictatorship</h3>
 <ul>
@@ -264,6 +286,9 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li>Friedman, Milton. <em>Capitalism and Freedom</em>, Ch. 1</li>
 <li>Olson, Mancur. "Dictatorship, Democracy, and Development." <em>APSR</em> 87, no. 3 (1993)</li>
 <li>Martínez, Luis R. "How Much Should We Trust the Dictator's GDP Growth Estimates?" <em>Journal of Political Economy</em> 130, no. 10 (2022) — BFI research summary + paper introduction</li>
+<li>Przeworski, Adam, and Fernando Limongi. "Modernization: Theories and Facts." <em>World Politics</em> 49, no. 2 (1997): 155–83 <em>(Depth — optional — does wealth cause democracy or sustain it)</em></li>
+<li>Sen, Amartya. "Democracy as a Universal Value." <em>Journal of Democracy</em> 10, no. 3 (1999): 3–17 <em>(Depth — optional — against the Lee thesis)</em></li>
+<li>Acemoglu, Daron, Suresh Naidu, Pascual Restrepo, and James A. Robinson. "Democracy Does Cause Growth." <em>Journal of Political Economy</em> 127, no. 1 (2019): 47–100 <em>(Depth — optional — introduction and conclusion)</em></li>
 <li><strong><em>Quiz 1 — Tuesday Sep 15</em></strong> <em>(moved from Thu Sep 17 to clear the Glebov visit)</em></li>
 <li><strong>Thu Sep 17 — guest: Sergii Glebov</strong> (Visiting Assoc. Prof., UC Irvine; Assoc. Prof., Odesa I. I. Mechnikow National University), <em>"Russia's War on Ukraine and European (In)Security"</em> — via Young Initiative. Public talk 12–1pm, class visit 1:20. Attendance at the public talk counts toward engagement.</li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
@@ -273,9 +298,11 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li><em>Spin Dictators</em>, middle chapters (media control, propaganda, manipulating democracy's language)</li>
 <li>Miłosz, Czesław. <em>The Captive Mind</em> (1953), "Ketman" chapter</li>
 <li>Applebaum, Anne. "The New Propaganda War." <em>The Atlantic</em>, June 2024</li>
-<li>Guriev and Treisman, "Informational Autocrats." <em>JEP</em> 33, no. 4 (2019) <em>(optional — condensed version of the book's argument)</em></li>
-<li>Orwell, George. "Politics and the English Language" (1946) <em>(optional)</em></li>
+<li>Guriev and Treisman, "Informational Autocrats." <em>JEP</em> 33, no. 4 (2019) <em>(Depth — optional — condensed version of the book's argument)</em></li>
+<li>Orwell, George. "Politics and the English Language" (1946) <em>(Depth — optional)</em></li>
 <li>Havel, Václav. "The Power of the Powerless" (1978), greengrocer §§ I–VII <em>(Depth — optional)</em></li>
+<li>Frye, Timothy, Scott Gehlbach, Kyle L. Marquardt, and Ora John Reuter. "Is Putin's Popularity Real?" <em>Post-Soviet Affairs</em> 33, no. 1 (2017): 1–15 <em>(Depth — optional — measuring support under spin)</em></li>
+<li>Rozenas, Arturas, and Denis Stukal. "How Autocrats Manipulate Economic News: Evidence from Russia's State-Controlled Television." <em>Journal of Politics</em> 81, no. 3 (2019): 982–96 <em>(Depth — optional — selective blame on state TV)</em></li>
 <li><strong>Thu Sep 24 — guest: Jason Bell</strong>, author of <em>Operation Sparrow</em> (an Oxy alum's WWII story — D-Day and end-of-war Hungary), hosted in class; possible public talk the same day <em>(provisional)</em></li>
 <li><strong><em>Midterm question pool circulated Thu Sep 24</em></strong></li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
@@ -286,22 +313,34 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li>Ero, Comfort, and Murithi Mutiga. "The Crisis of African Democracy." <em>Foreign Affairs</em> 103, no. 1 (2024) <em>(run as structured disagreement with Opalo)</em></li>
 <li>Elischer, Sebastian. "Populist Civil Society, the Wagner Group, and Post-Coup Politics in Mali." OECD iLibrary (2023)</li>
 <li>Bleck, Jaimie et al. "Drinking Tea with the Neighbors." <em>APSR</em> (2023): 1–20 <em>(Depth — optional)</em></li>
+<li>Bratton, Michael, and Nicolas van de Walle. "Neopatrimonial Regimes and Political Transitions in Africa." <em>World Politics</em> 46, no. 4 (1994): 453–89 <em>(Depth — optional — neopatrimonialism and transition paths)</em></li>
+<li>Cheeseman, Nic, and Sishuwa Sishuwa. "African Studies Keyword: Democracy." <em>African Studies Review</em> 64, no. 3 (2021): 704–32 <em>(Depth — optional — African conceptions of democracy)</em></li>
+<li>Trenkov-Wermuth, Calin, and Alexander Noyes. "African Coups and the Elite-Forces Trap." <em>Journal of Democracy</em>, online exclusive (February 2026) <em>(Depth — optional — security assistance and coup risk)</em></li>
+<li><strong>Thu Oct 1 — guest: Amb. Virginia Palmer</strong> (Stuart Chevalier Professor of the Practice, Diplomacy &amp; World Affairs, Occidental College; former U.S. Ambassador to Malawi and Ghana), joins Thursday's discussion. Class visit only — no public talk.</li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
 </ul>
 <h3 class="week-title">Week 7 (Oct 6 &amp; 8) — Autocracy, Inc.: Kleptocracy &amp; Global Finance</h3>
 <ul>
 <li>Tuesday: <em>Autocracy, Inc.</em>, first half (the networked autocrats, kleptocratic finance); Sharafutdinova and Dawisha, "The Escape from Institution-Building in a Globalized World." <em>Perspectives on Politics</em> 15, no. 2 (2017): 361–78; Hirschman, Albert O. <em>Exit, Voice, and Loyalty</em> (1970), Chs. 1–3 excerpt (offshore finance as the oligarch's <em>exit</em>)</li>
+<li>Cooley, Alexander, John Heathershaw, and J. C. Sharman. "The Rise of Kleptocracy: Laundering Cash, Whitewashing Reputations." <em>Journal of Democracy</em> 29, no. 1 (2018): 39–53 <em>(Depth — optional — the transnational enablers)</em></li>
+<li>Naím, Moisés. "Mafia States: Organized Crime Takes Office." <em>Foreign Affairs</em> 91, no. 3 (May/June 2012) <em>(Depth — optional — the criminalized state)</em></li>
+<li>Logvinenko, Igor. <em>Global Finance, Local Control: Corruption and Wealth in Contemporary Russia</em> (2021), Introduction and Ch. 5 <em>(Depth — optional — financial openness and kleptocratic capitalism)</em></li>
+<li>Glasius, Marlies. "What (Not) to Do About Globalised 'Oligarchs'?" <em>Contemporary Politics</em> (online first, 2025) <em>(Depth — optional — sanctions and oligarch policy)</em></li>
 <li><strong><em>Blue-book midterm — Thursday Oct 8</em></strong></li>
+<li><em>Connector/Applier posts on Tuesday's readings are due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm as usual.</em></li>
 </ul>
 <h3 class="week-title">Weeks 8–9 (Oct 13; Fall Break Oct 15–16; Oct 20 &amp; 22)</h3>
-<p><strong>Confirmed: Tuesday, October 13 is a no-class day (instructor away at conference).</strong> It is replaced by an asynchronous documentary lab (viewing guide + handwritten half-page of connections, counts as that week's post).</p>
+<p><strong>Confirmed: Tuesday, October 13 is a no-class day (instructor away at conference).</strong></p>
 <ul>
 <li><strong>Oct 20 &amp; 22 — Digital Authoritarianism &amp; Surveillance</strong> <em>(Tuesday opens with a short midterm debrief)</em>:</li>
 <li><em>Spin Dictators</em>, technology/surveillance chapter</li>
 <li>Schlumberger, Oliver, Mirjam Edel, Ahmed Maati, and Koray Saglam. "How Authoritarianism Transforms: A Framework for the Study of Digital Dictatorship." <em>Government and Opposition</em> 59, no. 3 (2024): 761–83 (open access)</li>
 <li>Yang, Eddie, and Margaret E. Roberts. "The Authoritarian Data Problem." <em>Journal of Democracy</em> 34, no. 4 (2023)</li>
 <li>Anastasopoulos, Jason, and Bryan Lian. "The Limits of Authoritarian AI." <em>Journal of Democracy</em> 37, no. 2 (April 2026)</li>
-<li>Birhane, Abeba. "Algorithmic Colonisation of Africa." <em>The Elephant</em>, August 21, 2020 <em>(optional — Global South angle)</em></li>
+<li>Birhane, Abeba. "Algorithmic Colonisation of Africa." <em>The Elephant</em>, August 21, 2020 <em>(Depth — optional — Global South angle)</em></li>
+<li>King, Gary, Jennifer Pan, and Margaret E. Roberts. "How Censorship in China Allows Government Criticism but Silences Collective Expression." <em>APSR</em> 107, no. 2 (2013): 326–43 <em>(Depth — optional — what Chinese censors actually target)</em></li>
+<li>Kendall-Taylor, Andrea, Erica Frantz, and Joseph Wright. "The Digital Dictators: How Technology Strengthens Autocracy." <em>Foreign Affairs</em> 99, no. 2 (2020): 103–15 <em>(Depth — optional — technology and regime durability)</em></li>
+<li>Xu, Xu. "To Repress or to Co-opt? Authoritarian Control in the Age of Digital Surveillance." <em>American Journal of Political Science</em> 65, no. 2 (2021): 309–25 <em>(Depth — optional — surveillance and targeted repression)</em></li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday Oct 21, 8pm.</em></li>
 <li><strong><em>Book Review due Thu Oct 22</em></strong></li>
 </ul>
@@ -311,6 +350,10 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li>Little, Andrew T., and Anne Meng, "Measuring Democratic Backsliding" and reply/rejoinder package (with Miller response and Knutsen et al./V-Dem reply). <em>PS: Political Science &amp; Politics</em> (2024) — run as an in-class debate</li>
 <li>Levitsky, Steven, and Lucan Way. "The Path to American Authoritarianism." <em>Foreign Affairs</em>, February 2025</li>
 <li>Rome anchor: Watts, Edward J. "Lessons in the Decline of Democracy From the Ruined Roman Republic." <em>Smithsonian Magazine</em>, November 2018 <em>(Depth — optional; drawn from</em> Mortal Republic<em>, 2018)</em></li>
+<li>Bermeo, Nancy. "On Democratic Backsliding." <em>Journal of Democracy</em> 27, no. 1 (2016): 5–19 <em>(Depth — optional — the executive-aggrandizement typology)</em></li>
+<li>Svolik, Milan W. "Polarization versus Democracy." <em>Journal of Democracy</em> 30, no. 3 (2019): 20–32 <em>(Depth — optional — why voters tolerate violations)</em></li>
+<li>Stokes, Susan. "Why Elected Leaders Subvert Democracy." <em>Journal of Democracy</em> 37, no. 2 (2026): 49–64 <em>(Depth — optional — inequality, polarization, incumbent subversion)</em></li>
+<li>Nodia, Ghia. "Georgia: Between Democracy and Autocracy." <em>Journal of Democracy</em> 37, no. 2 (2026): 134–48 <em>(Depth — optional — a post-Soviet backsliding case)</em></li>
 <li><strong><em>Quiz 2 — Tuesday Oct 27</em></strong> <em>(fixed — the Thursday guest visit below is confirmed)</em></li>
 <li><strong>Thu Oct 29 — guest: Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em></strong> — via Young Initiative. Public talk 12–1pm, class visit 1:20. <strong>Confirmed.</strong> Attendance at the public talk counts toward engagement. You have been reading his book since Week 3; come with a question.</li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
@@ -322,6 +365,11 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li>Scheppele, Kim Lane. "Autocratic Legalism." <em>University of Chicago Law Review</em> 85 (2018) <em>(suggested pairing)</em></li>
 <li>Beard, Mary. <em>SPQR</em> (2015), Ch. 1, "Cicero's Finest Hour" (Catiline, emergency powers, executions without trial)</li>
 <li>Cicero, <em>In Verrem</em> I <em>or</em> Plutarch, <em>Sulla</em> 31–33 (the proscriptions) — final pick TBD</li>
+<li>Esen, Berk. "Judicial Transformation in a Competitive Authoritarian Regime: Evidence from the Turkish Case." <em>Law &amp; Policy</em> 47, no. 1 (2025), e12250 <em>(Depth — optional — special-issue case study, Turkey)</em></li>
+<li>Gamboa, Laura, Benjamín García-Holgado, and Ezequiel González-Ocantos. "Courts Against Backsliding: Lessons from Latin America." <em>Law &amp; Policy</em> (2024), e12246 <em>(Depth — optional — special-issue case study, Latin America)</em></li>
+<li>Ginsburg, Tom, and Tamir Moustafa. "Introduction: The Functions of Courts in Authoritarian Politics." In <em>Rule by Law: The Politics of Courts in Authoritarian Regimes</em> (2008), pp. 1–22 <em>(Depth — optional — why autocrats keep courts)</em></li>
+<li>Popova, Maria. "Putin-Style 'Rule of Law' &amp; the Prospects for Change." <em>Daedalus</em> 146, no. 2 (2017): 64–75 <em>(Depth — optional — Russian legal dualism)</em></li>
+<li>Moustafa, Tamir. "Law and Courts in Authoritarian Regimes." <em>Annual Review of Law and Social Science</em> 10 (2014): 281–99 <em>(Depth — optional — a map of the field)</em></li>
 <li><strong>Wed Nov 4, 12–1pm — optional talk: Leah Stokes (UCSB), <em>The Carbon Wave</em></strong> — via Young Initiative. <strong>Note the day: this one is a Wednesday, not our usual Thursday</strong>, and there is no class visit attached. Attendance counts toward engagement. Not required and not on any exam; go if the politics of climate policy interests you.</li>
 <li><strong><em>Annotated bibliography due Thu Nov 5</em></strong></li>
 <li><em>Connector/Applier posts due in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> by Wednesday 8pm.</em></li>
@@ -331,16 +379,22 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <li><strong>Tue Nov 10:</strong> literature review workshop (framing, sources, research design) + structured peer review. You'll complete a short worksheet on two classmates' bibliographies — is the research question answerable, are the sources scholarly, what's missing — and bring it to class. These are your panel-mates, so this doubles as preparation for the defense.</li>
 <li><strong>Thu Nov 12 — guest: Phillip Ayoub</strong> (Professor, University College London), <em>"The Global Resistance to LGBTIQ Rights"</em> — via Young Initiative; public talk 12–1pm, class visit 1:20–2:40.</li>
 <li>Ayoub, Phillip, and Kristina Stoeckl. "The Global Resistance to LGBTIQ Rights." <em>Journal of Democracy</em> 35, no. 1 (January 2024) — assigned the week before.</li>
+<li><em>No weekly post due. Peer-review worksheets and panel assignments will be posted in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a>.</em></li>
 </ul>
 <h3 class="week-title">Week 13 (Nov 17 &amp; 19) — Panel Defenses</h3>
 <ul>
 <li>Panels 1–5. Panel assignments and running order posted after the Nov 10 workshop.</li>
+<li><em>No weekly post due. Running order is in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a>.</em></li>
 <li><strong>Closing reading, assigned this week and covered in the Nov 24 discussion:</strong> <em>Autocracy, Inc.</em>, closing chapters (what the democracies should do); Mounk, Yascha. "The Dictators' Last Stand." <em>Foreign Affairs</em> 98, no. 5 (2019): 138–48</li>
 </ul>
 <h3 class="week-title">Week 14 (Nov 24 only — Thanksgiving Nov 25–27) — Final Panels &amp; Wrap-Up</h3>
 <ul>
 <li>Remaining panels, then closing discussion: authoritarianism and the future of globalization</li>
 <li>"Globalisation and Autocracy Are Locked Together. For How Much Longer?" <em>The Economist</em>, March 2022 <em>(Depth — optional)</em></li>
+<li>Cooley, Alexander, and Daniel H. Nexon. "The Real Crisis of Global Order: Illiberalism on the Rise." <em>Foreign Affairs</em> 101, no. 1 (January/February 2022) <em>(Depth — optional — illiberal international order)</em></li>
+<li>Desrosiers, Marie-Eve, and Nic Cheeseman. "The Rise of Authoritarian Middle Powers." <em>Journal of Democracy</em> 37, no. 2 (2026): 18–34 <em>(Depth — optional — Gulf states and Turkey as norm-shapers)</em></li>
+<li>Cottiero, Christina, Emilie M. Hafner-Burton, Stephan Haggard, and Christina J. Schneider. "Can the Liberal Order Survive America's Retreat?" <em>Journal of Democracy</em> 37, no. 3 (2026): 68–81 <em>(Depth — optional — the order without its anchor)</em></li>
+<li><em>No weekly post due. The <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit">shared doc</a> stays open through finals if you want to keep the conversation going.</em></li>
 </ul>
 <p><strong>Final Literature Review due during finals period — Thursday, December 10</strong> <em>(3,000–4,000 words; no 48-hour extension for the final draft; graded on the rubric distributed with the assignment)</em></p>
 
@@ -435,9 +489,9 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 <td>No AI-generated text. Search/brainstorming and spell-check-level correction: fine.</td>
 </tr>
 <tr>
-<td>Documentary labs (travel days)</td>
-<td>Take-home, handwritten half-page</td>
-<td>No AI — watch, think, write by hand.</td>
+<td>Talks attendance</td>
+<td>Take-home, one-page by email</td>
+<td>No AI.</td>
 </tr>
 </tbody>
 </table>
@@ -535,7 +589,7 @@ The main writing assignment is a <strong>3,000–4,000-word</strong> review of t
 </main>
 <footer>
   <div class="container">
-    DWA 227 — Authoritarianism in the Age of Globalization — Occidental College, Fall 2026. Both views are the same document; the <em>Full syllabus</em> view (and any printout) is the syllabus of record. Generated from the canonical Markdown on September 2, 2026.
+    DWA 227 — Authoritarianism in the Age of Globalization — Occidental College, Fall 2026. Both views are the same document; the <em>Full syllabus</em> view (and any printout) is the syllabus of record. Generated from the canonical Markdown on September 7, 2026.
   </div>
 </footer>
 <script>

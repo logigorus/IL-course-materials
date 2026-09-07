@@ -21,9 +21,9 @@ h1 { font-family:'Crimson Pro',Georgia,serif; font-size:2.2rem; font-weight:700;
 .course-meta div { line-height:1.45; padding:.15rem 0; }
 header a { color:#fff; }
 nav { position:sticky; top:0; background:#fff; border-bottom:2px solid var(--border); z-index:100; }
-nav .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+nav .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; max-width:1100px; }
 nav ul { list-style:none; display:flex; flex-wrap:wrap; }
-nav a { display:block; padding:.55rem .65rem; text-decoration:none; color:var(--text); font-weight:500; font-size:.84rem; border-bottom:3px solid transparent; }
+nav a { display:block; padding:.55rem .5rem; text-decoration:none; color:var(--text); font-weight:500; font-size:.82rem; border-bottom:3px solid transparent; }
 nav a:hover, nav a:focus { background:var(--hover); border-bottom-color:var(--accent); }
 .toggles button { font:inherit; font-size:.8rem; padding:.3rem .6rem; border:1px solid var(--border); background:#fff; border-radius:4px; cursor:pointer; color:var(--primary); margin-left:.25rem; white-space:nowrap; }
 .toggles button:hover { background:var(--hover); }
@@ -50,6 +50,16 @@ th { background:var(--hover); color:var(--primary); }
 /* two views: Essentials hides .extra sections; Full shows everything */
 body.view-essentials .extra, body.view-essentials .extra-link { display:none; }
 body.view-full .essentials-note { display:none; }
+.quick-links { display:flex; gap:.35rem; flex-shrink:0; }
+.quick-links a.quick { display:inline-block; padding:.35rem .7rem; font-size:.82rem; font-weight:600; color:#fff; background:var(--accent); border-radius:6px; border-bottom:0; text-decoration:none; white-space:nowrap; }
+.quick-links a.quick:hover, .quick-links a.quick:focus { background:#a4650f; border-bottom:0; }
+.nav-right { display:flex; align-items:center; gap:.6rem; flex-shrink:0; }
+@media (max-width:760px) {
+  nav .container { flex-wrap:wrap; gap:.2rem .5rem; padding-bottom:.4rem; }
+  nav ul { width:100%; }
+  .nav-right { width:100%; justify-content:flex-start; flex-wrap:wrap; gap:.4rem; }
+  .quick-links a.quick { padding:.3rem .55rem; font-size:.78rem; }
+}
 .view-switch { display:flex; gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; flex-shrink:0; }
 .view-switch button { font:inherit; font-size:.82rem; padding:.35rem .8rem; border:0; background:#fff; color:var(--primary); cursor:pointer; }
 .view-switch button[aria-pressed="true"] { background:var(--primary); color:#fff; }
@@ -102,7 +112,7 @@ footer { border-top:2px solid var(--border); padding:1.5rem 0 3rem; font-size:.9
     <li class="extra-link"><a href="#support">Support</a></li>
     <li class="extra-link"><a href="#college-policies">College policies</a></li>
   </ul>
-  <div class="view-switch" role="group" aria-label="Syllabus view"><button type="button" id="view-essentials" aria-pressed="true">Essentials</button><button type="button" id="view-full" aria-pressed="false">Full syllabus</button></div>
+  <div class="nav-right"><div class="quick-links"><a class="quick" href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit" target="_blank" rel="noopener">Post questions ↗</a><a class="quick" href="https://drive.google.com/drive/folders/1VxvZOfOawIzOHTbpBv6cjlMB3doLPrWa?usp=sharing" target="_blank" rel="noopener">Readings ↗</a></div><div class="view-switch" role="group" aria-label="Syllabus view"><button type="button" id="view-essentials" aria-pressed="true">Essentials</button><button type="button" id="view-full" aria-pressed="false">Full syllabus</button></div></div>
   </div>
 </nav>
 <main id="main" class="container">
@@ -173,8 +183,8 @@ D+: 67–69.9 | D: 60–66.9 | F: below 60</p>
 <p><strong>Final exam.</strong> There is no final exam in this course. The final literature review is due Thursday, December 10, during the finals period.</p>
 <h3>The assignments</h3>
 <p><strong>1. Participation (25%)</strong></p>
-<p>About 20 percent will come from active and productive participation in class. Strong: you build on your notes rather than read them aloud, you cite a passage, you take up someone else's point and push it. Adequate: prepared, and speaking, but sticking to the talking points only. Weak: present but silent, or talking without prepared questions. Attendance at relevant campus speaker events counts a great deal - we have lots of fascinating events this semester. You are the intended audience for these speakers. </p>
-<p>Five percent will come from attendance at DWA events. Over the semester, attend at least two DWA-sponsored events related to global politics (broadly understood) and submit a one-page (single-spaced) response by email within a week of each — naming the talk title and speaker(s), briefly describing the event's purpose, and connecting it to a theme from the course. Essays are graded complete/not complete; two completed essays earn an A on this part of the participation grade.</p>
+<p>About 20 percent will come from active and productive participation in class. Strong: you build on your notes rather than read them aloud, you cite a passage, you take up someone else's point and push it. Adequate: prepared, and speaking, but sticking to the talking points only. Weak: present but silent, or talking without prepared questions. I record a mark for each of you at the end of every meeting, in the room, and you'll get your cumulative standing once at midterm, in time to change it. Attendance at relevant campus speaker events counts a great deal — we have lots of fascinating events this semester, and you are the intended audience for these speakers.</p>
+<p>Five percent will come from attendance at DWA events. Over the semester, attend at least two DWA-sponsored events related to global politics (broadly understood) and submit a one-page (single-spaced) response by email within a week of each — naming the talk title and speaker(s), briefly describing the event's purpose, and connecting it to a theme from the course. Responses are graded complete/incomplete; two completed responses earn full marks on this part of the participation grade. The fall talks listed under the Schedule all qualify. <strong>Extra credit:</strong> each additional talk beyond the two, with the same one-page response, adds <strong>one point (1%) to your final course grade, up to three points</strong>.</p>
 <p><strong>Attendance.</strong> You must attend class meetings. Life happens, such as illness, family emergencies, days of faith and conscience. Tell me as early as you can and we'll find another way for you to demonstrate the week's preparation. What I can't do is grade a semester of absences generously at the end, so if you're missing more than two weeks' worth of meetings, come talk to me or don't be surprised by your grade. </p>
 <p><strong>2. Two In-Class Quizzes (10%)</strong></p>
 <p>Short handwritten quizzes: a few identifications plus one paragraph, in the first 10-15 minutes of class. I will see if I can include brief ungraded warm-ups (on paper, start of class). I will count the higher of your two scores double and drop the lower half.</p>
@@ -206,7 +216,7 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 </section>
 <section id="schedule">
 <h2>Schedule</h2>
-<p><strong>Reading load.</strong> Read the assigned readings and at least one from the <strong>Depth (optional)</strong> list. Quizzes, the midterm, and on-deck discussion draw on the Core readings only. Read the Core carefully rather than the whole list quickly.</p>
+<p><strong>Reading load.</strong> Read the assigned readings and at least one from the <strong>Depth (optional)</strong> list. Quizzes, the midterm, and class discussion draw on the Core readings only. Read the Core carefully rather than the whole list quickly.</p>
 <p><strong>Fall speaker events (Young Initiative &amp; campus):</strong> attendance counts toward engagement. All talks are 12–1pm. Confirmed — <strong>Thu Sep 17:</strong> Sergii Glebov (UC Irvine/Odesa National University), "Russia's War on Ukraine and European (In)Security" (room Choi); <strong>Thu Sep 24:</strong> Jason Bell, <em>Operation Sparrow</em> author talk; <strong>Thu Oct 29:</strong> Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em> on how modern autocrats rule through political spin; <strong>Wed Nov 4:</strong> Leah Stokes (UCSB) on <em>The Carbon Wave</em> — how the largest US climate investment was built; <strong>Thu Nov 12:</strong> Phillip Ayoub (UCL) on the global resistance to LGBTIQ rights.</p>
 <p class="part">PART I — THEORETICAL PERSPECTIVES ON GPE</p>
 <h3 class="week-title">Week 1 (Aug 25 &amp; 27) — Introductions: Contesting Globalization</h3>
@@ -216,7 +226,10 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>CWE, Ch. 1 (pp. 1–16)</li>
 <li>Frieden, J. A. 2007. <em>Global Capitalism: Its Fall and Rise in the Twentieth Century.</em> (pp. 1–27)</li>
 <li>Keohane and Nye, "Globalization: What's New? What's Not? (And So What?)" <em>Foreign Policy</em> (Spring 2000): 104–118</li>
-<li>Farrell and Newman, "Chained to Globalization," <em>Foreign Affairs</em> (February 2020) <em>(optional)</em></li>
+<li>Farrell and Newman, "Chained to Globalization," <em>Foreign Affairs</em> (February 2020) <em>(Depth — optional)</em></li>
+<li>Rodrik, D. 1997. "Sense and Nonsense in the Globalization Debate." <em>Foreign Policy</em> 107: 19–37 <em>(Depth — optional)</em></li>
+<li>Goldberg, P. K., and T. Reed. 2023. "Is the Global Economy Deglobalizing? If So, Why? And What Is Next?" <em>Brookings Papers on Economic Activity</em> (Spring): 347–396 <em>(Depth — optional — read pp. 347–365 for the argument)</em></li>
+<li>Goldstein, J. L., and E. D. Mansfield. 2026. "Did Globalization Undermine Governance and Spur a Backlash?" <em>Annual Review of Political Science</em> 29: 127–143 <em>(Depth — optional)</em></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
 </ul>
 <h3 class="week-title">Week 2 (Sep 1 &amp; 3) — Liberalisms</h3>
@@ -225,6 +238,9 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>CWE, Chs. 2–3 (pp. 19–55)</li>
 <li>Aggarwal, V., and C. Dupont. "Collaboration and Coordination in the Global Political Economy"</li>
 <li>Lake, D. A. 2009. "Open Economy Politics: A Critical Review." <em>The Review of International Organizations</em> 4(3): 219–244 <em>(Depth — optional; written for a graduate audience)</em></li>
+<li>Ruggie, J. G. 1982. "International Regimes, Transactions, and Change: Embedded Liberalism in the Postwar Economic Order." <em>International Organization</em> 36(2): 379–415 <em>(Depth — optional — written for a graduate audience)</em></li>
+<li>Colgan, J. D., and R. O. Keohane. 2017. "The Liberal Order Is Rigged: Fix It Now or Watch It Wither." <em>Foreign Affairs</em> 96(3): 36–44 <em>(Depth — optional)</em></li>
+<li>Ikenberry, G. J. 2024. "Three Worlds: The West, East and South and the Competition to Shape Global Order." <em>International Affairs</em> 100(1): 121–138 <em>(Depth — optional)</em></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
 </ul>
 <h3>Week 3 (Sep 8; <strong>no class Thu Sep 10</strong>) — Political Economy and Security: Realism &amp; Mercantilism</h3>
@@ -232,8 +248,12 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>CWE, Ch. 4</li>
 <li>Drezner, D. W. 2010. "Mercantilist and Realist Perspectives on the Global Political Economy." <em>Oxford Research Encyclopedia of International Studies</em></li>
 <li>Kirshner, J. 2009. "Realist Political Economy: Traditional Themes and Contemporary Challenges." <em>Handbook of International Political Economy</em>, pp. 36–47</li>
-<li>Hirschman, A. O. 1980 [1945]. <em>National Power and the Structure of Foreign Trade.</em> (pp. 13–52) <em>(optional)</em></li>
-<li><strong>Thu Sep 10 — no class meeting (instructor away at conference); documentary lab.</strong> Discussion questions are still due in the shared doc as usual.</li>
+<li>Hirschman, A. O. 1980 [1945]. <em>National Power and the Structure of Foreign Trade.</em> (pp. 13–52) <em>(Depth — optional)</em></li>
+<li>Gilpin, R. 1975. "Three Models of the Future." <em>International Organization</em> 29(1): 37–60 <em>(Depth — optional)</em></li>
+<li>Farrell, H., and A. L. Newman. 2019. "Weaponized Interdependence: How Global Economic Networks Shape State Coercion." <em>International Security</em> 44(1): 42–79 <em>(Depth — optional — written for a graduate audience)</em></li>
+<li>Drezner, D. W. 2024. "How Everything Became National Security: And National Security Became Everything." <em>Foreign Affairs</em> 103(5) <em>(Depth — optional)</em></li>
+<li>Farrell, H., and A. L. Newman. 2025. "The Weaponized World Economy: Surviving the New Age of Economic Coercion." <em>Foreign Affairs</em> 104(5) <em>(Depth — optional — the short version of the 2019 argument)</em></li>
+<li><strong>Thu Sep 10 — no class meeting (instructor away at conference).</strong> Discussion questions are still due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> as usual.</li>
 </ul>
 <h3 class="week-title">Week 4 (Sep 15 &amp; 17) — Ideas and Identity: Constructivisms</h3>
 <ul>
@@ -241,6 +261,10 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>Abdelal, R. 2009. "Constructivism as an Approach to International Political Economy." In <em>Handbook of International Political Economy</em>, ed. M. Blyth, pp. 57–71</li>
 <li>Nelson, S. C. 2014. "Playing Favorites: How Shared Beliefs Shape the IMF's Lending Decisions." <em>International Organization</em> 68(2): 297–328</li>
 <li>Tickner, J. A. 2004. "The Gendered Frontiers of Globalization." <em>Globalizations</em> 1(1): 15–23 <em>(Depth — optional)</em></li>
+<li>Blyth, M. 2003. "Structures Do Not Come with an Instruction Sheet: Interests, Ideas, and Progress in Political Science." <em>Perspectives on Politics</em> 1(4): 695–706 <em>(Depth — optional)</em></li>
+<li>Mansfield, E. D., and D. C. Mutz. 2009. "Support for Free Trade: Self-Interest, Sociotropic Politics, and Out-Group Anxiety." <em>International Organization</em> 63(3): 425–457 <em>(Depth — optional)</em></li>
+<li>Rho, S., and M. Tomz. 2017. "Why Don't Trade Preferences Reflect Economic Self-Interest?" <em>International Organization</em> 71(S1): S85–S108 <em>(Depth — optional)</em></li>
+<li>Stahl, R. M. 2025. "The End of Economics Hegemony? Studying Economic Ideas in a Post-Neoliberal World." <em>Review of International Political Economy</em> 32(4): 1266–1283 <em>(Depth — optional — written for a graduate audience)</em></li>
 <li><strong><em>Quiz 1 — Thursday Sep 17</em></strong></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
 </ul>
@@ -249,7 +273,10 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>CWE, Chs. 6–7 (pp. 87–122)</li>
 <li>Wallerstein, I. 2013. "World-Systems Analysis." <em>Sociopedia.isa</em>, 1–8</li>
 <li>Przeworski, A. 2020. "What Have I Learned from Marx and What Still Stands?" <em>Politics &amp; Society</em></li>
-<li>Táíwò and Bright, "A Response to Michael Walzer," <em>Dissent</em> (2022) <em>(optional)</em></li>
+<li>Táíwò and Bright, "A Response to Michael Walzer," <em>Dissent</em> (2022) <em>(Depth — optional)</em></li>
+<li>Cox, R. W. 1981. "Social Forces, States and World Orders: Beyond International Relations Theory." <em>Millennium</em> 10(2): 126–155 <em>(Depth — optional — written for a graduate audience)</em></li>
+<li>Hickel, J., C. Dorninger, H. Wieland, and I. Suwandi. 2022. "Imperialist Appropriation in the World Economy: Drain from the Global South through Unequal Exchange, 1990–2015." <em>Global Environmental Change</em> 73: 102467 <em>(Depth — optional)</em></li>
+<li>Alami, I., and A. D. Dixon. 2024. <em>The Spectre of State Capitalism.</em> Ch. 1, "State Capitalism(s) Redux?" pp. 1–22 <em>(Depth — optional — open access)</em></li>
 <li><em>Midterm question pool circulated Thursday Sep 24</em></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
 </ul>
@@ -259,24 +286,40 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>"Why Trade Is Good for You," <em>The Economist</em> (October 1, 1998)</li>
 <li>Rodrik, D. 2012. "Why Doesn't Everyone Get the Case for Free Trade?" Ch. 3 in <em>The Globalization Paradox.</em></li>
 <li>Milner, H. 1999. "The Political Economy of International Trade." <em>Annual Review of Political Science</em> 2: 91–114</li>
+<li>Krugman, P. R. 1993. "What Do Undergrads Need to Know about Trade?" <em>American Economic Review</em> 83(2): 23–26 <em>(Depth — optional)</em></li>
+<li>Rogowski, R. 1987. "Political Cleavages and Changing Exposure to Trade." <em>American Political Science Review</em> 81(4): 1121–1137 <em>(Depth — optional)</em></li>
+<li>Autor, D. H., D. Dorn, and G. H. Hanson. 2016. "The China Shock: Learning from Labor-Market Adjustment to Large Changes in Trade." <em>Annual Review of Economics</em> 8: 205–240 <em>(Depth — optional — skim the econometrics)</em></li>
+<li>Dür, A., and A. Invernizzi. 2025. "Weathering the Storm: US Trade Policy Beyond Trump." <em>International Organization</em> 79(S1): S194–S208 <em>(Depth — optional)</em></li>
+<li>Falkner, R. 2026. "Geopolitics and Tariffs: An International Relations Perspective." <em>LSE Public Policy Review</em> 4(2) <em>(Depth — optional — open access)</em></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
 </ul>
 <h3 class="week-title">Week 7 (Oct 6 &amp; 8) — Global Finance</h3>
 <ul>
 <li><strong>Tuesday:</strong> Bhagwati, J. 1998. "The Capital Myth." <em>Foreign Affairs</em> 77(3); Kirshner, J. 2003. "Money Is Politics." <em>Review of International Political Economy</em> 10(4): 645–660; Oatley, T., et al. 2013. "The Political Economy of Global Finance: A Network Model." <em>Perspectives on Politics</em> 11(1): 133–153</li>
+<li>Cohen, B. J. 1996. "Phoenix Risen: The Resurrection of Global Finance." <em>World Politics</em> 48(2): 268–296 <em>(Depth — optional)</em></li>
+<li>Frieden, J. A. 1991. "Invested Interests: The Politics of National Economic Policies in a World of Global Finance." <em>International Organization</em> 45(4): 425–451 <em>(Depth — optional — written for a graduate audience)</em></li>
+<li>Eichengreen, B. 2011. <em>Exorbitant Privilege: The Rise and Fall of the Dollar and the Future of the International Monetary System.</em> Ch. 1 <em>(Depth — optional)</em></li>
+<li>Nelson, S. C., and P. J. Katzenstein. 2014. "Uncertainty, Risk, and the Financial Crisis of 2008." <em>International Organization</em> 68(2): 361–392 <em>(Depth — optional)</em></li>
+<li>Pforr, T., F. Pape, and J. Petry. 2025. "Dollar Diminished: The Unmaking of US Financial Hegemony Under Trump." <em>International Organization</em> 79(S1): S117–S133 <em>(Depth — optional)</em></li>
 <li><strong><em>Blue-book midterm — Thursday, October 8</em></strong></li>
+<li><em>Discussion questions on Tuesday's readings are due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday as usual.</em></li>
 </ul>
 <h3 class="week-title">Week 8 (Oct 13 — instructor away at conference; Fall Break Oct 15–16) — No Class</h3>
 <ul>
 <li><em>No class Tuesday Oct 13 — instructor away at conference</em></li>
 <li><em>No class Thursday Oct 15 — Fall Break</em></li>
+<li><em>No discussion question due.</em></li>
 </ul>
 <h3 class="week-title">Week 9 (Oct 20 &amp; 22) — Global Capitalism, Democracy, and Dictatorship</h3>
 <ul>
 <li>Friedman, M. <em>Capitalism and Freedom</em>, Ch. 1</li>
 <li>Krugman, P. 1994. "The Myth of Asia's Miracle." <em>Foreign Affairs</em> (Nov/Dec): 62–78</li>
 <li>Rodrik, D. "The Myth of Authoritarian Growth." <em>Project Syndicate</em></li>
-<li>Ansell, B., and D. Samuels. 2010. "Inequality and Democratization: A Contractarian Approach." <em>Comparative Political Studies</em> 43(12): 1543–1574 <em>(optional)</em></li>
+<li>Ansell, B., and D. Samuels. 2010. "Inequality and Democratization: A Contractarian Approach." <em>Comparative Political Studies</em> 43(12): 1543–1574 <em>(Depth — optional)</em></li>
+<li>Przeworski, A., and F. Limongi. 1993. "Political Regimes and Economic Growth." <em>Journal of Economic Perspectives</em> 7(3): 51–69 <em>(Depth — optional)</em></li>
+<li>Milanovic, B. 2019. <em>Capitalism, Alone: The Future of the System That Rules the World.</em> Ch. 3, "Political Capitalism" <em>(Depth — optional)</em></li>
+<li>Milner, H. V. 2021. "Is Global Capitalism Compatible with Democracy? Inequality, Insecurity, and Interdependence." <em>International Studies Quarterly</em> 65(4): 1097–1110 <em>(Depth — optional)</em></li>
+<li>Sinanoglu, S., L. A. Way, and S. Levitsky. 2025. "Can Capitalism Save Democracy?" <em>Journal of Democracy</em> 36(3): 5–15 <em>(Depth — optional)</em></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
 </ul>
 <h3 class="week-title">Week 10 (Oct 27 &amp; 29) — Global Economic Development</h3>
@@ -284,6 +327,10 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>Olson, M. 1993. "Dictatorship, Democracy, and Development." <em>American Political Science Review</em> 87(3)</li>
 <li>Basu, K. 2006. "Globalization, Poverty and Inequality: What Is the Relationship? What Can Be Done?" <em>World Development</em> 34(8)</li>
 <li>Stiglitz, J. E. 2008. "Is There a Post-Washington Consensus Consensus?" In <em>The Washington Consensus Reconsidered</em>, pp. 41–56</li>
+<li>Sen, A. 1999. <em>Development as Freedom.</em> Ch. 1, "The Perspective of Freedom" <em>(Depth — optional)</em></li>
+<li>Rodrik, D., A. Subramanian, and F. Trebbi. 2004. "Institutions Rule: The Primacy of Institutions over Geography and Integration in Economic Development." <em>Journal of Economic Growth</em> 9(2): 131–165 <em>(Depth — optional — read the framing and conclusion)</em></li>
+<li>Juhász, R., and N. Lane. 2024. "The Political Economy of Industrial Policy." <em>Journal of Economic Perspectives</em> 38(4): 27–54 <em>(Depth — optional)</em></li>
+<li>Hanson, G., D. Rodrik, and R. Sandhu. 2026. "Rethinking Development." <em>Finance &amp; Development</em> (September 2026) <em>(Depth — optional)</em></li>
 <li><strong><em>Quiz 2 — Thursday Oct 29</em></strong></li>
 <li><strong>Thu Oct 29 — Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em>, public talk 12–1pm (Young Initiative)</strong> — on how modern autocrats rule through spin; attendance counts toward engagement.</li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
@@ -293,6 +340,11 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <li>Scholten, D. "The Geopolitics of the Energy Transition"</li>
 <li>Clabough, A. "It's Complicated: The US 2024 Electoral Outlook &amp; Consequences for Energy and Climate Security"</li>
 <li>Singh, J. T. N. 2023. "Recentring the Industrial Policy Paradigm within IPE and Development Studies." <em>Third World Quarterly</em> 44(9): 2015–2030</li>
+<li>Ross, M. L. 2001. "Does Oil Hinder Democracy?" <em>World Politics</em> 53(3): 325–361 <em>(Depth — optional)</em></li>
+<li>Colgan, J. D., J. F. Green, and T. N. Hale. 2021. "Asset Revaluation and the Existential Politics of Climate Change." <em>International Organization</em> 75(2): 586–610 <em>(Depth — optional)</em></li>
+<li>Allan, B., J. I. Lewis, and T. Oatley. 2021. "Green Industrial Policy and the Global Transformation of Climate Politics." <em>Global Environmental Politics</em> 21(4): 1–19 <em>(Depth — optional)</em></li>
+<li>Bordoff, J., and M. L. O'Sullivan. 2022. "The New Energy Order: How Governments Will Transform Energy Markets." <em>Foreign Affairs</em> 101(4): 131–144 <em>(Depth — optional)</em></li>
+<li>Xiong, G., and J. C. Weiss. 2026. "How China Found Its Most Potent Weapon: The Real History of Beijing's Rare-Earth Dominance." <em>Foreign Affairs</em> 105(5) <em>(Depth — optional)</em></li>
 <li><strong>Wed Nov 4, 12–1pm — Leah Stokes (UCSB), <em>The Carbon Wave</em></strong> (Young Initiative). It is the applied companion to this unit — Scholten gives you the geopolitics of the transition in the abstract, Stokes gives you one country actually legislating it. Attendance counts toward engagement.</li>
 <li><strong><em>Annotated bibliography due Thursday Nov 5</em></strong></li>
 <li><em>Discussion questions due in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a> before Thursday.</em></li>
@@ -301,10 +353,12 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <ul>
 <li>Tuesday: literature review workshop (framing, sources, research design)</li>
 <li>Thursday: peer workshop on draft bibliographies. You'll complete a short structured worksheet on two classmates' bibliographies — is the research question answerable, are the sources scholarly, what's missing — and bring it to class. This is where a weak topic gets caught while there's still time.</li>
+<li><em>No weekly question due. Peer-review worksheets will be posted in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a>.</em></li>
 </ul>
 <h3 class="week-title">Week 13 (Nov 17 &amp; 19) — Presentations</h3>
 <ul>
 <li>Student literature-review presentations (5 minutes each, hard stop, plus questions)</li>
+<li><em>No weekly question due. Presentation running order is in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">shared doc</a>.</em></li>
 </ul>
 <h3 class="week-title">Week 14 (Nov 24 only — Thanksgiving Nov 25–27) — Presentations &amp; Wrap-Up</h3>
 <ul>
@@ -361,7 +415,7 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 </thead>
 <tbody>
 <tr>
-<td>Participation / discussion (on-deck)</td>
+<td>Participation / discussion</td>
 <td>In class</td>
 <td>— (n/a: live)</td>
 </tr>
@@ -391,8 +445,8 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 <td>No use of AI to generate text.</td>
 </tr>
 <tr>
-<td>Documentaries and talks attendance</td>
-<td>Take-home, handwritten half-page</td>
+<td>Talks attendance</td>
+<td>Take-home, one-page by email</td>
 <td>No AI.</td>
 </tr>
 </tbody>
@@ -488,7 +542,7 @@ The main writing assignment is a <strong>2500-3000-word</strong> review of the l
 </main>
 <footer>
   <div class="container">
-    DWA 103 — Introduction to Global Political Economy — Occidental College, Fall 2026. Both views are the same document; the <em>Full syllabus</em> view (and any printout) is the syllabus of record. Generated from the canonical Markdown on September 2, 2026.
+    DWA 103 — Introduction to Global Political Economy — Occidental College, Fall 2026. Both views are the same document; the <em>Full syllabus</em> view (and any printout) is the syllabus of record. Generated from the canonical Markdown on September 5, 2026.
   </div>
 </footer>
 <script>
