@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 103 · Week 3 · Political Economy and Security</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  blockquote + blockquote { margin-top: 1.6rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  blockquote.smallest cite { margin-top: .8rem; }
+  .statrow.words .stat .v { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+  .statrow.words .stat { flex: 1 1 0; min-width: 0; }
+  .statrow.words .stat .l { max-width: none; }
+  .statrow.compact { margin-top:.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .statrow.compact .stat .l { font-size: clamp(.82rem, 1.25vw, .98rem); max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ul.big.serif li { font-family: var(--serif); }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  ol.props li .probe { display: block; font-family: var(--sans); font-size: .78em; color: var(--muted); margin-top: .3rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.78rem, 1.08vw, 1rem); padding: .5rem .8rem .5rem 0; line-height: 1.32; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  table.biblio.types td .pg { color: var(--muted); font-size: .82em; white-space: nowrap; font-family: var(--sans); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
+  .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
+  .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 103 · Introduction to Global Political Economy · Week 3 · Tue Sep 8</p>
+  <h1>Political Economy<br>and Security</h1>
+  <p class="sub">Realism and neomercantilism: the state as the unit of analysis; three realist traditions, each with a 2020s case</p>
+</section>
+
+<!-- 2 · Liberalism recalled (one slide) -->
+<section class="slide">
+  <p class="kicker">Week 2, recalled · Liberalism</p>
+  <blockquote class="smaller">Smith established that wealth derived from productive capacity, not precious metals; that the economic effects of trade were positive sum, not zero sum; and that, consequentially, the balance of trade was not usually a crucial determinant of economic well being.
+  <cite>Kirshner 2009: 38</cite>
+  </blockquote>
+  <div class="statrow words" style="margin-top:1.8rem">
+    <div class="stat"><div class="v">Individuals, firms</div><div class="l">the state as &ldquo;the sum of individual interests &agrave; la liberalism&rdquo; (Kirshner 2009: 36)</div></div>
+    <div class="stat"><div class="v">Positive sum</div><div class="l">&ldquo;economic interdependence would assure peace, as liberals anticipated&rdquo; (Kirshner 2009: 39)</div></div>
+    <div class="stat"><div class="v">1969</div><div class="l">Kindleberger: &ldquo;the nation&ndash;state is just about through as an economic unit&rdquo; (Drezner 2010: 10)</div></div>
+  </div>
+  <p class="footer-tag">Kirshner 2009: 36, 38&ndash;39; Kindleberger 1969: 207, quoted in Drezner 2010: 10. Week 2 readings: CWE chs. 2&ndash;3; Aggarwal &amp; Dupont; Lake 2009.</p>
+</section>
+
+<!-- 3 · The pivot: unit of analysis moves up to the state -->
+<section class="slide divider">
+  <p class="kicker">The pivot · unit of analysis</p>
+  <blockquote>When faced with the possibility of cooperating for mutual gain, states that feel insecure must ask how the gain will be divided. They are compelled to ask not &lsquo;Will both of us gain?&rsquo; but &lsquo;Who will gain more?&rsquo;
+  <cite>Kenneth Waltz, <em>Theory of International Politics</em> (1979: 105), quoted in Drezner 2010: 11</cite>
+  </blockquote>
+  <p class="footer-tag">Also: List, &ldquo;the interest of individuals and the interest of the commerce of a whole nation are widely different things&rdquo; (List 1885: 269, quoted in Kirshner 2009: 39).</p>
+</section>
+
+<!-- 4 · Theory of the state: three foundations -->
+<section class="slide">
+  <p class="kicker">Realism · three foundations</p>
+  <blockquote class="smaller">Realist political economy rests upon three foundations: the state, pursuing the national interest, in an environment defined by anarchy.
+  <cite>Kirshner 2009: 36</cite>
+  </blockquote>
+  <div class="statrow words" style="margin-top:1.8rem">
+    <div class="stat"><div class="v">State</div><div class="l">&ldquo;neither the sum of individual interests &agrave; la liberalism nor the implicit or explicit representative of certain privileged interests within society&rdquo;</div></div>
+    <div class="stat"><div class="v">National interest</div><div class="l">&ldquo;distinct from a pluralist vision that derives the national interest from the summation of individual interests&rdquo;</div></div>
+    <div class="stat"><div class="v">Anarchy</div><div class="l">&ldquo;the lack of an ultimate international authority, and thus the absence of any guarantee that the nation will not be invaded, overrun, conquered, and pillaged&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Kirshner 2009: 36. Same page: &ldquo;Security is a public good; public goods tend to be underprovided by private actors; the state is responsible for the provision of security.&rdquo;</p>
+</section>
+
+<!-- 5 · State as player: power, plenty, relative gains -->
+<section class="slide">
+  <p class="kicker">Realism · relative gains</p>
+  <blockquote class="smaller">In a phrase, &ldquo;realists aren&rsquo;t in it for the money.&rdquo; That is, actors behaving as realists would expect them to &hellip; will often, without regret, trade wealth for power (or, when secure, status).
+  <cite>Kirshner 2009: 37</cite>
+  </blockquote>
+  <blockquote class="smallest">[T]he wealth and might of a nation depends &ldquo;principally on whether its neighbors possess more or less of it. For power and riches have become a relative matter.&rdquo;
+  <cite>P. W. von Hornigk, 1684, quoted in Kirshner 2009: 39</cite>
+  </blockquote>
+  <p class="footer-tag">Also Kirshner 2009: 40, quoting Grieco (1990: 217): &ldquo;states in anarchy must fear that others may seek to destroy or enslave them.&rdquo; Viner&rsquo;s four propositions on wealth and power (1948: 10) in Drezner 2010: 4.</p>
+</section>
+
+<!-- 6 · Liberalism vs realism side by side -->
+<section class="slide">
+  <p class="kicker">Two lenses · side by side</p>
+  <table class="biblio types">
+    <tr><th></th><th>Liberalism</th><th>Realism</th></tr>
+    <tr><td>Unit of analysis</td>
+      <td>&ldquo;individuals are motivated by desire to maximize their personal wealth; they want more stuff&rdquo; <span class="pg">Kirshner 2009: 37</span></td>
+      <td>&ldquo;an autonomous state &hellip; that state pursues the national interest&rdquo; <span class="pg">Kirshner 2009: 36</span></td></tr>
+    <tr><td>Role of the state</td>
+      <td>&ldquo;market failure often prevents states from reaching mutually beneficial transactions and agreements&rdquo; <span class="pg">Kirshner 2009: 39</span></td>
+      <td>&ldquo;the state was both the subject and the object of mercantilist economic policy&rdquo; <span class="pg">Heckscher 1935: 21, in Kirshner 2009: 38</span></td></tr>
+    <tr><td>Nature of gains</td>
+      <td>&ldquo;the economic effects of trade were positive sum, not zero sum&rdquo; <span class="pg">Kirshner 2009: 38</span></td>
+      <td>&ldquo;the question was one of the composition of trade and the distribution of the gains&rdquo; <span class="pg">Kirshner 2009: 39</span></td></tr>
+    <tr><td>Core question</td>
+      <td>&ldquo;Will both of us gain?&rdquo; <span class="pg">Waltz 1979: 105, in Drezner 2010: 11</span></td>
+      <td>&ldquo;Who will gain more?&rdquo; <span class="pg">Waltz 1979: 105, in Drezner 2010: 11</span></td></tr>
+    <tr><td>A tariff</td>
+      <td>&ldquo;The implicit mercantilist theory that underlies trade negotiations does not make sense on any level &hellip; but it nonetheless governs actual policy.&rdquo; <span class="pg">Krugman 1997: 114, in Drezner 2010: 3</span></td>
+      <td>&ldquo;Free trade is the weapon of the strongest nation.&rdquo; <span class="pg">Bismarck, 1879, in CWE p. 62</span></td></tr>
+  </table>
+  <p class="footer-tag">Kirshner 2009: 36&ndash;39; Drezner 2010: 3, 11; Helleiner, <em>The Contested World Economy</em> (CWE) p. 62. Page per cell.</p>
+</section>
+
+<!-- 7 · Labels -->
+<section class="slide">
+  <p class="kicker">A note on labels · realism, economic nationalism, neomercantilism</p>
+  <blockquote class="smaller">The essence of the mercantilist perspective, whether it is labeled economic nationalism, protectionism, or the doctrine of the German Historical School, is the subservience of the economy to the state and its interests &ndash; interests that range from matters of domestic welfare to those of international security.
+  <cite>Robert Gilpin (1975: 25), quoted in Drezner 2010: 8</cite>
+  </blockquote>
+  <blockquote class="smallest">The &ldquo;neomercantilist&rdquo; perspective is sometimes referred to as an &ldquo;economic nationalist&rdquo; or &ldquo;realist&rdquo; one in IPE textbooks. I have discussed elsewhere why I think &ldquo;neomercantilism&rdquo; is the more useful label.
+  <cite>CWE p. 6, n. 14</cite>
+  </blockquote>
+  <p class="footer-tag">Schmoller &ldquo;embraced the label &lsquo;neomercantilism&rsquo; as a description for the policy program he backed (in contrast to List, who did not use this term)&rdquo; (CWE p. 63). Drezner 2010: 9: &ldquo;While realists and mercantilists might agree on the role that power plays in the global economy, they do not necessarily agree on the normative implications of that insight.&rdquo;</p>
+</section>
+
+<!-- 8 · Classical vs neo -->
+<section class="slide">
+  <p class="kicker">Classical mercantilism · neomercantilism</p>
+  <table class="biblio types">
+    <tr><th></th><th>Classical mercantilism (16th&ndash;18th c.)</th><th>Neomercantilism (1791&ndash;)</th></tr>
+    <tr><td>Wealth</td>
+      <td>&ldquo;to sell more to strangers yearly than we consume of theirs in value&rdquo; <span class="pg">Mun 1664: 7, in Drezner 2010: 3</span></td>
+      <td>&ldquo;the power of producing wealth is &hellip; infinitely more important than wealth itself&rdquo; <span class="pg">List 1841, in CWE p. 59</span></td></tr>
+    <tr><td>Protection</td>
+      <td>&ldquo;prohibitory&rdquo; trade restrictions <span class="pg">List&rsquo;s term for his predecessors, CWE p. 60</span></td>
+      <td>&ldquo;strategic trade protectionism that was designed to support specific domestic economic sectors, especially industry&rdquo; <span class="pg">CWE p. 56</span></td></tr>
+    <tr><td>The pie</td>
+      <td>&ldquo;bound up with a static conception of the total economic resources of the world&rdquo; <span class="pg">Heckscher 1935: 25, in Drezner 2010: 4</span></td>
+      <td>&ldquo;twentieth-century realists did not question that international trade would leave both participants wealthier&rdquo; <span class="pg">Kirshner 2009: 39</span></td></tr>
+    <tr><td>Relation to Smith</td>
+      <td>&ldquo;subject to withering and in many aspects irretrievable criticism in 1776 by Adam Smith&rdquo; <span class="pg">Kirshner 2009: 38</span></td>
+      <td>&ldquo;Realists followed liberals by branching off, not chopping down.&rdquo; <span class="pg">Kirshner 2009: 38</span></td></tr>
+  </table>
+  <p class="footer-tag">Kirshner 2009: 38&ndash;39; Drezner 2010: 3&ndash;4; CWE pp. 56, 59&ndash;60. Kirshner 2009: 38: &ldquo;The realist dissent is with liberal politics, not liberal economics.&rdquo;</p>
+</section>
+
+<!-- 9 · Divider: three traditions -->
+<section class="slide divider">
+  <p class="kicker">Three realist traditions · the rest of the deck</p>
+  <h2>Building power &rarr; Using leverage &rarr; Paying for security</h2>
+  <ul class="big">
+    <li><strong>1 · Building power</strong> &mdash; Hamilton 1791, List 1841 &middot; case: US CHIPS Act and IRA, 2022&ndash;2026</li>
+    <li><strong>2 · Using leverage</strong> &mdash; Hirschman 1945, Farrell &amp; Newman 2019 &middot; case: SWIFT and Russian reserves, 2022&ndash;2025; Canada, 2025&ndash;26</li>
+    <li><strong>3 · Paying for security</strong> &mdash; Gilpin 1975/1981, Kirshner 2009 &middot; case: US&ndash;China semiconductors and rare earths, 2022&ndash;2026</li>
+  </ul>
+  <p class="footer-tag">Readings: CWE ch. 4; Drezner 2010; Kirshner 2009. Depth (optional): Hirschman 1980 [1945]; Gilpin 1975; Farrell &amp; Newman 2019, 2025; Drezner 2024.</p>
+</section>
+
+<!-- 10 · Tradition 1: Hamilton and List -->
+<section class="slide">
+  <p class="kicker">1 · Building power · Hamilton 1791, List 1841</p>
+  <blockquote class="smaller">Not only the wealth but the independence and security of a country appear to be materially connected with the prosperity of manufactures. Every nation, with a view to these great objects, ought to endeavor to possess within itself all the essentials of national supply.
+  <cite>Alexander Hamilton, <em>Report on Manufactures</em> (1791), quoted in Drezner 2010: 3</cite>
+  </blockquote>
+  <blockquote class="smallest">[I]t is a very common device that when anyone has attained the summit of greatness, he kicks away the ladder by which he has climbed up, in order to deprive others of the means of climbing up after him.
+  <cite>Friedrich List, <em>The National System of Political Economy</em> (1841), quoted in CWE p. 59</cite>
+  </blockquote>
+  <p class="footer-tag">CWE pp. 57&ndash;59: Hamilton &mdash; industrialization &ldquo;key for the &lsquo;independence and security&rsquo; of the United States&rdquo;; List &mdash; free trade would enable &ldquo;the English manufactures to monopolise the markets of all nations.&rdquo;</p>
+</section>
+
+<!-- 11 · List's conditions -->
+<section class="slide">
+  <p class="kicker">1 · Building power · List&rsquo;s conditions</p>
+  <ul class="big">
+    <li><strong>Productive power</strong> &mdash; derives &ldquo;from mental and physical powers of the individuals; from their social, municipal, and political conditions and institutions; from the natural resources&rdquo; <span style="color:var(--muted)">p. 59</span></li>
+    <li><strong>Moderate, not prohibitory</strong> &mdash; duties that &ldquo;entirely cut off foreign competition, injure the country which imposes them &hellip; and indolence is fostered&rdquo; <span style="color:var(--muted)">p. 60</span></li>
+    <li><strong>Temporary</strong> &mdash; &ldquo;until that manufacturing power is strong enough no longer to have any reason to fear foreign competition&rdquo; <span style="color:var(--muted)">p. 60</span></li>
+    <li><strong>Manufacturing only</strong> &mdash; free trade in raw materials and agricultural products; List backed repeal of the Corn Laws <span style="color:var(--muted)">p. 60</span></li>
+    <li><strong>Nationality</strong> &mdash; &ldquo;the intermediate interest between those of individualism and of entire humanity&rdquo; <span style="color:var(--muted)">p. 61</span></li>
+  </ul>
+  <p class="footer-tag">Helleiner, CWE pp. 59&ndash;61, quoting List [1841] 1909. Same pages: protection for &ldquo;temperate&rdquo; countries only; a &ldquo;Continental alliance against the British supremacy.&rdquo;</p>
+</section>
+
+<!-- 12 · Case 1: CHIPS / IRA -->
+<section class="slide">
+  <p class="kicker">1 · Building power · case: US industrial policy, 2022&ndash;2026</p>
+  <div class="twocol">
+    <div class="col">
+      <p class="collabel">Subsidy, 2022&ndash;2024</p>
+      <ul class="facts">
+        <li>CHIPS and Science Act, Aug 2022: $52.7 bn</li>
+        <li>Apr 8, 2024: TSMC offered up to $6.6 bn in grants (+ ~$5 bn loans) for a $65 bn, three-fab Phoenix complex</li>
+        <li>Inflation Reduction Act, 2022: clean-energy tax credits (30D EV credit; 45Y/48E)</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p class="collabel">Equity and tariff, 2025&ndash;2026</p>
+      <ul class="facts">
+        <li>Aug 2025: Intel&rsquo;s $8.9 bn in CHIPS/Secure Enclave grants converted to a 9.9% federal equity stake</li>
+        <li>Jul 4, 2025: OBBBA ends the 30D EV credit after Sep 30, 2025; wind/solar credits end for facilities placed in service after Dec 31, 2027</li>
+        <li>Jan 14, 2026: Section 232 proclamation &mdash; 25% tariff on certain advanced chips; Sep 2, 2026: &ldquo;phase two&rdquo; &mdash; zero duty for US-built chips</li>
+      </ul>
+    </div>
+  </div>
+  <blockquote class="smallest" style="margin-top:1.4rem">The present quantities and circumstances of imports of semiconductors, semiconductor manufacturing equipment, and their derivative products pose a threat to the national security and economy.
+  <cite>Presidential proclamation, Jan 14, 2026 (via White &amp; Case client alert, Jan 2026)</cite>
+  </blockquote>
+  <p class="footer-tag">Reading: Hamilton 1791 in Drezner 2010: 3; List in CWE p. 60. Sources: AP/NBC News, &ldquo;U.S. offers TSMC up to $6.6 billion for Arizona factories,&rdquo; Apr 8 2024; N. Owens, <em>Manufacturing Dive</em>, &ldquo;US government to take 10% stake in Intel,&rdquo; Aug 25 2025; A. Muresianu, Tax Foundation, Jul 31 2025; White &amp; Case, Jan 2026; O. Lazenby, <em>TechTimes</em>, &ldquo;Chip Tariff Phase Two Confirmed,&rdquo; Sep 3 2026. Instructor-compiled case.</p>
+</section>
+
+<!-- 13 · Tradition 2: Hirschman -->
+<section class="slide">
+  <p class="kicker">2 · Using leverage · Hirschman 1945</p>
+  <blockquote class="smaller">[T]he power to interrupt commercial or financial relations with any country, considered as an attribute of national sovereignty, is the root cause of the influence or power position which a country acquires in other countries, just as it is the root cause of the &ldquo;dependence on trade.&rdquo;
+  <cite>Hirschman, <em>National Power and the Structure of Foreign Trade</em> (1980 [1945]: 16)</cite>
+  </blockquote>
+  <div class="statrow words" style="margin-top:1.6rem">
+    <div class="stat"><div class="v">Supply effect</div><div class="l">trade &ldquo;as a means of increasing the efficiency of the military pressure which one country might bring to bear upon other countries&rdquo; (p. 14)</div></div>
+    <div class="stat"><div class="v">Influence effect</div><div class="l">Germany&rsquo;s 1930s trade with Southeastern Europe: &ldquo;a powerful influence in favor of a &lsquo;friendly&rsquo; attitude towards the state to the imports of which they owe their interests&rdquo; (p. 29, in Kirshner 2009: 37)</div></div>
+  </div>
+  <p class="footer-tag">Hirschman 1980 [1945] (Depth reading; course-folder scan is a two-column OCR; both quotes and page numbers checked against the page images). Kirshner 2009: 37: focusing on small states &ldquo;increased Germany&rsquo;s political leverage there by making exit more costly for others.&rdquo;</p>
+</section>
+
+<!-- 14 · Farrell & Newman -->
+<section class="slide">
+  <p class="kicker">2 · Using leverage · Farrell &amp; Newman 2019</p>
+  <div class="twocol">
+    <div class="col" style="flex:1.15">
+      <p class="colq">Asymmetric network structures create the potential for &ldquo;weaponized interdependence,&rdquo; in which some states are able to leverage interdependent relations to coerce others.
+      <cite>Farrell &amp; Newman 2019: 45</cite></p>
+      <p class="colq" style="margin-top:1rem">[T]hey respectively rely on the panopticon and chokepoint effects of networks. In the former, advantaged states use their network position to extract informational advantages vis-&agrave;-vis adversaries, whereas in the latter, they can cut adversaries off from network flows.
+      <cite>Farrell &amp; Newman 2019: 46</cite></p>
+    </div>
+    <div class="col" style="flex:.85; border:none; padding:0">
+      <div class="chart" id="chart-hub" role="img" aria-label="A hub-and-spoke network: one large central node labeled hub connected to eight smaller peripheral nodes, two of which are also connected to each other"></div>
+    </div>
+  </div>
+  <p class="footer-tag">Farrell &amp; Newman, &ldquo;Weaponized Interdependence,&rdquo; <em>International Security</em> 44(1), 2019, pp. 45&ndash;46 (Depth reading). Diagram: a hub-and-spoke network as described on p. 45 (&ldquo;some nodes are &lsquo;hubs,&rsquo; and are far more connected than others&rdquo;); illustrative, not data.</p>
+</section>
+
+<!-- 15 · Case 2: SWIFT and reserves -->
+<section class="slide">
+  <p class="kicker">2 · Using leverage · case: Russia&rsquo;s banks and reserves, 2022&ndash;2025</p>
+  <div class="twocol">
+    <div class="col">
+      <p class="collabel">Chokepoint, 2022</p>
+      <ul class="facts">
+        <li>Mar 2, 2022: EU removes seven Russian banks from SWIFT (VTB, Otkritie, Novikombank, Promsvyazbank, Rossiya, Sovcombank, VEB); Sberbank and Gazprombank exempted</li>
+        <li>~$300 bn of Central Bank of Russia reserves immobilised; ~&euro;185 bn held at Euroclear (Belgium)</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p class="collabel">What happened to the money, 2024&ndash;2025</p>
+      <ul class="facts">
+        <li>Jun 2024: G7 $50 bn ERA loan to Ukraine, serviced from windfall profits on the assets</li>
+        <li>Dec 12, 2025: EU prohibits transfers of the immobilised assets back to Russia</li>
+        <li>Dec 19, 2025: EU leaders drop the &euro;90 bn &ldquo;reparations loan&rdquo; drawn on the assets after Belgium objects; fund a &euro;90 bn loan by EU borrowing instead</li>
+      </ul>
+    </div>
+  </div>
+  <blockquote class="smallest" style="margin-top:1.2rem">For me, the reparations loan was not a good idea. We avoided stepping into a precedent that risks undermining legal certainty worldwide.
+  <cite>Bart De Wever, Prime Minister of Belgium, Dec 19, 2025 (AP)</cite>
+  </blockquote>
+  <p class="footer-tag">Reading: Farrell &amp; Newman 2019: 46 (chokepoint); Hirschman 1980: 16. Sources: J. Liboreiro, <em>Euronews</em>, &ldquo;These are the 7 Russian banks banned from SWIFT,&rdquo; Mar 2 2022; A. Conner &amp; D. Wessel, Brookings, &ldquo;What is the status of Russia&rsquo;s frozen sovereign assets?&rdquo; Jun 24 2025; Council of the EU press release, Dec 12 2025; J. Strupczewski, Reuters, Dec 18 2025; AP via NPR, &ldquo;EU leaders agree on Ukraine loan,&rdquo; Dec 19 2025. Instructor-compiled case.</p>
+</section>
+
+<!-- 16 · Bridge: Canada -->
+<section class="slide">
+  <p class="kicker">2 · Using leverage · the dependent partner: Canada, 2025&ndash;26</p>
+  <blockquote class="smaller">The decades-long process of an ever-closer economic relationship with the United States is over.
+  <cite>Mark Carney, Prime Minister of Canada, Oct 22, 2025 (Global News)</cite>
+  </blockquote>
+  <div class="statrow" style="margin-top:1.6rem">
+    <div class="stat"><div class="v">&gt;75%</div><div class="l">of Canadian exports went to the US when Carney pledged to double non-US exports within a decade (Oct 2025, AP)</div></div>
+    <div class="stat"><div class="v">~70%</div><div class="l">US share of Canadian exports in 2025, down from 76% a year earlier (Reuters, Jun 9 2026)</div></div>
+    <div class="stat"><div class="v">+16%</div><div class="l">non-US exports in 2025, to C$213.8 bn; trade deal with Indonesia, investment pact with the UAE, a limited deal with China (Reuters, Jun 9 2026)</div></div>
+  </div>
+  <p class="footer-tag">Reading: Hirschman&rsquo;s influence effect &mdash; exit &ldquo;more costly for others (given their relative stakes in the relationship)&rdquo; (Kirshner 2009: 37). Sources: S. Boynton &amp; A. Rabinovitch, <em>Global News</em>, Oct 22 2025; R. Gillies, AP via PBS, &ldquo;Carney says Canada will aim to double its non-U.S. exports,&rdquo; Oct 23 2025 (&ldquo;We have to take care of ourselves because we can&rsquo;t rely on one foreign partner&rdquo;); P. Mukherjee, Reuters via BNN Bloomberg, &ldquo;Mark Carney&rsquo;s trade push collides with reality of U.S. dependence,&rdquo; Jun 9 2026.</p>
+</section>
+
+<!-- 17 · Tradition 3: security shadows economics -->
+<section class="slide">
+  <p class="kicker">3 · Paying for security · Carr, Gilpin, Kirshner</p>
+  <blockquote class="smaller">Some mutually beneficial transactions might nevertheless leave the state less secure &hellip; leading to the expectation that states will make departures from those policies that maximize wealth and short-run economic growth in the name of national security.
+  <cite>Kirshner 2009: 36</cite>
+  </blockquote>
+  <blockquote class="smallest">[A]s the power of a state increases, it seeks to extend &hellip; its political influence, and/or its domination of the international economy.
+  <cite>Robert Gilpin, <em>War and Change in World Politics</em> (1981: 106), quoted in Kirshner 2009: 45</cite>
+  </blockquote>
+  <p class="footer-tag">Kirshner 2009: 36, quoting Carr (1951: 117): &ldquo;the science of economics presupposes a given political order, and cannot be profitably studied in isolation from politics.&rdquo; Drezner 2010: 8 on Smith&rsquo;s Navigation Acts: &ldquo;defence is of more importance than opulence.&rdquo;</p>
+</section>
+
+<!-- 18 · Kirshner on China, 2009 -->
+<section class="slide">
+  <p class="kicker">3 · Paying for security · Kirshner on China, 2009</p>
+  <blockquote class="smaller">[T]he United States is increasingly and intimately economically enmeshed with China, the state widely anticipated to assume the mantle of its principal strategic rival &ndash; and moreover US policy has evidenced little remorse, or even much wariness, regarding the strategic consequences of its permissive posture in this regard.
+  <cite>Kirshner 2009: 40</cite>
+  </blockquote>
+  <blockquote class="smallest">Wary and pessimistic as they approach the table, and expecting the worst to come from changes in the balance of power, realists nevertheless place hedged bets on engagement.
+  <cite>Kirshner 2009: 46</cite>
+  </blockquote>
+  <p class="footer-tag">Kirshner 2009: 40, 44&ndash;46. Drezner 2010: 5: mercantilist ideas &ldquo;re-emerged in two situations. Rising and developing powers &hellip; Great powers in perceived decline.&rdquo;</p>
+</section>
+
+<!-- 19 · Case 3: chips and rare earths timeline -->
+<section class="slide">
+  <p class="kicker">3 · Paying for security · case: US&ndash;China chips and rare earths, 2022&ndash;2026</p>
+  <div class="chartwrap" style="max-width:1120px; margin-top:.4rem">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>US measure</span><span><span class="sw" style="background:#a33232"></span>Chinese measure</span><span><span class="sw" style="background:#5c6470"></span>Truce / summit</span></div>
+    <div class="chart" id="chart-timeline" role="img" aria-label="Timeline from 2022 to 2026 alternating US export controls and Chinese export controls on critical minerals"></div>
+  </div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">61% / 91%</div><div class="l">China&rsquo;s share of mined rare-earth supply / refining, 2024 (IEA, via S&amp;P Global, Jan 27 2026)</div></div>
+    <div class="stat"><div class="v">25%</div><div class="l">of Nvidia H200 China revenue to the US Treasury under the Dec 8, 2025 arrangement (Axios)</div></div>
+  </div>
+  <p class="footer-tag">Reading: Kirshner 2009: 36, 44&ndash;46. Sources: BIS press releases Oct 7 2022, Oct 17 2023, Dec 2 2024; AP via <em>Fortune</em>, &ldquo;China bans exports to US of key high-tech materials,&rdquo; Dec 3 2024; CSET translation of MOFCOM Notice 2024 No. 46; <em>China Briefing</em>, &ldquo;China&rsquo;s Rare Earth Export Controls,&rdquo; 2025; AFP via <em>Malay Mail</em>, Oct 30 2025; N. Bomey, Axios, Dec 8 2025; K. Keen &amp; L. Georges, S&amp;P Global, Jan 27 2026; K. Belmonte, <em>TechTimes</em>, May 26 2026. Instructor-compiled case.</p>
+</section>
+
+<!-- 20 · Case 3 quotes -->
+<section class="slide">
+  <p class="kicker">3 · Paying for security · the two governments, in their words</p>
+  <div class="twocol">
+    <div class="col">
+      <p class="collabel">Washington</p>
+      <p class="colq">Export controls are a powerful national security tool, and the updates released today build on our ongoing assessment of U.S. national security and foreign policy concerns.
+      <cite>Alan Estevez, Under Secretary of Commerce for Industry and Security, Oct 17, 2023</cite></p>
+    </div>
+    <div class="col">
+      <p class="collabel">Beijing</p>
+      <p class="colq">In principle, the export of the relevant dual-use items gallium, germanium, antimony, and superhard materials to the United States is not permitted.
+      <cite>Ministry of Commerce (MOFCOM), Notice 2024 No. 46, Dec 3, 2024 (CSET translation)</cite></p>
+    </div>
+  </div>
+  <p class="footer-tag">Sources: BIS press release, &ldquo;Commerce Strengthens Restrictions on Advanced Computing Semiconductors,&rdquo; Oct 17 2023; CSET, &ldquo;China&rsquo;s Rare Earth Export Ban&rdquo; (translation of MOFCOM Notice 2024 No. 46), Dec 3 2024. AP, Dec 3 2024: the US had sourced about half its gallium and germanium from China.</p>
+</section>
+
+<!-- 21 · The three cases as one sequence -->
+<section class="slide">
+  <p class="kicker">Three traditions, three cases</p>
+  <table class="biblio wide">
+    <tr><th></th><th>1 · Building power</th><th>2 · Using leverage</th><th>3 · Paying for security</th></tr>
+    <tr><td>Text</td>
+      <td>Hamilton 1791; List 1841 <span class="pg">CWE pp. 57&ndash;61; Drezner 2010: 3</span></td>
+      <td>Hirschman 1945; Farrell &amp; Newman 2019 <span class="pg">Kirshner 2009: 37; F&amp;N pp. 45&ndash;46</span></td>
+      <td>Carr 1939; Gilpin 1981; Kirshner 2009 <span class="pg">Kirshner 2009: 36, 45&ndash;46</span></td></tr>
+    <tr><td>Claim</td>
+      <td>&ldquo;the power of producing wealth is &hellip; infinitely more important than wealth itself&rdquo; <span class="pg">CWE p. 59</span></td>
+      <td>&ldquo;the power to interrupt commercial or financial relations &hellip; is the root cause of the influence or power position&rdquo; <span class="pg">Hirschman p. 16</span></td>
+      <td>&ldquo;states will make departures from those policies that maximize wealth &hellip; in the name of national security&rdquo; <span class="pg">Kirshner 2009: 36</span></td></tr>
+    <tr><td>Instrument</td>
+      <td>Subsidy &rarr; equity stake &rarr; tariff (CHIPS 2022; Intel stake Aug 2025; Section 232, Jan 2026)</td>
+      <td>SWIFT removal (Mar 2022); ~$300 bn reserves immobilised, indefinitely from Dec 2025</td>
+      <td>Export controls (Oct 2022, Dec 2024) &harr; mineral licensing and bans (Jul 2023, Dec 2024, Apr 2025)</td></tr>
+    <tr><td>Stated rationale</td>
+      <td>&ldquo;pose a threat to the national security and economy&rdquo; <span class="pg">Proclamation, Jan 14 2026</span></td>
+      <td>&ldquo;send yet another very clear signal to Putin and the Kremlin&rdquo; <span class="pg">von der Leyen, Mar 2 2022</span></td>
+      <td>&ldquo;a powerful national security tool&rdquo; <span class="pg">Estevez, Oct 17 2023</span></td></tr>
+    <tr><td>Cost borne</td>
+      <td>Higher import prices, acknowledged by Hamilton <span class="pg">CWE p. 58</span></td>
+      <td>Belgium&rsquo;s &ldquo;legal certainty&rdquo; objection; &euro;90 bn raised by EU borrowing instead <span class="pg">Dec 19 2025</span></td>
+      <td>US yttrium imports 333 t &rarr; 17 t after Beijing summit <span class="pg">TechTimes, May 26 2026</span></td></tr>
+  </table>
+  <p class="footer-tag">Quotes and figures as cited on the case slides (12, 15&ndash;16, 19&ndash;20). Von der Leyen quote: <em>Euronews</em>, Mar 2 2022.</p>
+</section>
+
+<!-- 22 · Coda: deep roots -->
+<section class="slide">
+  <p class="kicker">Coda · Helleiner · deep roots</p>
+  <blockquote class="smallest">[M]admen in authority, who hear voices in the air, are distilling their frenzy from some academic scribbler of a few years back.
+  <cite>J. M. Keynes (1936: 383), quoted in CWE p. 2</cite>
+  </blockquote>
+  <div class="chartwrap" style="max-width:1120px; margin-top:1rem">
+    <div class="chart" id="chart-roots" role="img" aria-label="Timeline of neomercantilist thinkers and policies from 1791 to 1929: Hamilton 1791, List 1841, Carey 1858, Bismarck tariffs 1879, Schmoller 1884, Witte 1892 to 1903, Ashley 1900s, Manoilescu 1929"></div>
+  </div>
+  <p class="footer-tag">CWE ch. 4, pp. 56&ndash;69: Hamilton 1791 (p. 57); List 1841 (p. 58); Carey, <em>Principles of Social Sciences</em> 1858&ndash;59 (p. 65); Bismarck&rsquo;s tariffs 1879 (p. 62); Schmoller 1884 (p. 63); Witte, finance minister 1892&ndash;1903 (p. 63); Ashley, early 1900s (p. 64); Manoilescu 1929 (p. 63). CWE p. 1: IPE as a formal field dates from the early 1970s.</p>
+</section>
+
+<!-- 23 · Coda: many dialects -->
+<section class="slide">
+  <p class="kicker">Coda · Helleiner · many dialects</p>
+  <blockquote class="smallest">There was no single figure in the neomercantilist camp who inspired all thinkers in the way that Smith did for classical economic liberals (or Marx did for Marxists &hellip;).
+  <cite>CWE p. 86</cite>
+  </blockquote>
+  <div class="twocol" style="margin-top:1.2rem">
+    <div class="col">
+      <p class="collabel">Sun Yat-sen, Kobe, 1924</p>
+      <p class="colq">[L]earn science from Europe for our industrial development and the improvement of our armaments, not, however, with a view to oppressing or destroying other countries and peoples as the Europeans have done, but purely for our self-defense.
+      <cite>Quoted in CWE p. 212</cite></p>
+    </div>
+    <div class="col">
+      <p class="collabel">Marcus Garvey, UNIA, 1920</p>
+      <p class="colq">We are endeavoring to unite Negros everywhere, and for what? For the purpose of building up a powerful nation on the continent of Africa, a nation in the near future boasting as a first-rate power &hellip; We are endeavoring to perform the function of government for our race.
+      <cite>Quoted in CWE p. 188</cite></p>
+    </div>
+  </div>
+  <p class="footer-tag">CWE p. 189: Garvey &ldquo;was advancing a perspective with some similarities to neomercantilism, but of a kind that was applied to a diasporic community in support of a state that was still to be created.&rdquo; CWE p. 68: Carey&rsquo;s &ldquo;defensive kind of neomercantilism that sought power for the &lsquo;self-protection&rsquo; of a country rather than for the offensive projection of power internationally.&rdquo; CWE p. 86: Ranade&rsquo;s colonial context; Sarkar&rsquo;s <em>Arthashastra</em>.</p>
+</section>
+
+<!-- 24 · Discussion questions for Thursday -->
+<section class="slide">
+  <p class="kicker">For Thursday · shared doc, before Thu Sep 10, 10:05 am · no class meeting</p>
+  <ol class="props">
+    <li><strong>Connector</strong> &mdash; Take one passage from Week 2 (CWE chs. 2&ndash;3, Aggarwal &amp; Dupont, or Lake) and one from this week (CWE ch. 4, Drezner, or Kirshner) that describe the same thing &mdash; a tariff, a trade deficit, a trading partner &mdash; and write a question about why they describe it differently.
+      <span class="probe">Probe: which passage changes the unit of analysis, and where exactly in the sentence does it happen?</span></li>
+    <li><strong>Applier</strong> &mdash; Find one article from the past month (Oxy&rsquo;s news subscriptions) in which a government defends an economic measure on security grounds. Name the tradition it fits (building power, using leverage, paying for security) and write a question the article leaves open.
+      <span class="probe">Probe: what would the measure have to look like for a liberal to call it shrewd rather than foolish?</span></li>
+    <li><strong>Theory Triangulation card</strong> (everyone, in the doc) &mdash; Pick one of the three cases from today. In three sentences each, state how a liberal, a neomercantilist, and a Marxist would explain it. Marxism is Week 5 &mdash; use CWE ch. 1, pp. 6&ndash;8, for the first pass.
+      <span class="probe">Post under the Week 3 heading; include the article link if you are the Applier.</span></li>
+  </ol>
+  <p class="footer-tag">Roles per the DWA 103 syllabus of record (Connector, Applier). Post in the <a href="https://docs.google.com/document/d/10JzC6PdeQvzLUe2rI3j88woLuSNjV-D7aR5Iv_A5-9A/edit">DWA 103 Discussion Questions doc</a>.</p>
+</section>
+
+<!-- 25 · Logistics -->
+<section class="slide">
+  <p class="kicker">This week and next</p>
+  <ul class="big">
+    <li><strong>Thu Sep 10</strong> &mdash; no class meeting (instructor at a conference); discussion questions still due in the shared doc</li>
+    <li><strong>Tue Sep 15</strong> &mdash; Week 4, Constructivisms: CWE one chapter from Part 2 (chs. 8&ndash;13, your choice); Abdelal 2009; Nelson 2014</li>
+    <li><strong>Thu Sep 17</strong> &mdash; Quiz 1, in class</li>
+    <li><strong>Thu Sep 17, 12&ndash;1 pm</strong> &mdash; Sergii Glebov (UC Irvine / Odesa National University), &ldquo;Russia&rsquo;s War on Ukraine and European (In)Security,&rdquo; Choi Auditorium &mdash; attendance counts</li>
+  </ul>
+  <p class="footer-tag">Per the course syllabus of record.</p>
+</section>
+
+<div class="counter" id="counter">1 / 25</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (sources per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var CUS = '#2f6bb3', CCN = '#a33232', CGR = '#5c6470';
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+  function label(parent, x, y, s, opts) {
+    opts = opts || {};
+    var lines = wrap(s, opts.max || 22);
+    var t = el('text', { x: x, y: y, 'font-size': opts.size || 12, fill: opts.fill || INK, 'text-anchor': opts.anchor || 'start', 'font-weight': opts.weight || 400 }, parent);
+    lines.forEach(function (ln, i) {
+      var ts = el('tspan', { x: x, dy: i === 0 ? 0 : (opts.lh || 14) }, t);
+      txt(ts, ln);
+    });
+    return lines.length;
+  }
+
+  /* Slide 14: hub-and-spoke network (F&N 2019: 45) */
+  (function () {
+    var box = document.getElementById('chart-hub');
+    if (!box) return;
+    var W = 420, H = 340;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var cx = 210, cy = 170, R = 125, n = 8, pts = [];
+    for (var i = 0; i < n; i++) {
+      var a = -Math.PI / 2 + i * 2 * Math.PI / n;
+      pts.push([cx + R * Math.cos(a), cy + R * Math.sin(a)]);
+    }
+    pts.forEach(function (p) { el('line', { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: MUTED, 'stroke-width': 2 }, svg); });
+    el('line', { x1: pts[2][0], y1: pts[2][1], x2: pts[3][0], y2: pts[3][1], stroke: MUTED, 'stroke-width': 1.2, 'stroke-dasharray': '4 4' }, svg);
+    el('line', { x1: pts[6][0], y1: pts[6][1], x2: pts[7][0], y2: pts[7][1], stroke: MUTED, 'stroke-width': 1.2, 'stroke-dasharray': '4 4' }, svg);
+    pts.forEach(function (p) { el('circle', { cx: p[0], cy: p[1], r: 11, fill: '#fcfbf9', stroke: CUS, 'stroke-width': 2.5 }, svg); });
+    el('circle', { cx: cx, cy: cy, r: 30, fill: ACCENT }, svg);
+    txt(el('text', { x: cx, y: cy + 5, 'font-size': 13, fill: '#fff', 'text-anchor': 'middle', 'font-weight': 700 }, svg), 'hub');
+    txt(el('text', { x: cx, y: H - 8, 'font-size': 11, fill: MUTED, 'text-anchor': 'middle' }, svg), 'one hub, eight spokes, two peripheral ties');
+  })();
+
+  /* Slide 19: three-tier timeline 2022–2026 */
+  (function () {
+    var box = document.getElementById('chart-timeline');
+    if (!box) return;
+    var W = 1120, H = 380;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var padL = 40, padR = 40, axisY = 192;
+    var t0 = 2022.6, t1 = 2026.75;
+    function X(y) { return padL + (y - t0) / (t1 - t0) * (W - padL - padR); }
+    el('line', { x1: padL, y1: axisY, x2: W - padR, y2: axisY, stroke: INK, 'stroke-width': 1.5 }, svg);
+    [2023, 2024, 2025, 2026].forEach(function (y) {
+      el('line', { x1: X(y), y1: axisY - 6, x2: X(y), y2: axisY + 6, stroke: INK, 'stroke-width': 1.2 }, svg);
+      txt(el('text', { x: X(y), y: axisY + 22, 'font-size': 12, fill: MUTED, 'text-anchor': 'middle' }, svg), String(y));
+    });
+    // events: [decimal year, tier (-3..-1 above; 1..3 below), color, label, anchor]
+    var ev = [
+      [2022.77, -1, CUS, 'Oct 7 2022 · BIS export controls: advanced chips, chipmaking tools', 'start'],
+      [2023.5,   1, CCN, 'Jul 2023 · China: gallium, germanium licensing', 'middle'],
+      [2023.8,  -2, CUS, 'Oct 17 2023 · BIS tightens chip rules', 'middle'],
+      [2024.6,   2, CCN, 'Aug 2024 · China: antimony curbs', 'middle'],
+      [2024.92, -1, CUS, 'Dec 2 2024 · BIS: 140 entities, HBM, 24 tool types', 'middle'],
+      [2024.93,  1, CCN, 'Dec 3 2024 · China bans Ga, Ge, Sb exports to US', 'middle'],
+      [2025.26,  2, CCN, 'Apr 4 2025 · seven rare earths under licence', 'middle'],
+      [2025.77, -3, CCN, 'Oct 9 2025 · five more elements; 0.1% extraterritorial rule', 'middle'],
+      [2025.86,  1, CGR, 'Nov 7 2025 · October measures suspended to Nov 10 2026', 'middle'],
+      [2025.94, -1, CUS, 'Dec 8 2025 · Nvidia H200 sales to China allowed, 25% to US', 'middle'],
+      [2026.04,  3, CUS, 'Jan 14 2026 · 25% Section 232 tariff on certain advanced chips', 'middle'],
+      [2026.4,  -2, CGR, 'May 2026 · Beijing summit; April 2025 controls stay in force', 'end']
+    ];
+    var tierY = { '-3': axisY - 168, '-2': axisY - 112, '-1': axisY - 56, '1': axisY + 50, '2': axisY + 104, '3': axisY + 158 };
+    ev.forEach(function (e) {
+      var x = X(e[0]), y = tierY[String(e[1])];
+      el('line', { x1: x, y1: axisY, x2: x, y2: y + (e[1] < 0 ? 18 : -12), stroke: e[2], 'stroke-width': 1.2 }, svg);
+      el('circle', { cx: x, cy: axisY, r: 5, fill: e[2] }, svg);
+      label(svg, x, y, e[3], { max: 24, size: 11.5, anchor: e[4], lh: 13 });
+    });
+  })();
+
+  /* Slide 22: deep-roots timeline 1791–1929 (CWE ch. 4) */
+  (function () {
+    var box = document.getElementById('chart-roots');
+    if (!box) return;
+    var W = 1120, H = 250;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var padL = 50, padR = 50, axisY = 130;
+    var t0 = 1780, t1 = 1940;
+    function X(y) { return padL + (y - t0) / (t1 - t0) * (W - padL - padR); }
+    el('line', { x1: padL, y1: axisY, x2: W - padR, y2: axisY, stroke: INK, 'stroke-width': 1.5 }, svg);
+    [1800, 1850, 1900].forEach(function (y) {
+      el('line', { x1: X(y), y1: axisY - 6, x2: X(y), y2: axisY + 6, stroke: INK, 'stroke-width': 1.2 }, svg);
+      txt(el('text', { x: X(y), y: axisY + 22, 'font-size': 12, fill: MUTED, 'text-anchor': 'middle' }, svg), String(y));
+    });
+    var ev = [
+      [1791, -1, 'Hamilton · Report on Manufactures'],
+      [1841,  1, 'List · National System of Political Economy'],
+      [1858, -1, 'Carey · Principles of Social Sciences'],
+      [1879,  1, 'Bismarck · German tariffs'],
+      [1884, -2, 'Schmoller · The Mercantile System'],
+      [1892,  2, 'Witte · Russian finance minister, 1892–1903'],
+      [1904, -1, 'Ashley · British tariff-reform debate', '1900s'],
+      [1929,  1, 'Manoilescu · Theory of Protectionism']
+    ];
+    var tierY = { '-2': axisY - 108, '-1': axisY - 52, '1': axisY + 52, '2': axisY + 100 };
+    ev.forEach(function (e) {
+      var x = X(e[0]), y = tierY[String(e[1])];
+      el('line', { x1: x, y1: axisY, x2: x, y2: y + (e[1] < 0 ? 16 : -28), stroke: ACCENT, 'stroke-width': 1.2 }, svg);
+      el('circle', { cx: x, cy: axisY, r: 5, fill: ACCENT }, svg);
+      txt(el('text', { x: x, y: y - 14, 'font-size': 12, fill: ACCENT, 'text-anchor': 'middle', 'font-weight': 700 }, svg), e[3] || String(e[0]));
+      label(svg, x, y, e[2], { max: 24, size: 11.5, anchor: 'middle', lh: 13 });
+    });
+    // span for Witte
+    el('rect', { x: X(1892), y: axisY - 3, width: X(1903) - X(1892), height: 6, fill: ACCENT, opacity: .35 }, svg);
+  })();
+})();
+</script>
+</body>
+</html>

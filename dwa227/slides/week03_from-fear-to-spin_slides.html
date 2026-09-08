@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 3 · From Fear to Spin</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.72rem, 1vw, .9rem); padding: .45rem .7rem .45rem 0; line-height: 1.3; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 3 · Tue Sep 8</p>
+  <h1>From Fear<br>to Spin</h1>
+  <p class="sub">Regime types on four dimensions; informational autocracy; post-totalitarian China</p>
+</section>
+
+<!-- 2 · Framework: the five ideal types on four dimensions -->
+<section class="slide">
+  <p class="kicker">A framework for the week · Linz &amp; Stepan, Table 1</p>
+  <table class="biblio types">
+    <tr><th></th><th>Democracy</th><th>Authoritarianism</th><th>Totalitarianism</th><th>Post-totalitarianism</th><th>Sultanism</th></tr>
+    <tr><td>Pluralism</td>
+      <td>Responsible political pluralism reinforced by extensive areas of pluralist autonomy in economy, society, and internal life of organizations.</td>
+      <td>Political system with limited, not responsible political pluralism. Often quite extensive social and economic pluralism.</td>
+      <td>No significant economic, social, or political pluralism. Official party has de jure and de facto monopoly of power.</td>
+      <td>Limited, but not responsible social, economic, and institutional pluralism. Almost no political pluralism because party still formally has monopoly of power.</td>
+      <td>Economic and social pluralism does not disappear but is subject to unpredictable and despotic intervention. No rule of law.</td></tr>
+    <tr><td>Ideology</td>
+      <td>Extensive intellectual commitment to citizenship and procedural rules of contestation. Not teleological.</td>
+      <td>Political system without elaborate and guiding ideology but with distinctive mentalities.</td>
+      <td>Elaborate and guiding ideology that articulates a reachable utopia.</td>
+      <td>Guiding ideology still officially exists and is part of the social reality. But weakened commitment to or faith in utopia.</td>
+      <td>Highly arbitrary manipulation of symbols. Extreme glorification of ruler.</td></tr>
+    <tr><td>Mobilization</td>
+      <td>Participation via autonomously generated organization of civil society and competing parties of political society guaranteed by a system of law.</td>
+      <td>Political system without extensive or intensive political mobilization except at some points in their development.</td>
+      <td>Extensive mobilization into a vast array of regime-created obligatory organizations. Effort at mobilization of enthusiasm.</td>
+      <td>Progressive loss of interest by leaders and nonleaders involved in organizing mobilization. Boredom, withdrawal, and ultimately privatization of population&rsquo;s values become an accepted fact.</td>
+      <td>Low but occasional manipulative mobilization of a ceremonial type by coercive or clientelistic methods without permanent organization.</td></tr>
+    <tr><td>Leadership</td>
+      <td>Top leadership produced by free elections and must be exercised within constitutional limits and state of law.</td>
+      <td>A leader or occasionally a small group exercises power within formally ill-defined but actually quite predictable norms.</td>
+      <td>Totalitarian leadership rules with undefined limits and great unpredictability for members and nonmembers. Often charismatic.</td>
+      <td>Growing emphasis by post-totalitarian political elite on personal security. Checks on top leadership via party structures, procedures, and &ldquo;internal democracy.&rdquo;</td>
+      <td>Highly personalistic and arbitrary. No rational-legal constraints. Strong dynastic tendency.</td></tr>
+  </table>
+  <p class="footer-tag">Linz &amp; Stepan, <em>Problems of Democratic Transition and Consolidation</em> (1996), Table 1, &ldquo;Major Modern Regime Ideal Types and Their Defining Characteristics,&rdquo; pp. 157&ndash;158 (reader pagination). Cells abridged to each entry&rsquo;s opening sentences; wording verbatim.</p>
+</section>
+
+<!-- 3 · Why a fifth type -->
+<section class="slide">
+  <p class="kicker">Linz &amp; Stepan · the case for revising the tripartite scheme</p>
+  <blockquote class="smaller">If we use these studies and the traditional tripartite regime type distinction, it turns out that more than 90 percent of modern nondemocratic regimes would have to share the same typological space&mdash;&ldquo;authoritarian.&rdquo; Obviously, with so many heterogenous countries sharing the same typological &ldquo;starting place,&rdquo; this typology of regime type cannot tell us much about the extremely significant range of variation in possible transition paths and consolidation tasks that we believe in fact exists.
+  <cite>Linz &amp; Stepan 1996: 155</cite>
+  </blockquote>
+  <div class="statrow" style="margin-top:1.6rem">
+    <div class="stat"><div class="v">3 &rarr; 5</div><div class="l">regime types: democratic, authoritarian, totalitarian; plus post-totalitarian, sultanistic</div></div>
+    <div class="stat"><div class="v">4</div><div class="l">dimensions: pluralism, ideology, leadership, mobilization</div></div>
+    <div class="stat"><div class="v">1953</div><div class="l">Stalin&rsquo;s death; Soviet-type regimes &ldquo;no longer conformed to the totalitarian model&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Linz &amp; Stepan 1996: 154&ndash;156. &ldquo;These studies&rdquo; = the two cross-national political-rights/civil-liberties indices the authors cite (p. 155).</p>
+</section>
+
+<!-- 4 · Post-totalitarian continuum -->
+<section class="slide">
+  <p class="kicker">Linz &amp; Stepan · post-totalitarianism as a continuum</p>
+  <div class="chartwrap" style="max-width:1080px">
+    <div class="chart" id="chart-continuum" role="img" aria-label="A horizontal spectrum from totalitarianism on the left through early, frozen, and mature post-totalitarianism to out-of-type change on the right, with Czechoslovakia 1977 to 1989 marked under frozen and Hungary 1982 to 1988 marked under mature"></div>
+  </div>
+  <ul class="big compact" style="margin-top:1rem">
+    <li><strong>Early</strong> &mdash; &ldquo;very close to the totalitarian ideal type but differs from it on at least one key dimension, normally some constraints on the leader&rdquo;</li>
+    <li><strong>Frozen</strong> &mdash; &ldquo;almost all the other control mechanisms of the party-state stay in place for a long period and do not evolve&rdquo;</li>
+    <li><strong>Mature</strong> &mdash; &ldquo;significant change in all the dimensions &hellip; except that politically the leading role of the official party is still sacrosanct&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Linz &amp; Stepan 1996: 156. Country-years are the authors&rsquo; own examples (Czechoslovakia 1977&ndash;1989; Hungary 1982&ndash;1988).</p>
+</section>
+
+<!-- 5 · Kádár -->
+<section class="slide">
+  <p class="kicker">Linz &amp; Stepan · Mobilization</p>
+  <blockquote>Thus, Kadar&rsquo;s famous saying, &ldquo;Those who are not against us are for us,&rdquo; is a saying that is conceivable only in a post-totalitarian regime, not in a totalitarian one.
+  <cite>Linz &amp; Stepan 1996: 161</cite>
+  </blockquote>
+  <p class="footer-tag">J&aacute;nos K&aacute;d&aacute;r, First Secretary, Hungarian Socialist Workers&rsquo; Party, 1956&ndash;1988. Same page: &ldquo;Membership is still generalized and obligatory but tends to generate more boredom than enthusiasm.&rdquo;</p>
+</section>
+
+<!-- 6 · Divider: fear -> spin -->
+<section class="slide divider">
+  <p class="kicker">Guriev &amp; Treisman · the argument</p>
+  <blockquote class="smaller">The model of dictatorship that dominated in the twentieth century was based on fear. &hellip; The key to such regimes, we argue, is the manipulation of information. Rather than terrorizing or indoctrinating the population, rulers survive by leading citizens to believe&mdash;rationally but incorrectly&mdash;that they are competent and public-spirited.
+  <cite>Guriev &amp; Treisman, &ldquo;Informational Autocrats,&rdquo; <em style="font-style:normal">Journal of Economic Perspectives</em> 33, no. 4 (2019): 100&ndash;101</cite>
+  </blockquote>
+  <p class="footer-tag">Named cases (p. 102): Ch&aacute;vez&rsquo;s Venezuela, Putin&rsquo;s Russia, Fujimori&rsquo;s Peru, Mahathir&rsquo;s Malaysia, Orb&aacute;n&rsquo;s Hungary, Correa&rsquo;s Ecuador; Lee Kuan Yew&rsquo;s Singapore &ldquo;a pioneer of the model.&rdquo;</p>
+</section>
+
+<!-- 7 · Violence -->
+<section class="slide">
+  <p class="kicker">Fear &rarr; spin · 1 · Violence</p>
+  <h2>Repression by cohort of dictator</h2>
+  <div class="chartwrap" style="max-width:980px">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Earlier cohort</span><span><span class="sw" style="background:#a33232"></span>Dictators taking office in the 2000s</span></div>
+    <div class="chart" id="chart-violence" role="img" aria-label="Paired bars: share of dictators with more than ten political killings per year, 62 percent for the 1980s cohort versus 28 percent for the 2000s cohort; share holding more than one thousand political prisoners in their peak year, 59 percent for the 1970s cohort versus 16 percent for the 2000s; share alleged to have tortured dissidents, 96 percent for the 1980s cohort versus 74 percent for the 2000s"></div>
+  </div>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 103&ndash;105 (Authoritarian Control Techniques dataset); leaders who served &ge; 5 years in a nondemocracy, Polity2 &lt; 6. Exception the authors note: Assad, ~1,500 estimated killings/yr to 2015.</p>
+</section>
+
+<!-- 8 · Lee Kuan Yew -->
+<section class="slide">
+  <p class="kicker">Fear &rarr; spin · 1 · Violence</p>
+  <blockquote class="smaller">I said to Li Peng, you had the world&rsquo;s TV cameras there waiting for the meeting with Gorbachev, and you stage this grand show. His answer was: We are completely inexperienced in these matters.
+  <cite>Lee Kuan Yew, on the June 1989 Tiananmen crackdown, interview quoted in Elegant &amp; Elliott 2005; in Guriev &amp; Treisman 2019: 106</cite>
+  </blockquote>
+  <p class="footer-tag">Same page: Lee &ldquo;detained more than 100 political prisoners (Amnesty International 1980), but later he pioneered low-violence methods&rdquo;; Montesinos (Peru): &ldquo;Remember why Pinochet had his problems. We will not be so clumsy&rdquo; (McMillan &amp; Zoido 2004, in G&amp;T: 107).</p>
+</section>
+
+<!-- 9 · Ideology -->
+<section class="slide">
+  <p class="kicker">Fear &rarr; spin · 2 · Ideology</p>
+  <h2>Nondemocracies with an official ideology</h2>
+  <div class="chartwrap" style="max-width:980px">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Earlier year</span><span><span class="sw" style="background:#a33232"></span>Later year</span></div>
+    <div class="chart" id="chart-ideology" role="img" aria-label="Paired bars: any official ideology, 42 percent in 1983 versus about 20 percent in the 1990s and 2000s; Marxist, 28 percent versus about 7 percent; Islamist, about 2 percent in the mid-1970s versus 6 percent in 2015"></div>
+  </div>
+  <ul class="big compact" style="margin-top:.6rem">
+    <li>Orb&aacute;n: &ldquo;illiberal democracy&rdquo; &middot; Putin: &ldquo;sovereign democracy&rdquo; &middot; Ch&aacute;vez: &ldquo;Chavismo&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 109 and Figure 3. Official ideology = &ldquo;a social, political, or religious doctrine, endorsed by top officials, that influenced the content of laws.&rdquo;</p>
+</section>
+
+<!-- 10 · Institutions -->
+<section class="slide">
+  <p class="kicker">Fear &rarr; spin · 3 · Institutions</p>
+  <h2>Elections and legislatures in nondemocracies</h2>
+  <div class="chartwrap" style="max-width:1000px">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Earlier</span><span><span class="sw" style="background:#a33232"></span>Later</span></div>
+    <div class="chart" id="chart-institutions" role="img" aria-label="Paired bars: dictators originally elected, 14 percent of the 1970s cohort versus 56 percent of the 2000s cohort; elections with alleged pro-incumbent media bias, 35 percent in the early 1990s versus 58 percent in 2012; elections with alleged harassment of opposition candidates, 29 versus 45 percent; elections monitored by international observers, 26 percent in the late 1980s versus 84 percent"></div>
+  </div>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 110&ndash;112; election series from Hyde &amp; Marinov 2012 as reported there. Legislatures, p. 110: 1975, &ldquo;almost one-half of nondemocracies had no elected legislature at all&rdquo;; 2015, &ldquo;more than two-thirds had parliaments in which nongovernment parties had at least a token presence.&rdquo;</p>
+</section>
+
+<!-- 11 · Rhetoric -->
+<section class="slide">
+  <p class="kicker">Fear &rarr; spin · 4 · Rhetoric</p>
+  <h2>Vocabulary of leaders&rsquo; public speeches</h2>
+  <div class="chartwrap" style="max-width:980px">
+    <div class="legend"><span><span class="sw" style="background:#96302a"></span>Overt dictators</span><span><span class="sw" style="background:#e0793f"></span>Informational autocrats</span><span><span class="sw" style="background:#2a5da8"></span>Democrats</span></div>
+    <div class="chart" id="chart-rhetoric" role="img" aria-label="Grouped bars, percent of words: violence 1.41 for overt dictators, 0.51 for informational autocrats, 0.65 for democrats; economic performance 0.99, 2.28, 1.87; public service provision 0.12, 0.58, 0.32"></div>
+  </div>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 116, Table 1 (means, % of words). Overt dictators incl. Castro; informational autocrats incl. Lee Kuan Yew (1980&ndash;90), Putin (post-2008), Nazarbayev; democrats incl. Eisenhower, Nehru (pp. 113&ndash;116).</p>
+</section>
+
+<!-- 12 · Elite vs public -->
+<section class="slide">
+  <p class="kicker">Fear &rarr; spin · 5 · Elite and public</p>
+  <blockquote class="smaller">At least some dictators in power today survive not by preventing the masses from rebelling, but by removing their desire to do so.
+  <cite>Guriev &amp; Treisman 2019: 121</cite>
+  </blockquote>
+  <div class="statrow" style="margin-top:1.8rem">
+    <div class="stat"><div class="v">~8 pts</div><div class="l">maximum gap between elite and public perceptions of media freedom, where the press is censored</div></div>
+    <div class="stat"><div class="v">Polity2 &le; 8</div><div class="l">regimes where the highly educated approve of the leadership less than the general public</div></div>
+    <div class="stat"><div class="v">Polity2 9&ndash;10</div><div class="l">where the highly educated are, &ldquo;if anything, more supportive&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 117&ndash;121, Figures 6&ndash;7; Gallup World Poll, Freedom House press-freedom scores, Polity IV. &ldquo;Elite&rdquo; = respondents with completed tertiary education.</p>
+</section>
+
+<!-- 13 · Divider: China -->
+<section class="slide divider">
+  <p class="kicker">Pei · the case</p>
+  <blockquote class="smaller">An even more worrying aspect of the China puzzle is that since Xi Jinping became paramount leader in 2012, the CCP has reverted to a neo-Stalinist path. Xi has revived one-man rule, escalated political repression to its worst level since Mao Zedong died in 1976, reintroduced ideological indoctrination, and launched an aggressive foreign policy that openly challenges the theory and practice of a liberal, rules-governed international order.
+  <cite>Pei, &ldquo;China: Totalitarianism&rsquo;s Long Shadow,&rdquo; <em style="font-style:normal">Journal of Democracy</em> 32, no. 2 (2021): 6</cite>
+  </blockquote>
+  <p class="footer-tag">&ldquo;The China puzzle&mdash;a relatively high level of socioeconomic development coexisting with a persistent dictatorship&rdquo; (p. 5).</p>
+</section>
+
+<!-- 14 · The China puzzle in numbers -->
+<section class="slide">
+  <p class="kicker">Pei · the puzzle · Table 2</p>
+  <h2>Development at the moment of transition</h2>
+  <div class="chartwrap" style="max-width:1040px">
+    <div class="legend"><span><span class="sw" style="background:#2a5da8"></span>Noncommunist dictatorships, avg. at transition</span><span><span class="sw" style="background:#5e9fe0"></span>Communist dictatorships, avg. at transition</span><span><span class="sw" style="background:#96302a"></span>China, no transition (2017/18)</span></div>
+    <div class="chart" id="chart-table2" role="img" aria-label="Two panels of three bars. Average years of education of adults 25 and older: 6.0 noncommunist, 9.2 communist, 7.9 China in 2018. Per capita income in 2011 PPP dollars: 8,539 noncommunist, 10,717 communist, 13,056 China in 2017"></div>
+  </div>
+  <p class="footer-tag">Pei 2021: 10, Table 2 (education: UNDP; income: Penn World Table 9.1, 2011 PPP USD). Noncommunist cases incl. Brazil 1985, Spain 1975, South Korea 1987, Chile 1988; communist cases incl. Hungary 1989, Poland 1989, Russia 1991, Czech Republic 1989.</p>
+</section>
+
+<!-- 15 · China timeline -->
+<section class="slide">
+  <p class="kicker">Pei · China, 1949&ndash;2018, in Linz &amp; Stepan&rsquo;s terms</p>
+  <div class="chartwrap" style="max-width:1120px">
+    <div class="chart" id="chart-china" role="img" aria-label="Timeline 1949 to 2020 with two shaded spans: totalitarian era 1949 to 1978 and frozen post-totalitarianism 1989 to 2012; events marked at 1949 PRC founded, 1976 Mao dies, 1978 economic reform begins, 1989 Tiananmen crackdown, 2012 Xi becomes general secretary, 2018 presidential term limit removed"></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:.6rem">As Linz and Stepan wrote, the post-Tiananmen regime was a form of &ldquo;frozen post-totalitarianism in which, despite the persistent tolerance of some civil society critics of the regime, almost all the other control mechanisms of the party-state stay[ed] in place for a long period and [did] not evolve.&rdquo;
+  <cite>Pei 2021: 12, quoting Linz &amp; Stepan 1996</cite>
+  </blockquote>
+  <p class="footer-tag">Span labels and dates from Pei 2021: 6, 9 (&ldquo;from 1949 to the beginning of economic reform in 1978&rdquo;), 12, 16. Bracketed tense changes are Pei&rsquo;s.</p>
+</section>
+
+<!-- 16 · Pluralism -->
+<section class="slide">
+  <p class="kicker">Pei · Pluralism</p>
+  <h2>State, party, and the economy since 1989</h2>
+  <div class="statrow" style="margin-top:1.2rem; gap:2.2rem">
+    <div class="stat"><div class="v">54 mn</div><div class="l">employed by fully state-owned entities, 2019</div></div>
+    <div class="stat"><div class="v">50 &rarr; 92 mn</div><div class="l">CCP members, 1991&ndash;2019 (4.3% &rarr; 6.7% of the populace)</div></div>
+    <div class="stat"><div class="v">~&frac14; of GDP</div><div class="l">from state-owned enterprises, 2017; 16% of all workers</div></div>
+    <div class="stat"><div class="v">83%</div><div class="l">of bank credit to nonfinancial firms went to SOEs, 2016</div></div>
+  </div>
+  <ul class="big compact" style="margin-top:1.6rem">
+    <li>Banned: independent religious groups, free trade unions, student organizations, professional associations</li>
+    <li>Most &ldquo;civil society groups&rdquo; = &ldquo;government-organized nongovernmental organizations&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Pei 2021: 13&ndash;15; employment and Party figures from the China Statistical Yearbook 2020 and Party sources as cited there; SOE figures pp. 14&ndash;15.</p>
+</section>
+
+<!-- 17 · Leadership -->
+<section class="slide">
+  <p class="kicker">Pei · Leadership</p>
+  <h2>Deng&rsquo;s rules and Xi&rsquo;s offices</h2>
+  <ul class="big compact">
+    <li>1980s: Deng and colleagues set rules of &ldquo;collective leadership, term limits, and elite security&rdquo;</li>
+    <li>No formal age or tenure limit for Politburo members, the general secretary, or the chair of the Central Military Commission</li>
+    <li>Only term-limited post: the PRC presidency &mdash; &ldquo;largely a ceremonial post&rdquo;</li>
+    <li>2012: Xi general secretary; Bo Xilai imprisoned for life &middot; 2013: president &middot; 2018: presidential term limit removed</li>
+    <li>&ldquo;Xi now fills all three of the top posts &hellip; with no term limits&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Pei 2021: 15&ndash;16. Deng chaired the Central Military Commission until November 1989 while holding neither the presidency nor the general secretaryship (p. 15&ndash;16).</p>
+</section>
+
+<!-- 18 · Ideology: Xi on the Soviet collapse -->
+<section class="slide">
+  <p class="kicker">Pei · Ideology</p>
+  <blockquote>&ldquo;An important reason&rdquo; why Mikhail Gorbachev was able to send &ldquo;a great [communist] party&rdquo; to oblivion, said Xi, &ldquo;was that their ideals and convictions wavered. &hellip; In the end nobody was a real man, nobody came out to resist.&rdquo;
+  <cite>Xi Jinping to a closed gathering of CCP officials, shortly after becoming general secretary (2012); in Pei 2021: 17</cite>
+  </blockquote>
+  <p class="footer-tag">Pei 2021: 17. Xi on SOEs, CCP Central Committee, October 2020: &ldquo;They must be stronger, better, and larger&rdquo; (p. 14).</p>
+</section>
+
+<!-- 19 · Repression -->
+<section class="slide">
+  <p class="kicker">Pei · Mobilization and coercion</p>
+  <h2>The coercive apparatus since 1989</h2>
+  <div class="statrow" style="margin-top:1.2rem">
+    <div class="stat"><div class="v">~8&times;</div><div class="l">real increase in domestic-security spending, 2002&ndash;2018</div></div>
+    <div class="stat"><div class="v">1999</div><div class="l">Falun Gong campaign: a movement &ldquo;with more than a hundred-million followers&rdquo; dismantled</div></div>
+    <div class="stat"><div class="v">&ge; 1 mn</div><div class="l">Muslims held in mass-detention facilities in Xinjiang</div></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:1.8rem">Due to security-forces modernization since 1989, China&rsquo;s post-totalitarian regime now wields as much repressive capacity as a classic totalitarian regime, if not more.
+  <cite>Pei 2021: 13&ndash;14</cite>
+  </blockquote>
+  <p class="footer-tag">Pei 2021: 13&ndash;14; spending figure from the China Statistical Yearbook as cited there.</p>
+</section>
+
+<!-- 20 · Pei's three propositions -->
+<section class="slide">
+  <p class="kicker">Pei · three propositions</p>
+  <ol class="props">
+    <li>Legacies of totalitarianism blunt and neutralize the democratizing effects of economic modernization.</li>
+    <li>If the interests entrenched in the Leninist party-state remain in place, economic reform will lose momentum and the CCP regime will grow even more resistant to democratization and hostile to democratic values.</li>
+    <li>Lack of political reform, including democratization, greatly raises the risks of reversion to neo-Stalinist rule.</li>
+  </ol>
+  <p class="footer-tag">Pei 2021: 12, 14, 15 (the propositions&rsquo; own wording). Same essay, p. 8: &ldquo;A Leninist party, with its insistence that it must rule alone and free of competition, is the heart of the problem.&rdquo;</p>
+</section>
+
+<!-- 21 · Modernization: two readings -->
+<section class="slide">
+  <p class="kicker">Development and regime type · two readings</p>
+  <div class="twocol">
+    <div class="col">
+      <p class="collabel">Guriev &amp; Treisman</p>
+      <p class="colq">In highly modern countries, the informed elite is generally too large for manipulation to work, and censoring all private media is costly: democracy is the only option. In undeveloped countries, repression often remains more cost effective. But at intermediate levels of development, both democracy and informational autocracy are possible outcomes.
+      <cite>Guriev &amp; Treisman 2019: 117</cite></p>
+    </div>
+    <div class="col">
+      <p class="collabel">Pei</p>
+      <p class="colq">Communist dictatorships that go for economic reform without political democratization, like those in China and Vietnam, may achieve swift socioeconomic progress. But the legacy institutions of totalitarianism will allow the democratizing effects of development to be blunted and perhaps even neutralized altogether.
+      <cite>Pei 2021: 7&ndash;8</cite></p>
+    </div>
+  </div>
+  <p class="footer-tag">Both essays start from Lipset, &ldquo;Some Social Requisites of Democracy&rdquo; (1959); Pei 2021: 5; Guriev &amp; Treisman 2019: 102, 117.</p>
+</section>
+
+<!-- 22 · Closing synthesis -->
+<section class="slide">
+  <p class="kicker">This week, mapped</p>
+  <h2>Four dimensions, three texts</h2>
+  <table class="biblio wide">
+    <tr><th></th><th>Totalitarian (L&amp;S)</th><th>Post-totalitarian (L&amp;S)</th><th>Informational autocracy (G&amp;T)</th><th>China under Xi (Pei)</th></tr>
+    <tr><td>Pluralism</td>
+      <td>&ldquo;No significant economic, social, or political pluralism&rdquo; <span class="pg">157</span></td>
+      <td>&ldquo;Limited, but not responsible social, economic, and institutional pluralism&rdquo; <span class="pg">157</span></td>
+      <td>By 2015, &gt; &frac23; of nondemocracies had legislatures with nongovernment parties present <span class="pg">110</span></td>
+      <td>54 mn state employees; GONGOs; independent unions and associations banned <span class="pg">13</span></td></tr>
+    <tr><td>Ideology</td>
+      <td>&ldquo;Elaborate and guiding ideology that articulates a reachable utopia&rdquo; <span class="pg">157</span></td>
+      <td>&ldquo;Weakened commitment to or faith in utopia&rdquo; <span class="pg">157</span></td>
+      <td>Official ideology: 42% of nondemocracies (1983) &rarr; ~20% (1990s&ndash;2000s) <span class="pg">109</span></td>
+      <td>&ldquo;Reintroduced ideological indoctrination&rdquo; <span class="pg">6</span></td></tr>
+    <tr><td>Leadership</td>
+      <td>&ldquo;Undefined limits and great unpredictability&rdquo; <span class="pg">158</span></td>
+      <td>&ldquo;Checks on top leadership via party structures, procedures&rdquo; <span class="pg">158</span></td>
+      <td>Originally elected: 14% (1970s cohort) &rarr; 56% (2000s) <span class="pg">110</span></td>
+      <td>Presidential term limit removed 2018; three top posts, no term limits <span class="pg">16</span></td></tr>
+    <tr><td>Mobilization</td>
+      <td>&ldquo;Extensive mobilization into &hellip; regime-created obligatory organizations&rdquo; <span class="pg">157</span></td>
+      <td>&ldquo;Boredom, withdrawal, and ultimately privatization&rdquo; <span class="pg">157</span></td>
+      <td>Words of violence in speeches: 0.51% vs. 1.41% for overt dictators <span class="pg">116</span></td>
+      <td>Domestic-security spending ~8&times; in real terms, 2002&ndash;18 <span class="pg">13</span></td></tr>
+  </table>
+  <p class="footer-tag">Page numbers per cell: Linz &amp; Stepan 1996 (reader pagination); Guriev &amp; Treisman 2019; Pei 2021.</p>
+</section>
+
+<!-- 23 · Logistics -->
+<section class="slide">
+  <p class="kicker">This week and next</p>
+  <ul class="big">
+    <li><strong>Wed Sep 9, 8 pm</strong> &mdash; Connector/Applier post in the shared doc</li>
+    <li><strong>Thu Sep 10</strong> &mdash; no class</li>
+    <li><strong>Tue Sep 15</strong> &mdash; Quiz 1, in class; Week 4 readings: <em>The Narrow Corridor</em> ch. 1&ndash;2, Friedman ch. 1, Olson 1993, Mart&iacute;nez 2022</li>
+    <li><strong>Thu Sep 17</strong> &mdash; Sergii Glebov, noon talk and class visit</li>
+  </ul>
+  <p class="footer-tag">Per the course syllabus of record.</p>
+</section>
+
+<div class="counter" id="counter">1 / 23</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (figures sourced per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var C2005 = '#2f6bb3', C2025 = '#a33232';
+  var SW = ['#2a5da8', '#5e9fe0', '#e0793f', '#96302a'];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    if (h < 2 * r) r = h / 2;
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  /* Grouped vertical bars. groups: [{label, sub, values:[..]}], series: [{name,color}], fmt(v) */
+  function groupedBars(boxId, groups, series, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 940, H = opts.H || 330;
+    var padL = 60, padR = 20, padT = 24, padB = opts.padB || 64;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = opts.max || Math.max.apply(null, groups.map(function (g) { return Math.max.apply(null, g.values); })) * 1.15;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var gw = plotW / groups.length;
+    var n = series.length;
+    var bw = Math.min(opts.bw || 70, (gw * 0.7) / n);
+    // axis
+    var ticks = opts.ticks || 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = max * t / ticks;
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#e6e9ee', 'stroke-width': 1 }, svg);
+      txt(el('text', { x: padL - 10, y: y + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), (opts.fmtAxis || function (x) { return Math.round(x); })(v));
+    }
+    if (opts.yLabel) {
+      txt(el('text', { x: 14, y: padT + plotH / 2, 'font-size': '12', fill: MUTED, 'text-anchor': 'middle',
+        transform: 'rotate(-90 14 ' + (padT + plotH / 2) + ')' }, svg), opts.yLabel);
+    }
+    groups.forEach(function (g, i) {
+      var gx = padL + i * gw + gw / 2;
+      var total = n * bw + (n - 1) * 8;
+      g.values.forEach(function (v, j) {
+        var x = gx - total / 2 + j * (bw + 8);
+        var h = v / max * plotH;
+        var y = padT + plotH - h;
+        barPath(x, y, bw, h, svg, series[j].color, series[j].name + ' — ' + g.label + ': ' + (opts.fmt || String)(v));
+        txt(el('text', { x: x + bw / 2, y: y - 6, 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: INK }, svg), (opts.fmt || String)(v));
+        if (g.subs && g.subs[j]) {
+          txt(el('text', { x: x + bw / 2, y: padT + plotH + 16, 'text-anchor': 'middle', 'font-size': '11', fill: MUTED }, svg), g.subs[j]);
+        }
+      });
+      var ly = padT + plotH + (g.subs ? 34 : 20);
+      wrap(g.label, opts.wrapAt || 28).forEach(function (ln, k) {
+        txt(el('text', { x: gx, y: ly + k * 15, 'text-anchor': 'middle', 'font-size': '13', fill: INK }, svg), ln);
+      });
+    });
+  }
+
+  /* --- Slide 4: post-totalitarian continuum --- */
+  (function () {
+    var box = document.getElementById('chart-continuum');
+    if (!box) return;
+    var W = 1080, H = 200, y0 = 78, x0 = 60, x1 = W - 60;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var stops = [
+      { t: 0, name: 'Totalitarianism', color: SW[3] },
+      { t: 0.25, name: 'Early post-totalitarianism', color: SW[2] },
+      { t: 0.5, name: 'Frozen post-totalitarianism', color: SW[1], ex: 'Czechoslovakia 1977–1989' },
+      { t: 0.75, name: 'Mature post-totalitarianism', color: SW[0], ex: 'Hungary 1982–1988' },
+      { t: 1, name: 'Out-of-type change', color: MUTED }
+    ];
+    function X(t) { return x0 + t * (x1 - x0); }
+    el('line', { x1: x0, y1: y0, x2: x1, y2: y0, stroke: '#d9dde3', 'stroke-width': 3 }, svg);
+    el('path', { d: 'M' + (x1 - 10) + ',' + (y0 - 7) + ' L' + (x1 + 2) + ',' + y0 + ' L' + (x1 - 10) + ',' + (y0 + 7) + ' Z', fill: '#d9dde3' }, svg);
+    stops.forEach(function (s, i) {
+      var x = X(s.t);
+      el('circle', { cx: x, cy: y0, r: 9, fill: s.color, stroke: '#fcfbf9', 'stroke-width': 3 }, svg);
+      var anchor = i === 0 ? 'start' : i === stops.length - 1 ? 'end' : 'middle';
+      var tx = i === 0 ? x - 10 : i === stops.length - 1 ? x + 10 : x;
+      wrap(s.name, 18).forEach(function (ln, k) {
+        txt(el('text', { x: tx, y: y0 - 30 + k * 16, 'text-anchor': anchor, 'font-size': '14.5', 'font-weight': '700', fill: INK }, svg), ln);
+      });
+      if (s.ex) {
+        txt(el('text', { x: x, y: y0 + 32, 'text-anchor': 'middle', 'font-size': '13', 'font-style': 'italic', fill: MUTED }, svg), s.ex);
+      }
+    });
+    txt(el('text', { x: X(0.5), y: y0 + 60, 'text-anchor': 'middle', 'font-size': '12.5', fill: MUTED }, svg),
+      'Continuum as described by Linz & Stepan 1996: 156; positions schematic, not measured');
+  })();
+
+  /* --- Slide 7: violence --- */
+  groupedBars('chart-violence', [
+    { label: '> 10 political killings per year', values: [62, 28], subs: ['1980s cohort', '2000s cohort'] },
+    { label: '> 1,000 political prisoners, peak year', values: [59, 16], subs: ['1970s cohort', '2000s cohort'] },
+    { label: 'Torture of dissidents alleged', values: [96, 74], subs: ['1980s cohort', '2000s cohort'] }
+  ], [{ name: 'Earlier cohort', color: C2005 }, { name: '2000s cohort', color: C2025 }],
+  { max: 100, ticks: 4, fmt: function (v) { return v + '%'; }, fmtAxis: function (v) { return v + '%'; }, yLabel: '% of dictators', H: 340, padB: 72 });
+
+  /* --- Slide 9: ideology --- */
+  groupedBars('chart-ideology', [
+    { label: 'Any official ideology', values: [42, 20], subs: ['1983', '1990s–2000s'] },
+    { label: 'Marxist', values: [28, 7], subs: ['1983', '1990s–2000s'] },
+    { label: 'Islamist', values: [2, 6], subs: ['mid-1970s', '2015'] }
+  ], [{ name: 'Earlier', color: C2005 }, { name: 'Later', color: C2025 }],
+  { max: 50, ticks: 5, fmt: function (v) { return (v === 20 || v === 7 || v === 2 ? '~' : '') + v + '%'; }, fmtAxis: function (v) { return v + '%'; }, yLabel: '% of nondemocracies', H: 300, padB: 72 });
+
+  /* --- Slide 10: institutions --- */
+  groupedBars('chart-institutions', [
+    { label: 'Dictator originally elected', values: [14, 56], subs: ['1970s', '2000s'] },
+    { label: 'Pro-incumbent media bias alleged', values: [35, 58], subs: ['early 1990s', '2012'] },
+    { label: 'Harassment of opposition alleged', values: [29, 45], subs: ['early 1990s', '2012'] },
+    { label: 'International observers present', values: [26, 84], subs: ['late 1980s', 'latest'] }
+  ], [{ name: 'Earlier', color: C2005 }, { name: 'Later', color: C2025 }],
+  { max: 100, ticks: 4, fmt: function (v) { return v + '%'; }, fmtAxis: function (v) { return v + '%'; }, yLabel: '% of cases', H: 330, padB: 72, wrapAt: 22, W: 1000, bw: 56 });
+
+  /* --- Slide 11: rhetoric --- */
+  groupedBars('chart-rhetoric', [
+    { label: 'Words associated with violence', values: [1.41, 0.51, 0.65] },
+    { label: 'Economic performance', values: [0.99, 2.28, 1.87] },
+    { label: 'Public service provision', values: [0.12, 0.58, 0.32] }
+  ], [{ name: 'Overt dictators', color: SW[3] }, { name: 'Informational autocrats', color: SW[2] }, { name: 'Democrats', color: SW[0] }],
+  { max: 2.5, ticks: 5, fmt: function (v) { return v.toFixed(2) + '%'; }, fmtAxis: function (v) { return v.toFixed(1) + '%'; }, yLabel: '% of words in speeches', H: 320, bw: 58 });
+
+  /* --- Slide 14: Pei Table 2 --- */
+  (function () {
+    var box = document.getElementById('chart-table2');
+    if (!box) return;
+    var W = 1040, H = 300;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var panels = [
+      { title: 'Average years of education, adults 25+', values: [6.0, 9.2, 7.9], subs: ['Noncommunist avg.', 'Communist avg.', 'China (2018)'], max: 12, fmt: function (v) { return v.toFixed(1); } },
+      { title: 'Per capita income, 2011 PPP US$', values: [8539, 10717, 13056], subs: ['Noncommunist avg.', 'Communist avg.', 'China (2017)'], max: 15000, fmt: function (v) { return v.toLocaleString('en-US'); } }
+    ];
+    var colors = [SW[0], SW[1], SW[3]];
+    var pw = W / 2, padT = 40, padB = 50, plotH = H - padT - padB, bw = 90, gap = 40;
+    panels.forEach(function (p, pi) {
+      var px = pi * pw;
+      txt(el('text', { x: px + pw / 2, y: 20, 'text-anchor': 'middle', 'font-size': '14', 'font-weight': '700', fill: INK }, svg), p.title);
+      var total = 3 * bw + 2 * gap, sx = px + (pw - total) / 2;
+      el('line', { x1: px + 40, y1: padT + plotH, x2: px + pw - 40, y2: padT + plotH, stroke: '#d9dde3', 'stroke-width': 1.5 }, svg);
+      p.values.forEach(function (v, i) {
+        var x = sx + i * (bw + gap), h = v / p.max * plotH, y = padT + plotH - h;
+        barPath(x, y, bw, h, svg, colors[i], p.subs[i] + ': ' + p.fmt(v));
+        txt(el('text', { x: x + bw / 2, y: y - 7, 'text-anchor': 'middle', 'font-size': '15', 'font-weight': '700', fill: INK }, svg), p.fmt(v));
+        wrap(p.subs[i], 14).forEach(function (ln, k) {
+          txt(el('text', { x: x + bw / 2, y: padT + plotH + 18 + k * 14, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), ln);
+        });
+      });
+    });
+  })();
+
+  /* --- Slide 15: China timeline with spans --- */
+  (function () {
+    var box = document.getElementById('chart-china');
+    if (!box) return;
+    var W = 1120, H = 300, y0 = 150, x0 = 70, x1 = W - 70;
+    var yMin = 1945, yMax = 2028;
+    function X(year) { return x0 + (year - yMin) / (yMax - yMin) * (x1 - x0); }
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var spans = [
+      { a: 1949, b: 1978, name: 'Totalitarian era', color: SW[3] },
+      { a: 1989, b: 2012, name: '“Frozen post-totalitarianism”', color: SW[1] },
+      { a: 2012, b: 2021, name: 'Neo-Stalinist', color: SW[2], small: true }
+    ];
+    spans.forEach(function (s) {
+      var r = el('rect', { x: X(s.a), y: y0 - 22, width: X(s.b) - X(s.a), height: 44, rx: 6, fill: s.color, opacity: .9 }, svg);
+      txt(el('title', {}, r), s.name + ' ' + s.a + '–' + s.b);
+      txt(el('text', { x: (X(s.a) + X(s.b)) / 2, y: y0 + 5, 'text-anchor': 'middle', 'font-size': s.small ? '11.5' : '13.5', 'font-weight': '700', fill: '#fff' }, svg), s.name);
+    });
+    el('line', { x1: x0, y1: y0 + 22, x2: x1, y2: y0 + 22, stroke: '#d9dde3', 'stroke-width': 2 }, svg);
+    var events = [
+      [1949, '1949', 'PRC founded', 'up', 1],
+      [1976, '1976', 'Mao dies', 'up', 2],
+      [1978, '1978', 'Economic reform begins', 'down', 1],
+      [1989, '1989', 'Tiananmen crackdown', 'up', 1],
+      [2012, '2012', 'Xi general secretary', 'up', 2],
+      [2018, '2018', 'Presidential term limit removed', 'down', 1]
+    ];
+    events.forEach(function (ev, i) {
+      var x = X(ev[0]), up = ev[3] === 'up', tier = ev[4];
+      var anchor = i === 0 ? 'start' : i === events.length - 1 ? 'end' : 'middle';
+      var tx = anchor === 'start' ? x - 6 : anchor === 'end' ? x + 6 : x;
+      var base = up ? y0 - 22 : y0 + 22;
+      var ly = up ? base - 16 - (tier - 1) * 44 : base + 44 + (tier - 1) * 44;
+      el('line', { x1: x, y1: up ? ly + 6 : base, x2: x, y2: up ? base : ly - 16, stroke: MUTED, 'stroke-width': 1.2 }, svg);
+      el('circle', { cx: x, cy: up ? y0 - 22 : y0 + 22, r: 5, fill: ACCENT, stroke: '#fcfbf9', 'stroke-width': 2 }, svg);
+      txt(el('text', { x: tx, y: up ? ly - 14 : ly, 'text-anchor': anchor, 'font-size': '13', 'font-weight': '700', fill: ACCENT }, svg), ev[1]);
+      txt(el('text', { x: tx, y: up ? ly : ly + 16, 'text-anchor': anchor, 'font-size': '13', fill: INK }, svg), ev[2]);
+    });
+    [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020].forEach(function (yr) {
+      txt(el('text', { x: X(yr), y: y0 + 36, 'text-anchor': 'middle', 'font-size': '11', fill: MUTED }, svg), yr);
+    });
+  })();
+})();
+</script>
+</body>
+</html>
