@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 4 · Capitalism under Democracy and Dictatorship</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  blockquote + blockquote { margin-top: 1.6rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  blockquote.smallest cite { margin-top: .8rem; }
+  .statrow.words .stat .v { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+  .statrow.words .stat { flex: 1 1 0; min-width: 0; }
+  .statrow.words .stat .l { max-width: none; }
+  .statrow.compact { margin-top:.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .statrow.compact .stat .l { font-size: clamp(.82rem, 1.25vw, .98rem); max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ul.big.serif li { font-family: var(--serif); }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  ol.props li .probe { display: block; font-family: var(--sans); font-size: .78em; color: var(--muted); margin-top: .3rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.78rem, 1.08vw, 1rem); padding: .5rem .8rem .5rem 0; line-height: 1.32; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  table.biblio.types td .pg { color: var(--muted); font-size: .82em; white-space: nowrap; font-family: var(--sans); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
+  .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
+  .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 4 · Tue Sep 15</p>
+  <h1>Capitalism under<br>Democracy and Dictatorship</h1>
+</section>
+
+<!-- 2 · Quiz 1 -->
+<section class="slide">
+  <p class="kicker">Quiz 1 · 1:20&ndash;1:35</p>
+  <h2>Quiz 1</h2>
+  <ul class="big">
+    <li>Handwritten, closed notes. Fifteen minutes.</li>
+    <li>Part I &mdash; five multiple-choice items. Part II &mdash; one paragraph.</li>
+    <li>Name on both pages.</li>
+    <li>&ldquo;Ideas count, penmanship doesn&rsquo;t.&rdquo;</li>
+  </ul>
+</section>
+
+<!-- 3 · Glebov -->
+<section class="slide">
+  <p class="kicker">Thursday Sep 17 · guest</p>
+  <h2>Sergii Glebov</h2>
+  <p class="sub">&ldquo;Russia&rsquo;s War on Ukraine and European (In)Security&rdquo;</p>
+  <ul class="big">
+    <li><strong>12:00&ndash;1:00 pm</strong> &mdash; public talk, Choi Auditorium (Young Initiative)</li>
+    <li><strong>1:20 pm</strong> &mdash; visits this class, Johnson 104</li>
+    <li><strong>Wed Sep 16, 8 pm</strong> &mdash; Connector/Applier discussion-question post due in the shared doc</li>
+    <li>Visiting Associate Professor, UC Irvine; Associate Professor, Odesa I. I. Mechnikov National University</li>
+  </ul>
+</section>
+
+<!-- 4 · Framework -->
+<section class="slide">
+  <p class="kicker">A framework for the week · three texts, one relationship</p>
+  <h2>Who checks whom</h2>
+  <table class="biblio wide">
+    <tr><th>Text</th><th>Starting condition</th><th>What checks concentrated power</th><th>Prediction about growth</th></tr>
+    <tr><td>Friedman 1962, ch. 1</td>
+      <td>&ldquo;the typical state of mankind is tyranny, servitude, and misery&rdquo; <span class="pg">2</span></td>
+      <td>Economic power held apart from political power: &ldquo;the one to offset the other&rdquo; <span class="pg">2</span></td>
+      <td>&ldquo;capitalism is a necessary condition for political freedom. Clearly it is not a sufficient condition&rdquo; <span class="pg">2</span></td></tr>
+    <tr><td>Olson 1993</td>
+      <td>Anarchy: &ldquo;uncoordinated competitive theft by &lsquo;roving bandits&rsquo;&rdquo; <span class="pg">567</span></td>
+      <td>A &ldquo;stationary bandit&rdquo; ends anarchy; only &ldquo;a lasting democracy&rdquo; secures property and contract across generations <span class="pg">567, 572</span></td>
+      <td>Autocracies &ldquo;will rarely have good economic performance for more than a generation&rdquo; <span class="pg">567</span></td></tr>
+    <tr><td>Acemoglu &amp; Robinson 2019, chs. 1&ndash;2</td>
+      <td>Absent Leviathan (no state) or Despotic Leviathan (unchecked state)</td>
+      <td>&ldquo;capable states matched by capable societies&rdquo; &mdash; the Shackled Leviathan <span class="pg">66</span></td>
+      <td>Liberty and prosperity inside &ldquo;the corridor&rdquo;; despotism &ldquo;in its DNA&rdquo; outside it <span class="pg">72</span></td></tr>
+    <tr><td>Mart&iacute;nez 2022</td>
+      <td>GDP statistics are produced by governments</td>
+      <td>&ldquo;the disciplining role of democratic institutions&rdquo;</td>
+      <td>&ldquo;Autocracies overstate yearly GDP growth by approximately 35%&rdquo;</td></tr>
+  </table>
+</section>
+
+<!-- 5 · Divider: Friedman -->
+<section class="slide divider">
+  <p class="kicker">Argument 1 · Friedman · the market as a check</p>
+  <blockquote>History suggests only that capitalism is a necessary condition for political freedom. Clearly it is not a sufficient condition.
+    <cite>Milton Friedman, <em>Capitalism and Freedom</em> (1962), ch. 1, &ldquo;The Relation between Economic Freedom and Political Freedom&rdquo; (excerpt p. 2)</cite></blockquote>
+</section>
+
+<!-- 6 · Friedman: two ways -->
+<section class="slide">
+  <p class="kicker">Argument 1 · Friedman · two ways of coordinating</p>
+  <h2>&ldquo;Fundamentally, there are only two ways of co-ordinating the economic activities of millions&rdquo;</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">One</div>
+      <p class="colq">&ldquo;central direction involving the use of coercion &mdash; the technique of the army and of the modern totalitarian state.&rdquo;</p></div>
+    <div class="col"><div class="collabel">The other</div>
+      <p class="colq">&ldquo;voluntary co-operation of individuals &mdash; the technique of the market place.&rdquo;</p></div>
+  </div>
+  <p class="sub">&ldquo;Exchange can therefore bring about co-ordination without coercion.&rdquo;</p>
+  <p class="footer-tag">Friedman 1962, ch. 1 (excerpt p. 4).</p>
+</section>
+
+<!-- 7 · Friedman: fixed total of political power -->
+<section class="slide">
+  <p class="kicker">Argument 1 · Friedman · concentration and dispersion of power</p>
+  <blockquote class="smaller">There can be many millionaires in one large economy. But can there be more than one really outstanding leader, one person on whom the energies and enthusiasms of his countrymen are centered? &hellip; there seems to be something like a fixed total of political power to be distributed. Consequently, if economic power is joined to political power, concentration seems almost inevitable. On the other hand, if economic power is kept in separate hands from political power, it can serve as a check and a counter to political power.
+    <cite>Friedman 1962, ch. 1 (excerpt p. 5)</cite></blockquote>
+</section>
+
+<!-- 8 · Friedman: capitalist but not free -->
+<section class="slide">
+  <p class="kicker">Argument 1 · Friedman · the cases he lists</p>
+  <h2>&ldquo;Economic arrangements that are fundamentally capitalist and political arrangements that are not free&rdquo;</h2>
+  <ul class="big">
+    <li>Fascist Italy &middot; Fascist Spain &middot; Germany &ldquo;at various times in the last seventy years&rdquo;</li>
+    <li>Japan before World Wars I and II &middot; tsarist Russia &ldquo;in the decades before World War I&rdquo;</li>
+    <li>&ldquo;in each, private enterprise was the dominant form of economic organization&rdquo;</li>
+    <li>&ldquo;I know of no example in time or place of a society that has been marked by a large measure of political freedom, and that has not also used something comparable to a free market&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Friedman 1962, ch. 1 (excerpt p. 2). Thesis of the chapter: &ldquo;a society which is socialist cannot also be democratic, in the sense of guaranteeing individual freedom&rdquo; (excerpt p. 1).</p>
+</section>
+
+<!-- 9 · Context: Hobbes, the state of nature -->
+<section class="slide">
+  <p class="kicker">Context · Hobbes · the state of nature</p>
+  <blockquote class="smaller">In such condition there is no place for industry, because the fruit thereof is uncertain: and consequently no culture of the earth; no navigation, nor use of the commodities that may be imported by sea; no commodious building; &hellip; no arts; no letters; no society; and which is worst of all, continual fear, and danger of violent death; and the life of man, solitary, poor, nasty, brutish, and short.
+    <cite>Thomas Hobbes, <em>Leviathan</em> (1651), ch. XIII, &ldquo;Of the Naturall Condition of Mankind, as concerning their Felicity, and Misery&rdquo;</cite></blockquote>
+  <p class="footer-tag">Not assigned this week (assigned: <em>Narrow Corridor</em> 1&ndash;2, Friedman ch. 1, Olson 1993, Martínez 2022). Public-domain text; cited by chapter, the standard convention, since pagination varies by edition.</p>
+</section>
+
+<!-- 10 · Context: Locke, the ends of government -->
+<section class="slide">
+  <p class="kicker">Context · Locke · the ends of government</p>
+  <blockquote>The great and chief end, therefore, of men&rsquo;s uniting into commonwealths, and putting themselves under government, is the preservation of their property.
+    <cite>John Locke, <em>Second Treatise of Government</em> (1689), &sect;124</cite></blockquote>
+  <p class="sub">Discussion: as you read Olson, which problem is he solving &mdash; Hobbes&rsquo;s (any power sufficient to end the war of all against all) or Locke&rsquo;s (a power confined to preserving what people already hold)?</p>
+  <p class="footer-tag">Not assigned this week. Locke glosses &ldquo;property&rdquo; broadly, as &ldquo;Lives, Liberties and Estates&rdquo; (&sect;87, &sect;123). Cited by section, the standard convention for this text.</p>
+</section>
+
+<!-- 11 · Divider: Olson -->
+<section class="slide divider">
+  <p class="kicker">Argument 2 · Olson · the stationary bandit</p>
+  <blockquote>Monarchy is the best kind of government because the King is then owner of the country. Like the owner of a house, when the wiring is wrong, he fixes it.
+    <cite>A village monarchist in southern Italy, in Edward Banfield, <em>The Moral Basis of a Backward Society</em> (1958), p. 26 &mdash; quoted in Mancur Olson, &ldquo;Dictatorship, Democracy, and Development,&rdquo; <em>APSR</em> 87(3), 1993: 567</cite></blockquote>
+</section>
+
+<!-- 12 · Olson: roving to stationary -->
+<section class="slide">
+  <p class="kicker">Argument 2 · Olson · &ldquo;the first blessing of the invisible hand&rdquo;</p>
+  <div class="chartwrap" style="max-width:1100px;margin-top:.4rem">
+    <div class="chart" id="chart-bandit" role="img" aria-label="Three-stage diagram: anarchy with roving bandits, where theft destroys the incentive to produce; the stationary bandit, who monopolizes theft as taxation and provides order and public goods; and the encompassing interest, a share of any increase in the domain's income."></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:.6rem">the rational, self-interested leader of a band of roving bandits is led, as though by an invisible hand, to settle down, wear a crown, and replace anarchy with government.
+    <cite>Olson 1993: 568. Example on the same page: the warlord Feng Yu-hsiang, 1920s China, &ldquo;noted for the exceptional extent to which he used his army for suppressing bandits&rdquo; and for defeating the roving bandit White Wolf.</cite></blockquote>
+  <p class="footer-tag">Diagram: schematic of Olson 1993: 567&ndash;569 (&ldquo;encompassing interest,&rdquo; p. 569). Not data.</p>
+</section>
+
+<!-- 13 · Olson: the grasping hand -->
+<section class="slide">
+  <p class="kicker">Argument 2 · Olson · &ldquo;the grasping hand&rdquo;</p>
+  <h2>The revenue-maximizing tax rate</h2>
+  <div class="chartwrap" style="max-width:940px">
+    <div class="chart" id="chart-laffer" role="img" aria-label="Schematic curve of tax receipts against tax rate, rising then falling. The autocrat's optimum sits at the peak of the curve; the majority's optimum sits to the left of it, at a lower tax rate."></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:.6rem">Tax receipts will &mdash; if we start with low taxation &mdash; increase as tax rates increase, but after the revenue-maximizing rate is reached, higher tax rates distort incentives and reduce income so much that tax collections fall. The rational self-interested autocrat chooses the revenue-maximizing tax rate.
+    <cite>Olson 1993: 569&ndash;570</cite></blockquote>
+  <p class="footer-tag">Schematic of Olson 1993: 569&ndash;570 (citing Schumpeter and Ibn Khaldun); not data. Worked example on p. 570: with a revenue-maximizing rate of one-third and a majority earning one-third of national income in the market, the autocrat &ldquo;just breaks even on this last dollar of tax collection,&rdquo; while a majority at the same rate &ldquo;would lose two dollars.&rdquo;</p>
+</section>
+
+<!-- 14 · Olson: time horizon -->
+<section class="slide">
+  <p class="kicker">Argument 2 · Olson · &ldquo;long live the king&rdquo;</p>
+  <ul class="big">
+    <li>&ldquo;At the limit, when an autocrat has no reason to consider the future output of the society at all, his incentives are those of a roving bandit and that is what he becomes.&rdquo; <em>(571)</em></li>
+    <li>&ldquo;the promises of an autocrat are never completely credible&rdquo; <em>(571)</em></li>
+    <li>&ldquo;There is no private property without government!&rdquo; <em>(572)</em></li>
+    <li>&ldquo;History provides not even a single example of a long and uninterrupted sequence of absolute rulers who continuously respected the property and contract-enforcement rights of their subjects.&rdquo; <em>(572)</em></li>
+  </ul>
+  <p class="footer-tag">Olson 1993, page numbers per item.</p>
+</section>
+
+<!-- 15 · Olson: the democracy claim -->
+<section class="slide">
+  <p class="kicker">Argument 2 · Olson · democracy, individual rights, and development</p>
+  <blockquote class="smaller">the conditions that are needed to have the individual rights needed for maximum economic development are exactly the same conditions that are needed to have a lasting democracy.
+    <cite>Olson 1993: 572</cite></blockquote>
+  <p class="sub">&ldquo;Though experience shows that relatively poor countries can grow extraordinarily rapidly when they have a strong dictator who happens to have unusually good economic policies, such growth lasts only for the ruling span of one or two dictators.&rdquo; (572)</p>
+  <p class="footer-tag">Olson 1993. Closing line of the article: &ldquo;The moral appeal of democracy is now almost universally appreciated, but its economic advantages are scarcely understood&rdquo; (575).</p>
+</section>
+
+<!-- 16 · Olson: the improbable transition -->
+<section class="slide">
+  <p class="kicker">Argument 2 · Olson · &ldquo;the improbable transition&rdquo;</p>
+  <blockquote class="smaller">autocracy is prevented and democracy permitted by the accidents of history that leave a balance of power or stalemate &mdash; a dispersion of force and resources that makes it impossible for any one leader or group to overpower all of the others.
+    <cite>Olson 1993: 573</cite></blockquote>
+  <ul class="big compact" style="margin-top:1rem">
+    <li>England, 1689: &ldquo;There were no lasting winners in the English civil wars&rdquo; &mdash; Parliament, an independent judiciary, a Bill of Rights <em>(574)</em></li>
+    <li>&ldquo;it was in Britain, not very long after the Glorious Revolution, that the Industrial Revolution began&rdquo; <em>(574)</em></li>
+  </ul>
+  <p class="footer-tag">Olson 1993, page numbers per item.</p>
+</section>
+
+<!-- 17 · Divider: A&R -->
+<section class="slide divider">
+  <p class="kicker">Argument 3 · Acemoglu &amp; Robinson · the Shackled Leviathan</p>
+  <blockquote class="smaller">Repression and dominance are as much in its DNA as they are in the DNA of the Despotic Leviathan. But the shackles prevent it from rearing its fearsome face. How those shackles emerge, and why only some societies have managed to develop them, is the major theme of our book.
+    <cite>Daron Acemoglu &amp; James A. Robinson, <em>The Narrow Corridor</em> (2019), p. 27</cite></blockquote>
+  <p class="footer-tag">Book not in the course folder; quotation as reproduced in a published review (CEI, &ldquo;Best Books of 2019&rdquo;). Verify against the printed page before quoting further.</p>
+</section>
+
+<!-- 18 · A&R: the corridor diagram -->
+<section class="slide">
+  <p class="kicker">Argument 3 · Acemoglu &amp; Robinson · three Leviathans</p>
+  <div class="chartwrap" style="max-width:1000px;margin-top:0">
+    <div class="chart" id="chart-corridor" role="img" aria-label="Schematic with power of the state on the vertical axis and power of society on the horizontal axis. A diagonal band, the corridor, runs from the origin up and to the right; above it lies the Despotic Leviathan, below it the Absent Leviathan, inside it the Shackled Leviathan."></div>
+  </div>
+  <p class="footer-tag">Schematic after Acemoglu &amp; Robinson 2019, chs. 1&ndash;2 (book not in the course folder; axis and region labels paraphrased &mdash; verify the authors&rsquo; figure before quoting). Quoted lines: stateless societies &ldquo;are quite capable of controlling violence and putting a lid on conflict, though as we&rsquo;ll see this doesn&rsquo;t bring much liberty&rdquo; (p. 11); &ldquo;Life under the yoke of the state can be nasty, brutish, and short too&rdquo; (p. 12).</p>
+</section>
+
+<!-- 19 · A&R: the Red Queen -->
+<section class="slide">
+  <p class="kicker">Argument 3 · Acemoglu &amp; Robinson · the Red Queen</p>
+  <blockquote>it takes all the running you can do, to keep in the same place
+    <cite>Lewis Carroll, <em>Through the Looking-Glass</em> (1871), as quoted in Acemoglu &amp; Robinson 2019: 41</cite></blockquote>
+  <ul class="big compact" style="margin-top:1.2rem">
+    <li>&ldquo;capable states matched by capable societies&rdquo; <em>(66)</em></li>
+    <li>&ldquo;Once the Leviathan is shackled, society may choose to give it a long leash and allow it to increase its reach so that the state uses its capacity for things that its citizens want and need&rdquo; <em>(72)</em></li>
+    <li>Norms in weak-state places &ldquo;also create a cage, imposing a different but no less disempowering sort of dominance&rdquo; <em>(19)</em></li>
+  </ul>
+  <p class="footer-tag">Acemoglu &amp; Robinson 2019, page numbers per item, as reproduced in published reviews (McCloskey; Dixit). Book not in the course folder.</p>
+</section>
+
+<!-- 20 · Olson and A&R on the balance -->
+<section class="slide">
+  <p class="kicker">Arguments 2 and 3 · how the balance arises</p>
+  <div class="twocol">
+    <div class="col"><div class="collabel">Olson 1993: 573</div>
+      <p class="colq">&ldquo;autocracy is prevented and democracy permitted by the accidents of history that leave a balance of power or stalemate&rdquo;</p></div>
+    <div class="col"><div class="collabel">Acemoglu &amp; Robinson 2019: 72</div>
+      <p class="colq">&ldquo;the more complex our lives become, the more we need conflict resolution, regulation, public services, and protection for our liberties&rdquo;</p></div>
+  </div>
+  <p class="sub">Discussion: argue that the two passages describe the same balance &mdash; then argue that they do not.</p>
+  <p class="footer-tag">Left: Olson, <em>APSR</em> 87(3). Right: <em>The Narrow Corridor</em>, as quoted in McCloskey&rsquo;s review; book not in the course folder.</p>
+</section>
+
+<!-- 21 · Divider: Martínez -->
+<section class="slide divider">
+  <p class="kicker">Evidence · Mart&iacute;nez · the dictator&rsquo;s GDP</p>
+  <blockquote>Autocracies overstate yearly GDP growth by approximately 35%
+    <cite>Luis R. Mart&iacute;nez, &ldquo;How Much Should We Trust the Dictator&rsquo;s GDP Growth Estimates?&rdquo; <em>JPE</em> 130(10), 2022 &mdash; BFI research brief, Jul 15 2021</cite></blockquote>
+</section>
+
+<!-- 22 · Martínez: the method -->
+<section class="slide">
+  <p class="kicker">Evidence · Mart&iacute;nez · nighttime lights against reported growth</p>
+  <div class="chartwrap" style="max-width:820px">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Growth implied by nighttime lights</span><span><span class="sw" style="background:#a33232"></span>Growth reported by the government</span></div>
+    <div class="chart" id="chart-lights" role="img" aria-label="Paired bars for the worked example in the research brief: a true growth rate of 2.0 percent is reported as 2.0 percent in a democracy and as 2.7 percent in an autocracy."></div>
+  </div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">184</div><div class="l">countries, 1992&ndash;2013; democracy vs. autocracy per Freedom House</div></div>
+    <div class="stat"><div class="v">1937</div><div class="l">Soviet census: &ldquo;the execution of the civil servants in charge &hellip; due to its unsatisfactory findings&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Mart&iacute;nez 2022, as summarized in the BFI research brief (bfi.uchicago.edu, Jul 15 2021): satellite nighttime lights as a manipulation-resistant proxy for economic activity; &ldquo;a genuine 2% growth rate is reported as 2.7%.&rdquo; Bars illustrate that worked example only.</p>
+</section>
+
+<!-- 23 · Depth: democracy and growth -->
+<section class="slide">
+  <p class="kicker">Evidence · Depth readings · does democracy cause growth, or does growth sustain democracy</p>
+  <div class="statrow words">
+    <div class="stat"><div class="v">+20%</div><div class="l">&ldquo;democratizations increase GDP per capita by about 20 percent in the long run&rdquo; &mdash; Acemoglu, Naidu, Restrepo &amp; Robinson, <em>JPE</em> 127(1), 2019, abstract</div></div>
+    <div class="stat"><div class="v">$6,055</div><div class="l">&ldquo;no democracy ever fell, regardless of everything else, in a country with a per capita income higher than that of Argentina in 1975&rdquo; &mdash; Przeworski &amp; Limongi, <em>World Politics</em> 49(2), 1997: 164</div></div>
+    <div class="stat"><div class="v">0</div><div class="l">&ldquo;no substantial famine has ever occurred in any independent and democratic country with a relatively free press&rdquo; &mdash; Sen, <em>JoD</em> 10(3), 1999: 7</div></div>
+  </div>
+  <p class="footer-tag">Przeworski &amp; Limongi 1997: 156 &mdash; democracies &ldquo;may be more likely to emerge as countries develop economically, or they may be established independently of economic development but may be more likely to survive in developed countries. We call the first explanation &lsquo;endogenous&rsquo; and the second &lsquo;exogenous.&rsquo;&rdquo; Sen 1999: 6 &mdash; &ldquo;the Lee hypothesis,&rdquo; after Lee Kuan Yew.</p>
+</section>
+
+<!-- 24 · China against the three arguments -->
+<section class="slide">
+  <p class="kicker">Discussion · China against the week&rsquo;s arguments</p>
+  <table class="biblio wide">
+    <tr><th>Argument</th><th>Its claim</th><th>The China record (Pei 2021; Mart&iacute;nez 2022)</th></tr>
+    <tr><td>Friedman</td>
+      <td>Capitalism &ldquo;a necessary condition for political freedom &hellip; not a sufficient condition&rdquo; <span class="pg">excerpt 2</span></td>
+      <td>Private firms alongside 54 mn state employees; independent unions and associations banned <span class="pg">Pei 13</span></td></tr>
+    <tr><td>Olson</td>
+      <td>Autocratic growth &ldquo;lasts only for the ruling span of one or two dictators&rdquo; <span class="pg">572</span></td>
+      <td>Reform era 1978&ndash; ; Xi general secretary 2012; presidential term limit removed 2018 <span class="pg">Pei 16</span></td></tr>
+    <tr><td>Acemoglu &amp; Robinson</td>
+      <td>Despotic Leviathan: state capacity without a society able to shackle it</td>
+      <td>Domestic-security spending ~8&times; in real terms, 2002&ndash;18; &ge; 1 mn detained in Xinjiang <span class="pg">Pei 13&ndash;14</span></td></tr>
+    <tr><td>Mart&iacute;nez</td>
+      <td>Autocracies overstate growth ~35%</td>
+      <td>Per-capita income $13,056 PPP (2019), above the $10,717 average at communist transitions <span class="pg">Pei Table 2, 10</span></td></tr>
+  </table>
+  <p class="footer-tag">Pei, &ldquo;China: Totalitarianism&rsquo;s Long Shadow,&rdquo; <em>JoD</em> 32(2), 2021 (page numbers per cell; cf. Week 3 deck, slides 16&ndash;24). Row 3 label paraphrased from Acemoglu &amp; Robinson 2019, chs. 1&ndash;2. Further viewing: <a href="https://www.youtube.com/watch?v=_j4Ru918V4w" target="_blank" rel="noopener">Chenggang Xu, &ldquo;How China&rsquo;s Economy Actually Works&rdquo; (Institute for New Economic Thinking, 2021)</a>.</p>
+</section>
+
+<!-- 25 · Logistics -->
+<section class="slide">
+  <p class="kicker">This week and next</p>
+  <ul class="big">
+    <li><strong>Wed Sep 16, 8 pm</strong> &mdash; Connector/Applier post in the shared doc</li>
+    <li><strong>Thu Sep 17, 12&ndash;1 pm</strong> &mdash; Sergii Glebov, Choi Auditorium; <strong>1:20</strong> &mdash; Glebov in class</li>
+    <li><strong>Tue Sep 22</strong> &mdash; Week 5, Spin in Practice: <em>Spin Dictators</em> middle chapters; Mi&#322;osz, &ldquo;Ketman&rdquo;; Applebaum, &ldquo;The New Propaganda War&rdquo; (<em>Atlantic</em>, June 2024)</li>
+    <li><strong>Thu Sep 24</strong> &mdash; Jason Bell in class; midterm question pool circulated</li>
+  </ul>
+  <p class="footer-tag">Per the course syllabus of record.</p>
+</section>
+
+<div class="counter" id="counter">1 / 25</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (figures sourced per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var C2005 = '#2f6bb3', C2025 = '#a33232';
+  var SW = ['#2a5da8', '#5e9fe0', '#e0793f', '#96302a'];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    if (h < 2 * r) r = h / 2;
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  /* Grouped vertical bars. groups: [{label, sub, values:[..]}], series: [{name,color}], fmt(v) */
+  function groupedBars(boxId, groups, series, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 940, H = opts.H || 330;
+    var padL = 60, padR = 20, padT = 24, padB = opts.padB || 64;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = opts.max || Math.max.apply(null, groups.map(function (g) { return Math.max.apply(null, g.values); })) * 1.15;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var gw = plotW / groups.length;
+    var n = series.length;
+    var bw = Math.min(opts.bw || 70, (gw * 0.7) / n);
+    // axis
+    var ticks = opts.ticks || 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = max * t / ticks;
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#e6e9ee', 'stroke-width': 1 }, svg);
+      txt(el('text', { x: padL - 10, y: y + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), (opts.fmtAxis || function (x) { return Math.round(x); })(v));
+    }
+    if (opts.yLabel) {
+      txt(el('text', { x: 14, y: padT + plotH / 2, 'font-size': '12', fill: MUTED, 'text-anchor': 'middle',
+        transform: 'rotate(-90 14 ' + (padT + plotH / 2) + ')' }, svg), opts.yLabel);
+    }
+    groups.forEach(function (g, i) {
+      var gx = padL + i * gw + gw / 2;
+      var total = n * bw + (n - 1) * 8;
+      g.values.forEach(function (v, j) {
+        var x = gx - total / 2 + j * (bw + 8);
+        var h = v / max * plotH;
+        var y = padT + plotH - h;
+        barPath(x, y, bw, h, svg, series[j].color, series[j].name + ' — ' + g.label + ': ' + (opts.fmt || String)(v));
+        txt(el('text', { x: x + bw / 2, y: y - 6, 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: INK }, svg), (opts.fmt || String)(v));
+        if (g.subs && g.subs[j]) {
+          txt(el('text', { x: x + bw / 2, y: padT + plotH + 16, 'text-anchor': 'middle', 'font-size': '11', fill: MUTED }, svg), g.subs[j]);
+        }
+      });
+      var ly = padT + plotH + (g.subs ? 34 : 20);
+      wrap(g.label, opts.wrapAt || 28).forEach(function (ln, k) {
+        txt(el('text', { x: gx, y: ly + k * 15, 'text-anchor': 'middle', 'font-size': '13', fill: INK }, svg), ln);
+      });
+    });
+  }
+
+
+  /* --- Slide 12: roving -> stationary bandit --- */
+  (function () {
+    var box = document.getElementById('chart-bandit');
+    if (!box) return;
+    var W = 1100, H = 190;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var stages = [
+      { t: 'Anarchy', s: ['“roving bandits”: uncoordinated,', 'competitive theft', '“little or no production”'], c: SW[3], p: '567' },
+      { t: 'Stationary bandit', s: ['monopolizes theft “in the form of taxes”', 'provides “a peaceful order and', 'other public goods”'], c: SW[2], p: '567–568' },
+      { t: 'Encompassing interest', s: ['a share of “any increase in the', 'income of his domain”', 'public goods up to that share'], c: SW[0], p: '569' }
+    ];
+    var bw = 320, gap = 70, x0 = (W - (3 * bw + 2 * gap)) / 2, y0 = 20, bh = 150;
+    stages.forEach(function (st, i) {
+      var x = x0 + i * (bw + gap);
+      el('rect', { x: x, y: y0, width: bw, height: bh, rx: 10, fill: '#fff', stroke: st.c, 'stroke-width': 2.5 }, svg);
+      el('rect', { x: x, y: y0, width: bw, height: 34, rx: 10, fill: st.c }, svg);
+      el('rect', { x: x, y: y0 + 20, width: bw, height: 14, fill: st.c }, svg);
+      txt(el('text', { x: x + bw / 2, y: y0 + 23, 'text-anchor': 'middle', 'font-size': '15', 'font-weight': '700', fill: '#fff' }, svg), st.t);
+      st.s.forEach(function (ln, k) {
+        txt(el('text', { x: x + bw / 2, y: y0 + 62 + k * 22, 'text-anchor': 'middle', 'font-size': '14', fill: INK }, svg), ln);
+      });
+      txt(el('text', { x: x + bw / 2, y: y0 + bh - 12, 'text-anchor': 'middle', 'font-size': '11.5', fill: MUTED }, svg), 'Olson 1993: ' + st.p);
+      if (i < 2) {
+        var ax = x + bw + 8, ay = y0 + bh / 2;
+        el('line', { x1: ax, y1: ay, x2: ax + gap - 24, y2: ay, stroke: MUTED, 'stroke-width': 2 }, svg);
+        el('path', { d: 'M' + (ax + gap - 24) + ',' + (ay - 7) + ' l12,7 l-12,7 z', fill: MUTED }, svg);
+      }
+    });
+  })();
+
+  /* --- Slide 13: revenue-maximizing tax rate (schematic) --- */
+  (function () {
+    var box = document.getElementById('chart-laffer');
+    if (!box) return;
+    var W = 940, H = 330, padL = 70, padR = 30, padT = 30, padB = 60;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    function X(r) { return padL + r * plotW; }
+    function Y(v) { return padT + plotH - v * plotH; }
+    // curve: receipts = r * (1 - r)^p style hump peaking at ~0.55
+    var pts = [];
+    for (var i = 0; i <= 100; i++) { var r = i / 100; var v = 4 * r * Math.pow(1 - r, 0.8); v = v / 1.55; pts.push([X(r), Y(v)]); }
+    el('line', { x1: padL, y1: Y(0), x2: W - padR, y2: Y(0), stroke: '#d9dde3', 'stroke-width': 1.5 }, svg);
+    el('line', { x1: padL, y1: padT, x2: padL, y2: Y(0), stroke: '#d9dde3', 'stroke-width': 1.5 }, svg);
+    var d = pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    el('path', { d: d, fill: 'none', stroke: INK, 'stroke-width': 2.5 }, svg);
+    // peak
+    var peak = pts.reduce(function (a, b) { return b[1] < a[1] ? b : a; });
+    var peakR = (peak[0] - padL) / plotW;
+    el('line', { x1: peak[0], y1: peak[1], x2: peak[0], y2: Y(0), stroke: C2025, 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+    el('circle', { cx: peak[0], cy: peak[1], r: 6, fill: C2025 }, svg);
+    txt(el('text', { x: peak[0], y: peak[1] - 16, 'text-anchor': 'middle', 'font-size': '14', 'font-weight': '700', fill: C2025 }, svg), 'Autocrat: revenue-maximizing rate');
+    txt(el('text', { x: peak[0] + 8, y: Y(0) + 20, 'text-anchor': 'start', 'font-size': '12', fill: C2025 }, svg), '“the optimal tax rate for the autocrat” (570)');
+    // majority optimum to the left
+    var mr = peakR - 0.22; var mp = pts[Math.round(mr * 100)];
+    el('line', { x1: mp[0], y1: mp[1], x2: mp[0], y2: Y(0), stroke: C2005, 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+    el('circle', { cx: mp[0], cy: mp[1], r: 6, fill: C2005 }, svg);
+    txt(el('text', { x: mp[0] - 12, y: mp[1] - 14, 'text-anchor': 'end', 'font-size': '14', 'font-weight': '700', fill: C2005 }, svg), 'Majority: lower rate');
+    txt(el('text', { x: mp[0] - 8, y: Y(0) + 20, 'text-anchor': 'end', 'font-size': '12', fill: C2005 }, svg), '“bound to be lower than the autocrat’s” (570)');
+    // axes labels
+    txt(el('text', { x: padL + plotW / 2, y: H - 14, 'text-anchor': 'middle', 'font-size': '13', fill: MUTED }, svg), 'Tax rate →');
+    txt(el('text', { x: 18, y: padT + plotH / 2, 'text-anchor': 'middle', 'font-size': '13', fill: MUTED, transform: 'rotate(-90 18 ' + (padT + plotH / 2) + ')' }, svg), 'Tax receipts →');
+  })();
+
+  /* --- Slide 16: the corridor (schematic) --- */
+  (function () {
+    var box = document.getElementById('chart-corridor');
+    if (!box) return;
+    var W = 1000, H = 440, padL = 90, padR = 30, padT = 20, padB = 60;
+    var x0 = padL, x1 = W - padR, y0 = H - padB, y1 = padT;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    // corridor band (diagonal)
+    var bandW = 70;
+    var pA = [x0, y0], pB = [x1 - 60, y1 + 40];
+    var ang = Math.atan2(pB[1] - pA[1], pB[0] - pA[0]) * 180 / Math.PI;
+    function off(p, dx, dy) { return [p[0] + dx, p[1] + dy]; }
+    var band = 'M' + off(pA, -bandW * .5, -bandW * .5).join(',') + ' L' + off(pB, -bandW * .5, -bandW * .5).join(',') +
+               ' L' + off(pB, bandW * .5, bandW * .5).join(',') + ' L' + off(pA, bandW * .5, bandW * .5).join(',') + ' Z';
+    var clip = el('clipPath', { id: 'corrclip' }, svg);
+    el('rect', { x: x0, y: y1, width: x1 - x0, height: y0 - y1 }, clip);
+    var g = el('g', { 'clip-path': 'url(#corrclip)' }, svg);
+    el('rect', { x: x0, y: y1, width: x1 - x0, height: y0 - y1, fill: '#fff' }, g);
+    el('path', { d: band, fill: '#f4e9e9', stroke: ACCENT, 'stroke-width': 1.5 }, g);
+    // axes
+    el('line', { x1: x0, y1: y0, x2: x1, y2: y0, stroke: INK, 'stroke-width': 2 }, svg);
+    el('line', { x1: x0, y1: y0, x2: x0, y2: y1, stroke: INK, 'stroke-width': 2 }, svg);
+    el('path', { d: 'M' + (x1 - 10) + ',' + (y0 - 6) + ' l10,6 l-10,6 z', fill: INK }, svg);
+    el('path', { d: 'M' + (x0 - 6) + ',' + (y1 + 10) + ' l6,-10 l6,10 z', fill: INK }, svg);
+    txt(el('text', { x: (x0 + x1) / 2, y: y0 + 34, 'text-anchor': 'middle', 'font-size': '14', fill: INK, 'font-weight': '700' }, svg), 'Power of society →');
+    txt(el('text', { x: x0 - 30, y: (y0 + y1) / 2, 'text-anchor': 'middle', 'font-size': '14', fill: INK, 'font-weight': '700', transform: 'rotate(-90 ' + (x0 - 30) + ' ' + ((y0 + y1) / 2) + ')' }, svg), 'Power of the state →');
+    // region labels
+    function lab(x, y, big, small, color) {
+      txt(el('text', { x: x, y: y, 'text-anchor': 'middle', 'font-size': '19', 'font-weight': '700', fill: color }, svg), big);
+      small.forEach(function (s, k) { txt(el('text', { x: x, y: y + 22 + k * 18, 'text-anchor': 'middle', 'font-size': '13.5', fill: MUTED }, svg), s); });
+    }
+    lab(x0 + 260, y1 + 70, 'Despotic Leviathan', ['strong state, weak society', '“despotism is in its DNA” (72)'], SW[3]);
+    lab(x1 - 200, y0 - 80, 'Absent Leviathan', ['weak state, strong norms', 'the “cage” of norms (19)'], SW[0]);
+    var mx = (x0 + x1) / 2 + 40, my = (y0 + y1) / 2 - 10;
+    txt(el('text', { x: mx, y: my, 'text-anchor': 'middle', 'font-size': '19', 'font-weight': '700', fill: ACCENT, transform: 'rotate(' + ang.toFixed(1) + ' ' + mx + ' ' + my + ')' }, svg), 'The corridor · Shackled Leviathan');
+    txt(el('text', { x: mx, y: my + 20, 'text-anchor': 'middle', 'font-size': '13.5', fill: ACCENT, transform: 'rotate(' + ang.toFixed(1) + ' ' + mx + ' ' + (my + 20) + ')' }, svg), '“capable states matched by capable societies” (66)');
+  })();
+
+  /* --- Slide 20: nighttime lights vs reported growth --- */
+  groupedBars('chart-lights', [
+    { label: 'Democracy', values: [2.0, 2.0] },
+    { label: 'Autocracy', values: [2.0, 2.7] }
+  ], [{ name: 'Lights-implied growth', color: C2005 }, { name: 'Reported growth', color: C2025 }],
+  { W: 820, H: 250, max: 3.2, ticks: 4, bw: 90, fmt: function (v) { return v.toFixed(1) + '%'; }, fmtAxis: function (v) { return v.toFixed(1) + '%'; }, yLabel: 'Yearly GDP growth (%)' });
+})();
+</script>
+</body>
+</html>
