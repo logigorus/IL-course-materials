@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 5 · Spin in Practice</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  blockquote + blockquote { margin-top: 1.6rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  blockquote.smallest cite { margin-top: .8rem; }
+  .statrow.words .stat .v { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+  .statrow.words .stat { flex: 1 1 0; min-width: 0; }
+  .statrow.words .stat .l { max-width: none; }
+  .statrow.compact { margin-top:.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .statrow.compact .stat .l { font-size: clamp(.82rem, 1.25vw, .98rem); max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ul.big.serif li { font-family: var(--serif); }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  ol.props li .probe { display: block; font-family: var(--sans); font-size: .78em; color: var(--muted); margin-top: .3rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .chartwrap.wide { max-width: 1120px; margin-top: .8rem; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.78rem, 1.08vw, 1rem); padding: .5rem .8rem .5rem 0; line-height: 1.32; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  table.biblio.types td .pg { color: var(--muted); font-size: .82em; white-space: nowrap; font-family: var(--sans); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .colq em.slogan { display: block; margin-top: .6rem; color: var(--accent); }
+  .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
+  .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
+  .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .facts.sm { font-size: clamp(.85rem, 1.25vw, 1rem); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 5 · Tue Sep 22 &amp; Thu Sep 24</p>
+  <h1>Spin in Practice:<br>Media, Information, and Legitimation</h1>
+</section>
+
+<!-- 2 · Framework -->
+<section class="slide">
+  <p class="kicker">A framework for the week · three texts, three vantage points</p>
+  <h2>Who handles the information</h2>
+  <table class="biblio wide">
+    <tr><th>Text</th><th>Vantage point</th><th>Mechanism</th><th>In the text&rsquo;s words</th></tr>
+    <tr><td>Guriev &amp; Treisman 2019</td>
+      <td>The ruler</td>
+      <td>&ldquo;buying the elite&rsquo;s silence, censoring private media, and broadcasting propaganda&rdquo; <span class="pg">123</span></td>
+      <td>&ldquo;rulers survive by leading citizens to believe&mdash;rationally but incorrectly&mdash;that they are competent and public-spirited&rdquo; <span class="pg">101</span></td></tr>
+    <tr><td>Mi&#322;osz 1953, &ldquo;Ketman&rdquo;</td>
+      <td>The subject</td>
+      <td>Outward conformity with private divergence, sustained across years <span class="pg">guide &sect;2</span></td>
+      <td>Seven varieties: national, revolutionary-purity, aesthetic, professional, skeptical, metaphysical, ethical <span class="pg">guide &sect;3</span></td></tr>
+    <tr><td>Applebaum 2024</td>
+      <td>Across borders</td>
+      <td>&ldquo;a narrative that damages both the idea of democracy everywhere in the world and the tools to deliver it&rdquo;</td>
+      <td>&ldquo;Fear, cynicism, nihilism, and apathy, coupled with disgust and disdain for democracy&rdquo;</td></tr>
+  </table>
+  <p class="footer-tag">Guriev &amp; Treisman, <em>JEP</em> 33(4), 2019 (pages per cell). Mi&#322;osz chapter not in the course folder &mdash; row paraphrases the companion guide (sections per cell). Applebaum, <em>The Atlantic</em>, June 2024 (unpaginated).</p>
+</section>
+
+<!-- 3 · Divider: the ruler -->
+<section class="slide divider">
+  <p class="kicker">Part I · The ruler · Guriev &amp; Treisman</p>
+  <blockquote class="smaller">The key to such regimes, we argue, is the manipulation of information. Rather than terrorizing or indoctrinating the population, rulers survive by leading citizens to believe&mdash;rationally but incorrectly&mdash;that they are competent and public-spirited. Having won popularity, dictators score points both at home and abroad by mimicking democracy.
+    <cite>Guriev &amp; Treisman 2019: 101</cite></blockquote>
+</section>
+
+<!-- 4 · The three-actor model -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · three actors, asymmetric information</p>
+  <h2>Ruler, informed elite, public</h2>
+  <div class="chartwrap wide chart" id="chart-model"></div>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 117 (&ldquo;Beliefs of Elites and Masses&rdquo;; formal model in Guriev &amp; Treisman 2018). Labels quote or condense that page.</p>
+</section>
+
+<!-- 5 · Two conditions -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · when the equilibrium holds</p>
+  <h2>&ldquo;two key variables&rdquo;</h2>
+  <ul class="big">
+    <li>&ldquo;the size of the informed elite&rdquo;</li>
+    <li>&ldquo;the ease with which, given technology, the state can monopolize the media&rdquo;</li>
+  </ul>
+  <div class="statrow words">
+    <div class="stat"><div class="v">Highly modern</div><div class="l">&ldquo;the informed elite is generally too large for manipulation to work &hellip; democracy is the only option&rdquo;</div></div>
+    <div class="stat"><div class="v">Intermediate</div><div class="l">&ldquo;both democracy and informational autocracy are possible outcomes&rdquo;</div></div>
+    <div class="stat"><div class="v">Undeveloped</div><div class="l">&ldquo;repression often remains more cost effective&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 117.</p>
+</section>
+
+<!-- 6 · Indirect censorship -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · indirect censorship</p>
+  <h2>&ldquo;less obvious techniques&rdquo;</h2>
+  <ul class="big compact">
+    <li><strong>Singapore</strong> &mdash; Lee Kuan Yew &ldquo;co-opted shareholders in key media companies&rdquo;; boards &ldquo;did the censoring for him&rdquo;; lawsuits when loyalty failed</li>
+    <li><strong>Hungary</strong> &mdash; Orb&aacute;n &ldquo;starved critical radio stations of state advertising&rdquo;</li>
+    <li><strong>Russia</strong> &mdash; Putin &ldquo;often relied on surrogates and economic pressure to keep editors and journalists in line&rdquo; (Gehlbach 2010: 78)</li>
+    <li><strong>Peru</strong> &mdash; &ldquo;Fujimori bribed most private media&rdquo;</li>
+    <li><strong>China</strong> &mdash; &ldquo;blocking websites outright inspires net users to &lsquo;jump the great firewall,&rsquo; but introducing technical search friction does not&rdquo; (Roberts 2018)</li>
+  </ul>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 118. Inner citations as given there. Clip: <a href="https://www.youtube.com/watch?v=nH-FrVkpTZo" target="_blank" rel="noopener">&ldquo;Internet censorship in China | The Great Firewall of China | SHIFT&rdquo; (DW Shift, ~12 min; first 4 min on blocking and keyword filtering)</a>.</p>
+</section>
+
+<!-- 7 · Perceptions gap -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · perceived media freedom, elite vs. public</p>
+  <h2>&ldquo;Do the media in this country have a lot of freedom, or not?&rdquo;</h2>
+  <div class="statrow">
+    <div class="stat"><div class="v">0 pts</div><div class="l">elite&ndash;public gap where the press is free</div></div>
+    <div class="stat"><div class="v">&asymp; 8 pts</div><div class="l">gap at the most censored end &mdash; elite less likely to say &ldquo;yes&rdquo;</div></div>
+    <div class="stat"><div class="v">2006&ndash;2017</div><div class="l">Gallup World Poll, ~1,000 respondents per country-year, 120+ countries</div></div>
+  </div>
+  <p class="sub">Elite proxy: completed tertiary education. Country-year fixed effects; press freedom per Freedom House.</p>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 117&ndash;119, Figure 6 (&ldquo;the gap widens to a maximum of almost 8 percentage points&rdquo;).</p>
+</section>
+
+<!-- 8 · Approval gap -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · approval of leadership, elite vs. public</p>
+  <h2>&ldquo;Do you approve or disapprove of the job performance of the leadership of this country?&rdquo;</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">Autocracies and flawed democracies · Polity2 &le; 8</div>
+      <p class="colq">&ldquo;approval of the national leadership was lower among the highly educated&rdquo;</p></div>
+    <div class="col"><div class="collabel">Consolidated democracies · Polity2 9&ndash;10</div>
+      <p class="colq">&ldquo;the highly educated were, if anything, more supportive of their government&rdquo;</p></div>
+  </div>
+  <p class="sub">Placebo: life satisfaction of the highly educated in nondemocracies &mdash; &ldquo;substantially higher.&rdquo; Controlling for income: &ldquo;education remained associated with lower approval, while the effect of income was insignificant.&rdquo;</p>
+  <p class="footer-tag">Guriev &amp; Treisman 2019: 120&ndash;121, Figure 7. Gallup World Poll; Polity IV.</p>
+</section>
+
+<!-- 9 · Removing the desire -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · &ldquo;Other Theories of Modern Authoritarian Governance&rdquo;</p>
+  <blockquote class="smaller">It is not that citizens cannot coordinate to resist them: many do not want to. &hellip; At least some dictators in power today survive not by preventing the masses from rebelling, but by removing their desire to do so.
+    <cite>Guriev &amp; Treisman 2019: 121</cite></blockquote>
+  <p class="sub">Contrasted there with: King, Pan &amp; Roberts 2013 (censoring calls for collective action); Edmond 2013 and Huang 2015 (propaganda about repressive capacity); Chen &amp; Xu 2017 (dividing opponents).</p>
+</section>
+
+<!-- 10 · Depth: selective blame -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · Depth · Rozenas &amp; Stukal 2019</p>
+  <h2>Economic news on Russian state television</h2>
+  <blockquote class="smaller">Bad news is not censored, but it is systematically blamed on external factors, whereas good news is systematically attributed to domestic politicians.
+    <cite>Rozenas &amp; Stukal, &ldquo;How Autocrats Manipulate Economic News,&rdquo; <em>Journal of Politics</em> 81(3), 2019, abstract</cite></blockquote>
+  <ul class="facts">
+    <li>Data: daily news reports from Russia&rsquo;s largest state-owned television network</li>
+    <li>Pattern intensifies around elections and protests, and when leadership approval is high</li>
+    <li>cf. G&amp;T 2019: 117 &mdash; the ruler &ldquo;can also send &lsquo;propaganda&rsquo; messages, blaming economic failures on external conditions&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Depth reading (optional). Abstract and findings per the JoP article page; article PDF not in the course folder.</p>
+</section>
+
+<!-- 11 · Divider: the subject -->
+<section class="slide divider">
+  <p class="kicker">Part II · The subject · Havel</p>
+  <blockquote class="smaller">The manager of a fruit-and-vegetable shop places in his window, among the onions and carrots, the slogan: &ldquo;Workers of the world, unite!&rdquo;
+    <cite>V&aacute;clav Havel, &ldquo;The Power of the Powerless&rdquo; (1978), &sect; III &mdash; Depth reading</cite></blockquote>
+</section>
+
+<!-- 12 · Ketman: the word -->
+<section class="slide">
+  <p class="kicker">Part II · The subject · Mi&#322;osz, <em>The Captive Mind</em> (1953)</p>
+  <h2>Ketman</h2>
+  <div class="statrow words">
+    <div class="stat"><div class="v">1865</div><div class="l">Gobineau, <em>Les religions et les philosophies dans l&rsquo;Asie centrale</em> &mdash; Persian religious minorities professing an orthodoxy they privately reject; cognate with <em>taqiyya</em></div></div>
+    <div class="stat"><div class="v">1953</div><div class="l">Mi&#322;osz repurposes the term for Stalinist Poland: a sustained, internally coherent performance of loyalty by people who retain incompatible beliefs</div></div>
+    <div class="stat"><div class="v">Alpha &middot; Beta &middot; Gamma &middot; Delta</div><div class="l">the four composite portraits the chapter generalizes from &mdash; the Moralist, the Disappointed Lover, the Slave of History, the Troubadour</div></div>
+  </div>
+  <p class="footer-tag">Chapter not in the course folder; wording follows the companion guide, &sect;&sect; 1&ndash;2 (paraphrase &mdash; verify direct language before quoting Mi&#322;osz).</p>
+</section>
+
+<!-- 13 · Varieties -->
+<section class="slide">
+  <p class="kicker">Part II · The subject · Mi&#322;osz · the varieties</p>
+  <table class="biblio types">
+    <tr><th>Variety</th><th>Public performance</th><th>Private retention</th></tr>
+    <tr><td>National</td><td>Internationalist, Party-line solidarity</td><td>Ordinary national feeling</td></tr>
+    <tr><td>Revolutionary purity</td><td>More doctrinally rigorous devotion than one feels</td><td>Cover through out-orthodoxing the orthodoxy</td></tr>
+    <tr><td>Aesthetic</td><td>Work that meets socialist-realist requirements</td><td>Other aesthetic commitments, sometimes smuggled in</td></tr>
+    <tr><td>Professional</td><td>The required vocabulary and positions of one&rsquo;s field</td><td>The condition of being allowed to keep working</td></tr>
+    <tr><td>Skeptical</td><td>Full public compliance</td><td>Cultivated irony: &ldquo;I don&rsquo;t really believe any of this&rdquo;</td></tr>
+    <tr><td>Metaphysical</td><td>Atheist, materialist public identity</td><td>Religious or metaphysical belief</td></tr>
+    <tr><td>Ethical</td><td>A system that subordinates ethics to historical necessity</td><td>An inherited sense of right and wrong</td></tr>
+  </table>
+  <p class="footer-tag">Companion guide, &sect; 3 (paraphrase of the chapter; the typology is Mi&#322;osz&rsquo;s literary construction, not survey data).</p>
+</section>
+
+<!-- 14 · Havel: the sign -->
+<section class="slide">
+  <p class="kicker">Part II · The subject · Havel · Depth</p>
+  <h2>What the sign says</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">In the window</div>
+      <p class="colq">&ldquo;Workers of the world, unite!&rdquo;</p></div>
+    <div class="col"><div class="collabel">Havel&rsquo;s reading of it</div>
+      <p class="colq">&ldquo;I, the greengrocer XY, live here and I know what I must do. I behave in the manner expected of me. I can be depended upon and am beyond reproach.&rdquo;</p></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:1.4rem">For by this very fact, individuals confirm the system, fulfill the system, make the system, are the system.</blockquote>
+  <p class="footer-tag">Havel, &ldquo;The Power of the Powerless&rdquo; (1978), &sect;&sect; III&ndash;IV, Paul Wilson translation. Depth reading (optional).</p>
+</section>
+
+<!-- 15 · Orwell -->
+<section class="slide">
+  <p class="kicker">Part II · The subject · Orwell · Depth</p>
+  <blockquote class="smaller">In our time, political speech and writing are largely the defence of the indefensible.</blockquote>
+  <blockquote class="smaller">Political language &hellip; is designed to make lies sound truthful and murder respectable, and to give an appearance of solidity to pure wind.
+    <cite>George Orwell, &ldquo;Politics and the English Language&rdquo; (1946)</cite></blockquote>
+  <p class="footer-tag">Depth reading (optional). Second quotation trimmed with one ellipsis (the omitted clause lists the parties he means it to apply to).</p>
+</section>
+
+<!-- 16 · Frye et al. -->
+<section class="slide">
+  <p class="kicker">Part II · The subject · Depth · Frye, Gehlbach, Marquardt &amp; Reuter 2017</p>
+  <h2>&ldquo;Is Putin&rsquo;s popularity real?&rdquo;</h2>
+  <div class="statrow">
+    <div class="stat"><div class="v">86% &middot; 88%</div><div class="l">approve of Putin, direct question (Jan &middot; Mar 2015)</div></div>
+    <div class="stat"><div class="v">79&ndash;81%</div><div class="l">list-experiment estimates, same surveys (~1,600 respondents per wave)</div></div>
+    <div class="stat"><div class="v">6&ndash;9 pts</div><div class="l">&ldquo;lower than those from the corresponding direct question&rdquo;</div></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:1.6rem">Taken in total, we conclude that much of the support for Putin is genuine and not the consequence of social desirability bias.
+    <cite>Frye et al., <em>Post-Soviet Affairs</em> 33(1), 2017: 10</cite></blockquote>
+  <p class="footer-tag">Depth reading (optional). Figures from the article&rsquo;s abstract and pp. 8&ndash;10.</p>
+</section>
+
+<!-- 17 · Discussion -->
+<section class="slide">
+  <p class="kicker">Part II · The subject · discussion · 8 minutes, pairs</p>
+  <h2>Discussion</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">Guriev &amp; Treisman 2019: 117</div>
+      <p class="colq">&ldquo;such manipulation works only if the public does not detect it.&rdquo;</p></div>
+    <div class="col"><div class="collabel">Companion guide, &sect; 2 (on Mi&#322;osz)</div>
+      <p class="colq">A performance carried out &ldquo;by people who privately retain incompatible beliefs.&rdquo;</p></div>
+  </div>
+  <p class="sub">Task: take one of the Frye et al. respondents who answers &ldquo;approve.&rdquo; Decide which description fits that respondent, and what evidence would tell the two apart. One sentence per pair; report out.</p>
+</section>
+
+<!-- 18 · Divider: across borders -->
+<section class="slide divider">
+  <p class="kicker">Part III · Across borders · Applebaum</p>
+  <blockquote class="smaller">If people are naturally drawn to the image of human rights, to the language of democracy, to the dream of freedom, then those concepts have to be poisoned. That requires more than surveillance, more than close observation of the population, more than a political system that defends against liberal ideas. It also requires an offensive plan.
+    <cite>Applebaum, &ldquo;The New Propaganda War,&rdquo; <em>The Atlantic</em>, June 2024</cite></blockquote>
+</section>
+
+<!-- 19 · Then and now -->
+<section class="slide">
+  <p class="kicker">Part III · Across borders · Applebaum · then and now</p>
+  <div class="twocol">
+    <div class="col"><div class="collabel">Twentieth century</div>
+      <p class="colq">&ldquo;Communist Party propaganda was overwhelming and inspiring, or at least it was meant to be. The future it portrayed was shiny and idealized, a vision of clean factories, abundant produce, and healthy tractor drivers with large muscles and square jaws.&rdquo;</p></div>
+    <div class="col"><div class="collabel">Now</div>
+      <p class="colq">&ldquo;they teach people to be cynical and passive, apathetic and afraid, because there is no better world to build.&rdquo;
+        <em class="slogan">&ldquo;Our state may be corrupt, but everyone else is corrupt too. You may not like our leader, but the others are worse. You may not like our society, but at least we are strong. The democratic world is weak, degenerate, divided, dying.&rdquo;</em></p></div>
+  </div>
+  <p class="footer-tag">Applebaum 2024. Freedom House count cited there: 56 countries &ldquo;not free.&rdquo; Clip: <a href="https://www.youtube.com/watch?v=TvTfsKcueDQ" target="_blank" rel="noopener">&ldquo;Ukraine war latest: Russian state TV mocks European energy-saving efforts | DW News&rdquo; (DW News, ~12 min; state-TV segment in the opening minutes)</a>.</p>
+</section>
+
+<!-- 20 · Fire hose -->
+<section class="slide">
+  <p class="kicker">Part III · Across borders · Applebaum · MH17, 2014</p>
+  <blockquote class="smaller">After Russian-controlled forces shot down Malaysia Airlines Flight MH17 over Ukraine in 2014, the Russian government reacted not only with a denial, but with multiple stories, plausible and implausible: It blamed the Ukrainian army, and the CIA, and a nefarious plot in which dead people were placed on a plane in order to fake a crash and discredit Russia. This tactic&mdash;the so-called fire hose of falsehoods&mdash;ultimately produces not outrage but nihilism.
+    <cite>Applebaum 2024</cite></blockquote>
+  <p class="sub">&ldquo;When Soviet leaders lied, they tried to make their falsehoods seem real. They became angry when anyone accused them of lying.&rdquo;</p>
+  <p class="footer-tag">Clip: <a href="https://www.youtube.com/watch?v=IHnNkWlMy_4" target="_blank" rel="noopener">&ldquo;MH17: Debunking Russian Disinformation&rdquo; (Radio Free Europe/Radio Liberty, ~3 min; the successive Kremlin versions and the open-source rebuttals)</a>. Brief crash-site footage.</p>
+</section>
+
+<!-- 21 · Infrastructure -->
+<section class="slide">
+  <p class="kicker">Part III · Across borders · Applebaum · the infrastructure</p>
+  <h2>&ldquo;some overt and some covert, some aimed at the public and some aimed at elites&rdquo;</h2>
+  <ul class="big compact">
+    <li><strong>Document No. 9</strong> (China, 2013) &mdash; &ldquo;seven perils&rdquo;: &ldquo;Western constitutional democracy,&rdquo; &ldquo;universal human rights,&rdquo; &ldquo;media independence,&rdquo; &ldquo;judicial independence,&rdquo; &ldquo;civic participation&rdquo;</li>
+    <li><strong>Xinhua, CGTN, China Radio International, China Daily</strong> &mdash; feeds &ldquo;at low prices, sometimes for free&rdquo;; regional hub in Nairobi; &ldquo;borrowing boats to reach the sea&rdquo;</li>
+    <li><strong>StarTimes</strong> (since 2008) &mdash; 13 million subscribers, 30+ African countries; picked up RT after satellite networks dropped it</li>
+    <li><strong>RRN / Doppelganger</strong> &mdash; &ldquo;typosquatter&rdquo;: Reuters.cfd, Spiegel.pro; 300+ sites targeting Europe, the Middle East, Latin America</li>
+    <li><strong>Global Engagement Center</strong> (U.S. State Dept., 2016&ndash;) &mdash; 125 staff, $61 million; mandate outside the United States only</li>
+  </ul>
+  <p class="footer-tag">Applebaum 2024. Figures as reported there.</p>
+</section>
+
+<!-- 22 · One story's route -->
+<section class="slide">
+  <p class="kicker">Part III · Across borders · Applebaum · one story, February&ndash;March 2022</p>
+  <h2>&ldquo;secret U.S.-funded biolabs in Ukraine&rdquo;</h2>
+  <div class="chartwrap wide chart" id="chart-biolab"></div>
+  <p class="footer-tag">Applebaum 2024; sequence and figures as reported there.</p>
+</section>
+
+<!-- 23 · Synthesis -->
+<section class="slide">
+  <p class="kicker">Synthesis · three vantage points</p>
+  <table class="biblio wide">
+    <tr><th>Text</th><th>Vantage point</th><th>What the information does</th><th>Key term</th></tr>
+    <tr><td>Guriev &amp; Treisman 2019</td><td>The ruler</td><td>Keeps the elite from &ldquo;revealing the regime&rsquo;s flaws to the general public&rdquo; <span class="pg">117</span></td><td>informational autocrat &middot; informed elite</td></tr>
+    <tr><td>Rozenas &amp; Stukal 2019 <span class="pg">Depth</span></td><td>The ruler</td><td>Bad news &ldquo;blamed on external factors&rdquo;; good news &ldquo;attributed to domestic politicians&rdquo;</td><td>selective attribution</td></tr>
+    <tr><td>Mi&#322;osz 1953</td><td>The subject</td><td>Outward conformity, private divergence, over years <span class="pg">guide &sect;2</span></td><td>Ketman (seven varieties)</td></tr>
+    <tr><td>Havel 1978 <span class="pg">Depth</span></td><td>The subject</td><td>&ldquo;individuals confirm the system, fulfill the system, make the system, are the system&rdquo;</td><td>the greengrocer&rsquo;s sign</td></tr>
+    <tr><td>Frye et al. 2017 <span class="pg">Depth</span></td><td>The subject, measured</td><td>List experiment 6&ndash;9 pts below direct question; &ldquo;much of the support for Putin is genuine&rdquo; <span class="pg">8, 10</span></td><td>list experiment</td></tr>
+    <tr><td>Applebaum 2024</td><td>Across borders</td><td>&ldquo;the very ideas of democracy and freedom must be discredited&mdash;especially in the places where they have historically flourished&rdquo;</td><td>fire hose of falsehoods &middot; information laundering</td></tr>
+  </table>
+  <p class="footer-tag">Sources as on the slides above; Orwell 1946 (Depth) not tabled.</p>
+</section>
+
+<!-- 24 · Thursday: Jason Bell -->
+<section class="slide">
+  <p class="kicker">Thursday Sep 24 · guest, in class</p>
+  <h2>Jason Bell</h2>
+  <p class="sub"><em>Operation Sparrow: The Incredible True Story of the North American Spies Who Tricked Hitler and Won the War</em> (HarperCollins, 2026)</p>
+  <ul class="big compact">
+    <li><strong>March 1944</strong> &mdash; three OSS officers, Guy Nunn, Florimond Duke, and Alfred Suarez, parachute into Axis-allied Hungary</li>
+    <li>&ldquo;the only mission of the war designed to result in capture, interrogation and incarceration at the hands of the Nazis&rdquo; &mdash; to point the Germans toward the Balkans ahead of Normandy</li>
+    <li><strong>Spring 1945</strong> &mdash; liberated from Colditz Castle</li>
+    <li>Nunn: Occidental College, football team captain, 1934</li>
+  </ul>
+  <p class="footer-tag">Makana Eyre, &ldquo;The World War II Hero Who Quietly Settled in Hawai&#699;i,&rdquo; <em>Honolulu Civil Beat</em>, September 2026; book title per the U.S. edition listing.</p>
+</section>
+
+<!-- 25 · Logistics -->
+<section class="slide">
+  <p class="kicker">This week and next</p>
+  <ul class="big">
+    <li><strong>Wed Sep 23, 8 pm</strong> &mdash; Connector/Applier post in the shared doc</li>
+    <li><strong>Thu Sep 24</strong> &mdash; Jason Bell in class; <strong>midterm question pool circulated</strong> (blue-book midterm Thu Oct 8)</li>
+    <li><strong>Tue Sep 29</strong> &mdash; Week 6, Democracy &amp; Authoritarianism in Africa: Opalo (<em>JoD</em> 2024); Ero &amp; Mutiga (<em>Foreign Affairs</em> 2024); Elischer (OECD 2023)</li>
+    <li><strong>Thu Oct 1</strong> &mdash; Amb. Virginia Palmer joins the discussion (class visit only)</li>
+  </ul>
+  <p class="footer-tag">Per the course syllabus of record.</p>
+</section>
+
+<div class="counter" id="counter">1 / 25</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (sources per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var SW = ['#2a5da8', '#5e9fe0', '#e0793f', '#96302a'];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+  function lines(svg, x, y, arr, size, fill, anchor, weight, lh) {
+    arr.forEach(function (s, k) {
+      txt(el('text', { x: x, y: y + k * (lh || (size + 4)), 'text-anchor': anchor || 'middle', 'font-size': size, fill: fill, 'font-weight': weight || '400' }, svg), s);
+    });
+  }
+  function arrowDefs(svg, id, color) {
+    var defs = el('defs', {}, svg);
+    var m = el('marker', { id: id, viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' }, defs);
+    el('path', { d: 'M0,0 L10,5 L0,10 z', fill: color }, m);
+  }
+
+  /* --- Slide 4: ruler / informed elite / public (G&T 2019: 117) --- */
+  (function () {
+    var box = document.getElementById('chart-model');
+    if (!box) return;
+    var W = 1100, H = 430;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    arrowDefs(svg, 'ah-ink', INK);
+    arrowDefs(svg, 'ah-acc', ACCENT);
+    arrowDefs(svg, 'ah-blue', SW[0]);
+
+    function node(x, y, w, h, title, sub, color) {
+      el('rect', { x: x, y: y, width: w, height: h, rx: 12, fill: '#fff', stroke: color, 'stroke-width': 2.5 }, svg);
+      txt(el('text', { x: x + w / 2, y: y + 30, 'text-anchor': 'middle', 'font-size': '20', 'font-weight': '700', fill: color }, svg), title);
+      lines(svg, x + w / 2, y + 54, sub, 13, MUTED, 'middle', '400', 16);
+    }
+    // layout: ruler top-center, elite bottom-left, public bottom-right
+    var rx = 400, ry = 20, rw = 300, rh = 100;
+    var ex = 60, ey = 280, ew = 330, eh = 110;
+    var px = 710, py = 280, pw = 330, ph = 110;
+    node(rx, ry, rw, rh, 'Ruler', ['“may be competent or incompetent”'], ACCENT);
+    node(ex, ey, ew, eh, 'Informed elite', ['“small”; observes competence directly', '“no power except to influence', 'and assist the public”'], SW[0]);
+    node(px, py, pw, ph, 'General public', ['“does not observe competence directly”', 'overthrows the leader in a revolt', 'if it concludes he is incompetent'], INK);
+
+    // elite -> public: messages
+    el('line', { x1: ex + ew, y1: ey + eh / 2, x2: px, y2: py + ph / 2, stroke: SW[0], 'stroke-width': 3, 'marker-end': 'url(#ah-blue)' }, svg);
+    lines(svg, (ex + ew + px) / 2, ey + eh / 2 - 26, ['elite “may send messages', 'to the public”'], 13.5, SW[0], 'middle', '700', 16);
+
+    // ruler -> elite: censor / buy silence
+    el('line', { x1: rx + 40, y1: ry + rh, x2: ex + ew / 2 + 40, y2: ey, stroke: ACCENT, 'stroke-width': 3, 'marker-end': 'url(#ah-acc)' }, svg);
+    lines(svg, 175, 165, ['“block these with censorship”', 'or “buy the elite’s silence”', '— “at the cost of diverting resources', 'from sustaining living standards”'], 13.5, ACCENT, 'middle', '400', 17);
+
+    // ruler -> public: propaganda
+    el('line', { x1: rx + rw - 40, y1: ry + rh, x2: px + pw / 2 - 40, y2: py, stroke: ACCENT, 'stroke-width': 3, 'marker-end': 'url(#ah-acc)' }, svg);
+    lines(svg, 860, 175, ['“propaganda” messages,', '“blaming economic failures', 'on external conditions”'], 13.5, ACCENT, 'middle', '400', 17);
+
+
+    // bottom line
+    lines(svg, W / 2, H - 12, ['Key goal: “to prevent elite members from revealing the regime’s flaws to the general public” (117)'], 14, INK, 'middle', '700');
+  })();
+
+  /* --- Slide 22: route of the biolabs story (Applebaum 2024) --- */
+  (function () {
+    var box = document.getElementById('chart-biolab');
+    if (!box) return;
+    var W = 1120, H = 330;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    arrowDefs(svg, 'ah-b', INK);
+    var steps = [
+      { t: 'Feb 24, 2022', s: 'Russian officials: U.S.-funded biolabs, “dangerous pathogens”', c: SW[3] },
+      { t: '@WarClandestine', s: 'QAnon-linked U.S. account; #biolab, 9+ million views', c: SW[2] },
+      { t: 'Infowars · Fox News', s: 'Alex Jones; Tucker Carlson plays Russian and Chinese clips', c: SW[2] },
+      { t: 'China, foreign ministry', s: '“26 biolabs”; Xinhua headlines; content-sharing partners', c: SW[3] },
+      { t: 'Telesur · Press TV · RT', s: 'Venezuela, Iran; RT in Spanish and Arabic', c: SW[3] },
+      { t: '“According to one poll”', s: 'a quarter of Americans believed it to be true', c: INK }
+    ];
+    var n = steps.length, gap = 16, bw = (W - gap * (n - 1)) / n, y = 60, bh = 150;
+    steps.forEach(function (st, i) {
+      var x = i * (bw + gap);
+      el('rect', { x: x, y: y, width: bw, height: bh, rx: 10, fill: '#fff', stroke: st.c, 'stroke-width': 2.2 }, svg);
+      var tl = wrap(st.t, 16);
+      lines(svg, x + bw / 2, y + 28, tl, 14.5, st.c, 'middle', '700', 17);
+      lines(svg, x + bw / 2, y + 34 + tl.length * 17 + 10, wrap(st.s, 21), 12, MUTED, 'middle', '400', 15);
+      if (i < n - 1) el('line', { x1: x + bw + 1, y1: y + bh / 2, x2: x + bw + gap - 1, y2: y + bh / 2, stroke: INK, 'stroke-width': 2, 'marker-end': 'url(#ah-b)' }, svg);
+    });
+    // legend
+    var lg = [{ c: SW[3], l: 'state or state-media source' }, { c: SW[2], l: 'U.S. amplifier' }, { c: INK, l: 'reported outcome' }];
+    lg.forEach(function (g, i) {
+      el('rect', { x: 20 + i * 260, y: 232, width: 14, height: 14, rx: 3, fill: g.c }, svg);
+      txt(el('text', { x: 42 + i * 260, y: 244, 'font-size': '13.5', fill: MUTED }, svg), g.l);
+    });
+    lines(svg, W / 2, 290, ['“Anyone inside this echo chamber heard the biolab conspiracy theory many times, from different sources,', 'each one repeating and building on the others to create the impression of veracity.”'], 13.5, INK, 'middle', '400', 19);
+  })();
+})();
+</script>
+</body>
+</html>
