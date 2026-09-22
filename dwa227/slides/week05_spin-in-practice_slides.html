@@ -103,6 +103,11 @@
   .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
   .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
   .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .movesbox { position: absolute; top: 2rem; right: clamp(2rem, 8vw, 7rem); width: 350px; border: 1px solid var(--rule); background: #fff; border-radius: 10px; padding: .6rem .9rem; font-size: .8rem; line-height: 1.3; color: var(--ink); }
+  .movesbox .collabel { margin-bottom: .4rem; }
+  .movesbox .mv { padding: .2rem 0; border-top: 1px solid var(--rule); }
+  .movesbox .mv:first-of-type { border-top: none; }
+  .movesbox b { color: var(--accent); }
   .facts.sm { font-size: clamp(.85rem, 1.25vw, 1rem); }
   .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
   .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
@@ -120,7 +125,33 @@
   <h1>Spin in Practice:<br>Media, Information, and Legitimation</h1>
 </section>
 
-<!-- 2 · Framework -->
+<!-- 2 · Warm-up: Duma election -->
+<section class="slide">
+  <p class="kicker">Warm-up · State Duma election · Sep 18&ndash;20, 2026</p>
+  <h2>Party-list vote, 2021 vs 2026</h2>
+  <div class="chartwrap chart" id="chart-duma"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">355 / 450</div><div class="l">United Russia seats (209 list + 208 districts); 324 in 2021</div></div>
+    <div class="stat"><div class="v">59.3%</div><div class="l">turnout, reported by election officials as the highest for a Duma vote</div></div>
+    <div class="stat"><div class="v"><a href="https://www.youtube.com/watch?v=omKoRsO1kMw&amp;t=63s" target="_blank" rel="noopener" style="display:inline-block;font-size:1.15rem;color:#fff;background:var(--accent);padding:.45rem 1rem;border-radius:10px;text-decoration:none;margin-top:.35rem">&#9654;&nbsp; Rosenberg: the morning papers</a></div><div class="l">BBC&rsquo;s Steve Rosenberg reads the Russian press on the result (from 1:03)</div></div>
+  </div>
+  <p class="footer-tag">2026: Meduza, Sep 21, 2026, at 95.18% counted. 2021: official results as compiled on Wikipedia. Yabloko chair Rybakov barred as a &ldquo;foreign agent.&rdquo; Video: Steve Rosenberg (BBC), YouTube, title verified.</p>
+</section>
+
+<!-- 3 · Warm-up: PLA purge -->
+<section class="slide">
+  <p class="kicker">Warm-up · Central Military Commission, 2022 &rarr; Sep 21, 2026</p>
+  <h2>&ldquo;formed cliques and factions, and were disloyal and dishonest to the party&rdquo;</h2>
+  <div class="chartwrap wide chart" id="chart-cmc"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">7 &rarr; 2</div><div class="l">active CMC members since the 2022 Party Congress (Xi and Zhang Shengmin)</div></div>
+    <div class="stat"><div class="v">101</div><div class="l">senior officers at CMC, theater-command, or deputy grade &ldquo;dismissed or gone missing&rdquo; since 2022</div></div>
+    <div class="stat"><div class="v"><a href="https://www.youtube.com/watch?v=iDpe94lb0Yc" target="_blank" rel="noopener" style="display:inline-block;font-size:1.15rem;color:#fff;background:var(--accent);padding:.45rem 1rem;border-radius:10px;text-decoration:none;margin-top:.35rem">&#9654;&nbsp; Vantage: the two generals</a></div><div class="l">Firstpost (India), &ldquo;Xi&rsquo;s New Purge: 2 Top Chinese Generals Expelled for &lsquo;Disloyalty&rsquo;&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Quote: Xinhua via Al Jazeera, Sep 21, 2026 (Defence Ministry announcement; &ldquo;no details of the alleged crimes were provided&rdquo;). Counts: CSIS, &ldquo;Assessing Xi&rsquo;s Unprecedented Purges of China&rsquo;s Military,&rdquo; Feb 24, 2026. Video title and channel verified.</p>
+</section>
+
+<!-- 4 · Framework -->
 <section class="slide">
   <p class="kicker">A framework for the week · three texts, three vantage points</p>
   <h2>Who handles the information</h2>
@@ -142,22 +173,28 @@
   <p class="footer-tag">Guriev &amp; Treisman, <em>JEP</em> 33(4), 2019 (pages per cell). Mi&#322;osz chapter not in the course folder &mdash; row paraphrases the companion guide (sections per cell). Applebaum, <em>The Atlantic</em>, June 2024 (unpaginated).</p>
 </section>
 
-<!-- 3 · Divider: the ruler -->
+<!-- 5 · Divider: the ruler -->
 <section class="slide divider">
   <p class="kicker">Part I · The ruler · Guriev &amp; Treisman</p>
   <blockquote class="smaller">The key to such regimes, we argue, is the manipulation of information. Rather than terrorizing or indoctrinating the population, rulers survive by leading citizens to believe&mdash;rationally but incorrectly&mdash;that they are competent and public-spirited. Having won popularity, dictators score points both at home and abroad by mimicking democracy.
     <cite>Guriev &amp; Treisman 2019: 101</cite></blockquote>
 </section>
 
-<!-- 4 · The three-actor model -->
+<!-- 6 · The three-actor model -->
 <section class="slide">
-  <p class="kicker">Part I · The ruler · three actors, asymmetric information</p>
+  <p class="kicker">Part I · The ruler · three actors</p>
   <h2>Ruler, informed elite, public</h2>
+  <div class="movesbox">
+    <div class="collabel">Moves in the game</div>
+    <div class="mv"><b>Ruler</b> &mdash; censor &middot; &ldquo;buy the elite&rsquo;s silence&rdquo; &middot; &ldquo;propaganda&rdquo; blaming external conditions &middot; or spend on living standards</div>
+    <div class="mv"><b>Informed elite</b> &mdash; observe competence &middot; &ldquo;send messages to the public&rdquo; &middot; or stay silent</div>
+    <div class="mv"><b>Public</b> &mdash; infer competence from what reaches it &middot; revolt if it concludes the ruler is incompetent &middot; or acquiesce</div>
+  </div>
   <div class="chartwrap wide chart" id="chart-model"></div>
   <p class="footer-tag">Guriev &amp; Treisman 2019: 117 (&ldquo;Beliefs of Elites and Masses&rdquo;; formal model in Guriev &amp; Treisman 2018). Labels quote or condense that page.</p>
 </section>
 
-<!-- 5 · Two conditions -->
+<!-- 7 · Two conditions -->
 <section class="slide">
   <p class="kicker">Part I · The ruler · when the equilibrium holds</p>
   <h2>&ldquo;two key variables&rdquo;</h2>
@@ -173,7 +210,7 @@
   <p class="footer-tag">Guriev &amp; Treisman 2019: 117.</p>
 </section>
 
-<!-- 6 · Indirect censorship -->
+<!-- 8 · Indirect censorship -->
 <section class="slide">
   <p class="kicker">Part I · The ruler · indirect censorship</p>
   <h2>&ldquo;less obvious techniques&rdquo;</h2>
@@ -187,7 +224,7 @@
   <p class="footer-tag">Guriev &amp; Treisman 2019: 118. Inner citations as given there. Clip: <a href="https://www.youtube.com/watch?v=nH-FrVkpTZo" target="_blank" rel="noopener">&ldquo;Internet censorship in China | The Great Firewall of China | SHIFT&rdquo; (DW Shift, ~12 min; first 4 min on blocking and keyword filtering)</a>.</p>
 </section>
 
-<!-- 7 · Perceptions gap -->
+<!-- 9 · Perceptions gap -->
 <section class="slide">
   <p class="kicker">Part I · The ruler · perceived media freedom, elite vs. public</p>
   <h2>&ldquo;Do the media in this country have a lot of freedom, or not?&rdquo;</h2>
@@ -200,7 +237,7 @@
   <p class="footer-tag">Guriev &amp; Treisman 2019: 117&ndash;119, Figure 6 (&ldquo;the gap widens to a maximum of almost 8 percentage points&rdquo;).</p>
 </section>
 
-<!-- 8 · Approval gap -->
+<!-- 10 · Approval gap -->
 <section class="slide">
   <p class="kicker">Part I · The ruler · approval of leadership, elite vs. public</p>
   <h2>&ldquo;Do you approve or disapprove of the job performance of the leadership of this country?&rdquo;</h2>
@@ -214,7 +251,7 @@
   <p class="footer-tag">Guriev &amp; Treisman 2019: 120&ndash;121, Figure 7. Gallup World Poll; Polity IV.</p>
 </section>
 
-<!-- 9 · Removing the desire -->
+<!-- 11 · Removing the desire -->
 <section class="slide">
   <p class="kicker">Part I · The ruler · &ldquo;Other Theories of Modern Authoritarian Governance&rdquo;</p>
   <blockquote class="smaller">It is not that citizens cannot coordinate to resist them: many do not want to. &hellip; At least some dictators in power today survive not by preventing the masses from rebelling, but by removing their desire to do so.
@@ -222,7 +259,17 @@
   <p class="sub">Contrasted there with: King, Pan &amp; Roberts 2013 (censoring calls for collective action); Edmond 2013 and Huang 2015 (propaganda about repressive capacity); Chen &amp; Xu 2017 (dividing opponents).</p>
 </section>
 
-<!-- 10 · Depth: selective blame -->
+<!-- 12 · Film: DW Documentary -->
+<section class="slide">
+  <p class="kicker">Part I · The ruler · film · ~30 min</p>
+  <h2>China &mdash; Surveillance state or way of the future?</h2>
+  <p class="sub">DW Documentary, 2021 &middot; 42 min &middot; facial recognition, social credit, the camera network</p>
+  <p style="margin-top:2rem"><a href="https://www.youtube.com/watch?v=7gSU_Xes3GQ" target="_blank" rel="noopener" style="display:inline-block;font-size:clamp(1.3rem,2.6vw,2.1rem);font-weight:700;color:#fff;background:var(--accent);padding:.9rem 1.6rem;border-radius:12px;text-decoration:none">&#9654;&nbsp; youtube.com/watch?v=7gSU_Xes3GQ</a></p>
+  <p class="sub">While watching: note one moment that matches G&amp;T&rsquo;s &ldquo;if censored sparingly, social networks can be used by the state as a tool of surveillance&rdquo; (118), and one that does not fit the informational-autocrat model.</p>
+  <p class="footer-tag">Title and channel per the YouTube listing (DW Documentary). Assigned to Weeks 8&ndash;9 (Digital Authoritarianism) in the syllabus; shown here in part.</p>
+</section>
+
+<!-- 13 · Depth: selective blame -->
 <section class="slide">
   <p class="kicker">Part I · The ruler · Depth · Rozenas &amp; Stukal 2019</p>
   <h2>Economic news on Russian state television</h2>
@@ -236,14 +283,14 @@
   <p class="footer-tag">Depth reading (optional). Abstract and findings per the JoP article page; article PDF not in the course folder.</p>
 </section>
 
-<!-- 11 · Divider: the subject -->
+<!-- 14 · Divider: the subject -->
 <section class="slide divider">
   <p class="kicker">Part II · The subject · Havel</p>
   <blockquote class="smaller">The manager of a fruit-and-vegetable shop places in his window, among the onions and carrots, the slogan: &ldquo;Workers of the world, unite!&rdquo;
     <cite>V&aacute;clav Havel, &ldquo;The Power of the Powerless&rdquo; (1978), &sect; III &mdash; Depth reading</cite></blockquote>
 </section>
 
-<!-- 12 · Ketman: the word -->
+<!-- 15 · Ketman: the word -->
 <section class="slide">
   <p class="kicker">Part II · The subject · Mi&#322;osz, <em>The Captive Mind</em> (1953)</p>
   <h2>Ketman</h2>
@@ -255,7 +302,7 @@
   <p class="footer-tag">Chapter not in the course folder; wording follows the companion guide, &sect;&sect; 1&ndash;2 (paraphrase &mdash; verify direct language before quoting Mi&#322;osz).</p>
 </section>
 
-<!-- 13 · Varieties -->
+<!-- 16 · Varieties -->
 <section class="slide">
   <p class="kicker">Part II · The subject · Mi&#322;osz · the varieties</p>
   <table class="biblio types">
@@ -271,7 +318,7 @@
   <p class="footer-tag">Companion guide, &sect; 3 (paraphrase of the chapter; the typology is Mi&#322;osz&rsquo;s literary construction, not survey data).</p>
 </section>
 
-<!-- 14 · Havel: the sign -->
+<!-- 17 · Havel: the sign -->
 <section class="slide">
   <p class="kicker">Part II · The subject · Havel · Depth</p>
   <h2>What the sign says</h2>
@@ -285,7 +332,7 @@
   <p class="footer-tag">Havel, &ldquo;The Power of the Powerless&rdquo; (1978), &sect;&sect; III&ndash;IV, Paul Wilson translation. Depth reading (optional).</p>
 </section>
 
-<!-- 15 · Orwell -->
+<!-- 18 · Orwell -->
 <section class="slide">
   <p class="kicker">Part II · The subject · Orwell · Depth</p>
   <blockquote class="smaller">In our time, political speech and writing are largely the defence of the indefensible.</blockquote>
@@ -294,7 +341,7 @@
   <p class="footer-tag">Depth reading (optional). Second quotation trimmed with one ellipsis (the omitted clause lists the parties he means it to apply to).</p>
 </section>
 
-<!-- 16 · Frye et al. -->
+<!-- 19 · Frye et al. -->
 <section class="slide">
   <p class="kicker">Part II · The subject · Depth · Frye, Gehlbach, Marquardt &amp; Reuter 2017</p>
   <h2>&ldquo;Is Putin&rsquo;s popularity real?&rdquo;</h2>
@@ -308,7 +355,7 @@
   <p class="footer-tag">Depth reading (optional). Figures from the article&rsquo;s abstract and pp. 8&ndash;10.</p>
 </section>
 
-<!-- 17 · Discussion -->
+<!-- 20 · Discussion -->
 <section class="slide">
   <p class="kicker">Part II · The subject · discussion · 8 minutes, pairs</p>
   <h2>Discussion</h2>
@@ -321,14 +368,14 @@
   <p class="sub">Task: take one of the Frye et al. respondents who answers &ldquo;approve.&rdquo; Decide which description fits that respondent, and what evidence would tell the two apart. One sentence per pair; report out.</p>
 </section>
 
-<!-- 18 · Divider: across borders -->
+<!-- 21 · Divider: across borders -->
 <section class="slide divider">
   <p class="kicker">Part III · Across borders · Applebaum</p>
   <blockquote class="smaller">If people are naturally drawn to the image of human rights, to the language of democracy, to the dream of freedom, then those concepts have to be poisoned. That requires more than surveillance, more than close observation of the population, more than a political system that defends against liberal ideas. It also requires an offensive plan.
     <cite>Applebaum, &ldquo;The New Propaganda War,&rdquo; <em>The Atlantic</em>, June 2024</cite></blockquote>
 </section>
 
-<!-- 19 · Then and now -->
+<!-- 22 · Then and now -->
 <section class="slide">
   <p class="kicker">Part III · Across borders · Applebaum · then and now</p>
   <div class="twocol">
@@ -341,7 +388,7 @@
   <p class="footer-tag">Applebaum 2024. Freedom House count cited there: 56 countries &ldquo;not free.&rdquo; Clip: <a href="https://www.youtube.com/watch?v=TvTfsKcueDQ" target="_blank" rel="noopener">&ldquo;Ukraine war latest: Russian state TV mocks European energy-saving efforts | DW News&rdquo; (DW News, ~12 min; state-TV segment in the opening minutes)</a>.</p>
 </section>
 
-<!-- 20 · Fire hose -->
+<!-- 23 · Fire hose -->
 <section class="slide">
   <p class="kicker">Part III · Across borders · Applebaum · MH17, 2014</p>
   <blockquote class="smaller">After Russian-controlled forces shot down Malaysia Airlines Flight MH17 over Ukraine in 2014, the Russian government reacted not only with a denial, but with multiple stories, plausible and implausible: It blamed the Ukrainian army, and the CIA, and a nefarious plot in which dead people were placed on a plane in order to fake a crash and discredit Russia. This tactic&mdash;the so-called fire hose of falsehoods&mdash;ultimately produces not outrage but nihilism.
@@ -350,7 +397,7 @@
   <p class="footer-tag">Clip: <a href="https://www.youtube.com/watch?v=IHnNkWlMy_4" target="_blank" rel="noopener">&ldquo;MH17: Debunking Russian Disinformation&rdquo; (Radio Free Europe/Radio Liberty, ~3 min; the successive Kremlin versions and the open-source rebuttals)</a>. Brief crash-site footage.</p>
 </section>
 
-<!-- 21 · Infrastructure -->
+<!-- 24 · Infrastructure -->
 <section class="slide">
   <p class="kicker">Part III · Across borders · Applebaum · the infrastructure</p>
   <h2>&ldquo;some overt and some covert, some aimed at the public and some aimed at elites&rdquo;</h2>
@@ -364,7 +411,7 @@
   <p class="footer-tag">Applebaum 2024. Figures as reported there.</p>
 </section>
 
-<!-- 22 · One story's route -->
+<!-- 25 · One story's route -->
 <section class="slide">
   <p class="kicker">Part III · Across borders · Applebaum · one story, February&ndash;March 2022</p>
   <h2>&ldquo;secret U.S.-funded biolabs in Ukraine&rdquo;</h2>
@@ -372,7 +419,7 @@
   <p class="footer-tag">Applebaum 2024; sequence and figures as reported there.</p>
 </section>
 
-<!-- 23 · Synthesis -->
+<!-- 26 · Synthesis -->
 <section class="slide">
   <p class="kicker">Synthesis · three vantage points</p>
   <table class="biblio wide">
@@ -387,7 +434,7 @@
   <p class="footer-tag">Sources as on the slides above; Orwell 1946 (Depth) not tabled.</p>
 </section>
 
-<!-- 24 · Thursday: Jason Bell -->
+<!-- 27 · Thursday: Jason Bell -->
 <section class="slide">
   <p class="kicker">Thursday Sep 24 · guest, in class</p>
   <h2>Jason Bell</h2>
@@ -401,7 +448,7 @@
   <p class="footer-tag">Makana Eyre, &ldquo;The World War II Hero Who Quietly Settled in Hawai&#699;i,&rdquo; <em>Honolulu Civil Beat</em>, September 2026; book title per the U.S. edition listing.</p>
 </section>
 
-<!-- 25 · Logistics -->
+<!-- 28 · Logistics -->
 <section class="slide">
   <p class="kicker">This week and next</p>
   <ul class="big">
@@ -413,7 +460,7 @@
   <p class="footer-tag">Per the course syllabus of record.</p>
 </section>
 
-<div class="counter" id="counter">1 / 25</div>
+<div class="counter" id="counter">1 / 28</div>
 <div class="hint">&darr; / &rarr; / space to advance</div>
 
 <script>
@@ -483,7 +530,98 @@
     el('path', { d: 'M0,0 L10,5 L0,10 z', fill: color }, m);
   }
 
-  /* --- Slide 4: ruler / informed elite / public (G&T 2019: 117) --- */
+
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    if (h < 2 * r) r = h / 2;
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function groupedBars(boxId, groups, series, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 940, H = opts.H || 330;
+    var padL = 60, padR = 20, padT = 24, padB = opts.padB || 64;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = opts.max || Math.max.apply(null, groups.map(function (g) { return Math.max.apply(null, g.values); })) * 1.15;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var gw = plotW / groups.length;
+    var n = series.length;
+    var bw = Math.min(opts.bw || 70, (gw * 0.7) / n);
+    var ticks = opts.ticks || 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = max * t / ticks;
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#e6e9ee', 'stroke-width': 1 }, svg);
+      txt(el('text', { x: padL - 10, y: y + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), (opts.fmtAxis || function (x) { return Math.round(x); })(v));
+    }
+    if (opts.yLabel) {
+      txt(el('text', { x: 14, y: padT + plotH / 2, 'font-size': '12', fill: MUTED, 'text-anchor': 'middle',
+        transform: 'rotate(-90 14 ' + (padT + plotH / 2) + ')' }, svg), opts.yLabel);
+    }
+    groups.forEach(function (g, i) {
+      var gx = padL + i * gw + gw / 2;
+      var total = n * bw + (n - 1) * 8;
+      g.values.forEach(function (v, j) {
+        var x = gx - total / 2 + j * (bw + 8);
+        var h = v / max * plotH;
+        var y = padT + plotH - h;
+        barPath(x, y, bw, h, svg, series[j].color, series[j].name + ' — ' + g.label + ': ' + (opts.fmt || String)(v));
+        txt(el('text', { x: x + bw / 2, y: y - 6, 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: INK }, svg), (opts.fmt || String)(v));
+      });
+      wrap(g.label, opts.wrapAt || 28).forEach(function (ln, k) {
+        txt(el('text', { x: gx, y: padT + plotH + 20 + k * 15, 'text-anchor': 'middle', 'font-size': '13', fill: INK }, svg), ln);
+      });
+    });
+    // legend
+    var lx = W - padR - 200;
+    series.forEach(function (sr, j) {
+      el('rect', { x: lx, y: 6 + j * 18, width: 12, height: 12, rx: 3, fill: sr.color }, svg);
+      txt(el('text', { x: lx + 18, y: 16 + j * 18, 'font-size': '12.5', fill: MUTED }, svg), sr.name);
+    });
+  }
+
+  /* --- Slide 2: Duma party-list vote 2021 vs 2026 --- */
+  groupedBars('chart-duma', [
+    { label: 'United Russia', values: [49.82, 57.83] },
+    { label: 'KPRF', values: [18.93, 13.81] },
+    { label: 'LDPR', values: [7.55, 8.98] },
+    { label: 'New People', values: [5.32, 7.96] },
+    { label: 'A Just Russia', values: [7.46, 4.96] }
+  ], [{ name: '2021', color: '#2f6bb3' }, { name: '2026 (95% counted)', color: '#a33232' }],
+  { W: 940, H: 260, max: 65, ticks: 5, bw: 60, padB: 44, fmt: function (v) { return v.toFixed(1) + '%'; }, fmtAxis: function (v) { return Math.round(v) + '%'; }, yLabel: 'Party-list vote (%)' });
+
+
+  /* --- Slide 3: the seven-member CMC of 2022 and its status --- */
+  (function () {
+    var box = document.getElementById('chart-cmc');
+    if (!box) return;
+    var W = 1120, H = 150;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var seats = [
+      { n: 'Xi Jinping', r: 'Chairman', st: 'in office', out: false },
+      { n: 'Zhang Youxia', r: 'Vice Chairman', st: 'expelled Sep 2026', out: true },
+      { n: 'He Weidong', r: 'Vice Chairman', st: 'expelled Oct 2025', out: true },
+      { n: 'Li Shangfu', r: 'Defense Minister', st: 'expelled Jun 2024', out: true },
+      { n: 'Liu Zhenli', r: 'Joint Staff chief', st: 'expelled Sep 2026', out: true },
+      { n: 'Miao Hua', r: 'Political Work director', st: 'expelled Oct 2025', out: true },
+      { n: 'Zhang Shengmin', r: 'Discipline Commission', st: 'in office', out: false }
+    ];
+    var gap = 14, bw = (W - gap * 6) / 7, y = 10, bh = 120;
+    seats.forEach(function (st, i) {
+      var x = i * (bw + gap);
+      el('rect', { x: x, y: y, width: bw, height: bh, rx: 10, fill: st.out ? '#f4e9e9' : '#fff', stroke: st.out ? ACCENT : INK, 'stroke-width': 2, 'stroke-dasharray': st.out ? '6 4' : 'none' }, svg);
+      lines(svg, x + bw / 2, y + 30, [st.n], 15, st.out ? ACCENT : INK, 'middle', '700');
+      lines(svg, x + bw / 2, y + 52, wrap(st.r, 18), 12, MUTED, 'middle', '400', 14);
+      lines(svg, x + bw / 2, y + 96, wrap(st.st, 16), 12.5, st.out ? ACCENT : INK, 'middle', '700', 15);
+    });
+  })();
+
+  /* --- Slide 6: ruler / informed elite / public (G&T 2019: 117) --- */
   (function () {
     var box = document.getElementById('chart-model');
     if (!box) return;
@@ -523,7 +661,7 @@
     lines(svg, W / 2, H - 12, ['Key goal: “to prevent elite members from revealing the regime’s flaws to the general public” (117)'], 14, INK, 'middle', '700');
   })();
 
-  /* --- Slide 22: route of the biolabs story (Applebaum 2024) --- */
+  /* --- Slide 25: route of the biolabs story (Applebaum 2024) --- */
   (function () {
     var box = document.getElementById('chart-biolab');
     if (!box) return;
