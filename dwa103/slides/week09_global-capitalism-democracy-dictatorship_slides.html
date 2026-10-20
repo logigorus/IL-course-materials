@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 103 · Week 9 · Global Capitalism, Democracy, and Dictatorship</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  blockquote + blockquote { margin-top: 1.6rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  blockquote.smallest cite { margin-top: .8rem; }
+  .statrow.words .stat .v { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+  .statrow.words .stat { flex: 1 1 0; min-width: 0; }
+  .statrow.words .stat .l { max-width: none; }
+  .statrow.compact { margin-top:.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .statrow.compact .stat .l { font-size: clamp(.82rem, 1.25vw, .98rem); max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ul.big.serif li { font-family: var(--serif); }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  ol.props li .probe { display: block; font-family: var(--sans); font-size: .78em; color: var(--muted); margin-top: .3rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.78rem, 1.08vw, 1rem); padding: .5rem .8rem .5rem 0; line-height: 1.32; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  table.biblio.types td .pg { color: var(--muted); font-size: .82em; white-space: nowrap; font-family: var(--sans); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
+  .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
+  .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: .2rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  .sw-inline { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:.5rem; vertical-align:-1px; }
+  table.biblio.types td:first-child .sw-inline { margin-right:.5rem; }
+  .vidbtn { align-self:flex-start; display:inline-block; margin-top:1.4rem; padding:.9rem 1.5rem; border-radius:10px; background:var(--accent); color:#fff; font-size:clamp(1.1rem,2vw,1.5rem); font-weight:700; text-decoration:none; }
+  .vidmeta { font-size:clamp(.95rem,1.5vw,1.15rem); color:var(--muted); margin-top:.8rem; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+<body>
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 103 · Introduction to Global Political Economy · Week 9 · Tue Oct 20 &amp; Thu Oct 22</p>
+  <h1>Global Capitalism,<br>Democracy, and Dictatorship</h1>
+</section>
+
+<!-- 2 · Framework -->
+<section class="slide">
+  <p class="kicker">A framework for the week · four questions</p>
+  <h2>Markets and regimes</h2>
+  <table class="biblio wide">
+    <tr><th>Question</th><th>Texts</th><th>Key term</th></tr>
+    <tr><td>I. What regimes govern the world economy?</td>
+      <td>V-Dem, <em>Democracy Report 2026</em>; World Bank WDI</td>
+      <td>electoral autocracy</td></tr>
+    <tr><td>II. Does capitalism need democracy?</td>
+      <td>Friedman 1962, ch. 1; Olson 1993 (Week 10)</td>
+      <td>dispersion of power; stationary bandit</td></tr>
+    <tr><td>III. Can dictatorships deliver growth?</td>
+      <td>Krugman 1994; Rodrik 2010; Mart&iacute;nez 2022</td>
+      <td>input-driven growth</td></tr>
+    <tr><td>IV. How do autocracies hold on in a global economy?</td>
+      <td>Guriev &amp; Treisman 2019; Sharafutdinova &amp; Dawisha 2017; Applebaum 2024</td>
+      <td>informational autocrat; secure institutions abroad; kleptocracy</td></tr>
+  </table>
+  <blockquote class="smallest" style="margin-top:1.4rem">Third, in what is perhaps a minority view, Asian successes demonstrate the superiority of economies with fewer civil liberties and more planning than we in the West have been willing to accept.
+    <cite>Krugman 1994: 76</cite></blockquote>
+</section>
+
+<!-- 3 · Trade and democracies -->
+<section class="slide">
+  <p class="kicker">I · Regimes · globalization and regime type, 1970&ndash;2025</p>
+  <h2>World trade and the number of democracies</h2>
+  <div class="chartwrap" style="max-width:1100px;margin-top:0">
+    <div class="legend"><span><span class="sw" style="background:#1d2129"></span>World trade, % of world GDP</span><span><span class="sw" style="background:#2f6bb3"></span>Democracies</span><span><span class="sw" style="background:#a33232"></span>Autocracies</span></div>
+    <div class="chart" id="chart-tradedem" role="img" aria-label="Two panels, 1970 to 2025. Top: world trade as a share of world GDP rises from 25.8 percent in 1970 to 60.3 in 2008, falls to 51.9 in 2009, peaks at 62.1 in 2022, and stands at 56.7 in 2024. Bottom: number of democracies rises from 36 in 1970 to 95 in 2003, exceeds the number of autocracies from 2003 to 2023, and falls to 87 in 2025, when autocracies number 92."></div>
+  </div>
+  <p class="footer-tag">Trade = exports + imports of goods and services: World Bank WDI, NE.TRD.GNFS.ZS, world aggregate, 1970&ndash;2024 (2025 value preliminary, not shown; accessed Oct 19, 2026). Regimes: V-Dem Regimes of the World, v16 (democracies = liberal + electoral; autocracies = electoral + closed), via Our World in Data; 2025 counts match <em>Democracy Report 2026</em>.</p>
+</section>
+
+<!-- 4 · GDP share -->
+<section class="slide">
+  <p class="kicker">I · Regimes · world output by regime type, 1990&ndash;2024</p>
+  <h2>Share of world GDP produced in autocracies</h2>
+  <div class="chartwrap" style="max-width:1100px;margin-top:0">
+    <div class="legend"><span><span class="sw" style="background:#a33232"></span>All autocracies</span><span><span class="sw" style="background:#e0793f"></span>Autocracies excluding China</span></div>
+    <div class="chart" id="chart-gdpshare" role="img" aria-label="Line chart, 1990 to 2024. Share of world GDP at purchasing-power parity produced in autocracies: 32.8 percent in 1990, a low of 22.3 percent in 1999, 36.3 percent in 2016, 43.8 percent in 2017 when India is reclassified as an electoral autocracy, and 52.5 percent in 2024 when Indonesia and Mexico are reclassified. Excluding China: 30.4 percent in 1990, 17.0 in 1999, 40.9 in 2024."></div>
+  </div>
+  <div class="statrow compact" style="margin-top:.6rem">
+    <div class="stat"><div class="v">3.4% &rarr; 19.6%</div><div class="l">China&rsquo;s share of world GDP (PPP), 1990 &rarr; 2024</div></div>
+    <div class="stat"><div class="v">2024</div><div class="l">first year above 50%</div></div>
+  </div>
+  <p class="footer-tag">GDP, PPP (constant 2021 international $): World Bank WDI, NY.GDP.MKTP.PP.KD, accessed Oct 19, 2026; shares computed over the 160&ndash;167 countries with both GDP and regime data (93&ndash;98% of world GDP). Regime type: V-Dem Regimes of the World v16, via Our World in Data; reclassification years per the same series.</p>
+</section>
+
+<!-- 5 · The ledger -->
+<section class="slide">
+  <p class="kicker">I · Regimes · V-Dem, 2025</p>
+  <h2>92 autocracies, 87 democracies</h2>
+  <div class="statrow" style="margin-top:.2rem">
+    <div class="stat"><div class="v">74%</div><div class="l">of the world population &mdash; 6 billion people &mdash; live in autocracies</div></div>
+    <div class="stat"><div class="v">2.3 bn &gt; 2.2 bn</div><div class="l">people in closed autocracies vs. in all democracies combined</div></div>
+    <div class="stat"><div class="v">7%</div><div class="l">live in liberal democracies &mdash; lowest in over 50 years</div></div>
+  </div>
+  <div class="chartwrap">
+    <div class="legend" id="leg-regime"></div>
+    <div class="chart" id="chart-regime" role="img" aria-label="Stacked bar of world population by regime type in 2025: liberal democracy 7 percent, electoral democracy 19 percent, electoral autocracy 46 percent, closed autocracy 28 percent"></div>
+  </div>
+  <p class="footer-tag">V-Dem Institute, <em>Democracy Report 2026</em>, pp. 4, 10&ndash;11 (Figures 4&ndash;6).</p>
+</section>
+
+<!-- 6 · Regime types -->
+<section class="slide">
+  <p class="kicker">I · Regimes · V-Dem&rsquo;s &ldquo;Regimes of the World&rdquo;</p>
+  <h2>Four regime types</h2>
+  <table class="biblio types">
+    <tr><th>Type</th><th>Multiparty elections</th><th>Constraints on the executive</th><th>Classified this way, 2025</th></tr>
+    <tr><td><span class="sw-inline" style="background:#2a5da8"></span>Liberal democracy</td><td>free and fair</td><td>rule of law; courts and legislature constrain the executive</td><td>Germany, Japan, South Korea</td></tr>
+    <tr><td><span class="sw-inline" style="background:#5e9fe0"></span>Electoral democracy</td><td>free and fair</td><td>below the liberal threshold</td><td>United States, Brazil, South Africa</td></tr>
+    <tr><td><span class="sw-inline" style="background:#e0793f"></span>Electoral autocracy</td><td>held, not free and fair</td><td>&mdash;</td><td>Russia, T&uuml;rkiye, India</td></tr>
+    <tr><td><span class="sw-inline" style="background:#96302a"></span>Closed autocracy</td><td>none for the chief executive</td><td>&mdash;</td><td>China, Saudi Arabia, North Korea</td></tr>
+  </table>
+  <p class="footer-tag">L&uuml;hrmann, Tannenberg &amp; Lindberg, &ldquo;Regimes of the World,&rdquo; <em>Politics and Governance</em> 6(1), 2018; classifications from V-Dem v16 via Our World in Data (accessed Oct 19, 2026).</p>
+</section>
+
+<!-- 7 · China: growth without democratization -->
+<section class="slide">
+  <p class="kicker">I · Regimes · China, 1995&ndash;2025</p>
+  <h2>Growth without democratization</h2>
+  <div class="statrow compact" style="margin-top:.2rem">
+    <div class="stat"><div class="v">$0.74 tn &rarr; $19.5 tn</div><div class="l">GDP, 1995 &rarr; 2025 (current US$); 2.4% &rarr; 16.5% of world GDP</div></div>
+    <div class="stat"><div class="v">$613 &rarr; $13,862</div><div class="l">GDP per capita, 1995 &rarr; 2025</div></div>
+    <div class="stat"><div class="v">800 mn</div><div class="l">people out of extreme poverty since 1980</div></div>
+  </div>
+  <div class="chartwrap" style="max-width:820px">
+    <div class="chart" id="chart-growth" role="img" aria-label="Bar chart of China's average annual real GDP growth: 8.1 percent over the last 30 years, 7.6 percent over the last 20, 5.6 percent over the last 10"></div>
+  </div>
+  <p class="sub" style="margin-top:.6rem">Is the &ldquo;China model&rdquo; a rival idea with universal aspirations (the only thing that would falsify Fukuyama) or a growth record that cannot be replicated elsewhere?</p>
+  <p class="footer-tag">World Bank, World Development Indicators (accessed Aug 2026); World Bank, <em>Four Decades of Poverty Reduction in China</em> (2022). Fukuyama, &ldquo;The End of History?&rdquo; <em>The National Interest</em> 16 (1989).</p>
+</section>
+
+<!-- 8 · Divider: Friedman -->
+<section class="slide divider">
+  <p class="kicker">II · Does capitalism need democracy? · Friedman</p>
+  <blockquote>History suggests only that capitalism is a necessary condition for political freedom. Clearly it is not a sufficient condition.
+    <cite>Milton Friedman, <em>Capitalism and Freedom</em> (1962), ch. 1, &ldquo;The Relation between Economic Freedom and Political Freedom&rdquo; (excerpt p. 2)</cite></blockquote>
+</section>
+
+<!-- 9 · Friedman: power -->
+<section class="slide">
+  <p class="kicker">II · Does capitalism need democracy? · Friedman · the market as a check</p>
+  <div class="twocol" style="margin-top:0">
+    <div class="col"><div class="collabel">Two ways of co-ordinating &ldquo;the economic activities of millions&rdquo; (p. 4)</div>
+      <p class="colq">&ldquo;central direction involving the use of coercion &mdash; the technique of the army and of the modern totalitarian state&rdquo;</p>
+      <p class="colq" style="margin-top:.7rem">&ldquo;voluntary co-operation of individuals &mdash; the technique of the market place&rdquo;</p></div>
+    <div class="col"><div class="collabel">Concentration and dispersion of power (p. 5)</div>
+      <p class="colq">&ldquo;if economic power is joined to political power, concentration seems almost inevitable. On the other hand, if economic power is kept in separate hands from political power, it can serve as a check and a counter to political power.&rdquo;</p></div>
+  </div>
+  <p class="footer-tag">Friedman 1962, ch. 1 (excerpt pages as marked).</p>
+</section>
+
+<!-- 10 · Friedman: capitalist but not free -->
+<section class="slide">
+  <p class="kicker">II · Does capitalism need democracy? · Friedman · the cases he lists</p>
+  <h2>&ldquo;Economic arrangements that are fundamentally capitalist and political arrangements that are not free&rdquo;</h2>
+  <ul class="big">
+    <li>Fascist Italy &middot; Fascist Spain &middot; Germany &ldquo;at various times in the last seventy years&rdquo;</li>
+    <li>Japan before World Wars I and II &middot; tsarist Russia &ldquo;in the decades before World War I&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Friedman 1962, ch. 1 (excerpt p. 2).</p>
+</section>
+
+<!-- 11 · Olson: stationary bandit -->
+<section class="slide">
+  <p class="kicker">II · Does capitalism need democracy? · Olson · the stationary bandit</p>
+  <div class="chartwrap" style="max-width:1100px;margin-top:.4rem">
+    <div class="chart" id="chart-bandit" role="img" aria-label="Three-stage diagram: anarchy with roving bandits; the stationary bandit, who monopolizes theft as taxation and provides order and public goods; and the encompassing interest, a share of any increase in the domain's income."></div>
+  </div>
+  <blockquote class="smallest" style="margin-top:.6rem">Though experience shows that relatively poor countries can grow extraordinarily rapidly when they have a strong dictator who happens to have unusually good economic policies, such growth lasts only for the ruling span of one or two dictators.
+    <cite>p. 572</cite></blockquote>
+  <p class="footer-tag">Mancur Olson, &ldquo;Dictatorship, Democracy, and Development,&rdquo; <em>APSR</em> 87(3), 1993 &mdash; assigned for Week 10. Diagram: schematic of pp. 567&ndash;569; not data.</p>
+</section>
+
+<!-- 12 · Krugman: Singapore -->
+<section class="slide">
+  <p class="kicker">III · Can dictatorships deliver growth? · Krugman · Singapore, 1966&ndash;1990</p>
+  <blockquote class="smaller">the miracle turns out to have been based on perspiration rather than inspiration: Singapore grew through a mobilization of resources that would have done Stalin proud.
+    <cite>p. 70</cite></blockquote>
+  <div class="statrow compact" style="margin-top:1.4rem">
+    <div class="stat"><div class="v">8.5% / yr</div><div class="l">GDP growth, 1966&ndash;1990; per capita 6.6%</div></div>
+    <div class="stat"><div class="v">27% &rarr; 51%</div><div class="l">employed share of the population</div></div>
+    <div class="stat"><div class="v">11% &rarr; 40%+</div><div class="l">investment as a share of output</div></div>
+  </div>
+  <p class="sub">&ldquo;all of Singapore&rsquo;s growth can be explained by increases in measured inputs. There is no sign at all of increased efficiency.&rdquo; (71)</p>
+  <p class="footer-tag">Paul Krugman, &ldquo;The Myth of Asia&rsquo;s Miracle,&rdquo; <em>Foreign Affairs</em> 73(6), 1994: 70&ndash;71, drawing on Alwyn Young and on Lawrence Lau &amp; Jong-Il Kim.</p>
+</section>
+
+<!-- 13 · Investment shares -->
+<section class="slide">
+  <p class="kicker">III · Can dictatorships deliver growth? · Krugman&rsquo;s inputs · investment, 1970&ndash;2024</p>
+  <h2>Gross capital formation, % of GDP</h2>
+  <div class="chartwrap" style="max-width:1100px;margin-top:0">
+    <div class="legend" id="leg-invest"></div>
+    <div class="chart" id="chart-invest" role="img" aria-label="Line chart of gross capital formation as a percent of GDP, 1970 to 2024. Singapore peaks at 46.9 percent in 1984 and falls to about 22 percent. China stays above 40 percent every year from 2007 to 2024, peaking at 46.3 percent in 2011. South Korea peaks at 41.7 percent in 1991. India peaks at 42.0 percent in 2007. The United States stays between 17.8 and 25.1 percent."></div>
+  </div>
+  <p class="footer-tag">World Bank WDI, NE.GDI.TOTL.ZS (gross capital formation), accessed Oct 19, 2026. Krugman 1994: 70&ndash;71 gives Singapore&rsquo;s investment share as rising &ldquo;from 11 to more than 40 percent&rdquo; (1966&ndash;1990) on the data of his day; the current WDI series starts higher.</p>
+</section>
+
+<!-- 14 · Krugman: China 2010 -->
+<section class="slide">
+  <p class="kicker">III · Can dictatorships deliver growth? · Krugman 1994 on China in 2010</p>
+  <blockquote class="smallest">If China can continue to grow at 10 percent annually, by the year 2010 its economy will be a third larger than ours. But if Chinese growth is only a more realistic 7 percent, its GDP will be only 82 percent of that of the United States.
+    <cite>Krugman 1994: 76</cite></blockquote>
+  <div class="chartwrap" style="max-width:960px;margin-top:.8rem">
+    <div class="chart" id="chart-krugman" role="img" aria-label="Bars of China's economy as a percent of the US economy in 2010: Krugman's 7 percent scenario 82, Krugman's 10 percent scenario 133, actual at purchasing-power parity 84, actual at market exchange rates 41. China's actual real growth 1994 to 2010 averaged 10.0 percent per year."></div>
+  </div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">10.0% / yr</div><div class="l">China&rsquo;s actual real GDP growth, 1994&ndash;2010 (US: 2.6%)</div></div>
+    <div class="stat"><div class="v">2014</div><div class="l">first year China&rsquo;s GDP at PPP exceeds the US&rsquo;s</div></div>
+  </div>
+  <p class="footer-tag">Actuals: World Bank WDI, series NY.GDP.MKTP.KD, NY.GDP.MKTP.PP.CD, NY.GDP.MKTP.CD (accessed Oct 19, 2026). Krugman&rsquo;s baseline was a World Bank estimate of China at &ldquo;about 40 percent&rdquo; of the US (p. 76); today&rsquo;s revised WDI PPP series puts 1994 at 27.5%.</p>
+</section>
+
+<!-- 15 · Rodrik -->
+<section class="slide divider">
+  <p class="kicker">III · Can dictatorships deliver growth? · Rodrik</p>
+  <blockquote class="smaller">When we look at systematic historical evidence, instead of individual cases, we find that authoritarianism buys little in terms of economic growth. For every authoritarian country that has managed to grow rapidly, there are several that have floundered. For every Lee Kuan Yew of Singapore, there are many like Mobutu Sese Seko of the Congo.
+    <cite>Dani Rodrik, &ldquo;The Myth of Authoritarian Growth,&rdquo; <em>Project Syndicate</em>, August 2010</cite></blockquote>
+</section>
+
+<!-- 16 · Rodrik: variance -->
+<section class="slide">
+  <p class="kicker">III · Can dictatorships deliver growth? · Rodrik&rsquo;s claim, 1976&ndash;2025</p>
+  <h2>Growth by decade and regime type</h2>
+  <div class="chartwrap" style="max-width:1120px;margin-top:0">
+    <div class="chart" id="chart-variance" role="img" aria-label="Two dot strips, one dot per country-decade, showing average annual growth of real GDP per capita for decades 1976-85 through 2016-25. Democracies, 339 country-decades: mean 2.1 percent, standard deviation 2.1, 6 percent of decades above 5 percent a year, 10 percent below zero. Autocracies, 425 country-decades: mean 1.5 percent, standard deviation 3.7, 12 percent above 5 percent, 28 percent below zero. Labeled: China 2006-15 at 9.0, South Korea 1986-95 at 8.6, Singapore 1976-85 at 5.6, Botswana 1976-85 at 6.3, DR Congo 1986-95 at minus 7.1, Venezuela 2016-25 at minus 9.5."></div>
+  </div>
+  <p class="footer-tag">One dot per country-decade (1976&ndash;85, 1986&ndash;95, 1996&ndash;2005, 2006&ndash;15, 2016&ndash;25): average annual growth of real GDP per capita, World Bank WDI NY.GDP.PCAP.KD (2025 preliminary), accessed Oct 19, 2026. Regime = V-Dem Regimes of the World in the year before the decade begins (democracy = liberal or electoral). Four country-decades off the scale are pinned to the edge and named.</p>
+</section>
+
+<!-- 17 · Rodrik: the 2010 wager -->
+<section class="slide">
+  <p class="kicker">III · Can dictatorships deliver growth? · Rodrik 2010, three pairings</p>
+  <h2>&ldquo;Don&rsquo;t be surprised if Brazil leaves Turkey in the dust, South Africa eventually surpasses Russia, and India outdoes China.&rdquo;</h2>
+  <div class="chartwrap" style="max-width:1080px;margin-top:.2rem">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Named first by Rodrik</span><span><span class="sw" style="background:#a33232"></span>Named second</span></div>
+    <div class="chart" id="chart-rodrik" role="img" aria-label="Real GDP per capita growth 2010 to 2025: Brazil 10.9 percent, Turkey 87.5; South Africa minus 4.0, Russia 28.1; India 104.3, China 139.3. V-Dem regime classification 2010 to 2025 shown beside each."></div>
+  </div>
+  <p class="footer-tag">GDP per capita, constant 2015 US$: World Bank WDI, NY.GDP.PCAP.KD, 2010 &rarr; 2025 (2025 values preliminary; accessed Oct 19, 2026). Regime classification: V-Dem Regimes of the World via Our World in Data.</p>
+</section>
+
+<!-- 18 · Martínez -->
+<section class="slide">
+  <p class="kicker">III · Can dictatorships deliver growth? · Mart&iacute;nez · nighttime lights</p>
+  <h2>&ldquo;Autocracies overstate yearly GDP growth by approximately 35%&rdquo;</h2>
+  <div class="chartwrap" style="max-width:820px">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Growth implied by nighttime lights</span><span><span class="sw" style="background:#a33232"></span>Growth reported by the government</span></div>
+    <div class="chart" id="chart-lights" role="img" aria-label="Paired bars for the worked example in the research brief: a true growth rate of 2.0 percent is reported as 2.0 percent in a democracy and as 2.7 percent in an autocracy."></div>
+  </div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">184</div><div class="l">countries, 1992&ndash;2013</div></div>
+  </div>
+  <p class="footer-tag">Luis R. Mart&iacute;nez, &ldquo;How Much Should We Trust the Dictator&rsquo;s GDP Growth Estimates?&rdquo; <em>JPE</em> 130(10), 2022, as summarized in the BFI research brief (Jul 15, 2021): &ldquo;a genuine 2% growth rate is reported as 2.7%.&rdquo; Bars illustrate that worked example only.</p>
+</section>
+
+<!-- 19 · G&T: fear to spin -->
+<section class="slide">
+  <p class="kicker">IV · Holding on · Guriev &amp; Treisman · from fear to spin</p>
+  <h2>Repression by cohort of dictator</h2>
+  <div class="chartwrap" style="max-width:980px">
+    <div class="legend"><span><span class="sw" style="background:#2f6bb3"></span>Earlier cohort</span><span><span class="sw" style="background:#a33232"></span>Dictators taking office in the 2000s</span></div>
+    <div class="chart" id="chart-violence" role="img" aria-label="Paired bars: share of dictators with more than ten political killings per year, 62 percent for the 1980s cohort versus 28 percent for the 2000s cohort; share holding more than one thousand political prisoners in their peak year, 59 percent for the 1970s cohort versus 16 percent for the 2000s; share alleged to have tortured dissidents, 96 percent for the 1980s cohort versus 74 percent for the 2000s"></div>
+  </div>
+  <p class="footer-tag">Sergei Guriev &amp; Daniel Treisman, &ldquo;Informational Autocrats,&rdquo; <em>JEP</em> 33(4), 2019: 103&ndash;105 (not assigned in this course; Treisman speaks on campus Thu Oct 29). Leaders who served &ge; 5 years in a nondemocracy.</p>
+</section>
+
+<!-- 20 · G&T: performance -->
+<section class="slide">
+  <p class="kicker">IV · Holding on · Guriev &amp; Treisman · performance</p>
+  <blockquote class="smaller">When old-style dictators address the general public, they seek to instill anxiety, prompting citizens to rally behind the nation&rsquo;s protector-in-chief. We argue that informational autocrats, like democratic leaders, aim for something different: a reputation for competence.
+    <cite>p. 112</cite></blockquote>
+  <p class="sub">Linz &amp; Stepan: 160 &mdash; &ldquo;a growing effort in a post-totalitarian polity to legitimate the regime on the basis of performance criteria&rdquo;</p>
+  <p class="footer-tag">Guriev &amp; Treisman 2019, section &ldquo;Rhetoric of Performance Rather Than Violence.&rdquo; Juan Linz &amp; Alfred Stepan, <em>Problems of Democratic Transition and Consolidation</em> (1996), reader reprint p. 160. Neither assigned in this course.</p>
+</section>
+
+<!-- 21 · S&D: best of both worlds -->
+<section class="slide">
+  <p class="kicker">IV · Holding on · Sharafutdinova &amp; Dawisha · Russia&rsquo;s billionaires</p>
+  <h2>&ldquo;The best of both worlds&rdquo;</h2>
+  <blockquote class="smallest">As Olson argued, stationary bandits have a stake in seeing their sovereign dominion grow and prosper and therefore they tax less, commit more credibly, and provide other public goods&hellip;
+    <cite>p. 362</cite></blockquote>
+  <blockquote class="smallest">These business elites that take advantage of weak institutions at home for profit maximization rely on the best of both worlds&mdash;secure institutions in the West to protect profits over the long term and weak institutions in Russia to get super-profits in the short term.
+    <cite>p. 369</cite></blockquote>
+  <p class="footer-tag">Gulnaz Sharafutdinova &amp; Karen Dawisha, <em>Perspectives on Politics</em> 15(2), 2017 (not assigned in this course). Cf. Week 7, Global Finance.</p>
+</section>
+
+<!-- 22 · Applebaum -->
+<section class="slide">
+  <p class="kicker">IV · Holding on · Applebaum · Autocracy, Inc.</p>
+  <blockquote class="smaller">Nowadays, autocracies are run not by one bad guy but by sophisticated networks relying on kleptocratic financial structures, a complex of security services&mdash;military, paramilitary, police&mdash;and technological experts who provide surveillance, propaganda, and disinformation.</blockquote>
+  <ul class="facts" style="margin-top:1.2rem">
+    <li>&ldquo;not like a bloc but rather like an agglomeration of companies, bound not by ideology but rather by a ruthless, single-minded determination to preserve their personal wealth and power&rdquo;</li>
+  </ul>
+  <p class="footer-tag">Anne Applebaum, <em>Autocracy, Inc.</em> (2024), Introduction, as posted by the author, June 16, 2024; unpaginated (not assigned in this course).</p>
+</section>
+
+<!-- 23 · Film -->
+<section class="slide">
+  <p class="kicker">Film · ~23 min · DW News, <em>Business Beyond</em>, March 15, 2024</p>
+  <h2>&ldquo;How Xi Jinping&rsquo;s authoritarianism is killing China&rsquo;s economy&rdquo;</h2>
+  <a class="vidbtn" href="https://www.youtube.com/watch?v=5vWCzfX9MI4" target="_blank" rel="noopener">&#9654; Watch on YouTube (22:52)</a>
+  <ul class="big compact" style="margin-top:1.6rem">
+    <li>While watching: one piece of evidence for Krugman&rsquo;s input-driven account (1994: 70&ndash;71)</li>
+    <li>One piece of evidence for Rodrik&rsquo;s &ldquo;economies that are as fragile as their political systems&rdquo; (2010)</li>
+    <li>One piece of evidence against either</li>
+  </ul>
+  <p class="footer-tag">Short version: &ldquo;Is Xi the problem?&rdquo; segment, 7:37&ndash;13:31 (publisher&rsquo;s chapter list).</p>
+</section>
+
+<!-- 24 · Discussion -->
+<section class="slide">
+  <p class="kicker">Discussion · China against the week&rsquo;s arguments · pairs, 8 minutes</p>
+  <table class="biblio wide">
+    <tr><th>Text</th><th>Its claim</th><th>The China record</th></tr>
+    <tr><td>Friedman 1962</td>
+      <td>Capitalism &ldquo;a necessary condition for political freedom &hellip; not a sufficient condition&rdquo; <span class="pg">excerpt 2</span></td>
+      <td>Closed autocracy in 2010 and in 2025 <span class="pg">V-Dem</span></td></tr>
+    <tr><td>Olson 1993</td>
+      <td>Dictator-led growth &ldquo;lasts only for the ruling span of one or two dictators&rdquo; <span class="pg">572</span></td>
+      <td>Reform era since 1978; Xi general secretary 2012; presidential term limit removed 2018 <span class="pg">Pei 2021: 16</span></td></tr>
+    <tr><td>Krugman 1994</td>
+      <td>&ldquo;a more realistic 7 percent&rdquo; <span class="pg">76</span></td>
+      <td>Real GDP growth 10.0%/yr, 1994&ndash;2010; 5.6%/yr, 2015&ndash;2025 <span class="pg">WDI</span></td></tr>
+    <tr><td>Rodrik 2010</td>
+      <td>&ldquo;Its future economic progress depends in no small part on whether it manages to open its political system to competition&rdquo;</td>
+      <td>GDP per capita +139%, 2010&ndash;2025 <span class="pg">WDI</span></td></tr>
+  </table>
+  <p class="sub">Task: take one row. Write the author&rsquo;s one-sentence reply to the right-hand column. Report out.</p>
+  <p class="footer-tag">Minxin Pei, &ldquo;China: Totalitarianism&rsquo;s Long Shadow,&rdquo; <em>Journal of Democracy</em> 32(2), 2021. WDI series as on slides 7, 14, 17.</p>
+</section>
+
+<!-- 25 · Synthesis -->
+<section class="slide">
+  <p class="kicker">This week, mapped</p>
+  <table class="biblio wide">
+    <tr><th>Text</th><th>Question</th><th>Claim</th><th>Key term</th></tr>
+    <tr><td>V-Dem 2026</td><td>I</td><td>&ldquo;92 autocracies, 87 democracies&rdquo;</td><td>electoral autocracy</td></tr>
+    <tr><td>Friedman 1962</td><td>II</td><td>capitalism &ldquo;a necessary condition for political freedom&rdquo; <span class="pg">excerpt 2</span></td><td>dispersion of power</td></tr>
+    <tr><td>Olson 1993</td><td>II</td><td>&ldquo;replace anarchy with government&rdquo; <span class="pg">568</span></td><td>stationary bandit</td></tr>
+    <tr><td>Krugman 1994</td><td>III</td><td>&ldquo;perspiration rather than inspiration&rdquo; <span class="pg">70</span></td><td>input-driven growth</td></tr>
+    <tr><td>Rodrik 2010</td><td>III</td><td>&ldquo;authoritarianism buys little in terms of economic growth&rdquo;</td><td>Lee Kuan Yew vs. Mobutu</td></tr>
+    <tr><td>Mart&iacute;nez 2022</td><td>III</td><td>&ldquo;overstate yearly GDP growth by approximately 35%&rdquo;</td><td>nighttime lights</td></tr>
+    <tr><td>Guriev &amp; Treisman 2019</td><td>IV</td><td>&ldquo;a reputation for competence&rdquo; <span class="pg">112</span></td><td>informational autocrat</td></tr>
+    <tr><td>Sharafutdinova &amp; Dawisha 2017</td><td>IV</td><td>&ldquo;the best of both worlds&rdquo; <span class="pg">369</span></td><td>secure institutions abroad</td></tr>
+    <tr><td>Applebaum 2024</td><td>IV</td><td>&ldquo;an agglomeration of companies&rdquo;</td><td>kleptocracy</td></tr>
+  </table>
+</section>
+
+<!-- 26 · Logistics -->
+<section class="slide">
+  <p class="kicker">This week and next</p>
+  <ul class="big">
+    <li><strong>Thu Oct 22, before class</strong> &mdash; Week 9 discussion question in the shared doc</li>
+    <li><strong>Tue Oct 27</strong> &mdash; Week 10, Global Economic Development: Olson 1993; Basu 2006; Stiglitz 2008</li>
+    <li><strong>Thu Oct 29</strong> &mdash; <strong>Quiz 2</strong>, in class</li>
+    <li><strong>Thu Oct 29, 12&ndash;1 pm</strong> &mdash; Daniel Treisman (UCLA), co-author of <em>Spin Dictators</em>, Choi Auditorium</li>
+    <li><strong>Wed Nov 4, 12&ndash;1 pm</strong> &mdash; Leah Stokes &middot; <strong>Thu Nov 5</strong> &mdash; annotated bibliography due</li>
+  </ul>
+  <p class="footer-tag">Per the course syllabus of record.</p>
+</section>
+
+<div class="counter" id="counter">1 / 26</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (figures sourced per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var C2005 = '#2f6bb3', C2025 = '#a33232';
+  var SW = ['#2a5da8', '#5e9fe0', '#e0793f', '#96302a'];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    if (h < 2 * r) r = h / 2;
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  /* Grouped vertical bars. groups: [{label, sub, values:[..]}], series: [{name,color}], fmt(v) */
+  function groupedBars(boxId, groups, series, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 940, H = opts.H || 330;
+    var padL = 60, padR = 20, padT = 24, padB = opts.padB || 64;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = opts.max || Math.max.apply(null, groups.map(function (g) { return Math.max.apply(null, g.values); })) * 1.15;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var gw = plotW / groups.length;
+    var n = series.length;
+    var bw = Math.min(opts.bw || 70, (gw * 0.7) / n);
+    // axis
+    var ticks = opts.ticks || 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = max * t / ticks;
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#e6e9ee', 'stroke-width': 1 }, svg);
+      txt(el('text', { x: padL - 10, y: y + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), (opts.fmtAxis || function (x) { return Math.round(x); })(v));
+    }
+    if (opts.yLabel) {
+      txt(el('text', { x: 14, y: padT + plotH / 2, 'font-size': '12', fill: MUTED, 'text-anchor': 'middle',
+        transform: 'rotate(-90 14 ' + (padT + plotH / 2) + ')' }, svg), opts.yLabel);
+    }
+    groups.forEach(function (g, i) {
+      var gx = padL + i * gw + gw / 2;
+      var total = n * bw + (n - 1) * 8;
+      g.values.forEach(function (v, j) {
+        var x = gx - total / 2 + j * (bw + 8);
+        var h = v / max * plotH;
+        var y = padT + plotH - h;
+        barPath(x, y, bw, h, svg, series[j].color, series[j].name + ' — ' + g.label + ': ' + (opts.fmt || String)(v));
+        txt(el('text', { x: x + bw / 2, y: y - 6, 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: INK }, svg), (opts.fmt || String)(v));
+        if (g.subs && g.subs[j]) {
+          txt(el('text', { x: x + bw / 2, y: padT + plotH + 16, 'text-anchor': 'middle', 'font-size': '11', fill: MUTED }, svg), g.subs[j]);
+        }
+      });
+      var ly = padT + plotH + (g.subs ? 34 : 20);
+      wrap(g.label, opts.wrapAt || 28).forEach(function (ln, k) {
+        txt(el('text', { x: gx, y: ly + k * 15, 'text-anchor': 'middle', 'font-size': '13', fill: INK }, svg), ln);
+      });
+    });
+  }
+
+  /* --- Slide 3: world trade % GDP and counts of democracies/autocracies, 1970-2025 --- */
+  (function () {
+    var box = document.getElementById('chart-tradedem'); if (!box) return;
+    var TR = [25.8, 25.8, 26.0, 29.0, 33.7, 31.9, 32.7, 33.1, 33.5, 35.7, 38.6, 39.1, 37.1, 36.2, 37.5, 37.1, 34.6, 35.9, 37.7, 38.1, 38.1, 37.8, 40.6, 40.2, 41.0, 42.7, 42.8, 44.6, 45.3, 45.8, 50.1, 49.0, 49.0, 50.7, 54.2, 56.2, 58.4, 58.7, 60.3, 51.9, 56.2, 59.3, 59.3, 58.6, 58.0, 55.6, 53.8, 55.5, 57.0, 55.8, 51.9, 56.5, 62.1, 58.1, 56.7], DEM = [36, 35, 34, 35, 36, 36, 37, 36, 38, 39, 40, 40, 41, 40, 42, 43, 44, 44, 47, 47, 63, 66, 69, 73, 77, 79, 81, 82, 84, 85, 84, 86, 88, 95, 95, 94, 93, 91, 91, 91, 93, 93, 94, 92, 92, 94, 95, 93, 94, 93, 92, 92, 91, 90, 86, 87], AUT = [141, 139, 143, 141, 141, 140, 139, 139, 137, 138, 137, 135, 134, 135, 134, 134, 132, 133, 130, 130, 113, 109, 107, 101, 98, 95, 92, 94, 93, 93, 94, 92, 89, 82, 82, 84, 85, 88, 88, 88, 85, 86, 85, 87, 85, 85, 84, 86, 85, 86, 87, 87, 88, 89, 93, 92];
+    var W = 1100, H = 450, padL = 70, padR = 90, y0 = 1970, y1 = 2025;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var X = function (y) { return padL + (y - y0) / (y1 - y0) * (W - padL - padR); };
+    var top = { t: 20, h: 160, min: 20, max: 70 }, bot = { t: 225, h: 190, min: 0, max: 160 };
+    function Y(p, v) { return p.t + p.h - (v - p.min) / (p.max - p.min) * p.h; }
+    function grid(p, ticks, fmt) {
+      ticks.forEach(function (v) {
+        el('line', { x1: padL, y1: Y(p, v), x2: W - padR, y2: Y(p, v), stroke: '#e6e9ee', 'stroke-width': 1 }, svg);
+        txt(el('text', { x: padL - 8, y: Y(p, v) + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), fmt(v));
+      });
+    }
+    el('rect', { x: X(2003), y: bot.t, width: X(2023) - X(2003), height: bot.h, fill: '#eef3fa' }, svg);
+    txt(el('text', { x: (X(2003) + X(2023)) / 2, y: bot.t + bot.h - 8, 'text-anchor': 'middle', 'font-size': '12', fill: C2005 }, svg), 'Democracies outnumber autocracies, 2003–2023');
+    grid(top, [20, 30, 40, 50, 60, 70], function (v) { return v + '%'; });
+    grid(bot, [0, 40, 80, 120, 160], function (v) { return v; });
+    function line(p, arr, color) {
+      var d = arr.map(function (v, i) { return (i ? 'L' : 'M') + X(1970 + i).toFixed(1) + ',' + Y(p, v).toFixed(1); }).join(' ');
+      el('path', { d: d, fill: 'none', stroke: color, 'stroke-width': 3, 'stroke-linejoin': 'round' }, svg);
+    }
+    [[1991, 'USSR dissolves'], [2001, 'China joins WTO']].forEach(function (e) {
+      el('line', { x1: X(e[0]), y1: top.t, x2: X(e[0]), y2: bot.t + bot.h, stroke: MUTED, 'stroke-width': 1, 'stroke-dasharray': '4 4' }, svg);
+      txt(el('text', { x: X(e[0]) - 5, y: top.t + 12, 'text-anchor': 'end', 'font-size': '11.5', fill: MUTED }, svg), e[1]);
+    });
+    line(top, TR, INK); line(bot, DEM, C2005); line(bot, AUT, C2025);
+    function dot(p, yr, v, color, lab, dx, dy, anchor) {
+      el('circle', { cx: X(yr), cy: Y(p, v), r: 4.5, fill: color }, svg);
+      txt(el('text', { x: X(yr) + dx, y: Y(p, v) + dy, 'text-anchor': anchor, 'font-size': '13', 'font-weight': '700', fill: color }, svg), lab);
+    }
+    dot(top, 1970, 25.8, INK, '25.8%', 8, -8, 'start');
+    dot(top, 2008, 60.3, INK, '60.3% (2008)', -8, -10, 'end');
+    dot(top, 2009, 51.9, INK, '51.9% (2009)', 6, 20, 'start');
+    dot(top, 2022, 62.1, INK, '62.1% (2022)', -6, -10, 'end');
+    dot(top, 2024, 56.7, INK, '56.7% (2024)', 8, 5, 'start');
+    dot(bot, 1970, 36, C2005, '36', 8, -8, 'start');
+    dot(bot, 1970, 141, C2025, '141', 8, -10, 'start');
+    dot(bot, 2003, 95, C2005, '95 (2003)', -4, -12, 'end');
+    dot(bot, 2025, 87, C2005, '87', 8, 16, 'start');
+    dot(bot, 2025, 92, C2025, '92 (2025)', 8, -6, 'start');
+    [1970, 1980, 1990, 2000, 2010, 2020, 2025].forEach(function (y) {
+      txt(el('text', { x: X(y), y: bot.t + bot.h + 20, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), y);
+    });
+    txt(el('text', { x: 16, y: top.t + top.h / 2, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED, transform: 'rotate(-90 16 ' + (top.t + top.h / 2) + ')' }, svg), 'Trade, % of GDP');
+    txt(el('text', { x: 16, y: bot.t + bot.h / 2, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED, transform: 'rotate(-90 16 ' + (bot.t + bot.h / 2) + ')' }, svg), 'Number of countries');
+  })();
+
+  /* --- Slide 4: share of world GDP (PPP) produced in autocracies, 1990-2024 --- */
+  (function () {
+    var box = document.getElementById('chart-gdpshare'); if (!box) return;
+    var A = [32.8,30.1,29.2,28.8,27.1,26.0,24.2,24.4,23.8,22.3,22.8,23.0,24.0,24.6,25.9,26.8,28.0,29.2,30.3,31.5,32.4,33.2,32.7,34.6,34.4,35.2,36.3,43.8,44.7,44.9,45.8,47.1,47.6,47.7,52.5];
+    var AX = [30.4,27.6,26.3,25.5,23.3,21.8,19.7,19.7,18.8,17.0,17.3,17.2,17.9,18.1,19.1,19.7,20.5,21.1,21.7,22.1,22.5,22.9,21.8,23.4,22.5,23.1,23.9,32.5,33.2,33.0,33.3,34.7,35.4,35.1,40.9];
+    var W = 1100, H = 330, padL = 60, padR = 120, padT = 20, padB = 34, y0 = 1990, y1 = 2024, vmax = 60;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var X = function (y) { return padL + (y - y0) / (y1 - y0) * (W - padL - padR); };
+    var Y = function (v) { return padT + (H - padT - padB) - v / vmax * (H - padT - padB); };
+    [0, 10, 20, 30, 40, 50, 60].forEach(function (v) {
+      el('line', { x1: padL, y1: Y(v), x2: W - padR, y2: Y(v), stroke: v === 50 ? '#9aa3ae' : '#e6e9ee', 'stroke-width': v === 50 ? 1.5 : 1, 'stroke-dasharray': v === 50 ? '6 4' : '' }, svg);
+      txt(el('text', { x: padL - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), v + '%');
+    });
+    [[2017, ['India', 'reclassified (2017)']], [2024, ['Indonesia, Mexico', 'reclassified (2024)']]].forEach(function (e) {
+      el('line', { x1: X(e[0]), y1: padT, x2: X(e[0]), y2: H - padB, stroke: MUTED, 'stroke-width': 1, 'stroke-dasharray': '4 4' }, svg);
+      e[1].forEach(function (t, k) { txt(el('text', { x: X(e[0]) - 6, y: Y(9) + k * 14, 'text-anchor': 'end', 'font-size': '11.5', fill: MUTED }, svg), t); });
+    });
+    function line(arr, color, dash) {
+      var d = arr.map(function (v, i) { return (i ? 'L' : 'M') + X(y0 + i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(' ');
+      el('path', { d: d, fill: 'none', stroke: color, 'stroke-width': 3, 'stroke-dasharray': dash || '', 'stroke-linejoin': 'round' }, svg);
+    }
+    line(A, C2025); line(AX, SW[2], '7 4');
+    function dot(yr, v, color, lab, dx, dy, anchor) {
+      el('circle', { cx: X(yr), cy: Y(v), r: 4.5, fill: color }, svg);
+      txt(el('text', { x: X(yr) + dx, y: Y(v) + dy, 'text-anchor': anchor, 'font-size': '13', 'font-weight': '700', fill: color }, svg), lab);
+    }
+    dot(1990, 32.8, C2025, '32.8%', 8, -10, 'start');
+    dot(1999, 22.3, C2025, '22.3% (1999)', 0, -12, 'middle');
+    dot(2016, 36.3, C2025, '36.3%', -8, -10, 'end');
+    dot(2017, 43.8, C2025, '43.8%', -8, -10, 'end');
+    dot(2024, 52.5, C2025, '52.5%', 10, 4, 'start');
+    dot(2024, 40.9, SW[2], '40.9%', 10, 4, 'start');
+    dot(1990, 30.4, SW[2], '30.4%', 8, 30, 'start');
+    [1990, 1995, 2000, 2005, 2010, 2015, 2020, 2024].forEach(function (y) {
+      txt(el('text', { x: X(y), y: H - 10, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), y);
+    });
+  })();
+
+  /* --- Slide 13: gross capital formation, % of GDP --- */
+  (function () {
+    var box = document.getElementById('chart-invest'); if (!box) return;
+    var S = [
+      ['China', C2025, [32.8,33.6,31.2,32.9,33.2,35.0,33.2,33.8,37.5,36.2,34.5,32.9,31.9,31.9,34.3,39.0,37.7,37.3,39.0,37.1,34.1,35.5,39.3,43.5,40.3,39.1,37.8,35.7,35.0,34.2,33.6,35.5,36.1,39.4,41.6,40.2,39.7,40.2,42.0,44.9,46.1,46.3,45.8,45.9,45.3,42.7,42.1,42.5,43.3,42.7,42.6,42.7,42.4,41.1,40.5]],
+      ['Singapore', SW[2], [38.2,40.1,40.9,38.9,44.5,38.8,39.6,35.2,37.9,42.1,45.0,44.8,46.3,46.5,46.9,41.1,36.6,36.5,33.4,34.1,35.7,34.0,35.5,37.2,32.9,33.9,35.0,38.2,31.5,32.7,35.2,27.6,25.1,17.2,22.9,21.5,22.4,23.1,30.2,27.4,27.7,26.7,29.3,30.0,29.4,25.4,26.3,27.2,24.7,24.3,22.9,24.1,21.9,21.1,21.8]],
+      ['South Korea', SW[1], [26.4,25.2,21.8,26.5,32.9,28.9,27.9,30.3,34.8,37.7,34.5,33.0,32.8,33.3,33.2,33.2,33.6,33.6,35.7,37.4,40.2,41.7,39.1,38.1,38.9,39.3,39.7,37.4,28.1,31.3,33.0,31.9,31.3,32.4,32.7,32.7,33.0,33.2,33.7,29.6,32.8,33.3,31.2,29.9,29.8,29.3,30.0,32.0,31.2,31.2,31.5,32.5,33.3,31.9,30.0]],
+      ['India', SW[0], [18.2,19.2,19.5,18.7,22.5,19.5,19.4,21.1,22.7,23.6,19.6,25.6,25.1,21.0,23.3,26.4,26.1,25.8,26.3,26.9,27.3,25.1,27.4,22.7,26.3,29.2,22.8,25.7,25.0,31.0,25.7,29.9,30.3,30.8,35.1,37.4,39.0,42.0,38.4,39.3,39.8,39.6,38.3,34.0,34.3,32.1,30.2,31.0,32.3,30.1,28.9,32.1,34.4,34.5,34.3]],
+      ['United States', '#7d8590', [21.4,21.9,22.6,23.3,22.7,20.3,22.0,23.5,24.8,25.1,23.3,24.3,22.1,22.3,25.1,24.2,23.7,23.6,22.8,22.5,21.5,20.1,20.1,20.4,21.3,21.3,21.7,22.4,23.0,23.4,23.7,22.2,21.7,21.7,22.7,23.4,23.5,22.6,21.0,17.8,18.7,19.0,20.0,20.4,20.9,21.4,20.9,21.2,21.6,21.7,21.4,21.4,22.0,21.6,21.5]]
+    ];
+    var leg = document.getElementById('leg-invest');
+    S.forEach(function (s) { var sp = document.createElement('span'); sp.innerHTML = '<span class="sw" style="background:' + s[1] + '"></span>' + s[0]; leg.appendChild(sp); });
+    var W = 1100, H = 370, padL = 60, padR = 130, padT = 16, padB = 34, y0 = 1970, y1 = 2024, vmin = 10, vmax = 50;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var X = function (y) { return padL + (y - y0) / (y1 - y0) * (W - padL - padR); };
+    var Y = function (v) { return padT + (H - padT - padB) - (v - vmin) / (vmax - vmin) * (H - padT - padB); };
+    [10, 20, 30, 40, 50].forEach(function (v) {
+      el('line', { x1: padL, y1: Y(v), x2: W - padR, y2: Y(v), stroke: v === 40 ? '#9aa3ae' : '#e6e9ee', 'stroke-width': v === 40 ? 1.5 : 1, 'stroke-dasharray': v === 40 ? '6 4' : '' }, svg);
+      txt(el('text', { x: padL - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), v + '%');
+    });
+    S.slice().reverse().forEach(function (s) {
+      var d = s[2].map(function (v, i) { return (i ? 'L' : 'M') + X(y0 + i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(' ');
+      el('path', { d: d, fill: 'none', stroke: s[1], 'stroke-width': s[0] === 'China' || s[0] === 'Singapore' ? 3.2 : 2, 'stroke-linejoin': 'round', opacity: s[0] === 'China' || s[0] === 'Singapore' ? 1 : .8 }, svg);
+    });
+    function dot(yr, v, color, lab, dx, dy, anchor) {
+      el('circle', { cx: X(yr), cy: Y(v), r: 4.5, fill: color }, svg);
+      txt(el('text', { x: X(yr) + dx, y: Y(v) + dy, 'text-anchor': anchor, 'font-size': '13', 'font-weight': '700', fill: color }, svg), lab);
+    }
+    dot(1984, 46.9, SW[2], 'Singapore 46.9% (1984)', 0, -12, 'middle');
+    dot(2011, 46.3, C2025, 'China 46.3% (2011)', 0, -12, 'middle');
+    var ends = [['China', 40.5, C2025, 0], ['South Korea', 30.0, SW[1], 0], ['India', 34.3, SW[0], 0], ['Singapore', 21.8, SW[2], 6], ['United States', 21.5, '#7d8590', -8]];
+    ends.forEach(function (e) { txt(el('text', { x: X(2024) + 8, y: Y(e[1]) + 4 + e[3], 'font-size': '12.5', 'font-weight': '700', fill: e[2] }, svg), e[0] + ' ' + e[1] + '%'); });
+    [1970, 1980, 1990, 2000, 2010, 2020, 2024].forEach(function (y) {
+      txt(el('text', { x: X(y), y: H - 10, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), y);
+    });
+  })();
+
+  /* --- Slide 16: decade growth strips by regime --- */
+  (function () {
+    var box = document.getElementById('chart-variance'); if (!box) return;
+    var DATA = {"D":[["ALB",2006,4.47],["ALB",2016,5.06],["ARG",1976,-1.01],["ARG",1986,1.02],["ARG",1996,1.12],["ARG",2006,2.11],["ARG",2016,-0.29],["AUS",1976,1.52],["AUS",1986,1.81],["AUS",1996,2.61],["AUS",2006,1.12],["AUS",2016,0.75],["AUT",1976,2.39],["AUT",1986,2.12],["AUT",1996,2.01],["AUT",2006,0.69],["AUT",2016,0.48],["BGD",1996,3.23],["BRB",1976,2.11],["BRB",1986,0.37],["BRB",1996,2.04],["BRB",2006,-1.14],["BRB",2016,1.2],["BLR",1996,7.48],["BEL",1976,1.99],["BEL",1986,2.05],["BEL",1996,2.06],["BEL",2006,0.57],["BEL",2016,0.99],["BEN",1996,1.36],["BEN",2006,1.15],["BEN",2016,3.38],["BTN",2016,3.05],["BOL",1996,1.5],["BOL",2006,3.34],["BOL",2016,-0.13],["BIH",2006,3.78],["BIH",2016,4.06],["BWA",1976,6.28],["BWA",1986,5.03],["BWA",1996,2.28],["BWA",2006,1.08],["BWA",2016,1.01],["BRA",1996,1.17],["BRA",2006,1.89],["BRA",2016,0.87],["BGR",1996,2.66],["BGR",2006,3.34],["BGR",2016,3.7],["BFA",2006,2.36],["CAN",1976,2.09],["CAN",1986,0.88],["CAN",1996,2.32],["CAN",2006,0.61],["CAN",2016,0.41],["CPV",1996,7.25],["CPV",2006,3.11],["CPV",2016,3.24],["CHL",1996,3.45],["CHL",2006,2.89],["CHL",2016,1.04],["COL",1996,0.62],["COL",2006,3.44],["COL",2016,1.11],["CRI",1976,-0.01],["CRI",1986,2.37],["CRI",1996,2.21],["CRI",2006,3.07],["CRI",2016,2.95],["HRV",2006,0.64],["HRV",2016,4.13],["CYP",1976,7.84],["CYP",1986,4.01],["CYP",1996,2.8],["CYP",2006,-1.04],["CYP",2016,3.8],["CZE",1996,2.84],["CZE",2006,1.7],["CZE",2016,1.6],["DNK",1976,2.67],["DNK",1986,1.71],["DNK",1996,1.84],["DNK",2006,0.21],["DNK",2016,1.6],["DOM",1986,2.05],["DOM",2006,4.1],["DOM",2016,3.16],["TLS",2006,3.19],["TLS",2016,-0.83],["ECU",1986,0.63],["ECU",1996,1.13],["ECU",2006,2.68],["ECU",2016,0.31],["SLV",2006,1.82],["SLV",2016,2.25],["EST",1996,7.44],["EST",2006,1.88],["EST",2016,1.36],["FJI",1976,-0.34],["FJI",1986,1.74],["FJI",1996,1.26],["FJI",2006,1.82],["FIN",1976,2.6],["FIN",1986,1.07],["FIN",1996,3.59],["FIN",2006,0.01],["FIN",2016,0.55],["FRA",1976,2.03],["FRA",1986,1.89],["FRA",1996,1.75],["FRA",2006,0.49],["FRA",2016,0.84],["GEO",2006,5.82],["GEO",2016,5.34],["DEU",1996,1.19],["DEU",2006,1.53],["DEU",2016,0.52],["GHA",2006,4.19],["GHA",2016,2.75],["GRC",1976,1.18],["GRC",1986,0.62],["GRC",1996,3.27],["GRC",2006,-1.94],["GRC",2016,2.0],["GTM",2006,1.71],["GTM",2016,1.87],["GNB",2016,2.35],["GUY",2006,3.84],["GUY",2016,21.39],["HND",1996,7.06],["HND",2006,1.4],["HUN",1996,3.88],["HUN",2006,1.27],["HUN",2016,2.72],["ISL",1976,3.21],["ISL",1986,0.67],["ISL",1996,3.48],["ISL",2006,0.55],["ISL",2016,0.97],["IND",1986,3.25],["IND",1996,4.32],["IND",2006,5.27],["IND",2016,4.77],["IDN",2006,4.31],["IDN",2016,3.31],["IRL",1976,2.48],["IRL",1986,4.46],["IRL",1996,5.84],["IRL",2006,2.43],["IRL",2016,4.98],["ISR",1976,0.96],["ISR",1986,2.74],["ISR",1996,1.28],["ISR",2006,2.02],["ISR",2016,1.66],["ITA",1976,2.85],["ITA",1986,2.16],["ITA",1996,1.28],["ITA",2006,-0.86],["ITA",2016,1.26],["JAM",1976,-2.68],["JAM",1986,3.56],["JAM",1996,0.02],["JAM",2006,-0.34],["JAM",2016,1.35],["JPN",1976,3.44],["JPN",1986,2.76],["JPN",1996,0.91],["JPN",2006,0.66],["JPN",2016,0.8],["KEN",2006,1.98],["KEN",2016,2.51],["LVA",1996,8.05],["LVA",2006,2.8],["LVA",2016,2.4],["LSO",2006,2.76],["LSO",2016,-0.93],["LBR",2016,-0.12],["LTU",1996,7.01],["LTU",2006,3.94],["LTU",2016,3.31],["LUX",1976,2.16],["LUX",1986,4.56],["LUX",1996,3.06],["LUX",2006,0.41],["LUX",2016,-0.21],["MDG",1996,-0.08],["MWI",1996,0.63],["MWI",2016,0.16],["MLI",1996,2.33],["MLI",2006,0.54],["MLI",2016,1.09],["MLT",1976,5.43],["MLT",1986,4.61],["MLT",1996,3.92],["MLT",2006,3.49],["MLT",2016,3.26],["MUS",1976,3.41],["MUS",1986,5.13],["MUS",1996,3.56],["MUS",2006,3.96],["MUS",2016,2.49],["MEX",2006,0.54],["MEX",2016,0.23],["MDA",1996,2.42],["MDA",2016,3.87],["MNG",1996,3.23],["MNG",2006,6.42],["MNG",2016,2.43],["MNE",2006,2.6],["NAM",1996,2.11],["NAM",2006,2.78],["NAM",2016,-1.71],["NPL",2016,3.49],["NLD",1976,1.26],["NLD",1986,2.16],["NLD",1996,2.26],["NLD",2006,0.77],["NLD",2016,1.24],["NZL",1976,1.07],["NZL",1986,0.71],["NZL",1996,2.28],["NZL",2006,0.96],["NZL",2016,0.67],["NIC",1996,2.63],["NIC",2006,2.62],["NER",1996,-0.37],["NER",2006,1.78],["NER",2016,2.31],["NGA",2016,-0.87],["MKD",2006,3.71],["NOR",1976,3.64],["NOR",1986,2.18],["NOR",1996,2.43],["NOR",2006,0.44],["NOR",2016,0.82],["PAN",1996,3.39],["PAN",2006,5.9],["PAN",2016,2.28],["PNG",1976,-0.92],["PNG",1986,1.82],["PNG",1996,-2.42],["PNG",2006,2.85],["PRY",1996,-0.58],["PRY",2006,3.44],["PRY",2016,1.8],["PER",1986,-0.58],["PER",2006,4.97],["PER",2016,1.01],["PHL",1996,1.87],["PHL",2016,3.4],["POL",1996,4.25],["POL",2006,3.93],["POL",2016,4.0],["PRT",1986,3.67],["PRT",1996,1.99],["PRT",2006,-0.02],["PRT",2016,1.75],["ROU",1996,3.3],["ROU",2006,3.56],["ROU",2016,3.42],["STP",1996,1.4],["STP",2006,1.77],["STP",2016,0.47],["SEN",1996,1.54],["SEN",2006,0.85],["SEN",2016,2.65],["SRB",2006,1.93],["SYC",2016,1.26],["SLE",2006,1.36],["SLE",2016,1.91],["SVK",1996,3.94],["SVK",2006,3.72],["SVK",2016,1.96],["SVN",1996,3.7],["SVN",2006,0.81],["SVN",2016,2.45],["SLB",1986,2.4],["SLB",1996,-2.66],["SLB",2006,1.54],["SLB",2016,-1.12],["ZAF",1996,2.23],["ZAF",2006,1.24],["ZAF",2016,-0.67],["KOR",1996,4.74],["KOR",2006,3.15],["KOR",2016,2.19],["ESP",1986,2.66],["ESP",1996,2.66],["ESP",2006,-0.12],["ESP",2016,1.37],["LKA",1976,3.67],["LKA",1996,3.04],["LKA",2016,0.9],["SUR",1996,1.62],["SUR",2006,1.96],["SUR",2016,-1.85],["SWE",1976,1.47],["SWE",1986,0.99],["SWE",1996,2.79],["SWE",2006,1.03],["SWE",2016,0.72],["CHE",1976,1.45],["CHE",1986,0.7],["CHE",1996,1.23],["CHE",2006,0.93],["CHE",2016,0.91],["THA",2006,2.67],["TTO",1976,1.32],["TTO",1986,-0.08],["TTO",1996,7.82],["TTO",2006,2.81],["TTO",2016,-2.04],["TUN",2016,0.17],["TUR",1976,1.45],["TUR",1996,3.17],["TUR",2006,3.8],["UKR",1996,3.58],["GBR",1976,1.9],["GBR",1986,2.58],["GBR",1996,2.65],["GBR",2006,0.44],["GBR",2016,0.68],["USA",1976,2.49],["USA",1986,1.79],["USA",1996,2.36],["USA",2006,0.77],["USA",2016,1.8],["URY",1986,3.33],["URY",1996,1.26],["URY",2006,4.4],["URY",2016,1.24],["VUT",1986,-0.1],["VUT",1996,-0.43],["VUT",2006,0.84],["VUT",2016,0.11],["VEN",1976,-1.88],["VEN",1986,0.12],["VEN",1996,-0.25]],"A":[["AFG",2006,4.52],["ALB",1986,-1.53],["ALB",1996,5.7],["DZA",1976,1.98],["DZA",1986,-2.05],["DZA",2006,1.04],["DZA",2016,0.41],["AGO",1986,-4.07],["AGO",1996,4.05],["AGO",2006,2.51],["AGO",2016,-2.59],["ARM",1996,9.16],["ARM",2006,4.6],["ARM",2016,4.9],["AZE",1996,9.09],["AZE",2006,7.48],["AZE",2016,0.76],["BHR",1976,-0.04],["BHR",1986,2.97],["BHR",1996,-0.01],["BHR",2006,0.12],["BHR",2016,1.14],["BGD",1976,1.62],["BGD",1986,2.07],["BGD",2006,5.18],["BGD",2016,4.95],["BLR",2006,4.4],["BLR",2016,1.52],["BEN",1976,1.46],["BEN",1986,-0.14],["BTN",1976,3.61],["BTN",1986,7.05],["BTN",1996,4.58],["BTN",2006,6.11],["BOL",1976,-2.16],["BOL",1986,1.06],["BIH",1996,12.25],["BRA",1976,1.82],["BRA",1986,0.67],["BGR",1986,0.07],["BFA",1976,1.12],["BFA",1986,0.77],["BFA",1996,3.47],["BFA",2016,2.25],["BDI",1976,1.75],["BDI",1986,-1.3],["BDI",1996,-1.86],["BDI",2006,0.14],["BDI",2016,0.72],["KHM",1976,-1.31],["KHM",1986,-2.63],["KHM",1996,5.22],["KHM",2006,5.97],["KHM",2016,3.92],["CMR",1976,4.9],["CMR",1986,-5.03],["CMR",1996,1.76],["CMR",2006,1.13],["CMR",2016,0.51],["CPV",1986,5.29],["CAF",1976,0.18],["CAF",1986,-2.02],["CAF",1996,-0.89],["CAF",2006,-1.54],["CAF",2016,0.73],["TCD",1976,-0.33],["TCD",1986,-1.49],["TCD",1996,5.45],["TCD",2006,0.42],["TCD",2016,-1.28],["CHL",1976,1.96],["CHL",1986,5.66],["CHN",1976,7.06],["CHN",1986,8.62],["CHN",1996,8.41],["CHN",2006,8.96],["CHN",2016,5.37],["COL",1976,1.47],["COL",1986,2.45],["COM",1986,-0.36],["COM",1996,0.69],["COM",2006,0.42],["COM",2016,0.72],["COG",1976,4.96],["COG",1986,-2.79],["COG",1996,0.22],["COG",2006,1.32],["COG",2016,-3.64],["CIV",1976,-1.75],["CIV",1986,-2.58],["CIV",1996,-1.39],["CIV",2006,2.4],["CIV",2016,3.22],["HRV",1996,4.66],["CUB",1976,5.15],["CUB",1986,-4.39],["CUB",1996,4.46],["CUB",2006,4.08],["COD",1976,-2.87],["COD",1986,-7.05],["COD",2006,3.49],["COD",2016,1.36],["DJI",2016,3.83],["DOM",1976,1.09],["DOM",1996,3.31],["TLS",1996,1.22],["ECU",1976,0.69],["EGY",1976,5.46],["EGY",1986,1.52],["EGY",1996,2.42],["EGY",2006,2.29],["EGY",2016,2.55],["SLV",1976,-3.05],["SLV",1986,1.72],["SLV",1996,1.32],["GNQ",1986,3.36],["GNQ",1996,32.39],["GNQ",2006,-1.18],["GNQ",2016,-6.77],["ERI",1996,0.04],["SWZ",1976,0.77],["SWZ",1986,4.71],["SWZ",1996,2.29],["SWZ",2006,2.55],["SWZ",2016,1.54],["ETH",1976,-1.36],["ETH",1986,-0.67],["ETH",1996,2.28],["ETH",2006,7.47],["ETH",2016,4.69],["FJI",2016,1.81],["GAB",1976,-2.09],["GAB",1986,-0.62],["GAB",1996,-1.76],["GAB",2006,-0.12],["GAB",2016,-0.59],["GMB",1976,0.21],["GMB",1986,-0.82],["GMB",1996,0.78],["GMB",2006,-0.61],["GMB",2016,2.41],["GEO",1976,4.6],["GEO",1986,-14.07],["GEO",1996,8.47],["GHA",1976,-2.54],["GHA",1986,2.04],["GHA",1996,2.04],["GTM",1976,-0.26],["GTM",1986,0.81],["GTM",1996,1.05],["GIN",1976,0.34],["GIN",1986,1.0],["GIN",1996,1.42],["GIN",2006,1.38],["GIN",2016,3.92],["GNB",1976,-0.76],["GNB",1986,1.2],["GNB",1996,0.3],["GNB",2006,0.8],["GUY",1976,-2.86],["GUY",1986,2.44],["GUY",1996,1.56],["HTI",1976,0.81],["HTI",1986,-3.49],["HTI",1996,0.02],["HTI",2006,0.79],["HTI",2016,-2.36],["HND",1976,5.47],["HND",1986,10.99],["HND",2016,1.47],["HKG",1976,6.43],["HKG",1986,5.23],["HKG",1996,2.38],["HKG",2006,2.73],["HKG",2016,0.91],["HUN",1976,2.61],["HUN",1986,-0.63],["IND",1976,1.72],["IDN",1976,3.84],["IDN",1986,4.78],["IDN",1996,1.24],["IRN",1976,-5.38],["IRN",1986,-0.63],["IRN",1996,2.91],["IRN",2006,0.63],["IRN",2016,1.27],["IRQ",1976,3.3],["IRQ",1986,-1.41],["IRQ",1996,5.38],["IRQ",2006,2.98],["IRQ",2016,-1.03],["JOR",1986,-2.56],["JOR",1996,2.31],["JOR",2006,-0.2],["JOR",2016,0.31],["KAZ",1996,6.85],["KAZ",2006,4.15],["KAZ",2016,2.05],["KEN",1976,0.8],["KEN",1986,0.27],["KEN",1996,-0.12],["KWT",1976,-7.5],["KWT",1986,6.14],["KWT",1996,2.01],["KWT",2006,-2.98],["KWT",2016,-1.78],["KGZ",1996,3.4],["KGZ",2006,3.03],["KGZ",2016,3.47],["LAO",1986,2.37],["LAO",1996,4.37],["LAO",2006,6.32],["LAO",2016,2.84],["LBN",1996,1.93],["LBN",2006,1.41],["LSO",1976,3.35],["LSO",1986,3.32],["LSO",1996,2.9],["LBR",1976,-2.8],["LBR",1986,-20.66],["LBR",1996,9.58],["LBR",2006,2.53],["LBY",1976,-1.81],["LBY",1986,-2.51],["LBY",1996,1.54],["LBY",2006,-5.13],["LBY",2016,1.47],["MDG",1986,-1.77],["MDG",2006,-0.13],["MDG",2016,0.25],["MWI",1976,-0.25],["MWI",1986,-0.26],["MWI",2006,2.78],["MYS",1976,3.82],["MYS",1986,5.08],["MYS",1996,2.28],["MYS",2006,2.92],["MYS",2016,2.5],["MDV",1976,8.88],["MDV",1986,5.48],["MDV",1996,2.5],["MDV",2006,3.05],["MDV",2016,2.63],["MLI",1976,0.33],["MLI",1986,0.44],["MRT",1976,-1.05],["MRT",1986,-0.3],["MRT",1996,-0.0],["MRT",2006,0.92],["MRT",2016,0.95],["MEX",1976,1.97],["MEX",1986,-0.28],["MEX",1996,1.76],["MDA",2006,3.66],["MNG",1986,-1.01],["MNE",2016,3.18],["MAR",1976,2.14],["MAR",1986,1.69],["MAR",1996,3.22],["MAR",2006,3.0],["MAR",2016,1.48],["MOZ",1986,1.83],["MOZ",1996,6.33],["MOZ",2006,4.54],["MOZ",2016,-0.42],["MMR",1976,3.55],["MMR",1986,0.24],["MMR",1996,9.47],["MMR",2006,8.37],["MMR",2016,-0.34],["NAM",1986,-0.63],["NPL",1976,1.24],["NPL",1986,2.38],["NPL",1996,2.36],["NPL",2006,3.8],["NIC",1976,-4.46],["NIC",1986,-3.01],["NIC",2016,1.35],["NER",1976,-1.68],["NER",1986,-1.24],["NGA",1976,-3.73],["NGA",1986,-0.24],["NGA",1996,3.08],["NGA",2006,3.19],["MKD",1996,2.43],["MKD",2016,2.71],["OMN",1976,4.45],["OMN",1986,-0.32],["OMN",1996,0.65],["OMN",2006,-0.43],["OMN",2016,-0.96],["PAK",1976,2.86],["PAK",1986,1.95],["PAK",1996,1.56],["PAK",2006,1.4],["PAK",2016,1.92],["PAN",1976,2.2],["PAN",1986,0.21],["PNG",2016,0.7],["PRY",1976,3.74],["PRY",1986,2.41],["PER",1976,-1.6],["PER",1996,1.96],["PHL",1976,-0.32],["PHL",1986,0.97],["PHL",2006,3.63],["PRT",1976,1.97],["QAT",1976,-5.5],["QAT",1986,-0.22],["QAT",1996,4.6],["QAT",2006,0.82],["QAT",2016,-1.1],["RUS",1996,4.18],["RUS",2006,2.39],["RUS",2016,1.92],["RWA",1976,3.01],["RWA",1986,-2.66],["RWA",1996,3.86],["RWA",2006,5.06],["RWA",2016,4.4],["STP",1976,0.79],["STP",1986,-2.04],["SAU",1976,-5.82],["SAU",1986,-2.1],["SAU",1996,-0.89],["SAU",2006,0.63],["SAU",2016,0.75],["SEN",1976,0.1],["SEN",1986,-0.6],["SRB",1996,4.79],["SRB",2016,4.23],["SYC",1976,3.57],["SYC",1986,2.85],["SYC",1996,1.87],["SYC",2006,3.1],["SLE",1976,-0.51],["SLE",1986,-3.6],["SLE",1996,1.1],["SGP",1976,5.57],["SGP",1986,5.88],["SGP",1996,3.24],["SGP",2006,2.9],["SGP",2016,2.42],["SOM",1976,-2.29],["SOM",1986,-0.94],["SOM",1996,2.7],["SOM",2006,4.93],["SOM",2016,0.44],["ZAF",1976,-0.9],["ZAF",1986,-1.14],["KOR",1976,7.53],["KOR",1986,8.59],["ESP",1976,0.94],["LKA",1986,3.14],["LKA",2006,5.99],["SDN",1976,-1.72],["SDN",1986,2.75],["SDN",1996,3.93],["SDN",2006,0.02],["SDN",2016,-7.67],["SUR",1976,1.46],["SUR",1986,-0.95],["SYR",1976,1.32],["SYR",1986,0.64],["SYR",1996,1.74],["SYR",2006,-4.97],["TJK",1986,-10.78],["TJK",1996,3.16],["TJK",2006,4.46],["TJK",2016,5.23],["TZA",1976,-1.84],["TZA",1986,0.65],["TZA",1996,2.94],["TZA",2006,3.28],["TZA",2016,2.07],["THA",1976,4.54],["THA",1986,7.5],["THA",1996,1.92],["THA",2016,1.77],["TGO",1976,-0.43],["TGO",1986,-1.25],["TGO",1996,-0.1],["TGO",2006,1.81],["TGO",2016,3.02],["TUN",1976,2.78],["TUN",1986,1.23],["TUN",1996,3.58],["TUN",2006,1.97],["TUR",1986,2.48],["TUR",2016,3.68],["TKM",1996,2.84],["TKM",2006,8.18],["TKM",2016,4.1],["UGA",1986,2.7],["UGA",1996,3.2],["UGA",2006,3.63],["UGA",2016,1.69],["UKR",2006,-0.13],["UKR",2016,0.48],["ARE",1976,-2.63],["ARE",1986,-2.51],["ARE",1996,-1.19],["ARE",2006,-2.07],["URY",1976,-0.19],["UZB",1996,3.15],["UZB",2006,6.41],["UZB",2016,4.08],["VEN",2006,0.56],["VEN",2016,-9.45],["VNM",1986,4.38],["VNM",1996,5.67],["VNM",2006,4.82],["VNM",2016,5.27],["YEM",1996,1.5],["YEM",2006,-4.84],["ZMB",1976,-2.61],["ZMB",1986,-1.91],["ZMB",1996,1.92],["ZMB",2006,3.38],["ZMB",2016,0.45],["ZWE",1976,-0.73],["ZWE",1986,0.49],["ZWE",1996,-3.91],["ZWE",2006,2.45],["ZWE",2016,0.81]]};
+    var W = 1120, H = 380, padL = 215, padR = 30, xmin = -12, xmax = 14;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var X = function (v) { return padL + (Math.max(xmin, Math.min(xmax, v)) - xmin) / (xmax - xmin) * (W - padL - padR); };
+    var rows = [['D', 'Democracies', C2005, 95], ['A', 'Autocracies', C2025, 235]];
+    var stats = { D: ['339 country-decades', 'mean 2.1% · SD 2.1', 'above 5%/yr: 6% · below 0: 10%'], A: ['425 country-decades', 'mean 1.5% · SD 3.7', 'above 5%/yr: 12% · below 0: 28%'] };
+    for (var v = -12; v <= 14; v += 2) {
+      el('line', { x1: X(v), y1: 30, x2: X(v), y2: 320, stroke: v === 0 ? INK : '#eceef2', 'stroke-width': v === 0 ? 1.4 : 1 }, svg);
+      txt(el('text', { x: X(v), y: 340, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), (v > 0 ? '+' : '') + v + '%');
+    }
+    txt(el('text', { x: X(1), y: 364, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), 'Average annual growth of real GDP per capita over the decade');
+    function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 9973; return h / 9973; }
+    rows.forEach(function (r) {
+      txt(el('text', { x: padL - 16, y: r[3] - 4, 'text-anchor': 'end', 'font-size': '16', 'font-weight': '700', fill: r[2] }, svg), r[1]);
+      stats[r[0]].forEach(function (s, k) { txt(el('text', { x: padL - 16, y: r[3] + 14 + k * 15, 'text-anchor': 'end', 'font-size': '11', fill: MUTED }, svg), s); });
+      DATA[r[0]].forEach(function (p) {
+        var jy = (hash(p[0] + p[1]) - .5) * 70;
+        el('circle', { cx: X(p[2]), cy: r[3] + jy, r: 3.2, fill: r[2], 'fill-opacity': .45 }, svg);
+      });
+    });
+    function lab(row, code, yr, val, text, dy, anchor) {
+      var r = row === 'D' ? rows[0] : rows[1];
+      var cx = X(val), cy = r[3] + (hash(code + yr) - .5) * 70, ty = r[3] + dy;
+      el('circle', { cx: cx, cy: cy, r: 5.5, fill: 'none', stroke: INK, 'stroke-width': 1.8 }, svg);
+      el('line', { x1: cx, y1: cy + (ty > cy ? 6 : -6), x2: cx, y2: ty, stroke: INK, 'stroke-width': 1 }, svg);
+      txt(el('text', { x: cx, y: ty + (ty > cy ? 12 : -4), 'text-anchor': anchor || 'middle', 'font-size': '11.5', 'font-weight': '700', fill: INK }, svg), text);
+    }
+    lab('D', 'BWA', 1976, 6.28, 'Botswana 1976–85', -52);
+    lab('D', 'GUY', 2016, 21.39, 'Guyana 2016–25: +21.4% →', -52, 'end');
+    lab('A', 'CHN', 2006, 8.96, 'China 2006–15', -54);
+    lab('A', 'KOR', 1986, 8.59, 'S. Korea 1986–95', 50, 'start');
+    lab('A', 'SGP', 1976, 5.57, 'Singapore 1976–85', 66, 'end');
+    lab('A', 'COD', 1986, -7.05, 'DR Congo 1986–95', -54);
+    lab('A', 'VEN', 2016, -9.45, 'Venezuela 2016–25', 50);
+    lab('A', 'GNQ', 1996, 32.39, 'Eq. Guinea 1996–2005: +32.4% →', -80, 'end');
+    lab('A', 'LBR', 1986, -20.66, '← Liberia 1986–95: −20.7%', 66, 'start');
+  })();
+
+  /* --- Slide 5: world population by regime type, 2025 (V-Dem DR 2026) --- */
+  (function () {
+    var box = document.getElementById('chart-regime'); if (!box) return;
+    var data = [['Liberal democracy', 7, SW[0]], ['Electoral democracy', 19, SW[1]], ['Electoral autocracy', 46, SW[2]], ['Closed autocracy', 28, SW[3]]];
+    var leg = document.getElementById('leg-regime');
+    data.forEach(function (d) { var s = document.createElement('span'); s.innerHTML = '<span class="sw" style="background:' + d[2] + '"></span>' + d[0]; leg.appendChild(s); });
+    var W = 940, H = 90, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box), x = 0;
+    data.forEach(function (d) {
+      var w = d[1] / 100 * W;
+      el('rect', { x: x, y: 10, width: w - 2, height: 56, fill: d[2] }, svg);
+      txt(el('text', { x: x + w / 2, y: 45, 'text-anchor': 'middle', 'font-size': '17', 'font-weight': '700', fill: '#fff' }, svg), d[1] + '%');
+      x += w;
+    });
+    txt(el('text', { x: 0, y: 86, 'font-size': '12', fill: MUTED }, svg), 'Share of world population, 2025');
+  })();
+
+  /* --- Slide 5: China average annual real GDP growth (WDI) --- */
+  groupedBars('chart-growth', [
+    { label: '1995–2025', values: [8.1] },
+    { label: '2005–2025', values: [7.6] },
+    { label: '2015–2025', values: [5.6] }
+  ], [{ name: 'Average annual real GDP growth', color: C2025 }],
+  { W: 820, H: 170, max: 10, ticks: 5, bw: 110, padB: 36, fmt: function (v) { return v.toFixed(1) + '%'; }, fmtAxis: function (v) { return v + '%'; }, yLabel: 'Avg. real growth / yr' });
+
+  /* --- Slide 9: roving -> stationary bandit (from DWA 227 Week 4) --- */
+  /* --- Slide 12: roving -> stationary bandit --- */
+  (function () {
+    var box = document.getElementById('chart-bandit');
+    if (!box) return;
+    var W = 1100, H = 190;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var stages = [
+      { t: 'Anarchy', s: ['“roving bandits”: uncoordinated,', 'competitive theft', '“little or no production”'], c: SW[3], p: '567' },
+      { t: 'Stationary bandit', s: ['monopolizes theft “in the form of taxes”', 'provides “a peaceful order and', 'other public goods”'], c: SW[2], p: '567–568' },
+      { t: 'Encompassing interest', s: ['a share of “any increase in the', 'income of his domain”', 'public goods up to that share'], c: SW[0], p: '569' }
+    ];
+    var bw = 320, gap = 70, x0 = (W - (3 * bw + 2 * gap)) / 2, y0 = 20, bh = 150;
+    stages.forEach(function (st, i) {
+      var x = x0 + i * (bw + gap);
+      el('rect', { x: x, y: y0, width: bw, height: bh, rx: 10, fill: '#fff', stroke: st.c, 'stroke-width': 2.5 }, svg);
+      el('rect', { x: x, y: y0, width: bw, height: 34, rx: 10, fill: st.c }, svg);
+      el('rect', { x: x, y: y0 + 20, width: bw, height: 14, fill: st.c }, svg);
+      txt(el('text', { x: x + bw / 2, y: y0 + 23, 'text-anchor': 'middle', 'font-size': '15', 'font-weight': '700', fill: '#fff' }, svg), st.t);
+      st.s.forEach(function (ln, k) {
+        txt(el('text', { x: x + bw / 2, y: y0 + 62 + k * 22, 'text-anchor': 'middle', 'font-size': '14', fill: INK }, svg), ln);
+      });
+      txt(el('text', { x: x + bw / 2, y: y0 + bh - 12, 'text-anchor': 'middle', 'font-size': '11.5', fill: MUTED }, svg), 'p. ' + st.p);
+      if (i < 2) {
+        var ax = x + bw + 8, ay = y0 + bh / 2;
+        el('line', { x1: ax, y1: ay, x2: ax + gap - 24, y2: ay, stroke: MUTED, 'stroke-width': 2 }, svg);
+        el('path', { d: 'M' + (ax + gap - 24) + ',' + (ay - 7) + ' l12,7 l-12,7 z', fill: MUTED }, svg);
+      }
+    });
+  })();
+
+  /* --- Slide 11: China as % of US, 2010: Krugman's scenarios vs actual --- */
+  (function () {
+    var box = document.getElementById('chart-krugman'); if (!box) return;
+    var bars = [
+      ['Krugman: 7% scenario', 82, '#9aa3ae'],
+      ['Krugman: 10% scenario', 133, '#9aa3ae'],
+      ['Actual, PPP (WDI)', 84, C2025],
+      ['Actual, market exchange rates (WDI)', 41, C2005]
+    ];
+    var W = 960, H = 200, padL = 290, padR = 70, rowH = 42, max = 140;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var X = function (v) { return padL + v / max * (W - padL - padR); };
+    el('line', { x1: X(100), y1: 0, x2: X(100), y2: bars.length * rowH + 4, stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+    txt(el('text', { x: X(100) + 6, y: bars.length * rowH + 22, 'font-size': '12', fill: MUTED }, svg), 'US = 100');
+    bars.forEach(function (b, i) {
+      var y = 6 + i * rowH;
+      txt(el('text', { x: padL - 12, y: y + 22, 'text-anchor': 'end', 'font-size': '15', fill: INK }, svg), b[0]);
+      barPath(X(0), y, X(b[1]) - X(0), 30, svg, b[2], b[0] + ': ' + b[1] + '% of US');
+      txt(el('text', { x: X(b[1]) + 8, y: y + 21, 'font-size': '15', 'font-weight': '700', fill: INK }, svg), b[1] + '%');
+    });
+    txt(el('text', { x: padL, y: H - 4, 'font-size': '12', fill: MUTED }, svg), 'China’s GDP as % of US GDP, 2010');
+  })();
+
+  /* --- Slide 13: Rodrik's three pairings, GDP per capita growth 2010-2025 --- */
+  (function () {
+    var box = document.getElementById('chart-rodrik'); if (!box) return;
+    var rows = [
+      ['Brazil', 10.9, C2005, 'electoral democracy → electoral democracy'],
+      ['Türkiye', 87.5, C2025, 'electoral democracy → electoral autocracy'],
+      ['South Africa', -4.0, C2005, 'liberal democracy → electoral democracy'],
+      ['Russia', 28.1, C2025, 'electoral autocracy → electoral autocracy'],
+      ['India', 104.3, C2005, 'electoral democracy → electoral autocracy'],
+      ['China', 139.3, C2025, 'closed autocracy → closed autocracy']
+    ];
+    var W = 1080, rowH = 34, gap = 16, padL = 120, plotW = 420, min = -10, max = 150;
+    var H = rows.length * rowH + 2 * gap + 62;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var X = function (v) { return padL + (v - min) / (max - min) * plotW; };
+    var yAt = function (i) { return 26 + i * rowH + Math.floor(i / 2) * gap; };
+    el('line', { x1: X(0), y1: 22, x2: X(0), y2: yAt(5) + rowH, stroke: INK, 'stroke-width': 1.2 }, svg);
+    txt(el('text', { x: padL + plotW + 120, y: 0 + 14, 'font-size': '12', fill: MUTED, 'font-weight': '700' }, svg), 'V-Dem regime, 2010 → 2025');
+    rows.forEach(function (r, i) {
+      var y = yAt(i) + (i === 0 ? 10 : 0) * 0;
+      txt(el('text', { x: padL - 10, y: y + 20, 'text-anchor': 'end', 'font-size': '15', 'font-weight': '700', fill: INK }, svg), r[0]);
+      var x0 = Math.min(X(0), X(r[1])), w = Math.abs(X(r[1]) - X(0));
+      barPath(x0, y + 4, Math.max(w, 3), 24, svg, r[2], r[0] + ': ' + r[1] + '%');
+      var lab = (r[1] > 0 ? '+' : '−') + Math.abs(r[1]).toFixed(1) + '%';
+      txt(el('text', { x: r[1] >= 0 ? X(r[1]) + 8 : X(0) + 8, y: y + 21, 'font-size': '14', 'font-weight': '700', fill: INK }, svg), lab);
+      txt(el('text', { x: padL + plotW + 120, y: y + 21, 'font-size': '14', fill: INK }, svg), r[3]);
+    });
+    txt(el('text', { x: padL, y: H - 6, 'font-size': '12', fill: MUTED }, svg), 'Change in real GDP per capita, 2010 → 2025');
+  })();
+
+  /* --- Slide 14: nighttime lights vs reported growth (Martínez worked example) --- */
+  groupedBars('chart-lights', [
+    { label: 'Democracy', values: [2.0, 2.0] },
+    { label: 'Autocracy', values: [2.0, 2.7] }
+  ], [{ name: 'Lights-implied growth', color: C2005 }, { name: 'Reported growth', color: C2025 }],
+  { W: 820, H: 220, max: 3.2, ticks: 4, bw: 90, padB: 44, fmt: function (v) { return v.toFixed(1) + '%'; }, fmtAxis: function (v) { return v.toFixed(1) + '%'; }, yLabel: 'Yearly GDP growth (%)' });
+
+  /* --- Slide 15: repression by cohort (G&T 2019: 103-105) --- */
+  groupedBars('chart-violence', [
+    { label: '> 10 political killings per year', subs: ['1980s', '2000s'], values: [62, 28] },
+    { label: '> 1,000 political prisoners (peak year)', subs: ['1970s', '2000s'], values: [59, 16] },
+    { label: 'Alleged torture of dissidents', subs: ['1980s', '2000s'], values: [96, 74] }
+  ], [{ name: 'Earlier cohort', color: C2005 }, { name: '2000s cohort', color: C2025 }],
+  { W: 980, H: 320, max: 100, ticks: 4, bw: 80, padB: 70, wrapAt: 36, fmt: function (v) { return v + '%'; }, fmtAxis: function (v) { return Math.round(v) + '%'; }, yLabel: 'Share of dictators' });
+
+})();
+</script>
+</body>
+</html>
