@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 8 · Digital Authoritarianism</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  blockquote + blockquote { margin-top: 1.6rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  blockquote.smallest cite { margin-top: .8rem; }
+  .statrow.words .stat .v { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+  .statrow.words .stat { flex: 1 1 0; min-width: 0; }
+  .statrow.words .stat .l { max-width: none; }
+  .statrow.compact { margin-top:.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .statrow.compact .stat .l { font-size: clamp(.82rem, 1.25vw, .98rem); max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ul.big.serif li { font-family: var(--serif); }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  ol.props li .probe { display: block; font-family: var(--sans); font-size: .78em; color: var(--muted); margin-top: .3rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .chartwrap.wide { max-width: 1120px; margin-top: .8rem; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.78rem, 1.08vw, 1rem); padding: .5rem .8rem .5rem 0; line-height: 1.32; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  table.biblio.types td .pg { color: var(--muted); font-size: .82em; white-space: nowrap; font-family: var(--sans); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .colq em.slogan { display: block; margin-top: .6rem; color: var(--accent); }
+  .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
+  .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
+  .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .movesbox { position: absolute; top: 2rem; right: clamp(2rem, 8vw, 7rem); width: 350px; border: 1px solid var(--rule); background: #fff; border-radius: 10px; padding: .6rem .9rem; font-size: .8rem; line-height: 1.3; color: var(--ink); }
+  .movesbox .collabel { margin-bottom: .4rem; }
+  .movesbox .mv { padding: .2rem 0; border-top: 1px solid var(--rule); }
+  .movesbox .mv:first-of-type { border-top: none; }
+  .movesbox b { color: var(--accent); }
+  .facts.sm { font-size: clamp(.85rem, 1.25vw, 1rem); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  /* round 2: chart + explanation slides */
+  section.slide.ex { justify-content: flex-start; padding-top: 2.2rem; padding-bottom: 3.6rem; }
+  section.slide.ex h2 { font-size: clamp(1.45rem, 2.7vw, 2.15rem); margin-bottom: .5rem; }
+  section.slide.ex .kicker { margin-bottom: .6rem; }
+  .chartwrap.ex { max-width: 1120px; margin-top: .2rem; }
+  .explain { margin-top: .8rem; max-width: 1120px; border-top: 2px solid var(--accent); padding-top: .55rem; font-size: clamp(.78rem, 1.08vw, .9rem); line-height: 1.42; color: var(--ink); column-count: 2; column-gap: 2rem; }
+  .explain p { margin: 0 0 .45rem; break-inside: avoid-column; }
+  .explain b { color: var(--accent); font-weight: 700; }
+  section.slide.ex .footer-tag { bottom: 2.3rem; font-size: .76rem; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 8 · Tue Oct 20, 2026</p>
+  <h1>Digital Authoritarianism<br>and Surveillance</h1>
+</section>
+
+<!-- 2 · Framework -->
+<section class="slide">
+  <p class="kicker">Framework · Schlumberger, Edel, Maati &amp; Saglam 2024</p>
+  <h2>&ldquo;The Dictator&rsquo;s Perpetual Agenda&rdquo;</h2>
+  <div class="chartwrap wide chart" id="chart-agenda"></div>
+  <p class="footer-tag">Schlumberger et al., <em>Government and Opposition</em> 59(3), 2024: 766, Table 1 (columns in the order the text gives them, 765). Grey labels: indicators on the slides that follow.</p>
+</section>
+
+<!-- 3 · FOTN overview -->
+<section class="slide">
+  <p class="kicker">Overview · Freedom on the Net 2025 · June 2024&ndash;May 2025</p>
+  <h2>&ldquo;Global internet freedom declined for the 15th consecutive year&rdquo;</h2>
+  <div class="chartwrap chart" id="chart-fotn"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">72</div><div class="l">countries assessed, 89% of the world&rsquo;s internet users</div></div>
+    <div class="stat"><div class="v">27 &darr; &nbsp;17 &uarr;</div><div class="l">countries that declined vs. improved</div></div>
+    <div class="stat"><div class="v">Russia</div><div class="l">&ldquo;the steepest 15-year decline in internet freedom&rdquo;</div></div>
+  </div>
+  <p class="footer-tag">Freedom House, <em>Freedom on the Net 2025: An Uncertain Future for the Global Internet</em>; country scores from the 2025 country pages. FOTN 2026 launches Oct 22, 2026.</p>
+</section>
+
+<!-- 4 · Know: AI surveillance -->
+<section class="slide">
+  <p class="kicker">Know · collecting information · AI Global Surveillance Index, 2019</p>
+  <h2>AI surveillance in 75 of 176 countries</h2>
+  <div class="chartwrap wide chart" id="chart-aigs"></div>
+  <p class="footer-tag">Steven Feldstein, &ldquo;The Global Expansion of AI Surveillance,&rdquo; Carnegie Endowment, Sep 17, 2019. Smart policing given as 52 in one place and 53 in another in the report; 52 shown.</p>
+</section>
+
+<!-- 5 · Know: spyware -->
+<section class="slide">
+  <p class="kicker">Know · collecting information · commercial spyware</p>
+  <blockquote class="smallest">Without the user noticing, malware programs can switch on cameras and microphones on end-user devices, turning them into live spying machines.
+    <cite>Schlumberger et al. 2024: 768</cite></blockquote>
+  <div class="statrow">
+    <div class="stat"><div class="v">45</div><div class="l">countries with suspected Pegasus infections (Citizen Lab, 2018)</div></div>
+    <div class="stat"><div class="v">50,000+</div><div class="l">phone numbers selected by NSO clients in 50+ countries since 2016 (Pegasus Project, 2021)</div></div>
+    <div class="stat"><div class="v">180+</div><div class="l">journalists among the numbers selected</div></div>
+    <div class="stat"><div class="v">435 &rarr; 561</div><div class="l">entities in the spyware market, 42 &rarr; 46 countries (Atlantic Council, 2024 &rarr; 2025)</div></div>
+  </div>
+  <p class="footer-tag">Citizen Lab, &ldquo;Hide and Seek,&rdquo; Report No. 113, Sep 18, 2018. Forbidden Stories, &ldquo;About the Pegasus Project,&rdquo; Jul 18, 2021. Atlantic Council, &ldquo;Mythical Beasts,&rdquo; Sep 4, 2024 and Sep 10, 2025 update.</p>
+</section>
+
+<!-- 6 · Know: social media monitoring -->
+<section class="slide ex">
+  <p class="kicker">Know · collecting information · V-Dem Digital Society Project, 2000&ndash;2025</p>
+  <h2>Government monitoring of political content on social media</h2>
+  <div class="chartwrap ex chart" id="chart-vdem-mon"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> V-Dem asks country experts: &ldquo;How comprehensive is the surveillance of political content in social media by the government or its agents?&rdquo; Answers run from &ldquo;extremely comprehensive&rdquo; (the government surveils virtually all content) to &ldquo;not at all.&rdquo; A statistical measurement model combines the experts&rsquo; answers into a score on a continuous scale where 0 is roughly the global average and most values fall between &minus;4 and +3.</p>
+    <p><b>How the chart is built.</b> V-Dem codes low numbers as more surveillance; the chart flips the sign so that higher means more monitoring. Each line is the simple average across countries in that regime group in that year (Regimes of the World: closed and electoral autocracies vs. electoral and liberal democracies). Every country counts equally. In 2025 there were 92 autocracies and 87 democracies.</p>
+    <p><b>What the numbers show.</b> The autocracy average rises from 0.26 in 2000 to 0.65 in 2010 and 1.04 in 2025: about half the increase before 2010, half after. The democracy average also rises, from &minus;1.42 to &minus;0.88. The gap between the two groups ranges from 1.68 to 2.09 points (1.68 in 2000, 1.92 in 2025). 2025 scores (flipped): North Korea 3.59, China 3.32, Russia 2.75, Myanmar 2.71, Iran 1.92, United States 0.11.</p>
+    <p><b>Caveats.</b> Group membership changes year to year, so the lines mix change within countries with countries switching groups. Each estimate has an uncertainty band (not shown); year-to-year moves of a few hundredths are within it. Units include territories V-Dem codes separately (e.g., Hong Kong, Somaliland).</p>
+  </div>
+  <p class="footer-tag">V-Dem Country-Year Dataset v16 (Coppedge et al. 2026, doi:10.23696/vdemds26), variable v2smgovsmmon, model point estimates &times; &minus;1; regime groups from v2x_regime. Averages computed from the dataset file in the official vdemdata repository.</p>
+</section>
+
+<!-- 7 · Know: spyware vendors by country -->
+<section class="slide ex">
+  <p class="kicker">Know · collecting information · Atlantic Council spyware dataset, 2025</p>
+  <h2>Commercial spyware vendors, by headquarters country</h2>
+  <div class="chartwrap ex chart" id="chart-vendors"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> The Atlantic Council&rsquo;s &ldquo;Mythical Beasts&rdquo; project maps the companies and people behind commercial spyware: tools sold to governments to break into phones and computers, as Pegasus does. The 2025 update covers 561 entities in 46 countries from 1992 to 2024, including vendors (the firms that build and sell the tools), their subsidiaries, partners, suppliers, holding companies, investors, and key individuals.</p>
+    <p><b>What the numbers show.</b> The dataset lists 53 vendors. Israel and Italy are each home to 10, India to 6, the United States to 5, the United Kingdom and the Czech Republic to 3 each, and Luxembourg and Spain to 2 each. Twelve other countries host one vendor each. The money behind the market is concentrated too: U.S.-based investors in spyware firms number 31 (up from 11 in the 2024 edition), followed by Israel (26) and Italy (12).</p>
+    <p><b>Caveats.</b> The vendor-by-country counts (and the 53-vendor total) are tallied from the project&rsquo;s public dataset file, not printed in the report; the dataset&rsquo;s entity, country, and U.S.-investor totals match the report&rsquo;s (561, 46, 31). The dataset includes only firms identifiable from public records and investigations. Headquarters country is where a firm is registered, not where its customers are; Citizen Lab found Pegasus infections in 45 countries.</p>
+  </div>
+  <p class="footer-tag">Atlantic Council, &ldquo;Mythical Beasts: Diving into the Depths of the Global Spyware Market,&rdquo; Sep 10, 2025; dataset github.com/ac-csi/mythical-beasts (nodes file), tallied Oct 2026. Citizen Lab, &ldquo;Hide and Seek,&rdquo; 2018.</p>
+</section>
+
+<!-- 8 · Behaviour: shutdowns -->
+<section class="slide">
+  <p class="kicker">Influence behaviour · negative incentives · denying access</p>
+  <h2>Internet shutdowns recorded, 2016&ndash;2025</h2>
+  <div class="chartwrap wide chart" id="chart-shutdowns"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">Myanmar 95</div><div class="l">2025, includes cross-border shutdowns</div></div>
+    <div class="stat"><div class="v">India 65</div><div class="l">&ldquo;the lowest since 2017&rdquo;</div></div>
+    <div class="stat"><div class="v">Pakistan 20 · Russia 19 · Iran 11</div><div class="l">2025; 125 shutdowns (40%) tied to conflict</div></div>
+  </div>
+  <p class="footer-tag">Access Now, <em>Rising Repression Meets Global Resistance: Internet Shutdowns in 2025</em>, Mar 31, 2026, p. 6 chart (earlier years revised to latest data). Russia: 19 on the country map; the text counts 20 imposed by Russian authorities (17 in Russia, 3 in Ukraine).</p>
+</section>
+
+<!-- 9 · Behaviour: shutdowns by trigger -->
+<section class="slide ex">
+  <p class="kicker">Influence behaviour · negative incentives · Access Now, 2025</p>
+  <h2>Internet shutdowns in 2025, by trigger</h2>
+  <div class="chartwrap ex chart" id="chart-trig"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> Access Now defines a shutdown as &ldquo;an intentional disruption of internet or electronic communications, rendering them inaccessible or effectively unusable, for a specific population or within a location, often to exert control over the flow of information.&rdquo; The count includes nationwide and regional blackouts, mobile-only cuts, throttling, and blocks of specific platforms. Each shutdown is coded by the situation in which it was imposed.</p>
+    <p><b>What the numbers show.</b> Of 313 shutdowns in 52 countries, 125 (40%) occurred during armed conflict, the leading trigger for the third year in a row. Protests and political instability account for 64, and &ldquo;information control&rdquo; (Access Now&rsquo;s label) for 48. Elections (12) and school exams (11) are smaller categories.</p>
+    <p><b>Platform blocks, a subset.</b> Blocks of specific platforms reached 94 in 40 countries in 2025, up from 31 in 2016 and 77 in 2024. The most-blocked platforms were Facebook (31), WhatsApp (27), Telegram (23), Instagram (20), and X (20).</p>
+    <p><b>Caveats.</b> Triggers sum to 319, not 313, because some shutdowns have more than one. Counts depend on what can be detected and reported; short or local shutdowns in closed countries are more likely to be missed.</p>
+  </div>
+  <p class="footer-tag">Access Now, <em>Rising Repression Meets Global Resistance: Internet Shutdowns in 2025</em>, March 2026: totals p. 5; triggers chart p. 7; platform blocks p. 21. Definition: Access Now&rsquo;s standard #KeepItOn definition of a shutdown.</p>
+</section>
+
+<!-- 10 · Behaviour: key internet controls -->
+<section class="slide ex">
+  <p class="kicker">Influence behaviour · negative incentives · Freedom on the Net, 2020 vs. 2025</p>
+  <h2>Countries where each internet control occurred</h2>
+  <div class="chartwrap ex chart" id="chart-kic"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> Each year Freedom House&rsquo;s country analysts record whether specific &ldquo;Key Internet Controls&rdquo; occurred in each assessed country during the coverage period (June to May). The chart counts the countries in which each control was documented at least once. One country can appear in several bars.</p>
+    <p><b>The six controls.</b> Social media or messaging platforms blocked; political, social, or religious content blocked; internet or mobile networks deliberately disrupted; pro-government commentators manipulating online discussion; users arrested, imprisoned, or detained for online activity; users physically attacked or killed in connection with online activity.</p>
+    <p><b>What the numbers show.</b> The most common control in both years is arresting users: 49 countries in 2020, 57 in 2025. Pro-government commentators rise from 39 to 48, content blocking from 35 to 45, and physical attacks from 32 to 44. Platform blocking rises from 17 to 22. Network disruptions fall from 22 to 17.</p>
+    <p><b>Caveats.</b> The 2020 edition assessed 65 countries; 2025 assessed 72, so part of each increase reflects the larger sample. FOTN 2025 dropped three controls tracked in 2020 (new censorship laws, new surveillance laws, technical attacks) for budget reasons. Some 2020 table entries flag events after the coverage period.</p>
+  </div>
+  <p class="footer-tag">Freedom House, <em>Freedom on the Net 2020: The Pandemic&rsquo;s Digital Shadow</em>, p. 23 (65 countries); <em>Freedom on the Net 2025: An Uncertain Future for the Global Internet</em>, p. 21 (72 countries).</p>
+</section>
+
+<!-- 11 · Behaviour: journalists jailed -->
+<section class="slide ex">
+  <p class="kicker">Influence behaviour · negative incentives · CPJ prison census, 2015&ndash;2025</p>
+  <h2>Journalists in prison worldwide on December 1</h2>
+  <div class="chartwrap ex chart" id="chart-cpj"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> The Committee to Protect Journalists counts journalists held in government custody on one day each year, December 1, in connection with their work. It includes reporters, editors, photographers, and people who publish mainly online (bloggers, social media journalists). It excludes those released before December 1 and those held by non-state groups.</p>
+    <p><b>What the numbers show.</b> The count rose from 199 in 2015 to 363 in 2022, fell to 320 in 2023, rose to 361 in 2024, and stood at 330 in 2025. In 2025 the leading jailers were China (50, including 7 in Hong Kong), Myanmar (30), Israel (29), Russia (28), Belarus (25), Azerbaijan (24), and Egypt (18).</p>
+    <p><b>Caveats.</b> The chart shows each year&rsquo;s figure as first published. CPJ later revises counts as cases come to light: 2020 to 280, 2021 to 302, 2022 to 370, and 2024 to 384, now the record. A one-day snapshot misses short detentions. The census covers all regime types, not only autocracies.</p>
+  </div>
+  <p class="footer-tag">Committee to Protect Journalists, annual prison censuses, 2015&ndash;2025; 2025: &ldquo;Journalist jailings remain stubbornly high; harsh prison conditions pervasive&rdquo; (cpj.org).</p>
+</section>
+
+<!-- 12 · Behaviour: public security vs defense -->
+<section class="slide ex">
+  <p class="kicker">Influence behaviour · negative incentives · China, 2010&ndash;2024</p>
+  <h2>China: public-security vs. national-defense spending, billion yuan</h2>
+  <div class="chartwrap ex chart" id="chart-cnbud"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> Both lines are from China&rsquo;s official final accounts of general public budget expenditure, as published by the National Bureau of Statistics. &ldquo;Public security&rdquo; (公共安全支出) covers domestic order: police, the courts and procuratorates, state security, and (at least until 2018) the People&rsquo;s Armed Police. &ldquo;National defense&rdquo; is the official military budget.</p>
+    <p><b>What the numbers show.</b> Public security exceeded defense in every year shown from 2010 to 2020. It rose from 551.8 billion yuan in 2010 to 1,390.2 billion in 2019, then stayed between 1,378 and 1,487 billion (1,479.3 billion in 2024). Defense grew every year, from 533.3 billion to 1,690.9 billion, and has been the larger line since 2021 (in 2021 by only 0.6 billion: 1,378.7 vs. 1,378.1). In Xinjiang, security spending rose 92.8% in a single year, from 30.05 billion yuan in 2016 to 57.95 billion in 2017.</p>
+    <p><b>Caveats.</b> In 2018 the People&rsquo;s Armed Police came under sole military command; whether its budget moved out of the public-security line is not confirmed, so the comparison after 2018 may not be like-for-like. Official defense figures exclude some military-related spending. 2010&ndash;2016 values are as compiled by Zenz from NBS data (even years 2010&ndash;2014 shown); 2025 final accounts are not yet published.</p>
+  </div>
+  <p class="footer-tag">National Bureau of Statistics, <em>China Statistical Yearbook</em>, table 7-3 (2017&ndash;2024). Adrian Zenz, &ldquo;China&rsquo;s Domestic Security Spending: An Analysis of Available Data,&rdquo; <em>China Brief</em> 18(4), Jamestown Foundation, Mar 12, 2018 (2010&ndash;2016; Xinjiang).</p>
+</section>
+
+<!-- 13 · Behaviour: Russia -->
+<section class="slide">
+  <p class="kicker">Influence behaviour · negative incentives · Russia, 2022&ndash;2026</p>
+  <h2>Russia: platform blocks and internet freedom score</h2>
+  <div class="twocol" style="margin-top:.6rem;align-items:flex-start">
+    <div class="col" style="flex:1.05;border:none;padding:0"><div class="chart" id="chart-rus"></div></div>
+    <div class="col" style="flex:1;border:none;padding:0">
+      <ul class="facts sm">
+        <li><strong>Mar 14, 2022</strong> &mdash; Instagram blocked nationwide</li>
+        <li><strong>Jul&ndash;Dec 2024</strong> &mdash; YouTube throttled; traffic at 20% of pre-throttling level by December</li>
+        <li><strong>Aug 2025</strong> &mdash; calls restricted on WhatsApp and Telegram</li>
+        <li><strong>Oct 2025</strong> &mdash; Roskomnadzor confirms &ldquo;partial blocking&rdquo; of both</li>
+        <li><strong>Jan 2026</strong> &mdash; state-backed messenger MAX: 85 million registered users</li>
+        <li><strong>Mar 14&ndash;15, 2026</strong> &mdash; Telegram outages; mobile internet limited to whitelisted sites in some cities</li>
+        <li><strong>Mar 26, 2026</strong> &mdash; Rostelecom chief: &ldquo;WhatsApp is dead, Telegram is dying&rdquo;</li>
+      </ul>
+    </div>
+  </div>
+  <p class="footer-tag">Score: Freedom House FOTN Russia pages (sum of subscores; no 2019, 2021, 2023, 2024 points shown). Events: PetaPixel, Mar 11, 2022; Meduza, Dec 23, 2024; Novaya Gazeta Europe, Feb 17, 2026; VK press release, Jan 14, 2026; Meduza, Mar 17, 2026; bne IntelliNews, Mar 26, 2026.</p>
+</section>
+
+<!-- 14 · Beliefs: constructive -->
+<section class="slide">
+  <p class="kicker">Influence beliefs · constructive · creating and promoting narratives</p>
+  <h2>Countries with organized social media manipulation</h2>
+  <div class="chartwrap chart" id="chart-oii"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">48</div><div class="l">countries where state actors worked with private firms (2020)</div></div>
+    <div class="stat"><div class="v">~$60m</div><div class="l">&ldquo;spent on hiring these firms since 2009&rdquo;</div></div>
+    <div class="stat"><div class="v">448 million</div><div class="l">fabricated social media comments a year, China (King, Pan &amp; Roberts 2017)</div></div>
+  </div>
+  <p class="footer-tag">Oxford Internet Institute inventories: Bradshaw &amp; Howard 2017, 2018, 2019; Bradshaw, Bailey &amp; Howard, &ldquo;Industrialized Disinformation,&rdquo; Jan 2021. King, Pan &amp; Roberts, <em>APSR</em> 111(3), 2017: &ldquo;the government fabricates and posts about 448 million social media comments a year.&rdquo;</p>
+</section>
+
+<!-- 15 · Beliefs: who runs manipulation campaigns -->
+<section class="slide ex">
+  <p class="kicker">Influence beliefs · constructive · Oxford Internet Institute, 2020 inventory</p>
+  <h2>Who runs organized social media manipulation: countries, by actor type</h2>
+  <div class="chartwrap ex chart" id="chart-oii-act"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> The Oxford Internet Institute&rsquo;s inventory reviews news reports, government and think-tank documents, and expert consultations in each country to identify &ldquo;cyber troops&rdquo;: government or political-party actors tasked with manipulating public opinion online. In 2020 it found organized manipulation in 81 countries. The chart shows in how many of those countries each type of actor was involved.</p>
+    <p><b>What the numbers show.</b> Government agencies (including state-funded media) were involved in 62 countries and political parties in 61. Private firms working for political actors appeared in 48 countries; almost US$60 million was spent hiring them since 2009. Citizens and influencers recruited by campaigns appeared in 51 countries, civil-society groups in 23. Human-run fake accounts were found in 79 countries, automated bots in 57. Disinformation and manipulated media were used in 76 countries, state-sponsored trolling in 59.</p>
+    <p><b>Caveats.</b> Categories overlap: one country can have several actor types. The inventory covers democracies as well as autocracies and depends on what has been publicly reported, so countries with less press freedom may be undercounted. 2020 is the most recent edition.</p>
+  </div>
+  <p class="footer-tag">Bradshaw, Bailey &amp; Howard, <em>Industrialized Disinformation: 2020 Global Inventory of Organized Social Media Manipulation</em>, Oxford Internet Institute, Jan 2021: actors pp. 8&ndash;9; accounts p. 11; tactics p. 15.</p>
+</section>
+
+<!-- 16 · Beliefs: covert influence networks -->
+<section class="slide ex">
+  <p class="kicker">Influence beliefs · constructive · Meta takedowns, 2017&ndash;2024</p>
+  <h2>Covert influence networks removed by Meta, by country of origin</h2>
+  <div class="chartwrap ex chart" id="chart-cib"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> Meta removes &ldquo;coordinated inauthentic behavior&rdquo; (CIB): networks of fake or deceptive accounts that work together to mislead people about who is behind them, on Facebook and Instagram. Each removed network is attributed to a country of origin, which may be a government, a political party, or a private firm working for one.</p>
+    <p><b>What the numbers show.</b> Cumulative counts since 2017, as of Meta&rsquo;s Q3 2024 report: &ldquo;Russia remains the number one source of global CIB networks we&rsquo;ve disrupted to date since 2017, with 39 covert influence operations. The next most frequent sources of foreign interference are Iran, with 31 CIB networks, and China, with 11.&rdquo; In December 2022, Meta reported more than 200 networks from 68 countries since 2017, with Russia at 34 and Iran at 29.</p>
+    <p><b>Caveats.</b> Meta publishes only the top sources, not a full table, and has not updated these totals since late 2024. Counts reflect what one company detected and chose to report on its own platforms; one &ldquo;network&rdquo; can range from a few accounts to thousands. Networks are counted by origin, not by target.</p>
+  </div>
+  <p class="footer-tag">Meta, <em>Q3 2024 Adversarial Threat Report</em>, Dec 2024 (transparency.meta.com). Meta, &ldquo;Recapping Our 2022 Coordinated Inauthentic Behavior Enforcements,&rdquo; Dec 15, 2022.</p>
+</section>
+
+<!-- 17 · Beliefs: government disinformation -->
+<section class="slide ex">
+  <p class="kicker">Influence beliefs · constructive · V-Dem Digital Society Project, 2000&ndash;2025</p>
+  <h2>Government use of social media to spread false information at home</h2>
+  <div class="chartwrap ex chart" id="chart-vdem-dom"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> V-Dem asks: &ldquo;How often do the government and its agents use social media to disseminate misleading viewpoints or false information to influence its own population?&rdquo; Answers run from &ldquo;extremely often&rdquo; (on all key political issues) to &ldquo;never, or almost never.&rdquo; The measurement model turns expert answers into a continuous score; 0 is roughly the global average.</p>
+    <p><b>How the chart is built.</b> Sign flipped so that higher means more frequent government disinformation. Lines are unweighted averages for autocracies (closed + electoral) and democracies (electoral + liberal), by year.</p>
+    <p><b>What the numbers show.</b> The autocracy average rises from 0.26 in 2000 to 1.13 in 2025; the steepest climb is 2009&ndash;2016 (0.50 to 0.99). The democracy average rises from &minus;1.34 to &minus;0.93. 2025 scores (flipped): Russia 2.73, Myanmar 2.72, North Korea 2.62, Iran 2.27, China 2.20, United States 0.66.</p>
+    <p><b>Caveats.</b> The question covers a government&rsquo;s own population only (V-Dem codes foreign-directed disinformation separately). The scale has no natural zero, so differences between years are comparable but ratios are not. Group membership shifts each year; uncertainty bands are not shown.</p>
+  </div>
+  <p class="footer-tag">V-Dem Country-Year Dataset v16 (Coppedge et al. 2026, doi:10.23696/vdemds26), variable v2smgovdom, model point estimates &times; &minus;1; regime groups from v2x_regime.</p>
+</section>
+
+<!-- 18 · Beliefs: destructive (KPR 2013) -->
+<section class="slide">
+  <p class="kicker">Influence beliefs · destructive · censoring narratives</p>
+  <blockquote class="smallest">Contrary to previous understandings, posts with negative, even vitriolic, criticism of the state, its leaders, and its policies are not more likely to be censored. Instead, we show that the censorship program is aimed at curtailing collective action by silencing comments that represent, reinforce, or spur social mobilization, regardless of content.
+    <cite>King, Pan &amp; Roberts 2013: 326</cite></blockquote>
+  <div class="statrow">
+    <div class="stat"><div class="v">~13%</div><div class="l">of all social media posts censored, on average (331)</div></div>
+    <div class="stat"><div class="v">85</div><div class="l">topic areas compared, censored vs. not censored (326)</div></div>
+  </div>
+  <p class="footer-tag">King, Pan &amp; Roberts, &ldquo;How Censorship in China Allows Government Criticism but Silences Collective Expression,&rdquo; <em>APSR</em> 107(2), 2013 (Depth reading).</p>
+</section>
+
+<!-- 19 · Beliefs: internet filtering -->
+<section class="slide ex">
+  <p class="kicker">Influence beliefs · destructive · V-Dem Digital Society Project, 2000&ndash;2025</p>
+  <h2>Government filtering of political information online</h2>
+  <div class="chartwrap ex chart" id="chart-vdem-fil"></div>
+  <div class="explain">
+    <p><b>What is measured.</b> V-Dem asks: &ldquo;How frequently does the government censor political information (text, audio, images, or video) on the Internet by filtering (blocking access to certain websites)?&rdquo; Answers run from &ldquo;extremely often&rdquo; to &ldquo;never, or almost never.&rdquo; Expert answers are combined into a continuous score.</p>
+    <p><b>How the chart is built.</b> Sign flipped so that higher means more filtering. Unweighted averages by regime group and year; 92 autocracies and 87 democracies in 2025.</p>
+    <p><b>What the numbers show.</b> Autocracies average 0.28 in 2000 and 0.79 in 2025, with a peak of 0.86 in 2023. Democracies barely move: &minus;1.56 in 2000, &minus;1.44 in 2025. The gap widens from 1.83 to 2.23 points. 2025 scores (flipped): North Korea 3.74, China 2.82, Iran 2.66, Russia 2.00, Myanmar 1.68, United States &minus;1.53.</p>
+    <p><b>Caveats.</b> This indicator covers website blocking; deleting individual posts is a separate V-Dem indicator (social media censorship), which follows a similar pattern (autocracies 0.20 &rarr; 0.71). Group membership shifts each year; uncertainty bands are not shown.</p>
+  </div>
+  <p class="footer-tag">V-Dem Country-Year Dataset v16 (Coppedge et al. 2026, doi:10.23696/vdemds26), variables v2smgovfilprc and v2smgovsmcenprc, model point estimates &times; &minus;1; regime groups from v2x_regime.</p>
+</section>
+
+<!-- 20 · Beliefs: data problem -->
+<section class="slide">
+  <p class="kicker">Influence beliefs · destructive · censored data and AI</p>
+  <h2>&ldquo;data tainted by repression and authoritarianism&rdquo;</h2>
+  <div class="chartwrap chart" id="chart-yr"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">~92%</div><div class="l">of the world&rsquo;s Chinese speakers live in mainland China (143)</div></div>
+    <div class="stat"><div class="v">~82%</div><div class="l">of the world&rsquo;s Russian speakers live in Russia (143)</div></div>
+  </div>
+  <p class="footer-tag">Yang &amp; Roberts, &ldquo;The Authoritarian Data Problem,&rdquo; <em>Journal of Democracy</em> 34(4), 2023: 142 (title quote), 143, 145 (entry counts). Baidu Baike edits &ldquo;must go through prepublication review&rdquo;; Chinese-language Wikipedia is blocked in mainland China (144).</p>
+</section>
+
+<!-- 21 · Synthesis -->
+<section class="slide">
+  <p class="kicker">Synthesis · the agenda, the indicators, the readings</p>
+  <h2>Week 8 at a glance</h2>
+  <table class="biblio wide">
+    <tr><th>Agenda item</th><th>Indicator</th><th>Reading</th></tr>
+    <tr><td>Know &middot; collecting</td><td>AI surveillance in 75 of 176 countries; Pegasus in 45; 53 spyware vendors; monitoring scores rising</td><td>&ldquo;turning them into live spying machines&rdquo; <span class="pg">Schlumberger et al. 2024: 768</span></td></tr>
+    <tr><td>Know &middot; processing</td><td>Predictive systems and false positives</td><td>&ldquo;to predict is to err, at least somewhat&rdquo; <span class="pg">Anastasopoulos &amp; Lian 2026: 5</span></td></tr>
+    <tr><td>Behaviour &middot; negative</td><td>313 shutdowns in 52 countries (2025); arrests for online activity in 57 of 72; 330 journalists jailed; Russian platform blocks</td><td>&ldquo;they deny users access to online services&rdquo; <span class="pg">Schlumberger et al. 2024: 768</span></td></tr>
+    <tr><td>Behaviour &middot; positive</td><td>Social credit systems</td><td>&ldquo;it is the political leadership who grants the benefits of modern life&rdquo; <span class="pg">Schlumberger et al. 2024: 769</span></td></tr>
+    <tr><td>Beliefs &middot; constructive</td><td>Manipulation campaigns in 81 countries; 448m fabricated posts a year; Meta takedowns</td><td>Bradshaw, Bailey &amp; Howard 2021; <span class="pg">King, Pan &amp; Roberts 2017</span></td></tr>
+    <tr><td>Beliefs &middot; destructive</td><td>~13% of posts censored; 27.3m vs. 1.4m encyclopedia entries</td><td>&ldquo;curtailing collective action&rdquo; <span class="pg">King, Pan &amp; Roberts 2013: 326</span>; <span class="pg">Yang &amp; Roberts 2023: 145</span></td></tr>
+  </table>
+  <p class="footer-tag">Framework: Schlumberger et al. 2024: 766, Table 1. Indicators and sources as on slides 3&ndash;20.</p>
+</section>
+
+<!-- 22 · Film -->
+<section class="slide">
+  <p class="kicker">Film · FRONTLINE &amp; Forbidden Stories · PBS, Jan 3, 2023</p>
+  <h2>Global Spyware Scandal: Exposing Pegasus &mdash; Part 1, &ldquo;The List&rdquo;</h2>
+  <p style="margin-top:1rem"><a href="https://www.pbs.org/video/global-spyware-scandal-exposing-pegasus-part-1-knbyuj" target="_blank" rel="noopener" style="display:inline-block;font-size:1.5rem;font-weight:700;color:#fff;background:var(--accent);padding:.8rem 1.6rem;border-radius:12px;text-decoration:none">&#9654;&nbsp; Watch on PBS (54 min)</a></p>
+  <ul class="big compact" style="margin-top:1.4rem">
+    <li>The leaked list &middot; Forbidden Stories and 17 news outlets</li>
+    <li>Amnesty International Security Lab: phone forensics</li>
+    <li>Jamal Khashoggi&rsquo;s circle &middot; Hatice Cengiz, Hanan Elatr</li>
+    <li>Mexico &middot; Carmen Aristegui; a former operator</li>
+    <li>Azerbaijan &middot; Khadija Ismayilova &middot; Princess Latifa</li>
+  </ul>
+  <p class="footer-tag">PBS player on pbs.org (official). Official FRONTLINE YouTube clips: <a href="https://www.youtube.com/watch?v=k1Ylr4B2Q0Y" target="_blank" rel="noopener">trailer, 0:41</a> &middot; <a href="https://www.youtube.com/watch?v=a2BIYWHdfTE" target="_blank" rel="noopener">Cengiz phone forensics, 6:31</a> &middot; <a href="https://www.youtube.com/watch?v=veFP2WOxczY" target="_blank" rel="noopener">Ismayilova, 4:27</a>. Segment order per the PBS film page.</p>
+</section>
+
+<div class="counter" id="counter">1 / 22</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+          current = slides.indexOf(e.target);
+          counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- illustrations (sources per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var SW = ['#2a5da8', '#5e9fe0', '#e0793f', '#96302a'];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function wrap(s, max) {
+    var words = s.split(' '), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (test.length > max) { lines.push(line); line = w; } else { line = test; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+  function lines(svg, x, y, arr, size, fill, anchor, weight, lh) {
+    arr.forEach(function (s, k) {
+      txt(el('text', { x: x, y: y + k * (lh || (size + 4)), 'text-anchor': anchor || 'middle', 'font-size': size, fill: fill, 'font-weight': weight || '400' }, svg), s);
+    });
+  }
+  function arrowDefs(svg, id, color) {
+    var defs = el('defs', {}, svg);
+    var m = el('marker', { id: id, viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' }, defs);
+    el('path', { d: 'M0,0 L10,5 L0,10 z', fill: color }, m);
+  }
+
+
+  function barPath(x, y, w, h, parent, fill, title) {
+    var r = Math.min(4, w / 2);
+    if (h < 2 * r) r = h / 2;
+    var d = 'M' + x + ',' + y + ' h' + (w - r) + ' q' + r + ',0 ' + r + ',' + r +
+            ' v' + (h - 2 * r) + ' q0,' + r + ' -' + r + ',' + r + ' h-' + (w - r) + ' z';
+    var p = el('path', { d: d, fill: fill }, parent);
+    if (title) txt(el('title', {}, p), title);
+    return p;
+  }
+  function groupedBars(boxId, groups, series, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 940, H = opts.H || 330;
+    var padL = 60, padR = 20, padT = 24, padB = opts.padB || 64;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = opts.max || Math.max.apply(null, groups.map(function (g) { return Math.max.apply(null, g.values); })) * 1.15;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var gw = plotW / groups.length;
+    var n = series.length;
+    var bw = Math.min(opts.bw || 70, (gw * 0.7) / n);
+    var ticks = opts.ticks || 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = max * t / ticks;
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#e6e9ee', 'stroke-width': 1 }, svg);
+      txt(el('text', { x: padL - 10, y: y + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), (opts.fmtAxis || function (x) { return Math.round(x); })(v));
+    }
+    if (opts.yLabel) {
+      txt(el('text', { x: 14, y: padT + plotH / 2, 'font-size': '12', fill: MUTED, 'text-anchor': 'middle',
+        transform: 'rotate(-90 14 ' + (padT + plotH / 2) + ')' }, svg), opts.yLabel);
+    }
+    groups.forEach(function (g, i) {
+      var gx = padL + i * gw + gw / 2;
+      var total = n * bw + (n - 1) * 8;
+      g.values.forEach(function (v, j) {
+        var x = gx - total / 2 + j * (bw + 8);
+        var h = v / max * plotH;
+        var y = padT + plotH - h;
+        barPath(x, y, bw, h, svg, series[j].color, series[j].name + ' — ' + g.label + ': ' + (opts.fmt || String)(v));
+        txt(el('text', { x: x + bw / 2, y: y - 6, 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: INK }, svg), (opts.fmt || String)(v));
+      });
+      wrap(g.label, opts.wrapAt || 28).forEach(function (ln, k) {
+        txt(el('text', { x: gx, y: padT + plotH + 20 + k * 15, 'text-anchor': 'middle', 'font-size': '13', fill: INK }, svg), ln);
+      });
+    });
+    // legend
+    var lx = W - padR - 200;
+    series.forEach(function (sr, j) {
+      el('rect', { x: lx, y: 6 + j * 18, width: 12, height: 12, rx: 3, fill: sr.color }, svg);
+      txt(el('text', { x: lx + 18, y: 16 + j * 18, 'font-size': '12.5', fill: MUTED }, svg), sr.name);
+    });
+  }
+
+  function fmtInt(v) { return Math.round(v).toLocaleString('en-US'); }
+
+  /* horizontal bars: rows [{label, value, color}] */
+  function hbars(svg, x0, y0, w, rows, opts) {
+    opts = opts || {};
+    var labW = opts.labW || 230, rowH = opts.rowH || 40, bh = opts.bh || 24, max = opts.max;
+    if (opts.title) txt(el('text', { x: x0, y: y0 - 12, 'font-size': '14', 'font-weight': '700', fill: opts.titleColor || MUTED, 'letter-spacing': '.06em' }, svg), opts.title);
+    var plotW = w - labW - (opts.padR || 70);
+    rows.forEach(function (r, i) {
+      var y = y0 + i * rowH;
+      txt(el('text', { x: x0 + labW - 12, y: y + bh / 2 + 5, 'text-anchor': 'end', 'font-size': '15', fill: INK }, svg), r.label);
+      el('rect', { x: x0 + labW, y: y, width: plotW, height: bh, rx: 4, fill: '#eef0f3' }, svg);
+      var bw = Math.max(3, r.value / max * plotW);
+      barPath(x0 + labW, y, bw, bh, svg, r.color || ACCENT, r.label + ': ' + (opts.fmt || fmtInt)(r.value));
+      txt(el('text', { x: x0 + labW + bw + 8, y: y + bh / 2 + 5, 'font-size': '15', 'font-weight': '700', fill: INK }, svg), (opts.fmt || fmtInt)(r.value));
+    });
+  }
+
+  /* --- Slide 2: the dictator's perpetual agenda (Schlumberger et al. 2024: 765-766) --- */
+  (function () {
+    var box = document.getElementById('chart-agenda');
+    if (!box) return;
+    var W = 1120, H = 430;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    function node(x, y, w, h, lns, color, fill, size, weight) {
+      el('rect', { x: x, y: y, width: w, height: h, rx: 10, fill: fill || '#fff', stroke: color, 'stroke-width': 2.2 }, svg);
+      var lh = size + 4, top = y + h / 2 - (lns.length - 1) * lh / 2 + size / 3;
+      lines(svg, x + w / 2, top, lns, size, color, 'middle', weight || '700', lh);
+    }
+    function link(x1, y1, x2, y2, c) {
+      var my = (y1 + y2) / 2;
+      el('path', { d: 'M' + x1 + ',' + y1 + ' V' + my + ' H' + x2 + ' V' + y2, fill: 'none', stroke: c || '#b9bfc8', 'stroke-width': 2 }, svg);
+    }
+    var topW = 260;
+    node(W / 2 - topW / 2, 6, topW, 50, ['Control subjects'], ACCENT, '#f4e9e9', 20);
+    var mids = [
+      { t: 'Know', c: SW[0] },
+      { t: 'Influence behaviour', c: SW[2] },
+      { t: 'Influence beliefs', c: SW[3] }
+    ];
+    var leaves = [
+      ['Collecting', 'information'], ['Processing', 'information'],
+      ['Negative incentives', 'and sanctions', '(mostly repression)'], ['Positive incentives', '(mostly co-optation)'],
+      ['Constructive: creation', 'and promotion', 'of narratives'], ['Destructive:', 'discrediting and', 'censoring narratives']
+    ];
+    var ind = [
+      ['AI surveillance', 'spyware · monitoring'], ['prediction'],
+      ['shutdowns · arrests', 'budgets · Russia'], ['social credit'],
+      ['manipulation', 'campaigns · takedowns'], ['censorship · filtering', 'AI training data']
+    ];
+    var colW = W / 3, midW = 300, midY = 110, midH = 50;
+    var leafW = 174, leafY = 205, leafH = 104, indY = 340;
+    mids.forEach(function (m, i) {
+      var cx = colW * i + colW / 2;
+      link(W / 2, 56, cx, midY);
+      node(cx - midW / 2, midY, midW, midH, [m.t], m.c, '#fff', 19);
+      [0, 1].forEach(function (k) {
+        var j = i * 2 + k;
+        var lx = cx + (k === 0 ? -leafW - 8 : 8);
+        link(cx, midY + midH, lx + leafW / 2, leafY, m.c);
+        node(lx, leafY, leafW, leafH, leaves[j], m.c, '#fff', 15, '600');
+        el('line', { x1: lx + leafW / 2, y1: leafY + leafH, x2: lx + leafW / 2, y2: indY - 6, stroke: '#d9dde3', 'stroke-width': 1.5, 'stroke-dasharray': '4 4' }, svg);
+        lines(svg, lx + leafW / 2, indY + 16, ind[j], 16, MUTED, 'middle', '400', 20);
+      });
+    });
+  })();
+
+  /* --- Slide 3: FOTN 2025 lowest scores --- */
+  (function () {
+    var box = document.getElementById('chart-fotn');
+    if (!box) return;
+    var W = 940, H = 210;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    hbars(svg, 0, 34, W, [
+      { label: 'China', value: 9 }, { label: 'Myanmar', value: 9 },
+      { label: 'Iran', value: 13 }, { label: 'Russia', value: 17 }
+    ], { max: 100, labW: 140, title: 'INTERNET FREEDOM SCORE, 2025 (0 = LEAST FREE, 100 = MOST FREE)' });
+  })();
+
+  /* --- Slide 4: AIGS index --- */
+  (function () {
+    var box = document.getElementById('chart-aigs');
+    if (!box) return;
+    var W = 1120, H = 250;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    hbars(svg, 0, 40, 560, [
+      { label: 'Any AI surveillance', value: 75, color: INK },
+      { label: 'Facial recognition', value: 64, color: SW[0] },
+      { label: 'Smart / safe city', value: 56, color: SW[0] },
+      { label: 'Smart policing', value: 52, color: SW[0] }
+    ], { max: 176, labW: 190, rowH: 46, title: 'COUNTRIES, BY TECHNIQUE (OF 176)' });
+    hbars(svg, 590, 40, 530, [
+      { label: 'Chinese companies', value: 63, color: SW[3] },
+      { label: 'Huawei alone', value: 50, color: SW[3] },
+      { label: 'U.S. companies', value: 32, color: SW[0] }
+    ], { max: 176, labW: 170, rowH: 46, title: 'COUNTRIES, BY SUPPLIER (OF 176)' });
+  })();
+
+  /* --- Slide 6: shutdowns by year (Access Now 2026) --- */
+  (function () {
+    var box = document.getElementById('chart-shutdowns');
+    if (!box) return;
+    var data = [[2016, 80, 28], [2017, 113, 23], [2018, 205, 29], [2019, 224, 37], [2020, 171, 35],
+                [2021, 197, 40], [2022, 206, 41], [2023, 289, 41], [2024, 304, 55], [2025, 313, 52]];
+    var W = 1120, H = 300, padL = 50, padR = 10, padT = 22, padB = 52;
+    var plotW = W - padL - padR, plotH = H - padT - padB, max = 350;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    [0, 100, 200, 300].forEach(function (v) {
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#e6e9ee' }, svg);
+      txt(el('text', { x: padL - 8, y: y + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), v);
+    });
+    var gw = plotW / data.length, bw = gw * 0.62;
+    data.forEach(function (d, i) {
+      var x = padL + i * gw + (gw - bw) / 2, h = d[1] / max * plotH, y = padT + plotH - h;
+      barPath(x, y, bw, h, svg, i === data.length - 1 ? ACCENT : '#b56a6a', d[0] + ': ' + d[1] + ' shutdowns, ' + d[2] + ' countries');
+      txt(el('text', { x: x + bw / 2, y: y - 7, 'text-anchor': 'middle', 'font-size': '15', 'font-weight': '700', fill: INK }, svg), d[1]);
+      txt(el('text', { x: x + bw / 2, y: padT + plotH + 20, 'text-anchor': 'middle', 'font-size': '14', fill: INK }, svg), d[0]);
+      txt(el('text', { x: x + bw / 2, y: padT + plotH + 38, 'text-anchor': 'middle', 'font-size': '12', fill: MUTED }, svg), d[2] + ' countries');
+    });
+  })();
+
+  /* --- Slide 7: Russia FOTN score --- */
+  (function () {
+    var box = document.getElementById('chart-rus');
+    if (!box) return;
+    var pts = [[2016, 35], [2017, 34], [2018, 33], [2020, 30], [2022, 23], [2025, 17]];
+    var W = 560, H = 360, padL = 46, padR = 24, padT = 40, padB = 40;
+    var plotW = W - padL - padR, plotH = H - padT - padB, max = 40;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    txt(el('text', { x: 0, y: 16, 'font-size': '13', 'font-weight': '700', fill: MUTED, 'letter-spacing': '.06em' }, svg), 'RUSSIA, FREEDOM ON THE NET SCORE (0–100)');
+    function X(yr) { return padL + (yr - 2016) / 9 * plotW; }
+    function Y(v) { return padT + plotH - v / max * plotH; }
+    [0, 10, 20, 30, 40].forEach(function (v) {
+      el('line', { x1: padL, y1: Y(v), x2: W - padR, y2: Y(v), stroke: '#e6e9ee' }, svg);
+      txt(el('text', { x: padL - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), v);
+    });
+    [2016, 2018, 2020, 2022, 2025].forEach(function (yr) {
+      txt(el('text', { x: X(yr), y: H - 14, 'text-anchor': 'middle', 'font-size': '13', fill: INK }, svg), yr);
+    });
+    el('polyline', { points: pts.map(function (p) { return X(p[0]) + ',' + Y(p[1]); }).join(' '), fill: 'none', stroke: ACCENT, 'stroke-width': 3 }, svg);
+    pts.forEach(function (p) {
+      el('circle', { cx: X(p[0]), cy: Y(p[1]), r: 5.5, fill: '#fff', stroke: ACCENT, 'stroke-width': 3 }, svg);
+      txt(el('text', { x: X(p[0]), y: Y(p[1]) - 13, 'text-anchor': 'middle', 'font-size': '15', 'font-weight': '700', fill: INK }, svg), p[1]);
+    });
+  })();
+
+  /* --- Slide 8: OII inventories --- */
+  (function () {
+    var box = document.getElementById('chart-oii');
+    if (!box) return;
+    groupedBars('chart-oii', [
+      { label: '2017', values: [28] }, { label: '2018', values: [48] },
+      { label: '2019', values: [70] }, { label: '2020', values: [81] }
+    ], [{ name: 'Countries', color: ACCENT }], { W: 940, H: 250, max: 100, ticks: 4, bw: 90, padB: 34 });
+  })();
+
+  /* --- Slide 10: Baidu Baike vs Chinese Wikipedia (Yang & Roberts 2023: 145) --- */
+  (function () {
+    var box = document.getElementById('chart-yr');
+    if (!box) return;
+    var W = 940, H = 130;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    hbars(svg, 0, 34, W, [
+      { label: 'Baidu Baike', value: 27309701, color: SW[3] },
+      { label: 'Chinese-language Wikipedia', value: 1370701, color: SW[0] }
+    ], { max: 27309701, labW: 250, rowH: 44, bh: 28, padR: 110, title: 'ENCYCLOPEDIA ENTRIES' });
+  })();
+
+  /* ---------- round 2 helpers ---------- */
+  /* two-or-more series line chart; opts.reverse puts min at top */
+  function lineChart(boxId, xs, series, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 1120, H = opts.H || 300, padL = 64, padR = opts.padR || 150, padT = 30, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var lo = opts.min, hi = opts.max;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    function X(i) { return padL + (xs[i] - xs[0]) / (xs[xs.length - 1] - xs[0]) * plotW; }
+    function Y(v) { var f = (v - lo) / (hi - lo); if (opts.reverse) f = 1 - f; return padT + plotH - f * plotH; }
+    (opts.ticks || []).forEach(function (v) {
+      el('line', { x1: padL, y1: Y(v), x2: padL + plotW, y2: Y(v), stroke: '#e6e9ee' }, svg);
+      txt(el('text', { x: padL - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': '12', fill: MUTED }, svg), (opts.fmtAxis || String)(v));
+    });
+    if (opts.zero !== undefined) el('line', { x1: padL, y1: Y(opts.zero), x2: padL + plotW, y2: Y(opts.zero), stroke: '#9aa1ab', 'stroke-width': 1.2 }, svg);
+    xs.forEach(function (x, i) {
+      if ((opts.xEvery && (x % opts.xEvery === 0)) || i === xs.length - 1) txt(el('text', { x: X(i), y: H - 10, 'text-anchor': 'middle', 'font-size': '12.5', fill: INK }, svg), x);
+    });
+    if (opts.yLabel) txt(el('text', { x: 0, y: 14, 'font-size': '12.5', 'font-weight': '700', fill: MUTED, 'letter-spacing': '.05em' }, svg), opts.yLabel);
+    series.forEach(function (s) {
+      var pts = [];
+      s.values.forEach(function (v, i) { if (v !== null && v !== undefined) pts.push(X(i) + ',' + Y(v)); });
+      el('polyline', { points: pts.join(' '), fill: 'none', stroke: s.color, 'stroke-width': 3.2, 'stroke-linejoin': 'round' }, svg);
+      if (opts.dots) s.values.forEach(function (v, i) { if (v !== null) el('circle', { cx: X(i), cy: Y(v), r: 3.5, fill: s.color }, svg); });
+      var li = s.values.length - 1; while (s.values[li] === null) li--;
+      el('circle', { cx: X(li), cy: Y(s.values[li]), r: 5, fill: s.color }, svg);
+      var fv = (opts.fmt || function (v) { return v.toFixed(2); })(s.values[li]);
+      txt(el('text', { x: X(li) + 10, y: Y(s.values[li]) + 5 + (s.dy || 0), 'font-size': '14', 'font-weight': '700', fill: s.color }, svg), s.name + ' ' + fv);
+      if (s.first !== false) {
+        var fi = 0; while (s.values[fi] === null) fi++;
+        txt(el('text', { x: X(fi), y: Y(s.values[fi]) - 9 + (s.dyFirst || 0), 'font-size': '13', 'font-weight': '700', fill: s.color, 'text-anchor': 'start' }, svg), (opts.fmt || function (v) { return v.toFixed(2); })(s.values[fi]));
+      }
+    });
+  }
+  /* simple horizontal bar chart in its own svg */
+  function hbarChart(boxId, rows, opts) {
+    var box = document.getElementById(boxId);
+    if (!box) return;
+    opts = opts || {};
+    var W = opts.W || 1120, rowH = opts.rowH || 34;
+    var H = 34 + rows.length * rowH;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    hbars(svg, 0, 30, W, rows, opts);
+  }
+
+  /* --- V-Dem v16 DSP indicators, regime-group means x -1 (scratchpad/vdem CSVs) --- */
+  (function () {
+    var yrs = []; for (var y = 2000; y <= 2025; y++) yrs.push(y);
+    var C_A = ACCENT, C_D = '#2f6bb3';
+    var common = { W: 1120, H: 285, min: -2, max: 1.5, ticks: [-2, -1, 0, 1], xEvery: 5, zero: 0, padR: 190 };
+    lineChart('chart-vdem-mon', yrs, [
+      { name: 'Autocracies', color: C_A, values: [0.26,0.29,0.34,0.42,0.45,0.44,0.49,0.51,0.54,0.52,0.65,0.63,0.68,0.74,0.8,0.89,0.98,0.93,0.97,0.98,1.03,1.14,1.11,1.08,1.06,1.04] },
+      { name: 'Democracies', color: C_D, values: [-1.42,-1.43,-1.44,-1.39,-1.41,-1.39,-1.41,-1.4,-1.36,-1.31,-1.22,-1.19,-1.17,-1.17,-1.13,-1.08,-1.02,-1.03,-1.04,-1.0,-0.96,-0.95,-0.91,-0.91,-0.91,-0.88], dyFirst: 26 }
+    ], Object.assign({ yLabel: 'MONITORING SCORE (V-DEM × −1; HIGHER = MORE MONITORING)' }, common));
+    lineChart('chart-vdem-dom', yrs, [
+      { name: 'Autocracies', color: C_A, values: [0.26,0.25,0.31,0.38,0.39,0.41,0.4,0.45,0.43,0.5,0.66,0.69,0.72,0.8,0.85,0.92,0.99,0.97,1.0,0.99,1.0,1.15,1.13,1.13,1.15,1.13] },
+      { name: 'Democracies', color: C_D, values: [-1.34,-1.34,-1.37,-1.3,-1.3,-1.3,-1.29,-1.32,-1.26,-1.29,-1.22,-1.19,-1.1,-1.11,-1.08,-1.01,-0.99,-0.99,-0.99,-0.93,-0.92,-0.89,-0.92,-0.93,-0.99,-0.93], dyFirst: 26 }
+    ], Object.assign({ yLabel: 'DISINFORMATION SCORE (V-DEM × −1; HIGHER = MORE OFTEN)' }, common));
+    lineChart('chart-vdem-fil', yrs, [
+      { name: 'Autocracies', color: C_A, values: [0.28,0.31,0.37,0.48,0.5,0.51,0.51,0.51,0.55,0.52,0.59,0.5,0.53,0.58,0.61,0.66,0.71,0.67,0.71,0.65,0.74,0.81,0.82,0.86,0.78,0.79] },
+      { name: 'Democracies', color: C_D, values: [-1.56,-1.56,-1.57,-1.55,-1.55,-1.59,-1.59,-1.62,-1.61,-1.56,-1.52,-1.5,-1.49,-1.53,-1.49,-1.45,-1.42,-1.46,-1.47,-1.41,-1.4,-1.44,-1.42,-1.46,-1.48,-1.44], dyFirst: 26 }
+    ], Object.assign({ yLabel: 'FILTERING SCORE (V-DEM × −1; HIGHER = MORE FILTERING)' }, common));
+  })();
+
+  /* --- FOTN key internet controls, 2020 (65 countries) vs 2025 (72) --- */
+  groupedBars('chart-kic', [
+    { label: 'Users arrested', values: [49, 57] },
+    { label: 'Pro-government commentators', values: [39, 48] },
+    { label: 'Content blocked', values: [35, 45] },
+    { label: 'Users attacked or killed', values: [32, 44] },
+    { label: 'Platforms blocked', values: [17, 22] },
+    { label: 'Networks disrupted', values: [22, 17] }
+  ], [{ name: '2020 (65 countries assessed)', color: '#2f6bb3' }, { name: '2025 (72 countries assessed)', color: '#a33232' }],
+  { W: 1120, H: 250, max: 70, ticks: 7, bw: 54, padB: 44, wrapAt: 18 });
+
+  /* --- Access Now 2025 shutdowns by trigger (p. 7) --- */
+  hbarChart('chart-trig', [
+    { label: 'Conflict', value: 125, color: ACCENT },
+    { label: 'Protests / political instability', value: 64, color: '#b56a6a' },
+    { label: 'Information control', value: 48, color: '#b56a6a' },
+    { label: 'Other (14) · unknown (13)', value: 27, color: '#9aa1ab' },
+    { label: 'Communal violence', value: 16, color: '#b56a6a' },
+    { label: 'Official visits (8) · religious holidays (8)', value: 16, color: '#b56a6a' },
+    { label: 'Elections', value: 12, color: '#b56a6a' },
+    { label: 'Exams', value: 11, color: '#b56a6a' }
+  ], { max: 140, labW: 330, rowH: 27, bh: 19, title: 'SHUTDOWNS, 2025 (TRIGGERS SUM TO 319; SOME SHUTDOWNS HAVE MORE THAN ONE)' });
+
+  /* --- Meta CIB networks by origin, cumulative since 2017 (Q3 2024 report) --- */
+  hbarChart('chart-cib', [
+    { label: 'Russia', value: 39, color: ACCENT },
+    { label: 'Iran', value: 31, color: ACCENT },
+    { label: 'China', value: 11, color: ACCENT }
+  ], { max: 45, labW: 140, rowH: 46, bh: 30, title: 'NETWORKS REMOVED, 2017 TO Q3 2024' });
+
+  /* --- OII 2020 actor types --- */
+  hbarChart('chart-oii-act', [
+    { label: 'Government agencies', value: 62, color: ACCENT },
+    { label: 'Political parties', value: 61, color: ACCENT },
+    { label: 'Citizens and influencers', value: 51, color: '#b56a6a' },
+    { label: 'Private firms', value: 48, color: '#b56a6a' },
+    { label: 'Civil-society groups', value: 23, color: '#b56a6a' }
+  ], { max: 81, labW: 240, rowH: 38, bh: 24, title: 'COUNTRIES (OF 81 WITH ORGANIZED MANIPULATION)' });
+
+  /* --- Mythical Beasts 2025: vendors by HQ country (dataset tally) --- */
+  hbarChart('chart-vendors', [
+    { label: 'Israel', value: 10, color: ACCENT },
+    { label: 'Italy', value: 10, color: ACCENT },
+    { label: 'India', value: 6, color: ACCENT },
+    { label: 'United States', value: 5, color: ACCENT },
+    { label: 'United Kingdom', value: 3, color: ACCENT },
+    { label: 'Czech Republic', value: 3, color: ACCENT },
+    { label: 'Luxembourg', value: 2, color: ACCENT },
+    { label: 'Spain', value: 2, color: ACCENT }
+  ], { max: 12, labW: 200, rowH: 27, bh: 19, title: 'VENDORS (53 IN TOTAL; 12 OTHER COUNTRIES HAVE 1 EACH, NOT SHOWN)' });
+
+  /* --- CPJ prison census, as first published --- */
+  lineChart('chart-cpj', [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025], [
+    { name: '2025:', color: ACCENT, values: [199,259,262,251,250,274,293,363,320,361,330] }
+  ], { W: 1120, H: 265, min: 0, max: 400, ticks: [0, 100, 200, 300, 400], xEvery: 1, padR: 110, fmt: function (v) { return String(v); },
+       yLabel: 'JOURNALISTS IMPRISONED ON DEC 1 (AS FIRST PUBLISHED)' });
+  (function () {  // label every point
+    var box = document.getElementById('chart-cpj'); if (!box) return;
+    var svg = box.querySelector('svg'); var vals = [199,259,262,251,250,274,293,363,320,361,330];
+    var W = 1120, H = 265, padL = 64, padR = 110, padT = 30, padB = 34, plotW = W - padL - padR, plotH = H - padT - padB;
+    vals.forEach(function (v, i) {
+      if (i === 0 || i === vals.length - 1) return;
+      var x = padL + i / (vals.length - 1) * plotW, y = padT + plotH - v / 400 * plotH;
+      el('circle', { cx: x, cy: y, r: 3.5, fill: ACCENT }, svg);
+      txt(el('text', { x: x, y: y - 9, 'text-anchor': 'middle', 'font-size': '12.5', fill: INK }, svg), v);
+    });
+  })();
+
+  /* --- China public security vs defense, bn yuan --- */
+  lineChart('chart-cnbud', [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024], [
+    { name: 'Defense', color: '#2f6bb3', values: [533.3,null,669.2,null,829.0,null,976.6,1043.2,1128.0,1212.2,1291.9,1378.7,1475.2,1580.5,1690.9], dyFirst: 26 },
+    { name: 'Public security', color: ACCENT, values: [551.8,null,711.2,null,835.7,null,1103.2,1246.1,1378.1,1390.2,1386.3,1378.1,1442.0,1487.0,1479.3] }
+  ], { W: 1120, H: 285, min: 400, max: 1800, ticks: [400, 800, 1200, 1600], xEvery: 2, padR: 230, dots: true,
+       fmt: function (v) { return v.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 }); },
+       fmtAxis: function (v) { return v.toLocaleString('en-US'); }, yLabel: 'BILLION YUAN, FINAL ACCOUNTS' });
+})();
+</script>
+</body>
+</html>
