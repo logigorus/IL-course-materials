@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWA 227 · Week 10 · Democratic Breakdown and Autocratization</title>
+<style>
+  :root {
+    --ink: #1d2129;
+    --muted: #5c6470;
+    --accent: #8a2f2f;
+    --accent-soft: #f4e9e9;
+    --bg: #fcfbf9;
+    --rule: #d9dde3;
+    --s2005: #2f6bb3;
+    --s2025: #a33232;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .kicker {
+    font-size: clamp(.85rem, 1.4vw, 1.1rem); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.4rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4;
+    border-left: 6px solid var(--accent); padding-left: 1.4rem;
+  }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.4vw, 1.9rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.9vw, 1.45rem); }
+  blockquote + blockquote { margin-top: 1.6rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.95rem, 1.6vw, 1.25rem); color: var(--muted); margin-top: 1.4rem; }
+  blockquote.smallest cite { margin-top: .8rem; }
+  .statrow.words .stat .v { font-size: clamp(1.4rem, 2.6vw, 2.1rem); }
+  .statrow.words .stat { flex: 1 1 0; min-width: 0; }
+  .statrow.words .stat .l { max-width: none; }
+  .statrow.compact { margin-top:.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .statrow.compact .stat .l { font-size: clamp(.82rem, 1.25vw, .98rem); max-width: 34ch; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; margin-top: 2.2rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: 700; }
+  .stat .l { font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.4; padding: .5rem 0 .5rem 1.6rem; position: relative;
+  }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big li strong { font-weight: 700; }
+  ul.big.compact li { font-size: clamp(1rem, 1.7vw, 1.35rem); padding: .4rem 0 .4rem 1.6rem; }
+  ul.big.serif li { font-family: var(--serif); }
+  ol.props { list-style: none; padding: 0; counter-reset: pr; margin-top: .4rem; }
+  ol.props li { counter-increment: pr; font-family: var(--serif); font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .7rem 0 .7rem 3rem; position: relative; border-bottom: 1px solid var(--rule); }
+  ol.props li:last-child { border-bottom: none; }
+  ol.props li::before { content: counter(pr) ")"; position: absolute; left: 0; top: .7rem; font-family: var(--sans); font-weight: 700; color: var(--accent); }
+  ol.props li .probe { display: block; font-family: var(--sans); font-size: .78em; color: var(--muted); margin-top: .3rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.6rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .85rem; color: var(--muted); letter-spacing: .03em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: 1.6rem; max-width: 940px; }
+  .chartwrap.wide { max-width: 1120px; margin-top: .8rem; }
+  .legend { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: clamp(.85rem, 1.4vw, 1.05rem); color: var(--muted); margin-bottom: .6rem; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .45rem; vertical-align: -1px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1.6rem; width: 100%; max-width: 1020px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .7rem 1.2rem .7rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.95rem, 1.5vw, 1.2rem); vertical-align: top; }
+  table.biblio th { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio.wide { max-width: 1120px; margin-top: 1rem; }
+  table.biblio.wide th, table.biblio.wide td { font-size: clamp(.78rem, 1.05vw, .95rem); padding: .5rem .8rem .5rem 0; line-height: 1.3; }
+  table.biblio.wide td:first-child { font-weight: 700; white-space: nowrap; }
+  table.biblio.wide td .pg { color: var(--muted); font-size: .85em; white-space: nowrap; }
+  table.biblio.types { max-width: 1140px; margin-top: .8rem; }
+  table.biblio.types th, table.biblio.types td { font-size: clamp(.78rem, 1.08vw, 1rem); padding: .5rem .8rem .5rem 0; line-height: 1.32; font-family: var(--serif); }
+  table.biblio.types th { font-family: var(--sans); }
+  table.biblio.types td:first-child { font-family: var(--sans); font-weight: 700; white-space: nowrap; color: var(--accent); }
+  table.biblio.types td .pg { color: var(--muted); font-size: .82em; white-space: nowrap; font-family: var(--sans); }
+  .twocol { display: flex; gap: clamp(1.4rem, 4vw, 3rem); margin-top: 1.6rem; flex-wrap: wrap; }
+  .twocol .col { flex: 1; min-width: 280px; border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .collabel { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .55rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .8rem; font-size: clamp(.85rem, 1.3vw, 1rem); }
+  .colq em.slogan { display: block; margin-top: .6rem; color: var(--accent); }
+  .facts { list-style: none; padding: 0; font-family: var(--sans); font-size: clamp(.92rem, 1.4vw, 1.12rem); line-height: 1.45; }
+  .facts li { padding: .3rem 0 .3rem 1.5rem; position: relative; }
+  .facts li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .movesbox { position: absolute; top: 2rem; right: clamp(2rem, 8vw, 7rem); width: 350px; border: 1px solid var(--rule); background: #fff; border-radius: 10px; padding: .6rem .9rem; font-size: .8rem; line-height: 1.3; color: var(--ink); }
+  .movesbox .collabel { margin-bottom: .4rem; }
+  .movesbox .mv { padding: .2rem 0; border-top: 1px solid var(--rule); }
+  .movesbox .mv:first-of-type { border-top: none; }
+  .movesbox b { color: var(--accent); }
+  .facts.sm { font-size: clamp(.85rem, 1.25vw, 1rem); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  /* round 2: chart + explanation slides */
+  section.slide.ex { justify-content: flex-start; padding-top: 2.2rem; padding-bottom: 3.6rem; }
+  section.slide.ex h2 { font-size: clamp(1.45rem, 2.7vw, 2.15rem); margin-bottom: .5rem; }
+  section.slide.ex .kicker { margin-bottom: .6rem; }
+  .chartwrap.ex { max-width: 1120px; margin-top: .2rem; }
+  .explain { margin-top: .8rem; max-width: 1120px; border-top: 2px solid var(--accent); padding-top: .55rem; font-size: clamp(.78rem, 1.08vw, .9rem); line-height: 1.42; color: var(--ink); column-count: 2; column-gap: 2rem; }
+  .explain p { margin: 0 0 .45rem; break-inside: avoid-column; }
+  .explain b { color: var(--accent); font-weight: 700; }
+  section.slide.ex .footer-tag { bottom: 2.3rem; font-size: .76rem; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+
+  /* week 10 additions */
+  .tl { list-style: none; padding: 0; margin: .3rem 0 .6rem; border-left: 2px solid var(--rule); }
+  .tl li { position: relative; padding: .3rem 0 .3rem 1.1rem; font-size: clamp(.86rem, 1.3vw, 1.06rem); line-height: 1.3; display: grid; grid-template-columns: 8.4em 1fr; column-gap: .5rem; }
+  .tl li::before { content: ""; position: absolute; left: -6px; top: .62rem; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); }
+  .tl li.now::before { background: var(--accent); }
+  .tl li b { color: var(--accent); }
+  .tl li.now { font-weight: 700; }
+  .res { display: flex; gap: 1.4rem; margin: .2rem 0 .7rem; }
+  .res .v { font-size: clamp(1.25rem, 2.2vw, 1.7rem); font-weight: 700; }
+  .res .l { font-size: .8rem; color: var(--muted); line-height: 1.25; max-width: 17ch; }
+  .twocol.ann { margin-top: .4rem; }
+  .twocol.ann .col { padding: .5rem 1rem; }
+  .twocol.ann table.biblio { margin-top: 0; }
+  .twocol.ann table.biblio td { padding: .42rem .8rem .42rem 0; font-size: clamp(.85rem, 1.25vw, 1.02rem); line-height: 1.3; }
+  .twocol.ann table.biblio td:first-child { white-space: nowrap; font-weight: 700; color: var(--accent); }
+  .corr { display: flex; gap: 2rem; align-items: center; margin-top: .4rem; }
+  .corr .chartwrap { flex: 0 0 540px; margin-top: 0; }
+  .corrtext { flex: 1; }
+  .btn.sm { font-size: 1rem; padding: .5rem 1rem; border-radius: 9px; }
+  .twocol.tight { margin-top: .6rem; }
+  .twocol.tight .col { padding: .8rem 1.1rem; }
+  ol.ten { list-style: none; padding: 0; columns: 2; column-gap: 3rem; max-width: 1120px; margin-top: .6rem; counter-reset: tn; }
+  ol.ten li { counter-increment: tn; break-inside: avoid; padding: .55rem 0 .55rem 2.6rem; position: relative; border-bottom: 1px solid var(--rule); font-size: clamp(1rem, 1.6vw, 1.3rem); line-height: 1.3; }
+  ol.ten li::before { content: counter(tn); position: absolute; left: 0; top: .5rem; font-weight: 700; color: var(--accent); font-size: 1.2em; }
+  ol.ten li .src { display: block; font-size: .72em; color: var(--muted); margin-top: .15rem; }
+  .pathways { font-size: clamp(.9rem, 1.35vw, 1.1rem); color: var(--muted); margin-top: .5rem; }
+  .pathways b { color: var(--ink); }
+  .btn { display:inline-block; font-size:1.5rem; font-weight:700; color:#fff; background:var(--accent); padding:.8rem 1.6rem; border-radius:12px; text-decoration:none; }
+  .qrow { display: flex; gap: 2rem; align-items: flex-start; margin-top: 1rem; }
+  .qrow .chartwrap { flex: 1.35; margin-top: 0; }
+  .qrow blockquote { flex: 1; }
+  .split16 { display: flex; gap: 2.5rem; align-items: stretch; margin-top: .4rem; }
+  .split16 .statrow .stat .v { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+  .split16 .statrow { flex: 1.3; margin-top: 0; gap: 1.6rem 2.4rem; align-content: flex-start; }
+  .split16 .statrow .stat { flex: 0 0 calc(50% - 1.2rem); }
+  .split16 .statrow .stat .l { max-width: 30ch; }
+  .bigq { flex: 1; display: flex; align-items: center; background: var(--accent-soft); border-left: 6px solid var(--accent); padding: 1.5rem 1.8rem; font-size: clamp(1.9rem, 3.6vw, 3rem); font-weight: 700; line-height: 1.15; color: var(--accent); }
+  h2.bigh { font-size: clamp(2.4rem, 5.5vw, 4.6rem); }
+  .ex .explain { margin-top: .5rem; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">DWA 227 · Authoritarianism in the Age of Globalization · Week 10 · Tue Oct 27, 2026</p>
+  <h1>Democratic Breakdown<br>and Autocratization</h1>
+  <p class="sub">Ten findings from the research, 2016&ndash;2026</p>
+</section>
+
+<!-- 2 · Announcements -->
+<section class="slide">
+  <p class="kicker">Week 10 · Announcements</p>
+  <h2>This week and ahead</h2>
+  <div class="twocol ann">
+    <div class="col">
+      <table class="biblio">
+        <tr><th colspan="2">This week</th></tr>
+        <tr><td>Tue Oct 27</td><td>Democratic breakdown and autocratization</td></tr>
+        <tr><td>Wed Oct 28, 8 pm</td><td>Connector/Applier post, shared doc</td></tr>
+        <tr><td>Thu Oct 29<br>12&ndash;1 pm</td><td>Daniel Treisman (UCLA), public talk on <em>Spin Dictators</em>, in Choi. Attendance counts toward engagement</td></tr>
+        <tr><td>Thu Oct 29<br>1:20 pm</td><td>Treisman visits class. Bring one written question</td></tr>
+        <tr><td>Thu Oct 29<br>11:59 pm</td><td><strong>Book review</strong> (~1,000 words), by email</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <table class="biblio">
+        <tr><th colspan="2">Upcoming dates</th></tr>
+        <tr><td>Wed Nov 4, 12&ndash;1 pm</td><td>Leah Stokes (UCSB), <em>The Carbon Wave</em>; optional, no class visit</td></tr>
+        <tr><td>Thu Nov 5</td><td><strong>Annotated bibliography</strong>, by email</td></tr>
+        <tr><td>Tue Nov 10</td><td><strong>Quiz 2</strong>, then lit-review workshop and peer worksheet</td></tr>
+        <tr><td>Thu Nov 12</td><td>Phillip Ayoub (UCL): public talk 12&ndash;1 pm, class visit 1:20</td></tr>
+        <tr><td>Nov 17, 19, 24</td><td><strong>Panel defenses</strong>: 4&ndash;5 min statement, 8&ndash;10 min Q&amp;A</td></tr>
+        <tr><td>Thu Dec 10</td><td><strong>Final literature review</strong>, 3,000&ndash;4,000 words; no grace period</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="footer-tag">DWA 227 Fall 2026 syllabus, Weeks 10&ndash;14. Written work: PDF or Word by email, 11:59 pm on the due date.</p>
+</section>
+
+<!-- 3 · Framework, Narrow Corridor -->
+<section class="slide ex">
+  <p class="kicker">Framework · Acemoglu &amp; Robinson, <em>The Narrow Corridor</em> (2019)</p>
+  <h2>The Red Queen and the Narrow Corridor</h2>
+  <div class="corr">
+    <div class="chartwrap ex chart" id="chart-corridor"></div>
+    <div class="corrtext">
+      <blockquote class="smallest">&ldquo;Now, <em>here</em>, you see, it takes all the running <em>you</em> can do, to keep in the same place.&rdquo;
+        <cite>The Red Queen &middot; Lewis Carroll, <em>Through the Looking-Glass</em> (1871), ch. 2</cite></blockquote>
+      <ul class="facts" style="margin-top:1rem">
+        <li><strong>Shackled Leviathan</strong> &mdash; state capacity matched by society&rsquo;s mobilization; both keep competing</li>
+        <li><strong>Despotic Leviathan</strong> &mdash; state outruns society</li>
+        <li><strong>Absent Leviathan</strong> &mdash; state too weak to govern</li>
+      </ul>
+    </div>
+  </div>
+  <p class="footer-tag">Acemoglu &amp; Robinson, <em>The Narrow Corridor: States, Societies, and the Fate of Liberty</em>, Penguin 2019 (Red Queen selections). Book not in the course folder: diagram and definitions are a labeled paraphrase of the book&rsquo;s corridor figure, not a reproduction.</p>
+</section>
+
+<!-- 4 · Framework -->
+<section class="slide">
+  <p class="kicker">Overview</p>
+  <h2>Ten findings</h2>
+  <ol class="ten">
+    <li>Mode: elected incumbents, legal means<span class="src">L&uuml;hrmann &amp; Lindberg 2019 &middot; Riedl et al. 2025</span></li>
+    <li>Measurement: expert-coded vs. objective<span class="src">Little &amp; Meng 2024 &middot; Miller 2024 &middot; Knutsen et al. 2024</span></li>
+    <li>Episodes: breakdown and U-turns<span class="src">Boese et al. 2021 &middot; Nord et al. 2025</span></li>
+    <li>Income and alternation thresholds; the U.S. anomaly<span class="src">Przeworski 2026 &middot; V-Dem 2026</span></li>
+    <li>Voters and violations<span class="src">Graham &amp; Svolik 2020 &middot; Krishnarajan 2023</span></li>
+    <li>Mass support for democracy<span class="src">Wuttke, Gavras &amp; Schoen 2022</span></li>
+    <li>Polarization<span class="src">McCoy &amp; Somer 2019 &middot; Svolik 2019</span></li>
+    <li>Populists in power<span class="src">Funke, Schularick &amp; Trebesch 2023 &middot; Weyland 2024</span></li>
+    <li>Courts<span class="src">Boese et al. 2021</span></li>
+    <li>Opposition strategy<span class="src">Gamboa 2022 &middot; Riedl et al. 2025</span></li>
+  </ol>
+</section>
+
+<!-- 5 · World -->
+<section class="slide ex">
+  <p class="kicker">Context · V-Dem, Regimes of the World, 1975&ndash;2025</p>
+  <h2>Democracies and autocracies, number of countries</h2>
+  <div class="chartwrap ex chart" id="chart-world"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">74%</div><div class="l">of world population in autocracies, 2025</div></div>
+    <div class="stat"><div class="v">44 &darr; &nbsp;18 &uarr;</div><div class="l">countries autocratizing vs. democratizing</div></div>
+    <div class="stat"><div class="v">1978</div><div class="l">level of democracy for the average person, 2025</div></div>
+  </div>
+  <p class="footer-tag">Counts: V-Dem v16 (Coppedge et al. 2026), v2x_regime (0&ndash;1 autocracy, 2&ndash;3 democracy), computed from the vdemdata repository. Stats: V-Dem Institute, <em>Democracy Report 2026</em>.</p>
+</section>
+
+<!-- 6 · Finding 1 -->
+<section class="slide ex">
+  <p class="kicker">1 · Mode · V-Dem Liberal Democracy Index, 1990&ndash;2025</p>
+  <h2>Liberal Democracy Index, six cases</h2>
+  <div class="chartwrap ex chart" id="chart-six"></div>
+  <p class="pathways">Pathways (Riedl et al. 2025): <b>legislative capture</b> &middot; <b>executive takeover</b> &middot; <b>plebiscitary override</b></p>
+  <p class="footer-tag">V-Dem v16, v2x_libdem (0&ndash;1). Markers: year the party or leader took national office. Riedl, Friesen, McCoy &amp; Roberts, <em>ANNALS</em> 2025 (15 country cases). L&uuml;hrmann &amp; Lindberg, &ldquo;A Third Wave of Autocratization Is Here,&rdquo; <em>Democratization</em> 2019.</p>
+</section>
+
+<!-- 7 · Finding 1, Hungary -->
+<section class="slide ex">
+  <p class="kicker">1 · Mode · Hungary, 2005&ndash;2025</p>
+  <h2>Hungary: courts, media, elections</h2>
+  <div class="chartwrap ex chart" id="chart-hun"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">Apr 12, 2026</div><div class="l">parliamentary election, turnout 79.0%</div></div>
+    <div class="stat"><div class="v">141 / 199</div><div class="l">seats, Tisza (53.2% list vote)</div></div>
+    <div class="stat"><div class="v">52 / 199</div><div class="l">seats, Fidesz&ndash;KDNP (38.6%)</div></div>
+  </div>
+  <p class="footer-tag">V-Dem v16: v2x_jucon (judicial constraints), v2x_freexp_altinf (expression &amp; alternative information), v2xel_frefair (clean elections). 2014: Fidesz&ndash;KDNP 44.9% list vote, 133 of 199 seats. 2026: National Election Office via Wikipedia; Magyar elected PM May 9, 2026. V-Dem data end in 2025.</p>
+</section>
+
+<!-- 8 · Finding 1, L&W -->
+<section class="slide divider">
+  <p class="kicker">1 · Mode · Levitsky &amp; Way 2025</p>
+  <blockquote class="smaller">&ldquo;&hellip;competitive authoritarianism&mdash;a system in which parties compete in elections but the incumbent&rsquo;s abuse of power tilts the playing field against the opposition.&rdquo;
+    <cite>Levitsky &amp; Way, &ldquo;The Path to American Authoritarianism,&rdquo; <em>Foreign Affairs</em>, 2025</cite></blockquote>
+</section>
+
+<!-- 10 · Film, Democracy Maybe -->
+<section class="slide">
+  <p class="kicker">Film · Al Jazeera English &middot; <em>Democracy Maybe</em></p>
+  <h2>&ldquo;How Democracy Dies&rdquo;</h2>
+  <p style="margin-top:1rem"><a class="btn" href="https://www.youtube.com/watch?v=Ce04tH_TlYg&amp;t=318s" target="_blank" rel="noopener">&#9654;&nbsp; Watch on YouTube, from 5:18</a></p>
+  <p class="footer-tag">Al Jazeera English YouTube channel (title confirmed via oEmbed); aired on Al Jazeera, Aug 2022.</p>
+</section>
+
+<!-- 13 · Finding 2, summary -->
+<section class="slide">
+  <p class="kicker">2 · Measurement · the debate, summarized</p>
+  <h2>Is the world backsliding?</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">Little &amp; Meng 2024</div>
+      <ul class="facts sm">
+        <li>&ldquo;Objective&rdquo; indicators show no global decline in the past decade</li>
+        <li>Turnover steady since late 1990s; winners&rsquo; vote and seat shares down; multiparty competition and executive limits steady; no rise in term-limit evasion</li>
+        <li>Gap with expert indices: coder bias (more media coverage) or subtler tactics</li>
+        <li>Global decline invisible to objective measures = &ldquo;an extraordinary claim&rdquo;; onus on the alarmists</li>
+      </ul></div>
+    <div class="col"><div class="collabel">Miller 2024 &middot; Knutsen et al. 2024 (V-Dem)</div>
+      <ul class="facts sm">
+        <li>Decline is inside democracies; objective indicators sort democracy from autocracy but miss quality within democracy (&ldquo;streetlight&rdquo;)</li>
+        <li>Within democracies, V-Dem, Freedom House, and Polity all fall from the late 2000s: &asymp; 1 in 9 democracies&rsquo; worth</li>
+        <li>No evidence of &ldquo;bad-vibes bias&rdquo; among experts</li>
+        <li>&ldquo;Objective&rdquo; coding also hides judgments; among democracies the two indices correlate at 0.16</li>
+      </ul></div>
+  </div>
+  <ul class="facts sm" style="margin-top:1rem;max-width:1120px">
+    <li><strong>Common ground:</strong> backsliding in Hungary and Venezuela (Little &amp; Meng 2024: 150); &ldquo;They do not dispute the coding of any cases&rdquo; (Miller 2024: 203)</li>
+  </ul>
+  <p class="footer-tag"><em>PS: Political Science &amp; Politics</em> 57(2), April 2024: Little &amp; Meng 149&ndash;161; Miller 202&ndash;203; Knutsen et al. 162.</p>
+</section>
+
+<!-- 14 · Finding 3 -->
+<section class="slide ex">
+  <p class="kicker">3 · Episodes · democracies entering autocratization, 1900&ndash;2019</p>
+  <h2>Outcomes of 96 episodes</h2>
+  <div class="chartwrap ex chart" id="chart-episodes"></div>
+  <div class="explain">
+    <p><b>Universe.</b> 293 autocratization episodes, 1900&ndash;2019; 96 began in a democracy.
+    <p><b>Episode.</b> An annual drop of at least 0.01 on V-Dem&rsquo;s Electoral Democracy Index, with an overall decline of at least 0.10.
+    <p><b>Breakdown.</b> The regime is reclassified as an autocracy before the episode ends. <b>Averted.</b> It stays a democracy to the end of the episode.
+    <p><b>Undetermined.</b> The episode is still running; the outcome is not yet known.
+  </div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">52%</div><div class="l">of autocratization episodes since 1900 followed by democratization (&ldquo;U-turns&rdquo;)</div></div>
+    <div class="stat"><div class="v">73%</div><div class="l">in the last 30 years</div></div>
+    <div class="stat"><div class="v">90%</div><div class="l">of U-turns restore or exceed the prior level of democracy</div></div>
+  </div>
+  <p class="footer-tag">Boese, Edgell, Hellmeier, Maerz &amp; Lindberg, &ldquo;Deterring Dictatorship,&rdquo; V-Dem WP 2020:101 (published as &ldquo;How Democracies Prevail,&rdquo; <em>Democratization</em> 2021); counts from the working paper. Nord, Angiolillo, Lundstedt, Wiebrecht &amp; Lindberg, &ldquo;When Autocratization Is Reversed,&rdquo; <em>Democratization</em> 32(5), 2025.</p>
+</section>
+
+<!-- 15 · Finding 3, U-turns -->
+<section class="slide ex">
+  <p class="kicker">3 · U-turns · V-Dem Liberal Democracy Index, 2010&ndash;2025</p>
+  <h2>Poland and Brazil</h2>
+  <div class="chartwrap ex chart" id="chart-uturn"></div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">74.4%</div><div class="l">turnout, Poland, Oct 15, 2023</div></div>
+    <div class="stat"><div class="v">27 yrs 3 mos</div><div class="l">sentence, Bolsonaro, Brazil Supreme Court, Sep 11, 2025</div></div>
+    <div class="stat"><div class="v">Hungary</div><div class="l">Fidesz out of government, Apr 2026</div></div>
+  </div>
+  <p class="footer-tag">V-Dem v16, v2x_libdem. Poland: National Electoral Commission (PKW). Brazil: Supreme Federal Court (STF) ruling on the coup plot.</p>
+</section>
+
+<!-- 16 · Finding 4, Przeworski thresholds -->
+<section class="slide">
+  <p class="kicker">4 · Thresholds · Przeworski 2026</p>
+  <h2>&ldquo;&hellip;the closest a statistical regularity comes to a law in the social sciences&rdquo;</h2>
+  <div class="split16"><div class="statrow grid2">
+    <div class="stat"><div class="v">Argentina 1976</div><div class="l">income above which no democracy had fallen (Przeworski &amp; Limongi 1997); one exception since: Thailand 2014</div></div>
+    <div class="stat"><div class="v">38 &middot; 1,754 &middot; 0</div><div class="l">democracies richer than Thailand 2014 &middot; country-years &middot; collapses</div></div>
+    <div class="stat"><div class="v">4</div><div class="l">peaceful alternations in office: &ldquo;democracy is there to stay&rdquo;</div></div>
+    <div class="stat"><div class="v">1 in several millions</div><div class="l">predicted probability BMR would not classify the U.S. a democracy (2024 income, 23 alternations)</div></div>
+  </div>
+  <div class="bigq">Why don&rsquo;t rich democracies collapse?</div></div>
+  <p class="footer-tag">Przeworski, &ldquo;Swan Song: My Understanding of Democracy,&rdquo; SSRN working paper, June 2026: 6&ndash;8. BMR = Boix, Miller &amp; Rosato regime classification.</p>
+</section>
+
+<!-- 17 · Finding 4 -->
+<section class="slide ex">
+  <p class="kicker">4 · The anomaly · United States, 1945&ndash;2025</p>
+  <h2>United States, Liberal Democracy Index</h2>
+  <div class="qrow">
+    <div class="chartwrap ex chart" id="chart-usa"></div>
+    <blockquote class="smallest">&ldquo;I am not claiming that democracy has fallen in the United States: by the BMR coding I use and every other systematic measure I know, it has not.&rdquo;
+      <cite>Przeworski 2026: 10</cite></blockquote>
+  </div>
+  <div class="statrow compact">
+    <div class="stat"><div class="v">&minus;24%</div><div class="l">LDI, 2024 &rarr; 2025</div></div>
+    <div class="stat"><div class="v">20th &rarr; 51st</div><div class="l">of 179 countries</div></div>
+    <div class="stat"><div class="v">Electoral democracy</div><div class="l">V-Dem classification, 2025 (from liberal democracy)</div></div>
+  </div>
+  <p class="footer-tag">V-Dem v16, v2x_libdem; V-Dem Institute, <em>Democracy Report 2026</em>. Przeworski, &ldquo;Swan Song: My Understanding of Democracy,&rdquo; SSRN working paper, June 2026; BMR = Boix, Miller &amp; Rosato. Treisman, &ldquo;How Great Is the Current Danger to Democracy?&rdquo; <em>Comparative Political Studies</em> 2023.</p>
+</section>
+
+<!-- 18 · Finding 4, three possibilities -->
+<section class="slide">
+  <p class="kicker">4 · The anomaly · Przeworski 2026: 10&ndash;13</p>
+  <h2>&ldquo;Here are the possibilities&rdquo;</h2>
+  <ol class="props">
+    <li>&ldquo;Just a fluke.&rdquo; &mdash; &ldquo;some swans are black&rdquo;</li>
+    <li>&ldquo;A historically unprecedented conjunction of events.&rdquo; &mdash; &ldquo;The worst possible sequence is to threaten and not pursue.&rdquo;<span class="probe">Bolsonaro convicted; Trump&rsquo;s Georgia prosecution did not reach trial before the 2024 election</span></li>
+    <li>&ldquo;Everything we know is conditioned on something we ignored thus far.&rdquo;<span class="probe">The &ldquo;democratic class compromise,&rdquo; unraveling since the 1980s</span></li>
+  </ol>
+  <blockquote class="smallest" style="margin-top:1.2rem">&ldquo;So I end up believing that democracy is here to stay in countries which got a taste of it. But I cannot make sense of what is happening in the United States.&rdquo;</blockquote>
+  <p class="footer-tag">Przeworski, &ldquo;Swan Song: My Understanding of Democracy,&rdquo; SSRN working paper, June 2026: 10&ndash;11, 13.</p>
+</section>
+
+<!-- 19 · Finding 4, Serbia and Brazil -->
+<section class="slide ex">
+  <p class="kicker">4 · Elections · Sunday, Oct 25, 2026</p>
+  <h2>Serbia and Brazil</h2>
+  <div class="twocol tight">
+    <div class="col">
+      <div class="collabel">Serbia &middot; parliamentary (snap)</div>
+      <ul class="tl">
+        <li><b>2012</b>SNS wins power; Vu&#269;i&#263; deputy PM</li>
+        <li><b>2014 / 2017</b>Vu&#269;i&#263; prime minister / president</li>
+        <li><b>Nov 1, 2024</b>Novi Sad station canopy collapse, 16 dead; student protests begin</li>
+        <li><b>Sep 27, 2026</b>Vu&#269;i&#263; resigns presidency to run for PM</li>
+        <li class="now"><b>Oct 25, 2026</b>Vu&#269;i&#263;: &ldquo;It is clear that we have lost these elections&rdquo;</li>
+      </ul>
+      <div class="res">
+        <div><div class="v">52.5%</div><div class="l">Student List &middot; ~140 / 250 seats</div></div>
+        <div><div class="v">39.3%</div><div class="l">United Serbia (SNS) &middot; ~103 seats</div></div>
+        <div><div class="v">68.8%</div><div class="l">turnout</div></div>
+      </div>
+      <a class="btn sm" href="https://www.youtube.com/watch?v=qR3ejtj5XBY" target="_blank" rel="noopener">&#9654;&nbsp; DW News: &ldquo;Belgrade erupts in joy after longtime president Vucic voted out&rdquo;</a>
+    </div>
+    <div class="col">
+      <div class="collabel">Brazil &middot; presidential runoff</div>
+      <ul class="tl">
+        <li><b>Oct 30, 2022</b>Lula defeats Jair Bolsonaro, 50.9&ndash;49.1</li>
+        <li><b>Jan 8, 2023</b>Bolsonaro supporters storm Congress, Supreme Court, presidential palace</li>
+        <li><b>Sep 11, 2025</b>Jair Bolsonaro sentenced, 27 yrs 3 mos (coup plot)</li>
+        <li><b>Oct 4, 2026</b>First round: Fl&aacute;vio Bolsonaro 47.0%, Lula 45.2%</li>
+        <li class="now"><b>Oct 25, 2026</b>Lula wins; Fl&aacute;vio Bolsonaro calls for annulment</li>
+      </ul>
+      <div class="res">
+        <div><div class="v">51.8%</div><div class="l">Lula &middot; 64.3 million votes</div></div>
+        <div><div class="v">48.2%</div><div class="l">Fl&aacute;vio Bolsonaro &middot; 59.8 million</div></div>
+        <div><div class="v">80.8%</div><div class="l">turnout</div></div>
+      </div>
+      <a class="btn sm" href="https://www.youtube.com/watch?v=sgm2Cv6ZtoY" target="_blank" rel="noopener">&#9654;&nbsp; BBC News: &ldquo;Brazil&rsquo;s left-wing President Lula elected for fourth term&rdquo;</a>
+    </div>
+  </div>
+  <p class="footer-tag">Serbia: preliminary RIK results (8,077 of 8,392 polling stations), Al Jazeera, Oct 25&ndash;26, 2026; final results pending; 126 seats needed for a majority. Brazil: TSE results via Al Jazeera, &ldquo;How did Lula beat Bolsonaro after losing Brazil&rsquo;s first-round election?&rdquo; Oct 26, 2026. Video titles and channels confirmed via YouTube oEmbed.</p>
+</section>
+
+<!-- 19b · Finding 4, Serbia and Brazil LDI -->
+<section class="slide ex">
+  <p class="kicker">4 &middot; Serbia and Brazil &middot; V-Dem Liberal Democracy Index, 1990&ndash;2025</p>
+  <h2>Liberal Democracy Index, Serbia and Brazil</h2>
+  <div class="chartwrap ex chart" id="chart-srbbra"></div>
+  <p class="footer-tag">V-Dem v16, v2x_libdem (0&ndash;1); data end in 2025, before the Oct 25, 2026 elections. Markers: year the party or leader took national office (Serbia: SNS 2012; Brazil: Bolsonaro 2019, Lula 2023).</p>
+</section>
+
+<!-- 21 · Finding 7 -->
+<section class="slide ex">
+  <p class="kicker">7 · Polarization · V-Dem, 2000&ndash;2025</p>
+  <h2>Polarization into antagonistic political camps</h2>
+  <div class="chartwrap ex chart" id="chart-polar"></div>
+  <p class="footer-tag">V-Dem v16, v2cacamps (expert survey: &ldquo;Is society polarized into antagonistic, political camps?&rdquo;; measurement-model scale, higher = more polarized). McCoy &amp; Somer, <em>ANNALS</em> 2019; Svolik, <em>Journal of Democracy</em> 2019.</p>
+</section>
+
+<!-- 22 · Finding 8 -->
+<section class="slide">
+  <p class="kicker">8 · Populists in power</p>
+  <h2>Populist chief executives</h2>
+  <div class="statrow">
+    <div class="stat"><div class="v">51</div><div class="l">populist presidents and prime ministers, 1900&ndash;2020</div></div>
+    <div class="stat"><div class="v">&minus;10%</div><div class="l">GDP per capita after 15 years vs. non-populist counterfactual</div></div>
+    <div class="stat"><div class="v">30</div><div class="l">populist chief executives, Latin America and Europe: democracy destroyed only with a revenue windfall (left) or an acute crisis resolved (right)</div></div>
+  </div>
+  <p class="footer-tag">Funke, Schularick &amp; Trebesch, &ldquo;Populist Leaders and the Economy,&rdquo; <em>American Economic Review</em> 2023. Weyland, <em>Democracy&rsquo;s Resilience to Populism&rsquo;s Threat: Countering Global Alarmism</em>, Cambridge 2024 (paraphrase of the publisher&rsquo;s description).</p>
+</section>
+
+<!-- 23 · Finding 9 -->
+<section class="slide ex">
+  <p class="kicker">9 · Courts · V-Dem judicial constraints on the executive, 2005&ndash;2025</p>
+  <h2>Judicial constraints on the executive</h2>
+  <div class="chartwrap ex chart" id="chart-jucon"></div>
+  <ul class="facts sm" style="margin-top:.6rem">
+    <li>Once an episode begins: judicial constraints lower the odds of breakdown; legislative constraints not significant at that stage</li>
+  </ul>
+  <p class="footer-tag">V-Dem v16, v2x_jucon (0&ndash;1). Boese et al., V-Dem WP 2020:101 / <em>Democratization</em> 2021. Week 11: Courts and Autocracy.</p>
+</section>
+
+<!-- 24 · Finding 10 -->
+<section class="slide ex">
+  <p class="kicker">10 · Opposition strategy · Colombia and Venezuela, 1990&ndash;2025</p>
+  <h2>Colombia and Venezuela, Liberal Democracy Index</h2>
+  <div class="chartwrap ex chart" id="chart-colven"></div>
+  <ul class="facts sm" style="margin-top:.5rem;columns:2;column-gap:2rem;max-width:1120px">
+    <li>Act early; erosion is gradual</li>
+    <li>Broad coalitions: business, lawyers, universities</li>
+    <li>Sustained, peaceful mass protest with a clear demand</li>
+    <li>Courts and legislatures as checks, with citizen mobilization</li>
+  </ul>
+  <p class="footer-tag">V-Dem v16, v2x_libdem. Gamboa, <em>Resisting Backsliding: Opposition Strategies against the Erosion of Democracy</em>, Cambridge 2022. List: Riedl et al., <em>ANNALS</em> 2025, as summarized by the Cornell Chronicle, Apr 2025.</p>
+</section>
+
+<!-- 25 · Film -->
+<section class="slide">
+  <p class="kicker">Film · Al Jazeera English, <em>People &amp; Power</em>, 2016</p>
+  <h2>&ldquo;Poles Apart: Is Poland&rsquo;s democracy under threat?&rdquo;</h2>
+  <p style="margin-top:1rem"><a class="btn" href="https://www.youtube.com/watch?v=tafqx31M0Tw" target="_blank" rel="noopener">&#9654;&nbsp; Watch on YouTube</a></p>
+  <ul class="big compact" style="margin-top:1.4rem">
+    <li>While watching: list each move &mdash; actor, institution, rule changed</li>
+    <li>Constitutional Tribunal &middot; public media law &middot; street protests</li>
+  </ul>
+  <p class="footer-tag">Title and channel confirmed via YouTube oEmbed; running time not confirmed (series slot ~25 min). Alternatives: Al Jazeera <em>The Listening Post</em>, &ldquo;Death by a thousand cuts: Press freedom in Viktor Orban&rsquo;s Hungary,&rdquo; 2020 (<a href="https://www.youtube.com/watch?v=m5PFXhNXUH8" target="_blank" rel="noopener">Hungary segment first</a>) &middot; BBC Newsnight, &ldquo;Viktor Orban&rsquo;s &lsquo;illiberal democracy&rsquo;,&rdquo; 2018, 13:53 (<a href="https://www.youtube.com/watch?v=QrfbtUpWOsc" target="_blank" rel="noopener">link</a>) &middot; DW Documentary, &ldquo;Poland under new management,&rdquo; 2024 (<a href="https://www.youtube.com/watch?v=OUcyvfHT1Ro" target="_blank" rel="noopener">link</a>).</p>
+</section>
+
+<!-- 26 · Debate -->
+<section class="slide">
+  <p class="kicker">Debate</p>
+  <h2 class="bigh">Is the world backsliding?</h2>
+</section>
+
+<!-- A · Appendix -->
+<section class="slide divider">
+  <p class="kicker">DWA 227 &middot; Week 10</p>
+  <h1>Appendix</h1>
+</section>
+
+<!-- 9 · Finding 2, Little & Meng -->
+<section class="slide">
+  <p class="kicker">Appendix &middot; 2 · Measurement · Little &amp; Meng 2024</p>
+  <h2>&ldquo;Objective&rdquo; indicators, global trends</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">Indicators surveyed</div>
+      <ul class="facts sm">
+        <li>Ruling-party and leader turnover</li>
+        <li>Winners&rsquo; vote and seat shares</li>
+        <li>Elections with real multiparty competition</li>
+        <li>Constitutional limits on the executive</li>
+        <li>Term-limit evasion</li>
+        <li>Journalists jailed and killed</li>
+      </ul></div>
+    <div class="col"><div class="collabel">Little &amp; Meng 2024: 150</div>
+      <div class="colq">&ldquo;However, this is an extraordinary claim. The onus should be on those who are making alarmist claims about the decline of democracy to provide stronger evidence than has been presented to date.&rdquo;
+      <cite>&ldquo;We believe, for instance, that backsliding has occurred recently in places such as Hungary and Venezuela.&rdquo; (150)</cite></div></div>
+  </div>
+  <p class="footer-tag">Little &amp; Meng, <em>PS</em> 57(2), 2024. Explanations offered for the gap: coder bias (rising media coverage); subtler tactics.</p>
+</section>
+
+<!-- 11 · Finding 2, Miller -->
+<section class="slide">
+  <p class="kicker">Appendix &middot; 2 · Measurement · Miller 2024</p>
+  <blockquote class="smaller">&ldquo;&hellip;looking for your keys under the streetlight because that is where the light is&mdash;the objective approach is searching for decline but cannot see where it is actually occurring.&rdquo;
+    <cite>Miller 2024: 202</cite></blockquote>
+  <div class="statrow compact" style="margin-top:2rem;flex-wrap:nowrap">
+    <div class="stat"><div class="v">Late 2000s</div><div class="l">decline begins within democracies: V-Dem, Freedom House, and Polity</div></div>
+    <div class="stat"><div class="v">Late 2010s</div><div class="l">decline within autocracies: V-Dem and Freedom House only</div></div>
+    <div class="stat"><div class="v">&asymp; 1 in 9</div><div class="l">democracies: net loss since 2006 equals shifting them from the average democracy to the average autocracy</div></div>
+  </div>
+  <p class="footer-tag">Miller, <em>PS</em> 57(2), 2024: 202&ndash;203. Democracies defined by Boix, Miller &amp; Rosato (updated to 2020).</p>
+</section>
+
+<!-- 12 · Finding 2, Knutsen et al. -->
+<section class="slide ex">
+  <p class="kicker">Appendix &middot; 2 · Measurement · Knutsen et al. 2024 (V-Dem)</p>
+  <h2>Correlation of two indices, all countries, 1980&ndash;2020</h2>
+  <div class="chartwrap ex chart" id="chart-corr" style="max-width:860px"></div>
+  <div class="explain">
+    <p><b>EDI &mdash; V-Dem&rsquo;s Electoral Democracy Index</b> (v2x_polyarchy). V-Dem&rsquo;s measure of Robert Dahl&rsquo;s &ldquo;polyarchy&rdquo;: how far a country achieves electoral democracy. It combines five components &mdash; freedom of association, clean elections, freedom of expression and alternative sources of information, elected officials, and suffrage &mdash; built from country experts&rsquo; ratings. Scale 0&ndash;1 (V-Dem v16, 2025: Denmark 0.91, U.S. 0.74, Hungary 0.42, Russia 0.17). Knutsen et al. split the sample at EDI 0.4.</p>
+    <p><b>Little &amp; Meng&rsquo;s &ldquo;objective&rdquo; index.</b> The average of variables rescaled to 0&ndash;1: suffrage; presidential vote shares and winning-party seat shares; incumbent party&rsquo;s time in office; legislative and executive competitiveness; whether the incumbent party lost the last election; NELDA multiparty and process-violation indices; term limits, succession and dismissal rules (Little &amp; Meng 2024: 156).</p>
+    <p><b>&rho; (correlation).</b> 1 = the two indices rank country-years identically; 0 = no relationship. Below EDI 0.4 the two agree moderately (0.56); at 0.4 and above they barely agree (0.16). Knutsen et al.: &ldquo;Clearly, the two indices measure democracy very differently.&rdquo;</p>
+    <p><b>Also in the reply.</b> Tests for a &ldquo;bad-vibes bias&rdquo; among V-Dem experts: &ldquo;We find no evidence for these claims.&rdquo; And: &ldquo;coding seemingly objective indicators typically requires multiple hidden judgments by human raters.&rdquo;</p>
+  </div>
+  <p class="footer-tag">Knutsen, Marquardt, Seim, Coppedge et al., <em>PS</em> 57(2), 2024: 162 (figure 1). EDI definition: V-Dem Codebook v16.</p>
+</section>
+
+<!-- 20 · Findings 5-6 -->
+<section class="slide">
+  <p class="kicker">Appendix &middot; 5 · Voters &middot; 6 · Mass support</p>
+  <h2>Voters, violations, and support for democracy</h2>
+  <div class="statrow">
+    <div class="stat"><div class="v">3.5%</div><div class="l">of U.S. voters who would vote against their preferred candidate as punishment for undemocratic behavior</div></div>
+    <div class="stat"><div class="v">23</div><div class="l">democracies with survey experiments: citizens judge the same violation as less undemocratic when it serves policies they want</div></div>
+    <div class="stat"><div class="v">18</div><div class="l">European democracies, 1981&ndash;2018: no general decline in support for self-government; a rising share of &ldquo;democrats in name only&rdquo; in some</div></div>
+  </div>
+  <p class="footer-tag">Graham &amp; Svolik, <em>APSR</em> 2020 &middot; Krishnarajan, <em>APSR</em> 2023 (U.S. + 22 others) &middot; Wuttke, Gavras &amp; Schoen, <em>BJPolS</em> 2022. Items 2&ndash;3 paraphrased from abstracts.</p>
+</section>
+
+<!-- 27 · Synthesis -->
+<section class="slide">
+  <p class="kicker">Appendix &middot; Synthesis</p>
+  <h2>Findings, cases, readings</h2>
+  <table class="biblio wide">
+    <tr><th>#</th><th>Topic</th><th>Case on screen</th><th>This week&rsquo;s reading</th></tr>
+    <tr><td>&mdash;</td><td>Framework: the Narrow Corridor</td><td>&mdash;</td><td>Acemoglu &amp; Robinson 2019 (Red Queen)</td></tr>
+    <tr><td>1</td><td>Mode: elected incumbents</td><td>Hungary, Poland, Turkey, India, Venezuela, Serbia</td><td>Levitsky &amp; Way 2025 &middot; Bermeo 2016</td></tr>
+    <tr><td>2</td><td>Measurement</td><td>World, 1975&ndash;2025</td><td>Little &amp; Meng 2024 &middot; Knutsen et al. 2024 &middot; Miller 2024</td></tr>
+    <tr><td>3</td><td>Episodes and U-turns</td><td>Poland, Brazil, Hungary 2026</td><td>&mdash;</td></tr>
+    <tr><td>4</td><td>Thresholds; the U.S. anomaly</td><td>United States; Serbia, Brazil (Oct 2026)</td><td>Przeworski 2026 &middot; Levitsky &amp; Way 2025</td></tr>
+    <tr><td>5&ndash;6</td><td>Voters; mass support</td><td>United States; Europe</td><td>Svolik 2019</td></tr>
+    <tr><td>7</td><td>Polarization</td><td>U.S., Hungary, Poland, Turkey, India, Brazil</td><td>Svolik 2019 &middot; Stokes 2026</td></tr>
+    <tr><td>8</td><td>Populists in power</td><td>&mdash;</td><td>Stokes 2026</td></tr>
+    <tr><td>9</td><td>Courts</td><td>Hungary, Poland, Turkey, Venezuela, India, U.S.</td><td>Week 11</td></tr>
+    <tr><td>10</td><td>Opposition strategy</td><td>Colombia, Venezuela</td><td>&mdash;</td></tr>
+  </table>
+</section>
+
+<div class="counter" id="counter">1 / 29</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+  function goTo(i) { if (i < 0 || i >= slides.length) return; current = i; slides[i].scrollIntoView({ behavior: 'smooth' }); }
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) { current = slides.indexOf(e.target); counter.textContent = (current + 1) + ' / ' + slides.length; }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- charts (data: V-Dem v16, computed from the vdemdata repository; sources per slide footer) ---------- */
+(function () {
+  var D = {"world":{"dem":[[1975,36],[1976,37],[1977,36],[1978,38],[1979,39],[1980,40],[1981,40],[1982,41],[1983,40],[1984,42],[1985,43],[1986,44],[1987,44],[1988,47],[1989,47],[1990,62],[1991,65],[1992,68],[1993,73],[1994,77],[1995,79],[1996,81],[1997,82],[1998,84],[1999,85],[2000,84],[2001,86],[2002,88],[2003,95],[2004,95],[2005,94],[2006,93],[2007,91],[2008,91],[2009,91],[2010,93],[2011,93],[2012,94],[2013,92],[2014,92],[2015,94],[2016,95],[2017,93],[2018,94],[2019,93],[2020,92],[2021,92],[2022,91],[2023,90],[2024,86],[2025,87]],"aut":[[1975,122],[1976,120],[1977,121],[1978,119],[1979,118],[1980,117],[1981,117],[1982,116],[1983,117],[1984,115],[1985,114],[1986,113],[1987,113],[1988,110],[1989,111],[1990,109],[1991,108],[1992,106],[1993,102],[1994,98],[1995,96],[1996,94],[1997,93],[1998,92],[1999,92],[2000,93],[2001,91],[2002,89],[2003,82],[2004,82],[2005,83],[2006,84],[2007,87],[2008,87],[2009,87],[2010,85],[2011,86],[2012,85],[2013,87],[2014,87],[2015,85],[2016,84],[2017,86],[2018,85],[2019,86],[2020,87],[2021,87],[2022,88],[2023,89],[2024,93],[2025,92]],"ldi":[[1975,0.225],[1976,0.228],[1977,0.232],[1978,0.237],[1979,0.243],[1980,0.248],[1981,0.25],[1982,0.251],[1983,0.254],[1984,0.259],[1985,0.265],[1986,0.269],[1987,0.272],[1988,0.279],[1989,0.282],[1990,0.32],[1991,0.333],[1992,0.346],[1993,0.362],[1994,0.367],[1995,0.372],[1996,0.374],[1997,0.377],[1998,0.379],[1999,0.379],[2000,0.384],[2001,0.387],[2002,0.394],[2003,0.398],[2004,0.4],[2005,0.403],[2006,0.405],[2007,0.403],[2008,0.406],[2009,0.407],[2010,0.409],[2011,0.411],[2012,0.412],[2013,0.407],[2014,0.407],[2015,0.407],[2016,0.405],[2017,0.404],[2018,0.403],[2019,0.402],[2020,0.397],[2021,0.389],[2022,0.384],[2023,0.381],[2024,0.374],[2025,0.372]]},"ldi":{"HUN":[[1990,0.715],[1991,0.757],[1992,0.757],[1993,0.757],[1994,0.755],[1995,0.756],[1996,0.756],[1997,0.757],[1998,0.754],[1999,0.75],[2000,0.75],[2001,0.75],[2002,0.755],[2003,0.759],[2004,0.759],[2005,0.754],[2006,0.742],[2007,0.765],[2008,0.766],[2009,0.766],[2010,0.677],[2011,0.639],[2012,0.621],[2013,0.575],[2014,0.521],[2015,0.477],[2016,0.474],[2017,0.432],[2018,0.373],[2019,0.364],[2020,0.351],[2021,0.346],[2022,0.335],[2023,0.323],[2024,0.325],[2025,0.315]],"POL":[[1990,0.66],[1991,0.783],[1992,0.804],[1993,0.808],[1994,0.811],[1995,0.81],[1996,0.802],[1997,0.792],[1998,0.796],[1999,0.798],[2000,0.8],[2001,0.806],[2002,0.813],[2003,0.813],[2004,0.813],[2005,0.815],[2006,0.807],[2007,0.803],[2008,0.825],[2009,0.825],[2010,0.827],[2011,0.827],[2012,0.825],[2013,0.821],[2014,0.812],[2015,0.775],[2016,0.598],[2017,0.542],[2018,0.524],[2019,0.505],[2020,0.45],[2021,0.424],[2022,0.417],[2023,0.457],[2024,0.613],[2025,0.645]],"TUR":[[1990,0.348],[1991,0.361],[1992,0.369],[1993,0.368],[1994,0.371],[1995,0.373],[1996,0.382],[1997,0.391],[1998,0.389],[1999,0.413],[2000,0.425],[2001,0.431],[2002,0.487],[2003,0.498],[2004,0.502],[2005,0.484],[2006,0.483],[2007,0.461],[2008,0.411],[2009,0.403],[2010,0.36],[2011,0.354],[2012,0.346],[2013,0.289],[2014,0.252],[2015,0.23],[2016,0.143],[2017,0.101],[2018,0.104],[2019,0.107],[2020,0.115],[2021,0.113],[2022,0.11],[2023,0.108],[2024,0.109],[2025,0.11]],"IND":[[1990,0.54],[1991,0.561],[1992,0.572],[1993,0.576],[1994,0.582],[1995,0.582],[1996,0.588],[1997,0.591],[1998,0.593],[1999,0.586],[2000,0.584],[2001,0.584],[2002,0.587],[2003,0.583],[2004,0.578],[2005,0.573],[2006,0.569],[2007,0.569],[2008,0.569],[2009,0.539],[2010,0.532],[2011,0.532],[2012,0.525],[2013,0.522],[2014,0.488],[2015,0.417],[2016,0.406],[2017,0.371],[2018,0.363],[2019,0.324],[2020,0.292],[2021,0.307],[2022,0.291],[2023,0.273],[2024,0.281],[2025,0.26]],"VEN":[[1990,0.595],[1991,0.618],[1992,0.609],[1993,0.614],[1994,0.602],[1995,0.604],[1996,0.604],[1997,0.603],[1998,0.575],[1999,0.44],[2000,0.31],[2001,0.288],[2002,0.255],[2003,0.243],[2004,0.216],[2005,0.182],[2006,0.168],[2007,0.162],[2008,0.159],[2009,0.16],[2010,0.154],[2011,0.152],[2012,0.145],[2013,0.109],[2014,0.102],[2015,0.103],[2016,0.118],[2017,0.082],[2018,0.061],[2019,0.06],[2020,0.056],[2021,0.056],[2022,0.054],[2023,0.053],[2024,0.046],[2025,0.042]],"USA":[[1990,0.8],[1991,0.805],[1992,0.809],[1993,0.805],[1994,0.806],[1995,0.808],[1996,0.808],[1997,0.811],[1998,0.81],[1999,0.808],[2000,0.808],[2001,0.769],[2002,0.769],[2003,0.798],[2004,0.799],[2005,0.794],[2006,0.801],[2007,0.84],[2008,0.845],[2009,0.848],[2010,0.848],[2011,0.845],[2012,0.842],[2013,0.852],[2014,0.848],[2015,0.848],[2016,0.83],[2017,0.749],[2018,0.739],[2019,0.74],[2020,0.734],[2021,0.756],[2022,0.769],[2023,0.789],[2024,0.751],[2025,0.571]],"BRA":[[1990,0.678],[1991,0.692],[1992,0.699],[1993,0.704],[1994,0.707],[1995,0.712],[1996,0.711],[1997,0.711],[1998,0.711],[1999,0.713],[2000,0.717],[2001,0.717],[2002,0.721],[2003,0.722],[2004,0.722],[2005,0.772],[2006,0.77],[2007,0.769],[2008,0.769],[2009,0.769],[2010,0.776],[2011,0.781],[2012,0.777],[2013,0.781],[2014,0.783],[2015,0.769],[2016,0.653],[2017,0.641],[2018,0.608],[2019,0.528],[2020,0.534],[2021,0.531],[2022,0.54],[2023,0.695],[2024,0.712],[2025,0.704]],"COL":[[1990,0.316],[1991,0.39],[1992,0.428],[1993,0.427],[1994,0.426],[1995,0.428],[1996,0.426],[1997,0.429],[1998,0.423],[1999,0.417],[2000,0.426],[2001,0.422],[2002,0.414],[2003,0.421],[2004,0.424],[2005,0.428],[2006,0.449],[2007,0.461],[2008,0.462],[2009,0.465],[2010,0.498],[2011,0.539],[2012,0.54],[2013,0.537],[2014,0.545],[2015,0.551],[2016,0.547],[2017,0.548],[2018,0.533],[2019,0.511],[2020,0.496],[2021,0.499],[2022,0.561],[2023,0.57],[2024,0.554],[2025,0.555]],"SRB":[[1990,0.15],[1991,0.103],[1992,0.15],[1993,0.181],[1994,0.18],[1995,0.18],[1996,0.185],[1997,0.188],[1998,0.185],[1999,0.185],[2000,0.272],[2001,0.481],[2002,0.499],[2003,0.53],[2004,0.521],[2005,0.523],[2006,0.524],[2007,0.527],[2008,0.525],[2009,0.521],[2010,0.503],[2011,0.501],[2012,0.486],[2013,0.401],[2014,0.35],[2015,0.341],[2016,0.321],[2017,0.29],[2018,0.283],[2019,0.28],[2020,0.244],[2021,0.236],[2022,0.259],[2023,0.248],[2024,0.225],[2025,0.208]],"GEO":[[1990,0.131],[1991,0.14],[1992,0.098],[1993,0.158],[1994,0.165],[1995,0.182],[1996,0.208],[1997,0.207],[1998,0.213],[1999,0.214],[2000,0.205],[2001,0.209],[2002,0.208],[2003,0.22],[2004,0.357],[2005,0.373],[2006,0.378],[2007,0.369],[2008,0.339],[2009,0.34],[2010,0.34],[2011,0.344],[2012,0.361],[2013,0.456],[2014,0.5],[2015,0.504],[2016,0.518],[2017,0.498],[2018,0.514],[2019,0.48],[2020,0.47],[2021,0.454],[2022,0.464],[2023,0.456],[2024,0.327],[2025,0.275]]},"usa_long":[[1945,0.468],[1946,0.506],[1947,0.517],[1948,0.51],[1949,0.496],[1950,0.502],[1951,0.522],[1952,0.522],[1953,0.515],[1954,0.516],[1955,0.511],[1956,0.517],[1957,0.521],[1958,0.527],[1959,0.527],[1960,0.544],[1961,0.559],[1962,0.56],[1963,0.57],[1964,0.572],[1965,0.57],[1966,0.594],[1967,0.602],[1968,0.602],[1969,0.607],[1970,0.639],[1971,0.646],[1972,0.659],[1973,0.689],[1974,0.696],[1975,0.716],[1976,0.726],[1977,0.765],[1978,0.768],[1979,0.767],[1980,0.778],[1981,0.79],[1982,0.791],[1983,0.795],[1984,0.794],[1985,0.787],[1986,0.792],[1987,0.798],[1988,0.797],[1989,0.794],[1990,0.8],[1991,0.805],[1992,0.809],[1993,0.805],[1994,0.806],[1995,0.808],[1996,0.808],[1997,0.811],[1998,0.81],[1999,0.808],[2000,0.808],[2001,0.769],[2002,0.769],[2003,0.798],[2004,0.799],[2005,0.794],[2006,0.801],[2007,0.84],[2008,0.845],[2009,0.848],[2010,0.848],[2011,0.845],[2012,0.842],[2013,0.852],[2014,0.848],[2015,0.848],[2016,0.83],[2017,0.749],[2018,0.739],[2019,0.74],[2020,0.734],[2021,0.756],[2022,0.769],[2023,0.789],[2024,0.751],[2025,0.571]],"hun":{"v2x_jucon":[[2005,0.882],[2006,0.904],[2007,0.904],[2008,0.904],[2009,0.9],[2010,0.832],[2011,0.815],[2012,0.769],[2013,0.745],[2014,0.737],[2015,0.737],[2016,0.747],[2017,0.741],[2018,0.72],[2019,0.71],[2020,0.672],[2021,0.696],[2022,0.632],[2023,0.632],[2024,0.63],[2025,0.678]],"v2x_freexp_altinf":[[2005,0.955],[2006,0.947],[2007,0.952],[2008,0.952],[2009,0.952],[2010,0.885],[2011,0.863],[2012,0.854],[2013,0.783],[2014,0.769],[2015,0.707],[2016,0.692],[2017,0.646],[2018,0.584],[2019,0.578],[2020,0.542],[2021,0.524],[2022,0.507],[2023,0.499],[2024,0.512],[2025,0.493]],"v2xel_frefair":[[2005,0.919],[2006,0.928],[2007,0.931],[2008,0.931],[2009,0.931],[2010,0.927],[2011,0.915],[2012,0.918],[2013,0.91],[2014,0.792],[2015,0.751],[2016,0.751],[2017,0.74],[2018,0.654],[2019,0.623],[2020,0.628],[2021,0.624],[2022,0.613],[2023,0.605],[2024,0.605],[2025,0.597]],"v2x_libdem":[[2005,0.754],[2006,0.742],[2007,0.765],[2008,0.766],[2009,0.766],[2010,0.677],[2011,0.639],[2012,0.621],[2013,0.575],[2014,0.521],[2015,0.477],[2016,0.474],[2017,0.432],[2018,0.373],[2019,0.364],[2020,0.351],[2021,0.346],[2022,0.335],[2023,0.323],[2024,0.325],[2025,0.315]]},"pol":{"v2x_jucon":[[2005,0.96],[2006,0.956],[2007,0.956],[2008,0.959],[2009,0.959],[2010,0.96],[2011,0.961],[2012,0.961],[2013,0.958],[2014,0.952],[2015,0.867],[2016,0.765],[2017,0.678],[2018,0.587],[2019,0.561],[2020,0.572],[2021,0.543],[2022,0.564],[2023,0.56],[2024,0.728],[2025,0.714]],"v2x_freexp_altinf":[[2005,0.964],[2006,0.95],[2007,0.95],[2008,0.973],[2009,0.973],[2010,0.971],[2011,0.971],[2012,0.971],[2013,0.97],[2014,0.97],[2015,0.951],[2016,0.722],[2017,0.692],[2018,0.692],[2019,0.68],[2020,0.68],[2021,0.635],[2022,0.606],[2023,0.659],[2024,0.911],[2025,0.917]],"v2xel_frefair":[[2005,0.962],[2006,0.97],[2007,0.969],[2008,0.962],[2009,0.962],[2010,0.965],[2011,0.968],[2012,0.969],[2013,0.968],[2014,0.955],[2015,0.96],[2016,0.959],[2017,0.945],[2018,0.942],[2019,0.915],[2020,0.756],[2021,0.729],[2022,0.733],[2023,0.738],[2024,0.76],[2025,0.825]],"v2x_libdem":[[2005,0.815],[2006,0.807],[2007,0.803],[2008,0.825],[2009,0.825],[2010,0.827],[2011,0.827],[2012,0.825],[2013,0.821],[2014,0.812],[2015,0.775],[2016,0.598],[2017,0.542],[2018,0.524],[2019,0.505],[2020,0.45],[2021,0.424],[2022,0.417],[2023,0.457],[2024,0.613],[2025,0.645]]},"polar":{"USA":[[2000,-0.456],[2001,-0.637],[2002,-0.342],[2003,-0.342],[2004,-0.342],[2005,-0.261],[2006,-0.326],[2007,-0.326],[2008,-0.125],[2009,0.108],[2010,0.406],[2011,0.406],[2012,0.406],[2013,0.406],[2014,0.449],[2015,0.5],[2016,1.08],[2017,1.525],[2018,1.525],[2019,1.525],[2020,1.972],[2021,1.701],[2022,1.49],[2023,1.454],[2024,1.938],[2025,2.3]],"HUN":[[2000,-0.287],[2001,-0.287],[2002,-0.287],[2003,-0.047],[2004,-0.047],[2005,-0.047],[2006,0.581],[2007,0.581],[2008,0.77],[2009,0.997],[2010,2.309],[2011,2.449],[2012,2.449],[2013,2.449],[2014,2.449],[2015,2.449],[2016,1.793],[2017,2.431],[2018,2.431],[2019,2.431],[2020,2.431],[2021,2.431],[2022,2.528],[2023,2.528],[2024,2.528],[2025,2.471]],"POL":[[2000,0.334],[2001,0.659],[2002,0.585],[2003,0.585],[2004,0.585],[2005,1.247],[2006,1.311],[2007,1.241],[2008,0.759],[2009,0.71],[2010,1.022],[2011,1.723],[2012,1.723],[2013,1.723],[2014,1.723],[2015,1.8],[2016,2.617],[2017,2.617],[2018,3.025],[2019,3.025],[2020,3.025],[2021,3.355],[2022,3.355],[2023,3.355],[2024,3.355],[2025,3.355]],"TUR":[[2000,0.044],[2001,0.044],[2002,0.75],[2003,0.75],[2004,0.75],[2005,0.69],[2006,0.69],[2007,0.964],[2008,1.217],[2009,1.292],[2010,1.353],[2011,1.353],[2012,1.523],[2013,2.72],[2014,2.72],[2015,2.923],[2016,3.94],[2017,3.94],[2018,3.75],[2019,3.75],[2020,3.467],[2021,3.467],[2022,3.506],[2023,3.085],[2024,3.362],[2025,3.362]],"IND":[[2000,-0.224],[2001,0.23],[2002,0.018],[2003,-0.207],[2004,-0.207],[2005,-0.421],[2006,-0.421],[2007,-0.421],[2008,-0.421],[2009,-0.421],[2010,-0.247],[2011,-0.247],[2012,-0.142],[2013,0.081],[2014,1.525],[2015,1.722],[2016,1.895],[2017,1.848],[2018,1.873],[2019,1.873],[2020,1.507],[2021,1.499],[2022,1.511],[2023,2.194],[2024,2.083],[2025,2.08]],"BRA":[[2000,-0.175],[2001,-0.175],[2002,-0.691],[2003,-0.691],[2004,-0.691],[2005,-0.691],[2006,-0.767],[2007,-0.767],[2008,-0.767],[2009,-0.767],[2010,-0.613],[2011,-0.613],[2012,-0.613],[2013,0.274],[2014,0.498],[2015,0.576],[2016,1.209],[2017,1.089],[2018,1.97],[2019,1.964],[2020,2.259],[2021,2.417],[2022,2.514],[2023,1.695],[2024,1.695],[2025,3.224]]},"jucon":{"HUN":[[2005,0.882],[2006,0.904],[2007,0.904],[2008,0.904],[2009,0.9],[2010,0.832],[2011,0.815],[2012,0.769],[2013,0.745],[2014,0.737],[2015,0.737],[2016,0.747],[2017,0.741],[2018,0.72],[2019,0.71],[2020,0.672],[2021,0.696],[2022,0.632],[2023,0.632],[2024,0.63],[2025,0.678]],"POL":[[2005,0.96],[2006,0.956],[2007,0.956],[2008,0.959],[2009,0.959],[2010,0.96],[2011,0.961],[2012,0.961],[2013,0.958],[2014,0.952],[2015,0.867],[2016,0.765],[2017,0.678],[2018,0.587],[2019,0.561],[2020,0.572],[2021,0.543],[2022,0.564],[2023,0.56],[2024,0.728],[2025,0.714]],"TUR":[[2005,0.839],[2006,0.839],[2007,0.835],[2008,0.84],[2009,0.831],[2010,0.722],[2011,0.702],[2012,0.696],[2013,0.655],[2014,0.576],[2015,0.551],[2016,0.315],[2017,0.135],[2018,0.15],[2019,0.162],[2020,0.153],[2021,0.16],[2022,0.164],[2023,0.178],[2024,0.197],[2025,0.202]],"VEN":[[2005,0.05],[2006,0.044],[2007,0.044],[2008,0.044],[2009,0.044],[2010,0.046],[2011,0.046],[2012,0.046],[2013,0.03],[2014,0.025],[2015,0.024],[2016,0.023],[2017,0.025],[2018,0.019],[2019,0.016],[2020,0.024],[2021,0.018],[2022,0.025],[2023,0.021],[2024,0.016],[2025,0.017]],"IND":[[2005,0.819],[2006,0.819],[2007,0.819],[2008,0.819],[2009,0.819],[2010,0.822],[2011,0.822],[2012,0.822],[2013,0.827],[2014,0.818],[2015,0.799],[2016,0.8],[2017,0.777],[2018,0.777],[2019,0.766],[2020,0.753],[2021,0.761],[2022,0.764],[2023,0.724],[2024,0.71],[2025,0.667]],"USA":[[2005,0.949],[2006,0.949],[2007,0.947],[2008,0.947],[2009,0.951],[2010,0.953],[2011,0.953],[2012,0.953],[2013,0.961],[2014,0.961],[2015,0.961],[2016,0.962],[2017,0.931],[2018,0.948],[2019,0.947],[2020,0.928],[2021,0.93],[2022,0.93],[2023,0.93],[2024,0.902],[2025,0.844]]}};
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f';
+  var C6 = ['#2a5da8', '#e0793f', '#96302a', '#5e9fe0', '#2f8a5a', '#7a5ca8'];
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(name, attrs, parent) { var n = document.createElementNS(NS, name); for (var k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+  function txt(node, s) { node.textContent = s; return node; }
+
+  /* generic line chart. series: [{name, color, data:[[x,y]...], width, dash}] */
+  function lineChart(box, series, o) {
+    if (typeof box === 'string') box = document.getElementById(box);
+    if (!box) return;
+    var W = o.W || 1120, H = o.H || 400, pL = o.pL || 56, pR = o.pR || 130, pT = o.pT || 16, pB = o.pB || 34;
+    var svg = o.svg || el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var ox = o.ox || 0, oy = o.oy || 0;
+    var pw = W - pL - pR, ph = H - pT - pB;
+    function X(x) { return ox + pL + (x - o.x0) / (o.x1 - o.x0) * pw; }
+    function Y(y) { return oy + pT + ph - (y - o.y0) / (o.y1 - o.y0) * ph; }
+    (o.yTicks || []).forEach(function (t) {
+      el('line', { x1: X(o.x0), x2: X(o.x1), y1: Y(t), y2: Y(t), stroke: '#e6e9ee' }, svg);
+      txt(el('text', { x: X(o.x0) - 8, y: Y(t) + 4, 'text-anchor': 'end', 'font-size': o.fs || 13, fill: MUTED }, svg), o.fmtY ? o.fmtY(t) : t);
+    });
+    (o.xTicks || []).forEach(function (t) {
+      txt(el('text', { x: X(t), y: Y(o.y0) + (o.fs || 13) + 8, 'text-anchor': 'middle', 'font-size': o.fs || 13, fill: MUTED }, svg), t);
+    });
+    el('line', { x1: X(o.x0), x2: X(o.x1), y1: Y(o.y0), y2: Y(o.y0), stroke: '#b9bfc8' }, svg);
+    (o.events || []).forEach(function (ev) {
+      el('line', { x1: X(ev.x), x2: X(ev.x), y1: Y(o.y1), y2: Y(o.y0), stroke: ev.color || '#b9bfc8', 'stroke-dasharray': '4 4' }, svg);
+      var ty = Y(o.y1) + 12 + (ev.tier || 0) * 16;
+      txt(el('text', { x: X(ev.x) + 5, y: ty, 'font-size': o.evfs || 13, fill: ev.color || MUTED, 'font-weight': '600' }, svg), ev.label);
+    });
+    (o.hline || []).forEach(function (h) {
+      el('line', { x1: X(o.x0), x2: X(o.x1), y1: Y(h.y), y2: Y(h.y), stroke: h.color || ACCENT, 'stroke-dasharray': '2 5', 'stroke-width': 1.5 }, svg);
+      if (h.label) txt(el('text', { x: X(h.x || o.x0) + 4, y: Y(h.y) - 6, 'font-size': 13, fill: h.color || ACCENT }, svg), h.label);
+    });
+    series.forEach(function (s) {
+      var d = s.data.filter(function (p) { return p[0] >= o.x0 && p[0] <= o.x1; });
+      var path = d.map(function (p, i) { return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1); }).join(' ');
+      el('path', { d: path, fill: 'none', stroke: s.color, 'stroke-width': s.width || 3, 'stroke-linejoin': 'round', 'stroke-dasharray': s.dash || '' }, svg);
+      var last = d[d.length - 1];
+      if (o.endLabels !== false) {
+        txt(el('text', { x: X(last[0]) + 8, y: Y(last[1]) + 5 + (s.dy || 0), 'font-size': o.lfs || 15, 'font-weight': '700', fill: s.color }, svg), s.name + (o.showVal ? ' ' + (o.fmtV ? o.fmtV(last[1]) : last[1]) : ''));
+      }
+      (s.dots || []).forEach(function (yr) {
+        var p = d.filter(function (q) { return q[0] === yr; })[0];
+        if (!p) return;
+        el('circle', { cx: X(p[0]), cy: Y(p[1]), r: 5, fill: s.color, stroke: '#fff', 'stroke-width': 2 }, svg);
+        txt(el('text', { x: X(p[0]), y: Y(p[1]) - 10, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': '700', fill: s.color }, svg), (o.fmtV ? o.fmtV(p[1]) : p[1]));
+      });
+    });
+    if (o.yLabel) txt(el('text', { x: ox + 14, y: Y((o.y0 + o.y1) / 2), 'font-size': 12, fill: MUTED, 'text-anchor': 'middle', transform: 'rotate(-90 ' + (ox + 14) + ' ' + Y((o.y0 + o.y1) / 2) + ')' }, svg), o.yLabel);
+    return svg;
+  }
+  var f2 = function (v) { return v.toFixed(2); };
+
+
+  /* corridor diagram (paraphrase of Acemoglu & Robinson 2019) */
+  (function () {
+    var box = document.getElementById('chart-corridor'); if (!box) return;
+    var W = 540, H = 470, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var x0 = 60, y0 = 420, s = 380;
+    function P(a, b) { return [x0 + a * s, y0 - b * s]; }
+    arrow(svg);
+    el('line', { x1: x0, y1: y0, x2: x0 + s + 20, y2: y0, stroke: INK, 'stroke-width': 1.5, 'marker-end': 'url(#ah)' }, svg);
+    el('line', { x1: x0, y1: y0, x2: x0, y2: y0 - s - 20, stroke: INK, 'stroke-width': 1.5, 'marker-end': 'url(#ah)' }, svg);
+    txt(el('text', { x: x0 + s / 2, y: y0 + 34, 'text-anchor': 'middle', 'font-size': 15, fill: MUTED }, svg), 'Power of the state →');
+    txt(el('text', { x: 22, y: y0 - s / 2, 'text-anchor': 'middle', 'font-size': 15, fill: MUTED, transform: 'rotate(-90 22 ' + (y0 - s / 2) + ')' }, svg), 'Power of society →');
+    var up = [], lo = [];
+    for (var i = 0; i <= 20; i++) { var a = i / 20; up.push(P(Math.min(1, a * 0.72), a)); lo.push(P(a, Math.min(1, a * 0.72))); }
+    var d = 'M' + up.map(function (q) { return q.join(','); }).join(' L') + ' L' + lo.reverse().map(function (q) { return q.join(','); }).join(' L') + ' Z';
+    el('path', { d: d, fill: '#f4e9e9', stroke: ACCENT, 'stroke-width': 1.5 }, svg);
+    var c1 = P(0.15, 0.15), c2 = P(0.92, 0.92);
+    el('line', { x1: c1[0], y1: c1[1], x2: c2[0], y2: c2[1], stroke: ACCENT, 'stroke-width': 2.5, 'stroke-dasharray': '7 5', 'marker-end': 'url(#ah)' }, svg);
+    var r = P(0.95, 0.97);
+    txt(el('text', { x: r[0] + 4, y: r[1] - 4, 'text-anchor': 'start', 'font-size': 14, 'font-weight': '700', fill: ACCENT }, svg), 'Red Queen');
+    var sh = P(0.81, 0.685);
+    txt(el('text', { x: sh[0], y: sh[1], 'text-anchor': 'middle', 'font-size': 15, 'font-weight': '700', fill: ACCENT, transform: 'rotate(-45 ' + sh[0] + ' ' + sh[1] + ')' }, svg), 'Shackled Leviathan');
+    var dl = P(0.78, 0.22); lines(svg, dl[0], dl[1], ['Despotic', 'Leviathan'], 18, '#2a5da8', 'middle', '700', 21);
+    var ab = P(0.2, 0.8); lines(svg, ab[0], ab[1], ['Absent', 'Leviathan'], 18, '#e0793f', 'middle', '700', 21);
+    var e1 = P(0.55, 0.45), e2 = P(0.72, 0.32);
+    el('line', { x1: e1[0], y1: e1[1], x2: e2[0], y2: e2[1], stroke: '#2a5da8', 'stroke-width': 2, 'marker-end': 'url(#ahb)' }, svg);
+    var f1 = P(0.38, 0.48), f2 = P(0.26, 0.64);
+    el('line', { x1: f1[0], y1: f1[1], x2: f2[0], y2: f2[1], stroke: '#e0793f', 'stroke-width': 2, 'marker-end': 'url(#aho)' }, svg);
+  })();
+  function arrow(svg) {
+    var defs = el('defs', {}, svg);
+    [['ah', INK], ['ahb', '#2a5da8'], ['aho', '#e0793f']].forEach(function (a) {
+      var m = el('marker', { id: a[0], viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' }, defs);
+      el('path', { d: 'M0,0 L10,5 L0,10 z', fill: a[1] }, m);
+    });
+  }
+  function lines(svg, x, y, arr, size, fill, anchor, weight, lh) {
+    arr.forEach(function (s, k) { txt(el('text', { x: x, y: y + k * lh, 'text-anchor': anchor, 'font-size': size, fill: fill, 'font-weight': weight }, svg), s); });
+  }
+
+  /* correlation bars (Knutsen et al. 2024: 162) */
+  (function () {
+    var box = document.getElementById('chart-corr'); if (!box) return;
+    var W = 900, H = 160, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var rows = [{ l: 'Country-years, EDI < 0.4', v: 0.56, c: '#96302a' }, { l: 'Country-years, EDI ≥ 0.4', v: 0.16, c: '#2a5da8' }];
+    var labW = 250, pw = W - labW - 80;
+    rows.forEach(function (r, i) {
+      var y = 8 + i * 68;
+      txt(el('text', { x: labW - 14, y: y + 32, 'text-anchor': 'end', 'font-size': 17, fill: INK }, svg), r.l);
+      el('rect', { x: labW, y: y, width: pw, height: 48, rx: 6, fill: '#eef0f3' }, svg);
+      el('rect', { x: labW, y: y, width: r.v * pw, height: 48, rx: 6, fill: r.c }, svg);
+      txt(el('text', { x: labW + r.v * pw + 12, y: y + 33, 'font-size': 24, 'font-weight': '700', fill: r.c }, svg), 'ρ = ' + r.v.toFixed(2));
+    });
+    txt(el('text', { x: labW, y: 156, 'font-size': 12, fill: MUTED }, svg), '0');
+    txt(el('text', { x: labW + pw, y: 156, 'font-size': 12, fill: MUTED, 'text-anchor': 'end' }, svg), '1');
+  })();
+
+  /* 3 · world counts */
+  lineChart('chart-world', [
+    { name: 'Autocracies', color: '#96302a', data: D.world.aut, dots: [1975], showVal: true, dy: -9 },
+    { name: 'Democracies', color: '#2a5da8', data: D.world.dem, dots: [1975, 2012], dy: 9 }
+  ], { W: 1120, H: 360, x0: 1975, x1: 2025, y0: 0, y1: 140, yTicks: [0, 35, 70, 105, 140], xTicks: [1975, 1985, 1995, 2005, 2015, 2025], pR: 170, H: 400, showVal: true, fmtV: function (v) { return v; }, yLabel: 'countries' });
+
+  /* 4 · six small multiples */
+  (function () {
+    var box = document.getElementById('chart-six'); if (!box) return;
+    var W = 1120, H = 500;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var panels = [
+      { c: 'HUN', n: 'Hungary', ev: 2010, el: 'Fidesz 2010' },
+      { c: 'POL', n: 'Poland', ev: 2015, el: 'PiS 2015' },
+      { c: 'TUR', n: 'Turkey', ev: 2003, el: 'Erdoğan 2003' },
+      { c: 'IND', n: 'India', ev: 2014, el: 'Modi 2014' },
+      { c: 'VEN', n: 'Venezuela', ev: 1999, el: 'Chávez 1999' },
+      { c: 'SRB', n: 'Serbia', ev: 2012, el: 'SNS 2012' }
+    ];
+    var pw = W / 3, ph = H / 2;
+    panels.forEach(function (p, i) {
+      var ox = (i % 3) * pw, oy = Math.floor(i / 3) * ph;
+      txt(el('text', { x: ox + 52, y: oy + 18, 'font-size': 17, 'font-weight': '700', fill: INK }, svg), p.n);
+      lineChart(box, [{ name: '', color: ACCENT, data: D.ldi[p.c], dots: [] }], {
+        svg: svg, ox: ox, oy: oy + 20, W: pw, H: ph - 20, pL: 48, pR: 24, pT: 10, pB: 30,
+        x0: 1990, x1: 2025, y0: 0, y1: 1, yTicks: [0, 0.5, 1], xTicks: [1990, 2005, 2025], fs: 12, endLabels: false,
+        events: [{ x: p.ev, label: p.el, color: MUTED }], evfs: 12
+      });
+      var d = D.ldi[p.c], first = d[0], last = d[d.length - 1];
+      // endpoint values
+      var X = function (x) { return ox + 48 + (x - 1990) / 35 * (pw - 72); };
+      var Y = function (y) { return oy + 20 + 10 + (ph - 20 - 40) * (1 - y); };
+      el('circle', { cx: X(last[0]), cy: Y(last[1]), r: 4.5, fill: ACCENT }, svg);
+      txt(el('text', { x: X(last[0]) - 4, y: Y(last[1]) - 9, 'text-anchor': 'end', 'font-size': 13, 'font-weight': '700', fill: ACCENT }, svg), last[1].toFixed(2));
+    });
+  })();
+
+  /* 5 · Hungary components */
+  lineChart('chart-hun', [
+    { name: 'Judicial constraints', color: '#2a5da8', data: D.hun.v2x_jucon, dy: -6 },
+    { name: 'Clean elections', color: '#e0793f', data: D.hun.v2xel_frefair, dy: 6 },
+    { name: 'Expression & alt. info', color: '#96302a', data: D.hun.v2x_freexp_altinf, dy: 4 }
+  ], { W: 1120, H: 360, x0: 2005, x1: 2025, y0: 0.3, y1: 1, pR: 200, yTicks: [0.4, 0.6, 0.8, 1.0], fmtY: f2, xTicks: [2005, 2010, 2015, 2020, 2025],
+       events: [
+         { x: 2010, label: '2010 Fidesz two-thirds', tier: 0 },
+         { x: 2011, label: '2011 Fundamental Law', tier: 1 },
+         { x: 2014, label: '2014 election, new rules', tier: 0 },
+         { x: 2017, label: '2017 Lex CEU', tier: 1 },
+         { x: 2018, label: '2018 KESMA media foundation', tier: 2 }
+       ], yLabel: 'V-Dem index (0–1)' });
+
+  /* Serbia and Brazil LDI */
+  (function () {
+    var box = document.getElementById('chart-srbbra'); if (!box) return;
+    var W = 1120, H = 500, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var panels = [
+      { c: 'SRB', n: 'Serbia', col: ACCENT, ev: [{ x: 2012, label: 'SNS 2012', tier: 0 }] },
+      { c: 'BRA', n: 'Brazil', col: '#2f8a5a', ev: [{ x: 2019, label: 'Bolsonaro 2019', tier: 0 }, { x: 2023, label: 'Lula 2023', tier: 1 }] }
+    ];
+    var pw = W / 2;
+    panels.forEach(function (p, i) {
+      var ox = i * pw, oy = 0;
+      txt(el('text', { x: ox + 62, y: 20, 'font-size': 20, 'font-weight': '700', fill: INK }, svg), p.n);
+      lineChart(box, [{ name: '', color: p.col, data: D.ldi[p.c], dots: [] }], {
+        svg: svg, ox: ox, oy: 26, W: pw, H: H - 26, pL: 56, pR: 40, pT: 10, pB: 34,
+        x0: 1990, x1: 2025, y0: 0, y1: 1, yTicks: [0, 0.25, 0.5, 0.75, 1], fmtY: f2, xTicks: [1990, 2000, 2010, 2025], fs: 13, endLabels: false,
+        events: p.ev, evfs: 13
+      });
+      var d = D.ldi[p.c], last = d[d.length - 1];
+      var X = function (x) { return ox + 56 + (x - 1990) / 35 * (pw - 96); };
+      var Y = function (y) { return 26 + 10 + (H - 26 - 10 - 34) * (1 - y); };
+      el('circle', { cx: X(last[0]), cy: Y(last[1]), r: 5, fill: p.col }, svg);
+      txt(el('text', { x: X(last[0]) - 6, y: Y(last[1]) + (p.c === 'SRB' ? 26 : -12), 'text-anchor': 'end', 'font-size': 15, 'font-weight': '700', fill: p.col }, svg), last[1].toFixed(2));
+    });
+  })();
+
+  /* 8 · episodes */
+  (function () {
+    var box = document.getElementById('chart-episodes'); if (!box) return;
+    var W = 1120, H = 195, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var parts = [{ n: 'Breakdown', v: 65, c: '#96302a' }, { n: 'Breakdown averted', v: 19, c: '#2a5da8' }, { n: 'Outcome undetermined', v: 12, c: '#b9bfc8' }];
+    var x = 20, tot = 96, w = W - 40;
+    parts.forEach(function (p) {
+      var bw = p.v / tot * w;
+      el('rect', { x: x, y: 20, width: bw - 3, height: 110, rx: 6, fill: p.c }, svg);
+      txt(el('text', { x: x + 14, y: 88, 'font-size': 26, 'font-weight': '700', fill: '#fff' }, svg), p.v);
+      var last = p.c === '#b9bfc8';
+      txt(el('text', { x: last ? x + bw - 3 : x + 2, y: last ? 182 : 156, 'text-anchor': last ? 'end' : 'start', 'font-size': 16, 'font-weight': '600', fill: last ? MUTED : p.c }, svg), last ? p.n : p.n + ' · ' + Math.round(p.v / tot * 100) + '%');
+      x += bw;
+    });
+  })();
+
+  /* 9 · U-turns */
+  lineChart('chart-uturn', [
+    { name: 'Poland', color: '#2a5da8', data: D.ldi.POL, dots: [2015, 2022], dy: 10 },
+    { name: 'Brazil', color: '#2f8a5a', data: D.ldi.BRA, dots: [2018, 2020], dy: -8 }
+  ], { W: 1120, H: 330, x0: 2010, x1: 2025, y0: 0.3, y1: 0.9, pR: 150, showVal: true, yTicks: [0.3, 0.5, 0.7, 0.9], fmtY: f2, fmtV: f2, xTicks: [2010, 2013, 2016, 2019, 2022, 2025],
+       events: [
+         { x: 2015, label: 'PiS government', color: '#2a5da8', tier: 0 },
+         { x: 2019, label: 'Bolsonaro', color: '#2f8a5a', tier: 0 },
+         { x: 2023, label: 'Lula · Tusk', color: MUTED, tier: 0 }
+       ] });
+
+  /* 10 · USA long */
+  lineChart('chart-usa', [
+    { name: '2025:', color: '#2a5da8', data: D.usa_long, dots: [1965, 2024] }
+  ], { W: 700, H: 360, x0: 1945, x1: 2025, y0: 0.4, y1: 0.9, pR: 100, showVal: true, lfs: 13, yTicks: [0.4, 0.5, 0.6, 0.7, 0.8, 0.9], fmtY: f2, fmtV: f2, xTicks: [1945, 1965, 1985, 2005, 2025],
+       hline: [{ y: 0.571, label: '2025 level', x: 1985 }] });
+
+  /* 12 · polarization */
+  lineChart('chart-polar', [
+    { name: 'Turkey', color: '#96302a', data: D.polar.TUR, dy: -14 },
+    { name: 'Poland', color: '#2a5da8', data: D.polar.POL, dy: 3 },
+    { name: 'Brazil', color: '#2f8a5a', data: D.polar.BRA, dy: 22 },
+    { name: 'Hungary', color: '#e0793f', data: D.polar.HUN, dy: -6 },
+    { name: 'United States', color: '#7a5ca8', data: D.polar.USA, dy: 1 },
+    { name: 'India', color: '#5e9fe0', data: D.polar.IND, dy: 12 }
+  ], { W: 1120, H: 470, x0: 2000, x1: 2025, y0: -1, y1: 4, pR: 150, yTicks: [-1, 0, 1, 2, 3, 4], xTicks: [2000, 2005, 2010, 2015, 2020, 2025], yLabel: 'less ← polarization → more' });
+
+  /* 14 · judicial constraints */
+  lineChart('chart-jucon', [
+    { name: 'United States', color: '#7a5ca8', data: D.jucon.USA, dy: -8 },
+    { name: 'Poland', color: '#2a5da8', data: D.jucon.POL, dy: -10 },
+    { name: 'Hungary', color: '#e0793f', data: D.jucon.HUN, dy: 6 },
+    { name: 'India', color: '#5e9fe0', data: D.jucon.IND, dy: 22 },
+    { name: 'Turkey', color: '#96302a', data: D.jucon.TUR, dy: 0 },
+    { name: 'Venezuela', color: '#5c6470', data: D.jucon.VEN, dy: 0 }
+  ], { W: 1120, H: 400, x0: 2005, x1: 2025, y0: 0, y1: 1, pR: 150, yTicks: [0, 0.25, 0.5, 0.75, 1], fmtY: f2, xTicks: [2005, 2010, 2015, 2020, 2025] });
+
+  /* 15 · Colombia vs Venezuela */
+  lineChart('chart-colven', [
+    { name: 'Colombia', color: '#e0793f', data: D.ldi.COL, dots: [1998, 2010, 2025] },
+    { name: 'Venezuela', color: '#96302a', data: D.ldi.VEN, dots: [1998, 2010, 2025] }
+  ], { W: 1120, H: 330, x0: 1990, x1: 2025, y0: 0, y1: 0.7, pR: 120, yTicks: [0, 0.2, 0.4, 0.6], fmtY: f2, fmtV: f2, xTicks: [1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025],
+       events: [
+         { x: 1999, label: 'Chávez', color: '#96302a', tier: 0 },
+         { x: 2002, label: 'Uribe', color: '#e0793f', tier: 1 },
+         { x: 2010, label: 'Court blocks Uribe 3rd term', color: '#e0793f', tier: 2 }
+       ] });
+})();
+</script>
+</body>
+</html>
