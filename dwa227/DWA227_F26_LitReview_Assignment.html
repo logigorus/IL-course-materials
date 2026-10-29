@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature Review Assignment – DWA 227 – Fall 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #c17817;
+            --text: #2a2a2a;
+            --light-bg: #fdfbf7;
+            --border: #e0ddd5;
+            --hover: #f5f3ed;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+
+        .course-meta {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.75rem;
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        p { margin-bottom: 1rem; }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        a:hover { border-bottom-color: var(--accent); }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .back-link:hover { opacity: 1; color: white; }
+
+        .info-box {
+            background: white;
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .info-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Topic cards */
+        .topic-card {
+            background: white;
+            border-radius: 8px;
+            margin: 1.75rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .topic-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .topic-header:hover {
+            background: #24456e;
+        }
+
+        .topic-number {
+            background: var(--accent);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .topic-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .topic-toggle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .topic-questions {
+            padding: 0 1.5rem;
+            background: #eef2f5;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topic-questions p {
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        .topic-questions p:last-child { margin-bottom: 0.75rem; }
+
+        .topic-body {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .reading-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0ede7;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .reading-item:last-child {
+            border-bottom: none;
+        }
+
+        .reading-number {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            min-width: 1.5rem;
+        }
+
+        .reading-item em {
+            color: #555;
+        }
+
+        .reading-item .pub-info {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Details/summary styling */
+        details summary {
+            list-style: none;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] .topic-toggle {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            h1 { font-size: 2rem; }
+            .topic-header { flex-wrap: wrap; }
+            .topic-title { font-size: 1.05rem; }
+        }
+
+        @media print {
+            details { open: true; }
+            details[open] summary ~ * { display: block !important; }
+            .topic-card { break-inside: avoid; }
+            header { padding: 1.5rem 0; }
+        }
+            .jump { font-size: 0.9rem; margin: 0 0 1rem; color: #666; }
+        .jump a { white-space: nowrap; }
+        h3 { font-family: 'Crimson Pro', serif; font-size: 1.3rem; color: var(--primary); margin: 2rem 0 0.5rem; }
+        p.due { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 0.6rem 1rem; font-size: 0.95rem; }
+        table.plan { width: 100%; border-collapse: collapse; margin: 1.25rem 0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 0.95rem; }
+        table.plan th { text-align: left; background: var(--primary); color: white; padding: 0.55rem 0.8rem; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.03em; }
+        table.plan td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+        ol.steps { margin: 0.5rem 0 1rem 1.5rem; }
+        ol.steps li { margin-bottom: 0.5rem; }
+        ul.plain { margin: 0.5rem 0 1rem 1.25rem; }
+        ul.plain li { margin-bottom: 0.5rem; }
+        .info-box p strong { display: inline; margin: 0; }
+        .bg-tag { color: #8a6a2f; font-size: 0.85em; font-style: italic; }
+        code { background: var(--hover); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.9em; }
+        @media (max-width: 640px) { table.plan { font-size: 0.85rem; } table.plan th, table.plan td { padding: 0.45rem 0.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="DWA227_F26_Syllabus.html" class="back-link">&#8592; Back to Syllabus</a>
+        <h1>Literature Review Assignment</h1>
+        <div class="course-meta">
+            <div><strong>DWA 227</strong> | Authoritarianism in the Age of Globalization | Fall 2026</div>
+            <div>A three-part project with an oral defense &middot; 40% of the final grade</div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <nav class="jump">
+        <a href="#overview">Overview</a> &middot; <a href="#topic">Topic</a> &middot; <a href="#part1">Part 1 &middot; Bibliography</a> &middot; <a href="#workshop">Workshop</a> &middot; <a href="#part2">Part 2 &middot; Panel defense</a> &middot; <a href="#part3">Part 3 &middot; Final draft</a> &middot; <a href="#rules">Rules</a>
+    </nav>
+
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>The main writing assignment in this course is a <strong>3,000&ndash;4,000-word review of the scholarly literature</strong> on a question in the study of authoritarianism (the bibliography does not count toward the word limit). You can expand on a topic from the course or choose one of your own, after checking it with me. You will find the scholarly conversation on that question, organize it, and explain what scholars have learned, where they disagree, and what remains unresolved.</p>
+        <p>This is an upper-division seminar, so the review must do one more thing: <strong>make an argument about the state of the field</strong>. Which side of the debate has the better evidence? What has the field gotten wrong, or not yet asked? That argument is what you defend, live, on a panel with your classmates.</p>
+
+        <table class="plan">
+            <tr><th>Stage</th><th>What you do</th><th>When</th><th>Weight</th></tr>
+            <tr><td><strong>Topic</strong></td><td>Email me your topic: a working question, a sentence on why it matters, and two or three sources you have already found</td><td>Before class on <strong>Tue Nov 3</strong></td><td>&mdash;</td></tr>
+            <tr><td><strong>Workshop</strong></td><td>Framing session on question, sources and research design (bring a draft of your annotated bibliography)</td><td><strong>Tue Nov 10</strong>, in class, after Quiz 2</td><td>&mdash;</td></tr>
+            <tr><td><strong>Part 1</strong></td><td>Topic description, annotated bibliography of 7&ndash;9 sources, and a reflection that ends in a working claim about the field</td><td><strong>Thu Nov 12</strong>, 11:59 pm, by email</td><td>10%</td></tr>
+            <tr><td><strong>Panels</strong></td><td>Panel assignments posted; share your bibliography with your panel-mates</td><td>Posted by <strong>Fri Nov 13</strong>; share by <strong>Sun Nov 15</strong></td><td>&mdash;</td></tr>
+            <tr><td><strong>Part 2</strong></td><td>Panel defense: a 4&ndash;5-minute statement, then open questions to the panel</td><td><strong>Nov 17, 19 &amp; 24</strong>, in class</td><td>10%</td></tr>
+            <tr><td><strong>Part 3</strong></td><td>Final literature review in narrative form, 3,000&ndash;4,000 words, 12&ndash;15 sources</td><td><strong>Thu Dec 10</strong>, 11:59 pm, by email (finals period; <strong>no grace period</strong>)</td><td>20%</td></tr>
+        </table>
+
+        <div class="info-box" style="background: #fff8e7; border-left-color: #c17817;">
+            <strong>What a literature review is &mdash; and is not</strong>
+            <p style="margin: 0.5rem 0 0.5rem 0;">A literature review surveys what scholars have found on a question: where they agree, where they disagree, and why. It then evaluates the state of the field: what is well established, what is contested, what is missing, and what kind of evidence would settle it.</p>
+            <p style="margin: 0;">It is <strong>not</strong> a book report (a summary of source 1, then source 2, then source 3). It is <strong>not</strong> an op-ed about a regime you dislike. And it is <strong>not</strong> a research paper testing your own hypothesis. Your own voice comes through in how you organize the field and in how you judge it.</p>
+        </div>
+    </section>
+
+    <section id="topic">
+        <h2>Choosing a topic</h2>
+        <p>Pick one of the ten topics below, or propose your own. A topic of your own is welcome, especially if it lets you go deeper into something we only touched on in class or covers something the course leaves out (for example, transnational repression of exiles and diasporas, gender and autocracy, authoritarian environmentalism and the energy transition, religion and regime legitimacy, personalism and succession, or sanctions against autocracies). Either way, <strong>email me your topic before class on Tuesday, November 3</strong>: a working question, a sentence on why it matters, and two or three sources you have already found. If you want to talk it through first, come to office hours.</p>
+        <p>A good topic is narrow enough to read seriously in a few weeks, and broad enough that scholars have actually argued about it. &ldquo;Russia&rdquo; is too broad. &ldquo;Do elections strengthen or weaken electoral autocracies?&rdquo; is a literature.</p>
+
+        <div class="info-box" style="background: #fff8e7; border-left-color: #c17817;">
+            <strong>&#9888;&#65039; Starter readings, not required readings.</strong>
+            <p style="margin: 0;">You do not need to use all 10 readings listed under your topic. Your final bibliography should contain 12&ndash;15 sources that <em>you</em> have identified as most relevant to your specific question. Some may come from this list or from the syllabus (including the optional Depth readings); others you will find through your own Google Scholar research. The search process is part of the assignment &mdash; follow citation trails, and check recent <a href="https://www.annualreviews.org/journal/polisci" target="_blank">Annual Reviews</a> for orientation.</p>
+        </div>
+
+        <h3>The Ten Topics</h3>
+
+        <details class="topic-card" open>
+            <summary class="topic-header">
+                <span class="topic-number">1</span>
+                <span class="topic-title">Fear, Spin, and Informational Autocracy</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Have modern dictators really swapped violent repression for the manipulation of information, and how would we know?</p>
+                <p>&#8227; Does authoritarian propaganda work by persuading citizens, or by signaling that the regime is strong enough to lie?</p>
+                <p>&#8227; How do autocrats manufacture popularity, and can we measure genuine support under fear?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Guriev, Sergei &amp; Daniel Treisman (2019). "Informational Autocrats." <span class="pub-info"><em>Journal of Economic Perspectives</em></span> 33(4): 100–127.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Guriev, Sergei &amp; Daniel Treisman (2022). <em>Spin Dictators: The Changing Face of Tyranny in the 21st Century.</em> Princeton University Press.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Huang, Haifeng (2015). "Propaganda as Signaling." <span class="pub-info"><em>Comparative Politics</em></span> 47(4): 419–444.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Frye, Timothy, Scott Gehlbach, Kyle L. Marquardt &amp; Ora John Reuter (2017). "Is Putin's Popularity Real?" <span class="pub-info"><em>Post-Soviet Affairs</em></span> 33(1): 1–15.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Rozenas, Arturas &amp; Denis Stukal (2019). "How Autocrats Manipulate Economic News: Evidence from Russia's State-Controlled Television." <span class="pub-info"><em>Journal of Politics</em></span> 81(3): 982–996.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Gehlbach, Scott &amp; Konstantin Sonin (2014). "Government Control of the Media." <span class="pub-info"><em>Journal of Public Economics</em></span> 118: 163–171.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> King, Gary, Jennifer Pan &amp; Margaret E. Roberts (2013). "How Censorship in China Allows Government Criticism but Silences Collective Expression." <span class="pub-info"><em>American Political Science Review</em></span> 107(2): 326–343.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Roberts, Margaret E. (2018). <em>Censored: Distraction and Diversion Inside China's Great Firewall.</em> Princeton University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Carter, Erin Baggott &amp; Brett L. Carter (2023). <em>Propaganda in Autocracies: Institutions, Information, and the Politics of Belief.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Wedeen, Lisa (1999). <em>Ambiguities of Domination: Politics, Rhetoric, and Symbols in Contemporary Syria.</em> University of Chicago Press.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">2</span>
+                <span class="topic-title">Elections, Parties, and Hybrid Regimes</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Why do dictators hold elections, and do elections stabilize autocracies or destabilize them?</p>
+                <p>&#8227; What separates competitive authoritarianism from democracy on one side and closed autocracy on the other?</p>
+                <p>&#8227; Do ruling parties and legislatures make autocracies more durable, and through what mechanism?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Levitsky, Steven &amp; Lucan A. Way (2002). "Elections Without Democracy: The Rise of Competitive Authoritarianism." <span class="pub-info"><em>Journal of Democracy</em></span> 13(2): 51–65.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Schedler, Andreas (2002). "Elections Without Democracy: The Menu of Manipulation." <span class="pub-info"><em>Journal of Democracy</em></span> 13(2): 36–50.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Levitsky, Steven &amp; Lucan A. Way (2010). <em>Competitive Authoritarianism: Hybrid Regimes after the Cold War.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Gandhi, Jennifer &amp; Adam Przeworski (2007). "Authoritarian Institutions and the Survival of Autocrats." <span class="pub-info"><em>Comparative Political Studies</em></span> 40(11): 1279–1301.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Gandhi, Jennifer &amp; Ellen Lust-Okar (2009). "Elections Under Authoritarianism." <span class="pub-info"><em>Annual Review of Political Science</em></span> 12: 403–422.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Magaloni, Beatriz (2006). <em>Voting for Autocracy: Hegemonic Party Survival and Its Demise in Mexico.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Brownlee, Jason (2007). <em>Authoritarianism in an Age of Democratization.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Lindberg, Staffan I. (2006). <em>Democracy and Elections in Africa.</em> Johns Hopkins University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Knutsen, Carl Henrik, Håvard Mokleiv Nygård &amp; Tore Wig (2017). "Autocratic Elections: Stabilizing Tool or Force for Change?" <span class="pub-info"><em>World Politics</em></span> 69(1): 98–143.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Reuter, Ora John (2017). <em>The Origins of Dominant Parties: Building Authoritarian Institutions in Post-Soviet Russia.</em> Cambridge University Press.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">3</span>
+                <span class="topic-title">Dictatorship and Economic Performance</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Do autocracies grow faster, slower, or just more erratically than democracies?</p>
+                <p>&#8227; Can we trust the economic data that dictators report, and what happens to the debate if we can't?</p>
+                <p>&#8227; Why do some autocrats invest in growth while others plunder, and do authoritarian institutions make the difference?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Olson, Mancur (1993). "Dictatorship, Democracy, and Development." <span class="pub-info"><em>American Political Science Review</em></span> 87(3): 567–576.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Przeworski, Adam &amp; Fernando Limongi (1993). "Political Regimes and Economic Growth." <span class="pub-info"><em>Journal of Economic Perspectives</em></span> 7(3): 51–69.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Przeworski, Adam &amp; Fernando Limongi (1997). "Modernization: Theories and Facts." <span class="pub-info"><em>World Politics</em></span> 49(2): 155–183.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Bueno de Mesquita, Bruce, Alastair Smith, Randolph M. Siverson &amp; James D. Morrow (2003). <em>The Logic of Political Survival.</em> MIT Press.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Wright, Joseph (2008). "Do Authoritarian Institutions Constrain? How Legislatures Affect Economic Growth and Investment." <span class="pub-info"><em>American Journal of Political Science</em></span> 52(2): 322–343.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Gehlbach, Scott &amp; Philip Keefer (2011). "Investment without Democracy: Ruling-Party Institutionalization and Credible Commitment in Autocracies." <span class="pub-info"><em>Journal of Comparative Economics</em></span> 39(2): 123–139.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Acemoglu, Daron, Suresh Naidu, Pascual Restrepo &amp; James A. Robinson (2019). "Democracy Does Cause Growth." <span class="pub-info"><em>Journal of Political Economy</em></span> 127(1): 47–100.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Martínez, Luis R. (2022). "How Much Should We Trust the Dictator's GDP Growth Estimates?" <span class="pub-info"><em>Journal of Political Economy</em></span> 130(10): 2731–2769.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Magee, Christopher S. P. &amp; John A. Doces (2015). "Reconsidering Regime Type and Growth: Lies, Dictatorships, and Statistics." <span class="pub-info"><em>International Studies Quarterly</em></span> 59(2): 223–237.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Wallace, Jeremy L. (2016). "Juking the Stats? Authoritarian Information Problems in China." <span class="pub-info"><em>British Journal of Political Science</em></span> 46(1): 11–29.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">4</span>
+                <span class="topic-title">Kleptocracy and Transnational Finance</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; How does offshore finance serve autocrats and their elites, and who are the enablers inside democracies?</p>
+                <p>&#8227; Does the ability to move wealth abroad weaken kleptocratic regimes or make them more stable?</p>
+                <p>&#8227; Do anti-money-laundering rules and sanctions on oligarchs actually work?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Cooley, Alexander, John Heathershaw &amp; J. C. Sharman (2018). "The Rise of Kleptocracy: Laundering Cash, Whitewashing Reputations." <span class="pub-info"><em>Journal of Democracy</em></span> 29(1): 39–53.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Sharafutdinova, Gulnaz &amp; Karen Dawisha (2017). "The Escape from Institution-Building in a Globalized World: Lessons from Russia." <span class="pub-info"><em>Perspectives on Politics</em></span> 15(2): 361–378.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Logvinenko, Igor (2021). <em>Global Finance, Local Control: Corruption and Wealth in Contemporary Russia.</em> Cornell University Press.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Cooley, Alexander &amp; John Heathershaw (2017). <em>Dictators Without Borders: Power and Money in Central Asia.</em> Yale University Press.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Sharman, J. C. (2017). <em>The Despot's Guide to Wealth Management: On the International Campaign against Grand Corruption.</em> Cornell University Press.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Markus, Stanislav (2015). <em>Property, Predation, and Protection: Piranha Capitalism in Russia and Ukraine.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Zucman, Gabriel (2015). <em>The Hidden Wealth of Nations: The Scourge of Tax Havens.</em> University of Chicago Press.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Andersen, Jørgen Juel, Niels Johannesen &amp; Bob Rijkers (2022). "Elite Capture of Foreign Aid: Evidence from Offshore Bank Accounts." <span class="pub-info"><em>Journal of Political Economy</em></span> 130(2): 388–425.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Findley, Michael G., Daniel L. Nielson &amp; J. C. Sharman (2014). <em>Global Shell Games: Experiments in Transnational Relations, Crime, and Terrorism.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Glasius, Marlies (2025). "What (Not) to Do About Globalised 'Oligarchs'?" <span class="pub-info"><em>Contemporary Politics</em></span> (online first): 1–18.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">5</span>
+                <span class="topic-title">Coups, Militaries, and Regime Change in Africa</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Why have coups returned to the Sahel and West Africa since 2020?</p>
+                <p>&#8227; Does foreign military training and security assistance make coups more or less likely?</p>
+                <p>&#8227; Do coups ever open a path to democracy, or do they mostly replace one autocrat with another?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Bratton, Michael &amp; Nicolas van de Walle (1994). "Neopatrimonial Regimes and Political Transitions in Africa." <span class="pub-info"><em>World Politics</em></span> 46(4): 453–489.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Powell, Jonathan M. &amp; Clayton L. Thyne (2011). "Global Instances of Coups from 1950 to 2010: A New Dataset." <span class="pub-info"><em>Journal of Peace Research</em></span> 48(2): 249–259.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Roessler, Philip (2011). "The Enemy Within: Personal Rule, Coups, and Civil War in Africa." <span class="pub-info"><em>World Politics</em></span> 63(2): 300–346.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Marinov, Nikolay &amp; Hein Goemans (2014). "Coups and Democracy." <span class="pub-info"><em>British Journal of Political Science</em></span> 44(4): 799–825.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Thyne, Clayton L. &amp; Jonathan M. Powell (2016). "Coup d'État or Coup d'Autocracy? How Coups Impact Democratization, 1950–2008." <span class="pub-info"><em>Foreign Policy Analysis</em></span> 12(2): 192–213.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Savage, Jesse Dillon &amp; Jonathan D. Caverley (2017). "When Human Capital Threatens the Capitol: Foreign Aid in the Form of Military Training and Coups." <span class="pub-info"><em>Journal of Peace Research</em></span> 54(4): 542–557.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> De Bruin, Erica (2020). <em>How to Prevent Coups d'État: Counterbalancing and Regime Survival.</em> Cornell University Press.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Harkness, Kristen A. (2018). <em>When Soldiers Rebel: Ethnic Armies and Political Instability in Africa.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Cheeseman, Nic &amp; Sishuwa Sishuwa (2021). "African Studies Keyword: Democracy." <span class="pub-info"><em>African Studies Review</em></span> 64(3): 704–732.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Trenkov-Wermuth, Calin &amp; Alexander Noyes (2026). "African Coups and the Elite-Forces Trap." <span class="pub-info"><em>Journal of Democracy</em></span>, online exclusive (February).</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">6</span>
+                <span class="topic-title">Digital Authoritarianism and Surveillance</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Does digital technology tip the balance of power toward autocrats or toward citizens?</p>
+                <p>&#8227; Does digital surveillance replace physical repression, or make it more targeted?</p>
+                <p>&#8227; Is AI a new source of authoritarian strength, and does it matter who builds and exports the tools?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Diamond, Larry (2010). "Liberation Technology." <span class="pub-info"><em>Journal of Democracy</em></span> 21(3): 69–83.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Rød, Espen Geelmuyden &amp; Nils B. Weidmann (2015). "Empowering Activists or Autocrats? The Internet in Authoritarian Regimes." <span class="pub-info"><em>Journal of Peace Research</em></span> 52(3): 338–351.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> King, Gary, Jennifer Pan &amp; Margaret E. Roberts (2017). "How the Chinese Government Fabricates Social Media Posts for Strategic Distraction, Not Engaged Argument." <span class="pub-info"><em>American Political Science Review</em></span> 111(3): 484–501.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Deibert, Ronald J. (2019). "The Road to Digital Unfreedom: Three Painful Truths About Social Media." <span class="pub-info"><em>Journal of Democracy</em></span> 30(1): 25–39.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Kendall-Taylor, Andrea, Erica Frantz &amp; Joseph Wright (2020). "The Digital Dictators: How Technology Strengthens Autocracy." <span class="pub-info"><em>Foreign Affairs</em></span> 99(2): 103–115.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Gohdes, Anita R. (2020). "Repression Technology: Internet Accessibility and State Violence." <span class="pub-info"><em>American Journal of Political Science</em></span> 64(3): 488–503.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Xu, Xu (2021). "To Repress or to Co-opt? Authoritarian Control in the Age of Digital Surveillance." <span class="pub-info"><em>American Journal of Political Science</em></span> 65(2): 309–325.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Dragu, Tiberiu &amp; Yonatan Lupu (2021). "Digital Authoritarianism and the Future of Human Rights." <span class="pub-info"><em>International Organization</em></span> 75(4): 991–1017.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Feldstein, Steven (2021). <em>The Rise of Digital Repression: How Technology Is Reshaping Power, Politics, and Resistance.</em> Oxford University Press.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Beraja, Martin, Andrew Kao, David Y. Yang &amp; Noam Yuchtman (2023). "AI-tocracy." <span class="pub-info"><em>Quarterly Journal of Economics</em></span> 138(3): 1349–1402.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">7</span>
+                <span class="topic-title">Measuring Democratic Backsliding</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Is democracy really in global decline, or is the decline partly an artifact of expert-coded indices?</p>
+                <p>&#8227; What would an "objective" measure of backsliding look like, and what would it miss?</p>
+                <p>&#8227; Judged by historical base rates, how worried should we be about established democracies?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Bermeo, Nancy (2016). "On Democratic Backsliding." <span class="pub-info"><em>Journal of Democracy</em></span> 27(1): 5–19.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Coppedge, Michael, John Gerring, et al. (2011). "Conceptualizing and Measuring Democracy: A New Approach." <span class="pub-info"><em>Perspectives on Politics</em></span> 9(2): 247–267.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Levitsky, Steven &amp; Lucan Way (2015). "The Myth of Democratic Recession." <span class="pub-info"><em>Journal of Democracy</em></span> 26(1): 45–58.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Waldner, David &amp; Ellen Lust (2018). "Unwelcome Change: Coming to Terms with Democratic Backsliding." <span class="pub-info"><em>Annual Review of Political Science</em></span> 21: 93–113.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Lührmann, Anna &amp; Staffan I. Lindberg (2019). "A Third Wave of Autocratization Is Here: What Is New About It?" <span class="pub-info"><em>Democratization</em></span> 26(7): 1095–1113.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Treisman, Daniel (2023). "How Great Is the Current Danger to Democracy? Assessing the Risk With Historical Data." <span class="pub-info"><em>Comparative Political Studies</em></span> 56(12): 1924–1952.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Little, Andrew T. &amp; Anne Meng (2024). "Measuring Democratic Backsliding." <span class="pub-info"><em>PS: Political Science &amp; Politics</em></span> 57(2): 149–161.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Knutsen, Carl Henrik, Kyle L. Marquardt, Brigitte Seim, Michael Coppedge, et al. (2024). "Conceptual and Measurement Issues in Assessing Democratic Backsliding." <span class="pub-info"><em>PS: Political Science &amp; Politics</em></span> 57(2): 162–177.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Miller, Michael K. (2024). "How Little and Meng's Objective Approach Fails in Democracies." <span class="pub-info"><em>PS: Political Science &amp; Politics</em></span> 57(2): 202–207.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Bianchi, Matías, Nic Cheeseman &amp; Jennifer Cyr (2025). "The Myth of Democratic Resilience." <span class="pub-info"><em>Journal of Democracy</em></span> 36(3): 33–46.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">8</span>
+                <span class="topic-title">Why Elected Leaders Subvert Democracy</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Why do elected leaders dismantle the institutions that put them in office?</p>
+                <p>&#8227; Does polarization make voters willing to trade democracy for partisan wins?</p>
+                <p>&#8227; Is the United States a case like the others, or a different kind of case?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Levitsky, Steven &amp; Daniel Ziblatt (2018). <em>How Democracies Die.</em> Crown.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> McCoy, Jennifer, Tahmina Rahman &amp; Murat Somer (2018). "Polarization and the Global Crisis of Democracy: Common Patterns, Dynamics, and Pernicious Consequences for Democratic Polities." <span class="pub-info"><em>American Behavioral Scientist</em></span> 62(1): 16–42.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Svolik, Milan W. (2019). "Polarization versus Democracy." <span class="pub-info"><em>Journal of Democracy</em></span> 30(3): 20–32.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Graham, Matthew H. &amp; Milan W. Svolik (2020). "Democracy in America? Partisanship, Polarization, and the Robustness of Support for Democracy in the United States." <span class="pub-info"><em>American Political Science Review</em></span> 114(2): 392–409.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Przeworski, Adam (2019). <em>Crises of Democracy.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Haggard, Stephan &amp; Robert Kaufman (2021). <em>Backsliding: Democratic Regress in the Contemporary World.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Grillo, Edoardo &amp; Carlo Prato (2023). "Reference Points and Democratic Backsliding." <span class="pub-info"><em>American Journal of Political Science</em></span> 67(1): 71–88.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Stokes, Susan C. (2025). <em>The Backsliders: Why Leaders Undermine Their Own Democracies.</em> Princeton University Press.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Stokes, Susan (2026). "Why Elected Leaders Subvert Democracy." <span class="pub-info"><em>Journal of Democracy</em></span> 37(2): 49–64.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Levitsky, Steven &amp; Lucan Way (2025). "The Path to American Authoritarianism." <span class="pub-info"><em>Foreign Affairs</em></span> 104(2).</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">9</span>
+                <span class="topic-title">Courts and Rule by Law</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Why do autocrats keep courts, and sometimes empower them?</p>
+                <p>&#8227; When do courts resist an executive's power grab, and when do they become its instruments?</p>
+                <p>&#8227; How do would-be autocrats use law and constitutions themselves to entrench power?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Ginsburg, Tom &amp; Tamir Moustafa, eds. (2008). <em>Rule by Law: The Politics of Courts in Authoritarian Regimes.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Moustafa, Tamir (2014). "Law and Courts in Authoritarian Regimes." <span class="pub-info"><em>Annual Review of Law and Social Science</em></span> 10: 281–299.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Moustafa, Tamir (2007). <em>The Struggle for Constitutional Power: Law, Politics, and Economic Development in Egypt.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Helmke, Gretchen (2005). <em>Courts Under Constraints: Judges, Generals, and Presidents in Argentina.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Popova, Maria (2012). <em>Politicized Justice in Emerging Democracies: A Study of Courts in Russia and Ukraine.</em> Cambridge University Press.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Popova, Maria (2017). "Putin-Style 'Rule of Law' &amp; the Prospects for Change." <span class="pub-info"><em>Daedalus</em></span> 146(2): 64–75.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Landau, David (2013). "Abusive Constitutionalism." <span class="pub-info"><em>UC Davis Law Review</em></span> 47(1): 189–260.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Scheppele, Kim Lane (2018). "Autocratic Legalism." <span class="pub-info"><em>University of Chicago Law Review</em></span> 85(2): 545–583.</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Dichio, Michael &amp; Igor Logvinenko (2025). "Stewards, Defenders, Progenitors, and Collaborators: Courts in the Age of Democratic Decline." <span class="pub-info"><em>Law &amp; Policy</em></span> 47(1): e12251.</div>
+                <div class="reading-item"><span class="reading-number">10.</span> Esen, Berk (2025). "Judicial Transformation in a Competitive Authoritarian Regime: Evidence from the Turkish Case." <span class="pub-info"><em>Law &amp; Policy</em></span> 47(1): e12250.</div>
+            </div>
+        </details>
+
+        <details class="topic-card">
+            <summary class="topic-header">
+                <span class="topic-number">10</span>
+                <span class="topic-title">Autocratic Cooperation and the International Order</span>
+                <span class="topic-toggle">&#9660;</span>
+            </summary>
+            <div class="topic-questions">
+                <p>&#8227; Do autocracies cooperate as a bloc ("Autocracy, Inc.") or as opportunistic partners of convenience?</p>
+                <p>&#8227; Do powerful autocracies export their regime type, or simply protect fellow autocrats from pressure?</p>
+                <p>&#8227; Is the liberal international order being remade by great-power rivals, or from within by illiberal middle powers?</p>
+            </div>
+            <div class="topic-body">
+                <div class="reading-item"><span class="reading-number">1.</span> Tolstrup, Jakob (2015). "Black Knights and Elections in Authoritarian Regimes: Why and How Russia Supports Authoritarian Incumbents in Post-Soviet States." <span class="pub-info"><em>European Journal of Political Research</em></span> 54(4): 673–690.</div>
+                <div class="reading-item"><span class="reading-number">2.</span> Bader, Julia (2015). "China, Autocratic Patron? An Empirical Investigation of China as a Factor in Autocratic Survival." <span class="pub-info"><em>International Studies Quarterly</em></span> 59(1): 23–33.</div>
+                <div class="reading-item"><span class="reading-number">3.</span> Way, Lucan (2016). "The Authoritarian Threat: Weaknesses of Autocracy Promotion." <span class="pub-info"><em>Journal of Democracy</em></span> 27(1): 64–75.</div>
+                <div class="reading-item"><span class="reading-number">4.</span> Tansey, Oisín (2016). <em>The International Politics of Authoritarian Rule.</em> Oxford University Press.</div>
+                <div class="reading-item"><span class="reading-number">5.</span> Hall, Stephen G. F. &amp; Thomas Ambrosio (2017). "Authoritarian Learning: A Conceptual Overview." <span class="pub-info"><em>East European Politics</em></span> 33(2): 143–161.</div>
+                <div class="reading-item"><span class="reading-number">6.</span> Weiss, Jessica Chen (2019). "A World Safe for Autocracy? China's Rise and the Future of Global Politics." <span class="pub-info"><em>Foreign Affairs</em></span> 98(4): 92–102.</div>
+                <div class="reading-item"><span class="reading-number">7.</span> Cooley, Alexander &amp; Daniel H. Nexon (2020). <em>Exit from Hegemony: The Unraveling of the American Global Order.</em> Oxford University Press.</div>
+                <div class="reading-item"><span class="reading-number">8.</span> Cooley, Alexander &amp; Daniel H. Nexon (2022). "The Real Crisis of Global Order: Illiberalism on the Rise." <span class="pub-info"><em>Foreign Affairs</em></span> 101(1).</div>
+                <div class="reading-item"><span class="reading-number">9.</span> Applebaum, Anne (2024). <em>Autocracy, Inc.: The Dictators Who Want to Run the World.</em> Doubleday. <span class="bg-tag">(background; not a peer-reviewed source)</span></div>
+                <div class="reading-item"><span class="reading-number">10.</span> Desrosiers, Marie-Eve &amp; Nic Cheeseman (2026). "The Rise of Authoritarian Middle Powers." <span class="pub-info"><em>Journal of Democracy</em></span> 37(2): 18–34.</div>
+            </div>
+        </details>
+
+    </section>
+
+    <section id="part1">
+        <h2>Part 1 &mdash; Description &amp; Annotated Bibliography</h2>
+        <p class="due">Due <strong>Thursday, November 12, 11:59 pm</strong> &middot; 10% of the final grade &middot; one PDF or Word file by email</p>
+        <p>Part 1 stakes out your question, surveys the first 7&ndash;9 key sources, and ends with a first statement of what you think the field has right and wrong. It has three components, in this order, in one document.</p>
+
+        <div class="info-box">
+            <strong>What counts as a scholarly source?</strong>
+            <p style="margin: 0.5rem 0 0.5rem 0;">Prioritize <strong>peer-reviewed journal articles</strong> in political science, economics, sociology, law and related fields, and books or chapters from university presses. Working papers from recognized research institutions (NBER, V-Dem, the World Bank) are acceptable in moderation. News articles, opinion pieces, think-tank blog posts, Wikipedia and textbooks are <strong>not</strong> scholarly sources. You may use them, and data sources such as V-Dem or Freedom House, for a fact or a statistic in your description, but they do not count toward your source total.</p>
+            <p style="margin: 0;">Essays by scholars in the <em>Journal of Democracy</em> and <em>Foreign Affairs</em> are useful for orientation and do count, but they are not peer-reviewed research: use no more than two in Part 1 and three in the final draft.</p>
+        </div>
+
+        <h3>Step 1 &mdash; Topic description (~600 words)</h3>
+        <ol class="steps">
+            <li><strong>Define the issue.</strong> What research problem are you surveying? Frame it as an area of scholarly debate, not a hypothesis you plan to test.</li>
+            <li><strong>Establish the context.</strong> What are the broad trends? Give the reader a few facts, figures or indicators that show the scope and scale of the issue (V-Dem or Freedom House scores, counts of coups or regime breakdowns, election results, measures of repression or capital flight), with sources.</li>
+            <li><strong>Define your terms.</strong> Authoritarianism research turns on contested concepts (competitive authoritarianism, backsliding, kleptocracy, informational autocracy). Say which definition you are using and whose it is.</li>
+            <li><strong>Motivate the topic.</strong> Why should anyone care? Connect the issue to a current case, a policy debate, or an unresolved scholarly disagreement. Answer the &ldquo;so what?&rdquo; question.</li>
+        </ol>
+
+        <h3>Step 2 &mdash; Annotated bibliography (7&ndash;9 scholarly sources)</h3>
+        <p>For each source:</p>
+        <ol class="steps" type="A">
+            <li><strong>Full citation</strong> in Chicago author-date style, used consistently.</li>
+            <li><strong>Evidence type (one line).</strong> What kind of evidence does the source rest on? For example: cross-national quantitative study, single-country case study, comparative-historical analysis, survey or experiment, formal model, new data set, or an essay synthesizing others&rsquo; work.</li>
+            <li><strong>Summary (2&ndash;3 sentences).</strong> What is the author&rsquo;s main argument or finding? Be specific: name the thesis, the evidence or method, and the key result. &ldquo;This article is about Russia&rdquo; is not a summary.</li>
+            <li><strong>Critical engagement (2&ndash;3 sentences).</strong> How does this source bear on your question? What is most useful about it, and where are its limits (its cases, its period, its data, its definitions)? Note specific pages, figures or quotations you expect to come back to.</li>
+        </ol>
+
+        <div class="info-box" style="background: #fff8e7; border-left-color: #c17817;">
+            <strong>One annotated entry, as an example</strong>
+            <p style="margin: 0.5rem 0 0.5rem 0;">Guriev, Sergei, and Daniel Treisman. 2019. &ldquo;Informational Autocrats.&rdquo; <em>Journal of Economic Perspectives</em> 33 (4): 100&ndash;127.</p>
+            <p style="margin: 0 0 0.5rem 0;"><strong>Evidence type:</strong> Theoretical argument (a non-technical version of the authors&rsquo; formal model), illustrated with cross-national descriptive data and brief cases.</p>
+            <p style="margin: 0 0 0.5rem 0;"><strong>Summary:</strong> Guriev and Treisman argue that many contemporary dictators survive by manipulating beliefs about their competence rather than by mass violence. Their ruler co-opts the informed elite and censors selectively in order to look competent, and show that since the 1980s autocracies have become less violent and more likely to hold elections and mimic democratic forms.</p>
+            <p style="margin: 0;"><strong>Critical engagement:</strong> The article gives my review its central distinction (fear versus spin), but its evidence is largely descriptive: the model predicts the trend without testing whether spin causes regime survival. The coding of leaders as &ldquo;spin&rdquo; or &ldquo;fear&rdquo; dictators is a judgment call worth checking against the regime-level data (see their figures on trends in political killings and elections).</p>
+        </div>
+
+        <h3>Step 3 &mdash; Reflection and working claim (~600 words)</h3>
+        <p>Drawing on the sources you annotated, write a short reflective essay that addresses:</p>
+        <ul class="plain">
+            <li><strong>Themes.</strong> What patterns, points of agreement, or recurring findings appear across your sources? Are there identifiable camps or schools of thought?</li>
+            <li><strong>Gaps and limitations.</strong> Where is the research thin, outdated, or narrow (one region, one regime type, one period, one kind of data)? What remains unanswered?</li>
+            <li><strong>Research questions.</strong> Pose <strong>2&ndash;3 research questions</strong> a future project could pursue. You are not committing to answer them; the point is to show that reading the literature turned up real, answerable questions.</li>
+            <li><strong>Working claim.</strong> End with <strong>one paragraph stating your argument about the field</strong>, as it stands now. For example: &ldquo;The case that elections stabilize autocracies rests mostly on single-party regimes before 2000; it is much weaker for personalist regimes since then.&rdquo; You are allowed to change your mind later. This paragraph is the first draft of your panel statement.</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>Finding sources efficiently</strong>
+            <p style="margin: 0.5rem 0 0.25rem 0;"><strong>Start from the starter readings or a recent review article</strong> (the <em>Annual Review of Political Science</em> is the best place to look), then <strong>follow citation trails</strong> in both directions: what a good article cites, and what cites it. In Google Scholar, &ldquo;Cited by&rdquo; does the second.</p>
+            <p style="margin: 0.25rem 0;"><strong>Weigh recency and influence.</strong> A field&rsquo;s seminal works are the ones everyone cites; its frontier is in the last five years. You need both.</p>
+            <p style="margin: 0.25rem 0 0 0;"><strong>Use a reference manager.</strong> Zotero is free and will format your Chicago citations for you.</p>
+        </div>
+
+        <p><strong>What you get back:</strong> written comments on your question, your sources and your working claim, as soon as I can. This is the stage where a topic that is too broad, too narrow, or short on scholarship gets fixed.</p>
+    </section>
+
+    <section id="workshop">
+        <h2>Week 12 &mdash; Literature Review Workshop</h2>
+        <ul class="plain">
+            <li><strong>Tuesday, November 10, after Quiz 2.</strong> Literature review workshop: framing, sources, and how to turn a pile of readings into an argument about a field. Bring a draft of your annotated bibliography.</li>
+            <li><strong>Thursday, November 12.</strong> Class visit by Phillip Ayoub; no workshop.</li>
+            <li><strong>Panels.</strong> I will group you into five panels of four or five students, by theme, and post the panels and running order in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit" target="_blank">shared doc</a> by <strong>Friday, November 13</strong>. Paste your Part 1 bibliography into your panel&rsquo;s section of the shared doc by <strong>Sunday, November 15</strong>, so your panel-mates can read it before the defense.</li>
+        </ul>
+        <p>No weekly Connector/Applier post is due in Weeks 12&ndash;13.</p>
+    </section>
+
+    <section id="part2">
+        <h2>Part 2 &mdash; Panel Defense</h2>
+        <p class="due"><strong>Tuesday, November 17; Thursday, November 19; Tuesday, November 24</strong> &middot; 10% of the final grade &middot; in class &middot; panels and running order in the <a href="https://docs.google.com/document/d/1YEb9i6CXmAQgyIKYi5ALI9OGZBt9AXg7THEFXL8kXLM/edit" target="_blank">shared doc</a></p>
+        <p>You will defend your literature review on a panel of four or five students working on related questions. Two panels meet on November 17, two on November 19, and the last on November 24, before our closing discussion. This is a draft-stage defense: you are not expected to have a finished paper. You are expected to know your literature, to have an argument about it, and to answer questions without reading from your notes.</p>
+
+        <h3>Your statement: 4&ndash;5 minutes, hard stop</h3>
+        <ol class="steps">
+            <li><strong>The question</strong> and why it matters (one fact or figure).</li>
+            <li><strong>The field:</strong> two or three camps or findings, naming the key authors and what they found.</li>
+            <li><strong>Your argument about the field:</strong> which side has the better evidence, what the field has missed, or what it has gotten wrong.</li>
+            <li><strong>The weakest point in your own case</strong>, stated honestly. Name it before someone else does.</li>
+        </ol>
+
+        <h3>Questions: 8&ndash;10 minutes per panel</h3>
+        <p>After every panelist has spoken, the panel takes open questions from me, from the room, and from each other. <strong>Come with one question ready for each of your panel-mates</strong>, based on their bibliography. Good questions are specific: a source they missed, a case that cuts against their claim, a definition doing too much work.</p>
+
+        <div class="info-box" style="border-left-color: var(--primary);">
+            <strong>Format</strong>
+            <p style="margin: 0.5rem 0 0 0;">Up to <strong>three slides</strong> (optional). Use them for a figure, a table, or a map of the camps in your literature, not for text you read aloud. Time yourself beforehand: I will stop you at five minutes, wherever you are. The defense is live and in person: no AI.</p>
+        </div>
+
+        <h3>How the defense is graded</h3>
+        <p>I grade live, during the session, on a one-page rubric.</p>
+        <table class="plan">
+            <tr><th>Dimension</th><th>Top tier looks like</th></tr>
+            <tr><td><strong>Command of the literature</strong></td><td>Names authors and findings accurately and specifically; distinguishes stronger from weaker work.</td></tr>
+            <tr><td><strong>Argument &amp; self-critique</strong></td><td>States a clear claim about the field within the time limit, and names the weakest point in it candidly.</td></tr>
+            <tr><td><strong>Handling questions</strong></td><td>Answers directly, draws on the sources, and says plainly what the literature does not yet know.</td></tr>
+            <tr><td><strong>Engagement with the panel</strong></td><td>Asks pointed, informed questions of panel-mates that show their bibliographies were read.</td></tr>
+        </table>
+        <p>Questions you get in the room are also feedback: write them down. The best final drafts answer the hardest question their author was asked.</p>
+    </section>
+
+    <section id="part3">
+        <h2>Part 3 &mdash; Final Literature Review</h2>
+        <p class="due">Due <strong>Thursday, December 10, 11:59 pm</strong> (finals period) &middot; 20% of the final grade &middot; <strong>no grace period</strong> &middot; one PDF or Word file by email</p>
+        <p>The final paper is a <strong>3,000&ndash;4,000-word essay in narrative form</strong>, not counting the bibliography. It should read as a coherent account of a scholarly conversation, with an argument running through it: who said what, where they agree, where they disagree, what remains unresolved, and what you make of it. It is not a list of article summaries. The bibliography should contain <strong>12&ndash;15 scholarly sources</strong> that you have judged most relevant to your question, including the field&rsquo;s seminal work and <strong>at least three sources published since 2021</strong>. Some will come from Part 1; others you will find after the feedback, the workshop and the panel.</p>
+
+        <h3>Suggested structure</h3>
+        <ol class="steps">
+            <li><strong>Introduction (~600 words).</strong> Define the issue and your key terms, give the reader a reason to care (with data or indicators), state the question that organizes the field, state your argument about it, and preview the structure of the paper.</li>
+            <li><strong>The scholarly conversation (~2,000&ndash;2,600 words).</strong> The heart of the paper. Organize the literature <em>thematically</em>, around 3&ndash;4 themes, debates or findings, and show how different scholars contribute to each. Use specific evidence (findings, data, page numbers), and tell sources apart: not every study is equally rigorous or equally relevant. <strong>Include at least one passage on evidence and measurement</strong>: how does this field know what it claims to know, and how much should we trust it? (Our Week 10 debate over measuring backsliding is the model.)</li>
+            <li><strong>Conclusion (~600&ndash;800 words).</strong> Your own voice is strongest here. What is established? What is still puzzling or missing? What would settle the open questions &mdash; new data, new methods, new cases? Answer the hardest question you were asked on your panel. One productive option: bring one of the course&rsquo;s frameworks into the discussion as a lens (Linz and Stepan&rsquo;s regime types, fear versus spin, the narrow corridor, the networked kleptocracy of <em>Autocracy, Inc.</em>, exit and voice). What does it reveal about the blind spots of the literature you surveyed? This is offered as a frame, not a requirement.</li>
+        </ol>
+
+        <h3>How the final paper is graded</h3>
+        <table class="plan">
+            <tr><th>Dimension</th><th>Weight</th><th>Top tier (&ldquo;exceeds expectations&rdquo;) looks like</th></tr>
+            <tr><td><strong>Problem &amp; motivation</strong></td><td>10%</td><td>Defines the research issue precisely and makes a compelling case for why it matters.</td></tr>
+            <tr><td><strong>Context &amp; concepts</strong></td><td>10%</td><td>Places the question in its empirical context and defines its key concepts carefully, noting where scholars use them differently.</td></tr>
+            <tr><td><strong>Knowledge &amp; systematic presentation of the field</strong></td><td>40%</td><td>Uses recent and seminal sources in depth and clearly discriminates among them, including by the quality of their evidence. The literature is organized into themes, schools of thought or analytical directions, so the reader can see the shape of the conversation.</td></tr>
+            <tr><td><strong>Argument &amp; evaluation of the field</strong></td><td>15%</td><td>Advances a clear, defensible judgment about the state of the field, supports it with the literature, and takes on the strongest objection to it.</td></tr>
+            <tr><td><strong>Writing quality</strong></td><td>25%</td><td>Exemplary prose; the parts of the paper connect seamlessly; no grammatical, punctuation or spelling errors.</td></tr>
+        </table>
+        <p>The final draft is graded on this rubric with a short holistic comment. Full comments are available on request in January.</p>
+
+        <div class="info-box" style="background: #fff8e7; border-left-color: #c17817;">
+            <strong>Common pitfalls</strong>
+            <p style="margin: 0.5rem 0 0.25rem 0;"><strong>The book-report structure.</strong> Article 1, then Article 2, then Article 3. Organize by <em>theme</em>, not by source.</p>
+            <p style="margin: 0.25rem 0;"><strong>A review with no argument.</strong> A fair summary of every side is a good start, not a finished seminar paper. Say what you think the evidence shows.</p>
+            <p style="margin: 0.25rem 0;"><strong>Case-study tourism.</strong> Ten readings about one country do not make a literature on authoritarianism. If your question is about one case, show what the comparative literature says and how the case fits it.</p>
+            <p style="margin: 0.25rem 0;"><strong>Treating every study as equal.</strong> A large cross-national study and a single-case opinion essay are not the same kind of evidence. Say which is which.</p>
+            <p style="margin: 0.25rem 0 0 0;"><strong>A conclusion that only summarizes.</strong> The conclusion should judge the field, not repeat the paper.</p>
+        </div>
+    </section>
+
+    <section id="rules">
+        <h2>Submission, deadlines and AI</h2>
+        <ul class="plain">
+            <li><strong>How to submit.</strong> Email Parts 1 and 3 to <a href="mailto:ilogvinenko@oxy.edu">ilogvinenko@oxy.edu</a> as a PDF or Word file by 11:59 pm on the due date. Subject line: <code>DWA227 &ndash; [assignment] &ndash; [your last name]</code>. You will get a one-line acknowledgment; if you don&rsquo;t within 24 hours, resend.</li>
+            <li><strong>Word count.</strong> Put the word count (excluding the bibliography) under your title. 3,000&ndash;4,000 words is the range for the final draft.</li>
+            <li><strong>Citations.</strong> Chicago author-date, in the text and in the bibliography, consistently.</li>
+            <li><strong>Late work.</strong> Part 1 falls under the course&rsquo;s 48-hour grace period, no questions asked; after that, one letter grade per 24 hours. <strong>The grace period does not apply to the final draft</strong>, which is due at the deadline.</li>
+            <li><strong>Panels</strong> happen on the day in the running order. If you are ill or have an emergency, tell me as early as you can.</li>
+        </ul>
+
+        <div class="info-box" style="border-left-color: var(--primary);">
+            <strong>AI policy for this assignment</strong>
+            <p style="margin: 0.5rem 0 0.25rem 0;"><strong>Annotated bibliography and final draft:</strong> take-home, no AI-generated text. Library databases, Google Scholar and Zotero: yes. You may use AI to search for sources, verify facts or test an idea, but the writing on the page has to be yours, and you are responsible for every word and every citation in it.</p>
+            <p style="margin: 0.25rem 0;"><strong>Panel defense:</strong> in class, oral, no AI.</p>
+            <p style="margin: 0.25rem 0 0 0;">I will never run your work through an AI detector. If something in your work doesn&rsquo;t sound like you, we will have a conversation, and I will ask you to walk me through your argument. That is one reason the project ends in a defense.</p>
+        </div>
+
+        <p><strong>Questions?</strong> Come to office hours (<a href="https://calendar.app.google/NoaCnmF8w5HrUezr6" target="_blank">book a slot</a>) or email me. Talking a topic through for ten minutes early saves hours later.</p>
+    </section>
+
+</main>
+
+<footer style="background: var(--primary); color: white; padding: 1.5rem 0; margin-top: 3rem; text-align: center;">
+    <div class="container">
+        <p style="margin: 0; opacity: 0.9;">DWA 227: Authoritarianism in the Age of Globalization | Occidental College | Fall 2026<br>
+        Professor Igor Logvinenko | ilogvinenko@oxy.edu</p>
+    </div>
+</footer>
+
+</body>
+</html>
