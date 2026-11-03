@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diplomacy &amp; World Affairs 227 · Week 11 · Courts and Autocracy</title>
+<style>
+  :root {
+    --ink: #1d2129; --muted: #5c6470; --accent: #8a2f2f; --accent-soft: #f4e9e9;
+    --bg: #fcfbf9; --rule: #d9dde3;
+    --stew: #2f8a5a; --def: #2a5da8; --prog: #e0793f; --coll: #96302a;
+    --sans: 'Gill Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: Charter, Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  section.slide {
+    min-height: 100vh; min-height: 100dvh; scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) clamp(2rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--rule); position: relative;
+  }
+  .kicker { font-size: clamp(.8rem, 1.25vw, 1rem); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 1.1rem; }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.08; font-weight: 700; letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.7rem); line-height: 1.12; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1.2rem; }
+  .sub { font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--muted); margin-top: 1.2rem; line-height: 1.45; }
+  blockquote { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.4; border-left: 6px solid var(--accent); padding-left: 1.4rem; }
+  blockquote.smaller { font-size: clamp(1.15rem, 2.3vw, 1.8rem); }
+  blockquote.smallest { font-size: clamp(1rem, 1.8vw, 1.4rem); }
+  blockquote + blockquote { margin-top: 1.5rem; }
+  cite { display: block; font-family: var(--sans); font-style: normal; font-size: clamp(.9rem, 1.5vw, 1.15rem); color: var(--muted); margin-top: 1rem; }
+  blockquote.smallest cite { margin-top: .6rem; }
+  .statrow { display: flex; gap: clamp(1.5rem, 4vw, 3.5rem); flex-wrap: wrap; margin-top: 1.6rem; }
+  .stat .v { font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 700; color: var(--accent); }
+  .stat .l { font-size: clamp(.85rem, 1.35vw, 1.05rem); color: var(--muted); max-width: 26ch; line-height: 1.3; margin-top: .2rem; }
+  .statrow.compact { margin-top: .6rem; gap: 1.2rem 2.4rem; }
+  .statrow.compact .stat .v { font-size: clamp(1.3rem, 2.3vw, 1.8rem); }
+  .statrow.compact .stat .l { font-size: clamp(.78rem, 1.15vw, .92rem); max-width: 30ch; }
+  ul.big { list-style: none; padding: 0; }
+  ul.big li { font-size: clamp(1.05rem, 1.9vw, 1.5rem); line-height: 1.4; padding: .45rem 0 .45rem 1.6rem; position: relative; }
+  ul.big li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  ul.big.compact li { font-size: clamp(.95rem, 1.6vw, 1.25rem); padding: .35rem 0 .35rem 1.6rem; }
+  .divider { background: var(--accent); color: #fff; }
+  .divider .kicker { color: #f3d9d9; }
+  .divider h1, .divider h2 { color: #fff; }
+  .divider .sub { color: #f0e2e2; }
+  .divider blockquote { border-left-color: #f3d9d9; }
+  .divider cite { color: #f0e2e2; }
+  .footer-tag { position: absolute; bottom: 1.5rem; left: clamp(2rem, 8vw, 7rem); right: clamp(2rem, 8vw, 7rem); font-size: .78rem; color: var(--muted); letter-spacing: .02em; line-height: 1.35; }
+  .footer-tag a { color: var(--accent); }
+  .divider .footer-tag { color: #f0e2e2; }
+  .divider .footer-tag a { color: #fff; }
+  .chartwrap { margin-top: .6rem; max-width: 1120px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--sans); }
+  table.biblio { border-collapse: collapse; margin-top: 1rem; width: 100%; max-width: 1120px; }
+  table.biblio th, table.biblio td { text-align: left; padding: .55rem 1rem .55rem 0; border-bottom: 1px solid var(--rule); font-size: clamp(.82rem, 1.25vw, 1.02rem); vertical-align: top; line-height: 1.32; }
+  table.biblio th { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.biblio td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; }
+  table.biblio .pg { color: var(--muted); font-size: .85em; }
+  .twocol { display: flex; gap: clamp(1.2rem, 3vw, 2.4rem); margin-top: 1rem; }
+  .twocol .col { flex: 1; min-width: 0; border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.2rem; background: #fff; }
+  .collabel { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .5rem; }
+  .colq { font-family: var(--serif); font-size: clamp(.95rem, 1.45vw, 1.18rem); line-height: 1.45; }
+  .colq cite { margin-top: .7rem; font-size: clamp(.8rem, 1.2vw, .95rem); }
+  .counter { position: fixed; bottom: 1rem; right: 1.4rem; font-size: .85rem; color: var(--muted); background: rgba(252,251,249,.85); padding: .2rem .55rem; border-radius: 99px; border: 1px solid var(--rule); z-index: 10; }
+  .hint { position: fixed; bottom: 1rem; left: 1.4rem; font-size: .8rem; color: var(--muted); z-index: 10; opacity: .8; }
+  /* chart + explanation slides */
+  section.slide.ex { justify-content: flex-start; padding-top: 2rem; padding-bottom: 3.6rem; }
+  section.slide.ex h2 { font-size: clamp(1.4rem, 2.6vw, 2.05rem); margin-bottom: .45rem; }
+  section.slide.ex .kicker { margin-bottom: .5rem; }
+  .explain { margin-top: .6rem; max-width: 1120px; border-top: 2px solid var(--accent); padding-top: .5rem; font-size: clamp(.78rem, 1.08vw, .9rem); line-height: 1.42; column-count: 2; column-gap: 2rem; }
+  .explain p { margin: 0 0 .42rem; break-inside: avoid-column; }
+  .explain b { color: var(--accent); font-weight: 700; }
+  .explain.one { column-count: 1; }
+  .explain.three { column-count: 3; }
+  section.slide.ex .footer-tag { bottom: 2.2rem; font-size: .72rem; }
+  .tl { list-style: none; padding: 0; margin: .2rem 0 .4rem; border-left: 2px solid var(--rule); }
+  .tl li { position: relative; padding: .26rem 0 .26rem 1.1rem; font-size: clamp(.84rem, 1.25vw, 1.02rem); line-height: 1.3; display: grid; grid-template-columns: 9.6em 1fr; column-gap: .5rem; }
+  .tl li::before { content: ""; position: absolute; left: -6px; top: .6rem; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); }
+  .tl li.now::before { background: var(--accent); }
+  .tl li b { color: var(--accent); }
+  .tl li.now { font-weight: 700; }
+  .split { display: flex; gap: 2.2rem; align-items: flex-start; margin-top: .4rem; }
+  .split > * { flex: 1; min-width: 0; }
+  .split .chartwrap { margin-top: 0; }
+  .split.w60 > :first-child { flex: 1.5; }
+  .tag { display: inline-block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #fff; padding: .2rem .55rem; border-radius: 6px; margin-right: .5rem; vertical-align: 2px; }
+  .tag.stew { background: var(--stew); } .tag.def { background: var(--def); } .tag.prog { background: var(--prog); } .tag.coll { background: var(--coll); }
+  .btn { display: inline-block; font-size: 1.4rem; font-weight: 700; color: #fff; background: var(--accent); padding: .8rem 1.6rem; border-radius: 12px; text-decoration: none; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem 1.4rem; margin-top: .6rem; max-width: 1120px; }
+  .card { border: 1px solid var(--rule); border-radius: 10px; padding: .7rem 1rem; background: #fff; }
+  .card h3 { font-size: clamp(1rem, 1.5vw, 1.2rem); margin-bottom: .3rem; }
+  .card p { font-size: clamp(.8rem, 1.15vw, .95rem); line-height: 1.4; }
+  .card .who { color: var(--muted); font-size: .85em; }
+  ol.task { padding-left: 1.6rem; font-size: clamp(1.05rem, 1.8vw, 1.4rem); line-height: 1.5; margin-top: 1rem; }
+  ol.task li { padding: .25rem 0; }
+  @media print {
+    html { scroll-snap-type: none; }
+    section.slide { min-height: 0; height: 100vh; page-break-after: always; border-bottom: none; }
+    .counter, .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <p class="kicker">Diplomacy &amp; World Affairs 227 · Authoritarianism in the Age of Globalization · Week 11</p>
+  <h1>Courts and Autocracy</h1>
+  <p class="sub">Tuesday, November 3, 2026 (United States Election Day) · Thursday, November 5, 2026</p>
+</section>
+
+
+<!-- L1 · Lit review stages -->
+<section class="slide ex">
+  <p class="kicker">Literature review · 40% of the final grade · three parts and a panel defense</p>
+  <h2>The literature review: what happens when</h2>
+  <p style="margin:-.2rem 0 .2rem"><a class="btn" style="font-size:1rem;padding:.45rem 1rem;border-radius:9px" href="https://igorlogvinenko.com/IL-course-materials/dwa227/DWA227_F26_LitReview_Assignment.html" target="_blank" rel="noopener">Open the assignment page &rarr;</a></p>
+  <table class="biblio">
+    <tr><th>Stage</th><th>What you do</th><th>When</th><th>Weight</th></tr>
+    <tr><td>Topic</td><td>Email a working question, one sentence on why it matters, and two or three sources</td><td>Before class today, Tue Nov 3</td><td>&mdash;</td></tr>
+    <tr><td>Workshop</td><td>Framing session on question, sources and research design; bring a draft annotated bibliography</td><td>Tue Nov 10, after Quiz 2</td><td>&mdash;</td></tr>
+    <tr><td>Part 1</td><td>Topic description, annotated bibliography of 7&ndash;9 sources, reflection ending in a working claim about the field</td><td>Thu Nov 12, 11:59 pm, by email</td><td>10%</td></tr>
+    <tr><td>Panels</td><td>Panel assignments posted; share your bibliography with your panel-mates</td><td>Posted by Fri Nov 13; share by Sun Nov 15</td><td>&mdash;</td></tr>
+    <tr><td>Part 2</td><td>Panel defense: a 4&ndash;5-minute statement, then open questions to the panel</td><td>Nov 17, 19 &amp; 24, in class</td><td>10%</td></tr>
+    <tr><td>Part 3</td><td>Final review in narrative form, 3,000&ndash;4,000 words, 12&ndash;15 sources</td><td>Thu Dec 10, 11:59 pm (no grace period)</td><td>20%</td></tr>
+  </table>
+  <p class="footer-tag">Literature Review Assignment page: igorlogvinenko.com/IL-course-materials/dwa227/DWA227_F26_LitReview_Assignment.html</p>
+</section>
+
+<!-- L2 · Lit review: is / is not + round -->
+<section class="slide">
+  <p class="kicker">Literature review · from the assignment page · in-class round</p>
+  <h2>What a literature review is, and is not</h2>
+  <div class="twocol">
+    <div class="col"><div class="collabel">It is</div><div class="colq" style="font-family:var(--sans)">A survey of what scholars have found on a question: where they agree, where they disagree, and why; then a judgment on the state of the field: what is established, contested, missing, and what evidence would settle it.</div></div>
+    <div class="col"><div class="collabel">It is not</div><div class="colq" style="font-family:var(--sans)">A book report (source 1, then source 2, then source 3); an op-ed about a regime you dislike; a research paper testing your own hypothesis.</div></div>
+  </div>
+  <div class="twocol" style="margin-top:.8rem">
+    <div class="col"><div class="collabel">Too broad</div><div class="colq">&ldquo;Russia&rdquo;</div></div>
+    <div class="col"><div class="collabel">A literature</div><div class="colq">&ldquo;Do elections strengthen or weaken electoral autocracies?&rdquo;</div></div>
+  </div>
+  <p class="collabel" style="margin-top:1.2rem">Round the room · 30 seconds each</p>
+  <ol class="task" style="margin-top:.2rem">
+    <li>Your working question</li>
+    <li>The two sides of the debate, as far as you can tell so far</li>
+  </ol>
+  <p class="footer-tag">Literature Review Assignment page, sections &ldquo;What a literature review is &mdash; and is not&rdquo; and &ldquo;Choosing a topic.&rdquo;</p>
+</section>
+<!-- 3 · Three directions (diagram) -->
+<section class="slide ex">
+  <p class="kicker">Part I · Accountability · three directions</p>
+  <h2>Who can hold a government to account?</h2>
+  <div class="chartwrap chart" id="c-acc" style="max-width:1020px"></div>
+  <div class="explain three">
+    <p><b>Vertical.</b> &ldquo;Vertical accountability captures the extent to which citizens have the power to hold the government accountable.&rdquo; Mechanisms: free political parties; free and fair elections, including for the chief executive.</p>
+    <p><b>Horizontal.</b> &ldquo;The power of state institutions to oversee the government by demanding information, questioning officials and punishing improper behavior.&rdquo; Agents: the legislature, the judiciary, ombudsmen, prosecutors, auditors.</p>
+    <p><b>Diagonal.</b> &ldquo;Actions and mechanisms that citizens, civil society organizations&hellip; and an independent media can use to hold the government accountable,&rdquo; such as social mobilization and investigative journalism.</p>
+  </div>
+  <p class="footer-tag">Definitions quoted from the Varieties of Democracy project codebook, version 16 (2026): Vertical, Horizontal and Diagonal Accountability indices. Diagram: instructor-drawn from those definitions.</p>
+</section>
+
+<!-- 8 · Hamilton divider -->
+<section class="slide divider">
+  <p class="kicker">Part II · The judiciary · Alexander Hamilton, 1788</p>
+  <blockquote class="smaller">&ldquo;The Executive not only dispenses the honors, but holds the sword of the community. The legislature not only commands the purse, but prescribes the rules by which the duties and rights of every citizen are to be regulated. The judiciary, on the contrary, has no influence over either the sword or the purse&hellip; It may truly be said to have neither FORCE nor WILL, but merely judgment; and must ultimately depend upon the aid of the executive arm even for the efficacy of its judgments.&rdquo;<cite>Hamilton, <em>Federalist</em> No. 78 (1788)</cite></blockquote>
+</section>
+
+<!-- 9 · Three branches illustration -->
+<section class="slide ex">
+  <p class="kicker">Part II · The judiciary · <em>Federalist</em> No. 78</p>
+  <h2>Sword, purse, judgment</h2>
+  <div class="chartwrap chart" id="c-branches" style="max-width:1080px"></div>
+  <div class="explain">
+    <p><b>The Federalist Papers.</b> 85 newspaper essays, 1787&ndash;1788, by Alexander Hamilton, James Madison and John Jay under the pen name &ldquo;Publius,&rdquo; urging New York to ratify the new United States Constitution.</p>
+    <p><b>No. 78</b> defends an independent federal judiciary whose judges serve &ldquo;during good behavior,&rdquo; that is, for life unless impeached.</p>
+    <p><b>Hamilton&rsquo;s conclusion:</b> &ldquo;the judiciary, from the nature of its functions, will always be the least dangerous to the political rights of the Constitution.&rdquo;</p>
+    <p><b>Efficacy.</b> A ruling takes effect only if others carry it out: police, ministries, banks, election officials.</p>
+  </div>
+  <p class="footer-tag">Hamilton, <em>Federalist</em> No. 78, &ldquo;The Judiciary Department&rdquo; (1788). Icons: instructor-drawn.</p>
+</section>
+
+<!-- 12 · Typology -->
+<section class="slide ex">
+  <p class="kicker">Part III · Four kinds of courts · Dichio &amp; Logvinenko 2024, Table 1</p>
+  <h2>Stewards, defenders, progenitors, collaborators</h2>
+  <div class="chartwrap chart" id="c-matrix" style="max-width:1000px"></div>
+  <div class="explain">
+    <p><b>Columns:</b> the pressure the court faces from elected officials and other actors, either pro-democratic or anti-democratic.</p>
+    <p><b>Rows:</b> what the court itself does with that pressure.</p>
+    <p><b>Stewards</b> act &ldquo;by coordinating with and overseeing elected branches to maintain the constitutional balance of powers.&rdquo; In democratic crises, courts can act &ldquo;as progenitors instigating democratic backsliding, &hellip; defenders protecting democratic institutions; and &hellip; collaborators enabling backsliding.&rdquo;</p>
+    <p><b>Cases this week:</b> Germany 2023 · Colombia 2010 · United States 2026 · Venezuela 2024.</p>
+  </div>
+  <p class="footer-tag">Dichio &amp; Logvinenko 2024: 6. Backsliding: the step-by-step weakening of democratic institutions by those in power (Bermeo 2016).</p>
+</section>
+
+<!-- 21 · Part III synthesis -->
+<section class="slide">
+  <p class="kicker">Part III · Four kinds of courts · cases</p>
+  <h2>Four courts, four rulings</h2>
+  <table class="biblio">
+    <tr><th>Role</th><th>Country</th><th>Court</th><th>Date</th><th>Ruling</th><th>Judicial constraints, 2025</th></tr>
+    <tr><td style="color:var(--stew)">Stewards</td><td>Germany</td><td>Federal Constitutional Court</td><td>Nov 15, 2023</td><td>&euro;60 billion climate-fund transfer void</td><td>0.93</td></tr>
+    <tr><td style="color:var(--def)">Defenders</td><td>Colombia</td><td>Constitutional Court</td><td>Feb 26, 2010</td><td>Third-term referendum law struck, 7&ndash;2</td><td>0.85</td></tr>
+    <tr><td style="color:var(--prog)">Progenitors</td><td>United States</td><td>Supreme Court</td><td>Jun 29, 2026</td><td>President may fire independent-agency commissioners, 6&ndash;3</td><td>0.84</td></tr>
+    <tr><td style="color:var(--coll)">Collaborators</td><td>Venezuela</td><td>Supreme Tribunal of Justice</td><td>Aug 22, 2024</td><td>Maduro&rsquo;s victory certified without tally sheets</td><td>0.02</td></tr>
+  </table>
+  <p class="footer-tag">Roles: Dichio &amp; Logvinenko 2024: 6. Index: Varieties of Democracy project, version 16, Judicial Constraints on the Executive (0&ndash;1). Sources for each ruling: additional slides.</p>
+</section>
+
+<!-- 16 · Mexico -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag def">Defenders</span>Mexico · Supreme Court of Justice, 2023&ndash;2025</p>
+  <h2>Mexico: from &ldquo;Plan B&rdquo; to an elected court</h2>
+  <div class="chartwrap chart" id="c-mexico"></div>
+  <div class="explain">
+    <p><b>&ldquo;Plan B&rdquo; (2022&ndash;23).</b> President Andrés Manuel López Obrador&rsquo;s package cutting the budget and powers of the National Electoral Institute. <b>May 8, 2023:</b> the Supreme Court voids its first part, 9&ndash;2, for violating legislative procedure: &ldquo;There was no real and substantive democratic deliberation&rdquo; (Justice Luis María Aguilar Morales).</p>
+    <p><b>September 2024:</b> constitutional reform makes all federal judges elected by popular vote. <b>June 1, 2025:</b> 881 federal posts elected, including all 9 Supreme Court seats (down from 11); turnout 13.02%. <b>September 1, 2025:</b> new court seated; president Hugo Aguilar Ortiz.</p>
+  </div>
+  <p class="footer-tag">Varieties of Democracy project, version 16: v2x_jucon, Mexico. Al Jazeera, May 8, 2023; Americas Society / Council of the Americas, &ldquo;Six Facts to Understand Mexico&rsquo;s 2025 Judicial Elections&rdquo;; National Electoral Institute turnout via Wikipedia.</p>
+</section>
+
+<!-- 23 · Documentary -->
+<section class="slide">
+  <p class="kicker">Documentary · Mexico · 2026 · 28 min</p>
+  <h2><em>Losing Judgment: Mexico&rsquo;s Judicial Reform</em></h2>
+  <p style="margin-top:.4rem"><a class="btn" href="https://www.youtube.com/watch?v=NwMdy0tybqs" target="_blank" rel="noopener">&#9654;&nbsp; Watch on YouTube</a></p>
+  <ul class="big compact" style="margin-top:1rem">
+    <li>Director: Amir Galván Cervera (Réplica Films); released September 18, 2026</li>
+    <li>Subject: the 2024 reform that replaced about 7,000 judges and merit appointment with popular election; the first judicial election, June 2025</li>
+  </ul>
+  <p class="collabel" style="margin-top:1.2rem">While watching, note</p>
+  <ol class="task" style="margin-top:.2rem">
+    <li>What the court did before the reform, and who objected</li>
+    <li>How the reform was justified, and by whom</li>
+    <li>Which of the four roles fits the court before and after: steward, defender, progenitor, collaborator</li>
+  </ol>
+  <p class="footer-tag">Producers: Rule of Law Lab, New York University School of Law; Juicio Justo; Konrad Adenauer Foundation, Mexico. Film page: &ldquo;Losing Judgment: Mexico&rsquo;s Judicial Reform&rdquo; (film page). The film is produced by organizations critical of the reform. Backup if streaming fails: NewsHour (Public Broadcasting Service), &ldquo;Brazil&rsquo;s former president convicted of attempted coup,&rdquo; September 11, 2025, 8 min 58 s, <a href="https://www.pbs.org/video/verdict-in-brazil-1757624042/">pbs.org/video/verdict-in-brazil-1757624042</a>.</p>
+</section>
+<!-- 10 · Paradox -->
+<section class="slide">
+  <p class="kicker">Part II · The judiciary · Dichio &amp; Logvinenko 2024</p>
+  <h2>Courts and majorities</h2>
+  <blockquote class="smaller">&ldquo;Judicial systems are fundamentally undemocratic, operating not on the principles of popular sovereignty and majority rule but rather on the authority of legal opinion, precedent, and doctrinal interpretation.&rdquo;</blockquote>
+  <blockquote class="smallest">&ldquo;This is a feature that makes judiciaries both powerful and vulnerable to the wrath of popularly elected leaders.&rdquo;</blockquote>
+  <p class="footer-tag">Dichio &amp; Logvinenko, &ldquo;Stewards, Defenders, Progenitors, and Collaborators: Courts in the Age of Democratic Decline,&rdquo; <em>Law &amp; Policy</em> (2024): 2. Introduction to the special issue &ldquo;Global Perspectives on Judicial Politics and Democratic Backsliding&rdquo; (10 articles, 15 authors).</p>
+</section>
+
+<!-- 5 · Scatter -->
+<section class="slide ex">
+  <p class="kicker">Part I · Accountability · 179 countries, 2025</p>
+  <h2>Horizontal and vertical accountability, 2025</h2>
+  <div class="split w60">
+    <div class="chartwrap chart" id="c-scatter"></div>
+    <div class="explain one" style="margin-top:0">
+      <p><b>Each dot</b> is one country in 2025. Named dots are this week&rsquo;s cases.</p>
+      <p><b>Horizontal axis.</b> Horizontal Accountability Index: how far courts, the legislature and oversight agencies can question and sanction the government. 0 = not at all, 1 = fully.</p>
+      <p><b>Vertical axis.</b> Vertical Accountability Index: how far citizens can hold the government accountable through parties and free, fair elections. Same 0&ndash;1 scale.</p>
+      <p><b>Data.</b> Annual surveys of country experts (typically five or more per country), combined statistically by the Varieties of Democracy project, University of Gothenburg.</p>
+    </div>
+  </div>
+  <p class="footer-tag">Varieties of Democracy project, dataset version 16 (data through 2025): v2x_horacc_osp and v2x_veracc_osp, retrieved from the project&rsquo;s public data repository.</p>
+</section>
+
+<!-- 11 · Judicial constraints small multiples -->
+<section class="slide ex">
+  <p class="kicker">Part II · The judiciary · eight countries, 2000&ndash;2025</p>
+  <h2>Judicial Constraints on the Executive Index</h2>
+  <div class="chartwrap chart" id="c-jucon8"></div>
+  <div class="explain">
+    <p><b>Question the index answers:</b> &ldquo;To what extent does the executive respect the constitution and comply with court rulings, and to what extent is the judiciary able to act in an independent fashion?&rdquo;</p>
+    <p><b>Scale:</b> 0 (no constraint) to 1 (full constraint). Built from expert ratings of high-court and lower-court independence, government compliance with rulings, and executive respect for the constitution.</p>
+  </div>
+  <p class="footer-tag">Varieties of Democracy project, dataset version 16: v2x_jucon; question text quoted from the codebook. Panels ordered by 2025 value.</p>
+</section>
+
+<!-- P1 · The project -->
+<section class="slide ex">
+  <p class="kicker">Prologue · the project behind this week · 2022&ndash;2025</p>
+  <h2>From an Occidental workshop to a journal special issue</h2>
+  <div class="chartwrap chart" id="c-proj"></div>
+  <div class="explain">
+    <p><b>The Young Initiative.</b> The John Parke Young Initiative on the Global Political Economy at Occidental is funded by an endowment. John Parke Young (Occidental Class of 1917) chaired the college&rsquo;s economics department, headed the State Department&rsquo;s division of international finance, and helped draft the charters of the International Monetary Fund and the World Bank.</p>
+    <p><b>The workshop.</b> &ldquo;Courts and Authoritarian Populism: the United States in Comparative Perspective,&rdquo; Occidental College, December 16&ndash;17, 2022. Organizers: Michael Dichio (University of Utah) and Igor Logvinenko (Occidental).</p>
+    <p><b>The editors:</b> &ldquo;Articles in this issue originated from a workshop organized and sponsored by the Young Initiative for Global Political Economy at Occidental College in late 2022. Several new participants joined the project at a later stage.&rdquo;</p>
+    <p><b>The journal.</b> <em>Law &amp; Policy</em>, published by the University of Denver and Wiley. Issue title: &ldquo;Global Perspectives on Judicial Politics and Democratic Backsliding.&rdquo;</p>
+  </div>
+  <p class="footer-tag">Occidental College, Young Initiative event page, &ldquo;Courts and Authoritarian Populism&rdquo;; oxy.edu, &ldquo;John Parke Young Initiative on the Global Political Economy&rdquo;; Dichio &amp; Logvinenko, <em>Law &amp; Policy</em> 47 (2025): e12251, pp. 3, 10. A second workshop: European Consortium for Political Research, Toulouse, April 2023 (Dichio &amp; Logvinenko 2024b: 319).</p>
+</section>
+
+<!-- P3 · Findings -->
+<section class="slide ex">
+  <p class="kicker">Prologue · key findings · the six articles in the readings folder</p>
+  <h2>Six findings</h2>
+  <div class="cards" id="findings" style="grid-template-columns:1fr 1fr 1fr;gap:.6rem .9rem">
+    <div class="card"><h3>United States, 2020 election cases</h3><p class="who">Dichio &amp; Logvinenko 2024b · 20 federal rulings, 17 interviews</p><p>All 20 rulings went against the Trump campaign&rsquo;s claims: 10 by Democratic appointees, 10 by Republican appointees. Procedural rules such as standing, mootness and laches carried norms of judicial independence.</p><p style="font-family:var(--serif);margin-top:.3rem">&ldquo;culture and practice within institutions eat documents for lunch&rdquo; <span class="who">(a state supreme court judge, p. 301)</span></p></div>
+    <div class="card"><h3>United States, the Supreme Court</h3><p class="who">Gardbaum 2024 · comparative design</p><p>Life tenure, decentralized review and opposition-run states make United States courts hard to capture, yet the same independence lets the Supreme Court pursue democratic backsliding on its own account.</p><p style="font-family:var(--serif);margin-top:.3rem">&ldquo;we are talking about resistance, or &lsquo;speed bumps,&rsquo; and certainly not complete insurance or protection&rdquo; <span class="who">(p. 353)</span></p></div>
+    <div class="card"><h3>Latin America</h3><p class="who">Gamboa, García-Holgado &amp; Gonzalez-Ocantos 2024 · Colombia, Argentina, Mexico</p><p>Narrow, procedural, one-shot rulings against power grabs held; long anti-corruption campaigns (Brazil&rsquo;s Car Wash, Peru, Ecuador) inflamed conflict and helped outsiders.</p><p style="font-family:var(--serif);margin-top:.3rem">&ldquo;Whatever the reason, democracy lived to fight another day and judges emerged from these battles relatively unscathed.&rdquo; <span class="who">(p. 372)</span></p></div>
+    <div class="card"><h3>Turkey</h3><p class="who">Esen 2025 · 2002&ndash;2023</p><p>The secular opposition used high courts against an elected government; the governing party then cited the courts&rsquo; &ldquo;democratic deficit&rdquo; to justify packing them (2010 referendum) and purging them (after 2016).</p><p style="font-family:var(--serif);margin-top:.3rem">&ldquo;Judicial independence is necessary but not sufficient for democratic consolidation.&rdquo; <span class="who">(p. 16)</span></p></div>
+    <div class="card"><h3>Europe: how judges resist</h3><p class="who">Šipulová 2025 · interviews in 10 European countries</p><p>Judges resist on the bench (rulings, timing, references to European courts) and off it (resignations, protest marches, media). Resistance can also shield judges of a former regime from democratic reform.</p><p style="font-family:var(--serif);margin-top:.3rem">&ldquo;Resistance is not a right, a duty or a virtue of judges.&rdquo; <span class="who">(p. 19)</span></p></div>
+    <div class="card"><h3>The whole issue</h3><p class="who">Dichio &amp; Logvinenko 2024a · introduction</p><p>Courts act as stewards, defenders, progenitors or collaborators; their capacity to resist depends on the political context, and courts alone cannot save a democracy.</p><p style="font-family:var(--serif);margin-top:.3rem">&ldquo;the true cures for democracy&rsquo;s ailments lie beyond the courthouse walls&rdquo; <span class="who">(p. 10)</span></p></div>
+
+  </div>
+  <p class="footer-tag">Page numbers refer to the published <em>Law &amp; Policy</em> versions in the course readings folder.</p>
+</section>
+
+<!-- 35 · Why keep courts -->
+<section class="slide ex">
+  <p class="kicker">Part III · Collaborators · Ginsburg &amp; Moustafa 2008 (depth)</p>
+  <h2>Why authoritarian rulers keep courts</h2>
+  <div class="chartwrap chart" id="c-hub" style="max-width:1000px"></div>
+  <div class="explain one">
+    <p><b>Russia&rsquo;s &ldquo;legal dualism&rdquo; (Popova 2017).</b> Ordinary commercial and administrative cases are decided by law; cases that matter to the Kremlin are decided by political instruction.</p>
+  </div>
+  <p class="footer-tag">Paraphrase of Tom Ginsburg &amp; Tamir Moustafa, &ldquo;Introduction: The Functions of Courts in Authoritarian Politics,&rdquo; in <em>Rule by Law</em> (Cambridge, 2008): 1&ndash;22, and Maria Popova, &ldquo;Putin-Style &lsquo;Rule of Law&rsquo;,&rdquo; <em>Daedalus</em> 146, no. 2 (2017). Neither text is in the course folder; verify wording before quoting.</p>
+</section>
+
+<!-- 24 · Brazil timeline -->
+<section class="slide ex">
+  <p class="kicker">Part IV · Brazil · 2014&ndash;2026</p>
+  <h2>Brazil&rsquo;s courts and presidents, 2014&ndash;2026</h2>
+  <div class="chartwrap chart" id="c-brtl"></div>
+  <div class="explain three">
+    <p><b>Act 1 · Operation Car Wash, 2014&ndash;2021.</b> Anti-corruption investigation and trials; front-runner Lula jailed and barred in 2018.</p>
+    <p><b>Act 2 · Supreme Federal and Superior Electoral Courts, 2019&ndash;2025.</b> Inquiries, election rulings, conviction of former President Bolsonaro.</p>
+    <p><b>Act 3 · Reaction, 2025&ndash;2026.</b> United States tariffs and sanctions; Congress&rsquo;s sentence-reduction law; the October 2026 runoff.</p>
+  </div>
+  <p class="footer-tag">Detail and sources: additional slides. Line: Varieties of Democracy project, version 16, Judicial Constraints on the Executive, Brazil (0&ndash;1).</p>
+</section>
+
+<!-- 29 · Two views -->
+<section class="slide">
+  <p class="kicker">Part IV · Brazil · two views of the Supreme Federal Court</p>
+  <h2>Two views of the Brazilian court</h2>
+  <div class="twocol">
+    <div class="col">
+      <div class="collabel"><em>The Economist</em> · April 2025</div>
+      <div class="colq">&ldquo;No figure embodies the problems with Brazil&rsquo;s Supreme Court more than Alexandre de Moraes. His record shows that judicial power needs to be pared back.&rdquo;<cite><em>The Economist</em>, post on X, April 2025, introducing its article on Moraes</cite></div>
+    </div>
+    <div class="col">
+      <div class="collabel">Steven Levitsky · August 12, 2025</div>
+      <div class="colq">&ldquo;The great irony is that the United States is punishing Brazil today for doing what Americans should have done.&rdquo;<cite>Lecture at the Brazilian Senate, Brasília; reported by Estadão / <em>O Liberal</em>, translated from Portuguese</cite></div>
+    </div>
+  </div>
+  <p class="footer-tag">Steven Levitsky (Harvard): co-author of <em>How Democracies Die</em> (2018) and, with Lucan Way, of this course&rsquo;s Week 1 reading on competitive authoritarianism.</p>
+</section>
+
+<!-- 30 · Tuesday close -->
+<section class="slide">
+  <p class="kicker">Part IV · close · Dichio &amp; Logvinenko 2024: 10</p>
+  <blockquote class="smaller">&ldquo;There are limits to judicial power in defending democracy, suggesting that the ultimate preservation of democratic principles may rest more heavily on electoral outcomes&hellip; it is imperative to remember that the true cures for democracy&rsquo;s ailments lie beyond the courthouse walls.&rdquo;</blockquote>
+  <p class="footer-tag">Dichio &amp; Logvinenko 2024: 10. Tuesday, November 3, 2026: United States midterm elections.</p>
+</section>
+
+<!-- 45 · Logistics -->
+<section class="slide">
+  <p class="kicker">Week 11 · logistics</p>
+  <h2>This week and next</h2>
+  <ul class="big compact">
+    <li><b>Tue Nov 3, before class:</b> email your literature-review topic</li>
+    <li><b>Wed Nov 4, 8 pm:</b> Connector/Applier post in the shared document</li>
+    <li><b>Wed Nov 4, noon&ndash;1 pm (optional):</b> Leah Stokes, <em>The Carbon Wave</em></li>
+    <li><b>Tue Nov 10:</b> Quiz 2 (Weeks 8&ndash;10 core readings; not this week), then the literature-review workshop: bring a draft annotated bibliography</li>
+    <li><b>Thu Nov 12:</b> annotated bibliography due; guest Phillip Ayoub (University College London)</li>
+  </ul>
+</section>
+
+<!-- A0 · Additional slides divider -->
+<section class="slide divider">
+  <p class="kicker">Additional slides · Tuesday</p>
+  <h1>Additional slides</h1>
+  <p class="sub">Accountability · the special issue · the four cases in detail · Brazil in detail</p>
+</section>
+<!-- 2 · Overview -->
+<section class="slide">
+  <p class="kicker">Week 11 · Overview</p>
+  <h2>Seven parts, two meetings</h2>
+  <table class="biblio">
+    <tr><th>Part</th><th>Topic</th><th>Sources</th><th>Day</th></tr>
+    <tr><td>Prologue</td><td>The project: an Occidental workshop, a journal special issue, its authors and findings</td><td><em>Law &amp; Policy</em> special issue, 2024&ndash;2025</td><td>Tue</td></tr>
+    <tr><td>I</td><td>Three directions of accountability: vertical, horizontal, diagonal</td><td>O&rsquo;Donnell 1998; Varieties of Democracy project; Gamboa et al. 2024</td><td>Tue</td></tr>
+    <tr><td>II</td><td>The judiciary: &ldquo;neither force nor will, but merely judgment&rdquo;</td><td>Hamilton, <em>Federalist</em> No. 78 (1788); Dichio &amp; Logvinenko 2024</td><td>Tue</td></tr>
+    <tr><td>III</td><td>Four kinds of courts: stewards, defenders, progenitors, collaborators</td><td>Dichio &amp; Logvinenko 2024; Gamboa et al. 2024</td><td>Tue</td></tr>
+    <tr><td>IV</td><td>Brazil, 2014&ndash;2026</td><td>NewsHour video (2025); news sources</td><td>Tue</td></tr>
+    <tr><td>V</td><td>How courts are captured</td><td>Gamboa et al. 2024; Scheppele 2018; Esen 2025</td><td>Thu</td></tr>
+    <tr><td>VI</td><td>Rome: proscription, a bribed jury, an execution without trial</td><td>Beard, <em>SPQR</em>, ch. 1; Plutarch; Cicero</td><td>Thu</td></tr>
+    <tr><td>VII</td><td>Hungary, 2026: undoing a captured court</td><td>News sources; Human Rights Watch</td><td>Thu</td></tr>
+  </table>
+</section>
+
+<!-- 4 · O'Donnell -->
+<section class="slide">
+  <p class="kicker">Part I · Accountability · Guillermo O&rsquo;Donnell, 1998</p>
+  <h2>The original distinction</h2>
+  <blockquote class="smallest">&ldquo;Reasonably free and fair elections provide a means of vertical accountability in these countries, along with freedoms of speech, the press, and association, which permit citizens to voice social demands to public officials (elected or not) and to denounce these same officials for wrongful acts that they may commit.&rdquo;<cite>O&rsquo;Donnell 1998: 112&ndash;113</cite></blockquote>
+  <blockquote class="smallest">&ldquo;This kind of accountability depends on the existence of state agencies that are legally empowered&mdash;and factually willing and able&mdash;to take actions ranging from routine oversight to criminal sanctions or impeachment in relation to possibly unlawful actions or omissions by other agents or agencies of the state.&rdquo;<cite>O&rsquo;Donnell 1998: 117, on horizontal accountability</cite></blockquote>
+  <p class="footer-tag">Guillermo O&rsquo;Donnell (1936&ndash;2011), Argentine political scientist. &ldquo;Horizontal Accountability in New Democracies,&rdquo; <em>Journal of Democracy</em> 9, no. 3 (1998): 112&ndash;126. &ldquo;These countries&rdquo;: new democracies of Latin America, East Asia and post-communist Europe.</p>
+</section>
+
+<!-- 6 · Gamboa link -->
+<section class="slide">
+  <p class="kicker">Part I · Accountability · erosion and resilience</p>
+  <h2>Horizontal checks and elections</h2>
+  <blockquote class="smaller">&ldquo;Governments that successfully erode democracy gravely weaken formal institutions that promote horizontal accountability and guarantee free and fair elections to such an extent that they thwart electoral accountability as well.&rdquo;<cite>Laura Gamboa, <em>Resisting Backsliding</em> (2022): 25, quoted in Gamboa, García-Holgado &amp; González-Ocantos 2024: 360&ndash;361</cite></blockquote>
+  <blockquote class="smallest">&ldquo;Stronger judicial constraints on the executive are significantly associated with greater democratic resilience to experiencing autocratization.&rdquo;<cite>Boese et al., <em>Democratization</em> (2021): 896, global study of 1900&ndash;2019, quoted in Gamboa et al. 2024: 361</cite></blockquote>
+  <p class="footer-tag">Gamboa, García-Holgado &amp; González-Ocantos, &ldquo;Courts Against Backsliding: Lessons from Latin America,&rdquo; <em>Law &amp; Policy</em> 46, no. 4 (2024): 358&ndash;379. Autocratization: a substantial decline in democratic qualities (Week 10).</p>
+</section>
+
+<!-- 7 · Two usages -->
+<section class="slide">
+  <p class="kicker">Part I · Accountability · two meanings of the same words</p>
+  <h2>&ldquo;Horizontal&rdquo; and &ldquo;vertical&rdquo; in this week&rsquo;s readings</h2>
+  <div class="twocol">
+    <div class="col">
+      <div class="collabel">Usage 1 · O&rsquo;Donnell; Varieties of Democracy</div>
+      <div class="colq"><b>Horizontal:</b> state institutions check the government.<br><b>Vertical:</b> citizens check the government through elections.<cite>O&rsquo;Donnell 1998: 112&ndash;117</cite></div>
+    </div>
+    <div class="col">
+      <div class="collabel">Usage 2 · Helmke &amp; Ríos-Figueroa, used by Gamboa et al.</div>
+      <div class="colq"><b>Horizontal control</b> &ldquo;involves arbitrating interbranch or intergovernmental disputes.&rdquo;<br><b>Vertical control:</b> judges&rsquo; involvement in &ldquo;interpreting the scope of individual and human rights.&rdquo;<cite>Helmke &amp; Ríos-Figueroa 2011: 7, quoted in Gamboa et al. 2024: 362</cite></div>
+    </div>
+  </div>
+  <ul class="big compact" style="margin-top:1.2rem">
+    <li>Gamboa et al. study horizontal control only: courts refereeing the other branches</li>
+  </ul>
+  <p class="footer-tag">Gretchen Helmke &amp; Julio Ríos-Figueroa, eds., <em>Courts in Latin America</em> (Cambridge University Press, 2011).</p>
+</section>
+
+<!-- P2 · Authors -->
+<section class="slide ex">
+  <p class="kicker">Prologue · the authors · ten articles</p>
+  <h2>Who wrote the special issue</h2>
+  <div class="chartwrap chart" id="c-authors"></div>
+  <p class="footer-tag">Affiliations as printed in each article or on the workshop page. Filled dot: listed as a participant in the December 2022 Occidental workshop (also attending: Janice Gallagher, Rutgers University&ndash;Newark). Dark-outlined boxes: in this week&rsquo;s readings folder.</p>
+</section>
+
+<!-- 13 · Germany -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag stew">Stewards</span>Germany · Federal Constitutional Court · November 15, 2023</p>
+  <h2>The &euro;60 billion climate fund ruling</h2>
+  <div class="split">
+    <div class="chartwrap chart" id="c-germany"></div>
+    <ul class="tl">
+      <li><b>January 2022</b><span>Parliament passes the Second Supplementary Budget Act 2021, moving unused pandemic borrowing to a climate fund</span></li>
+      <li><b>2022</b><span>197 opposition members of parliament (Christian Democrats) ask the Court to review it</span></li>
+      <li class="now"><b>Nov 15, 2023</b><span>Court declares the act void</span></li>
+      <li><b>Nov 2023</b><span>Finance ministry freezes most new spending commitments</span></li>
+      <li><b>Nov 6, 2024</b><span>Chancellor Scholz dismisses Finance Minister Lindner; three-party coalition ends</span></li>
+      <li><b>Feb 23, 2025</b><span>Early federal election</span></li>
+    </ul>
+  </div>
+  <div class="explain">
+    <p><b>Debt brake.</b> A 2009 amendment to Germany&rsquo;s constitution (the Basic Law) that caps new federal borrowing; it may be suspended only in an emergency, such as the pandemic years.</p>
+    <p><b>The Court:</b> &ldquo;The Second Supplementary Budget Act 2021 does not satisfy the constitutional requirements for emergency borrowing.&rdquo; Result: &ldquo;the volume of the Climate and Transformation Fund is reduced by EUR 60 billion.&rdquo;</p>
+  </div>
+  <p class="footer-tag">Federal Constitutional Court of Germany, press release no. 101/2023, Judgment of 15 November 2023 (case 2 BvF 1/22). The Local (Germany), November 21, 2023. Coalition: Social Democrats, Greens, Free Democrats.</p>
+</section>
+
+<!-- 14 · Colombia -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag def">Defenders</span>Colombia · Constitutional Court · February 26, 2010</p>
+  <h2>No third term for President Uribe</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>Aug 2002</b><span>Álvaro Uribe takes office; constitution allows one four-year term</span></li>
+      <li><b>2004</b><span>Congress amends the constitution to allow one re-election</span></li>
+      <li><b>Oct 2005</b><span>Constitutional Court upholds that amendment</span></li>
+      <li><b>May 2006</b><span>Uribe re-elected with 62% of the vote</span></li>
+      <li><b>Sep 2009</b><span>Congress passes a law calling a referendum on a third term</span></li>
+      <li class="now"><b>Feb 26, 2010</b><span>Court strikes down the referendum law, 7&ndash;2; no appeal possible</span></li>
+      <li><b>Aug 7, 2010</b><span>Uribe leaves office; Juan Manuel Santos inaugurated</span></li>
+    </ul>
+    <div>
+      <div class="statrow compact" style="margin-top:0">
+        <div class="stat"><div class="v">7&ndash;2</div><div class="l">vote of the Constitutional Court</div></div>
+        <div class="stat"><div class="v">6&times;</div><div class="l">referendum campaign spending relative to the legal limit, per the Court</div></div>
+      </div>
+      <blockquote class="smallest" style="margin-top:1rem">&ldquo;grave violations of principles of democratic participation and transparency&rdquo;<br>&ldquo;flagrant excesses in campaign finance donations&rdquo;<cite>Constitutional Court of Colombia, as reported by Jurist, February 27, 2010</cite></blockquote>
+    </div>
+  </div>
+  <div class="explain">
+    <p><b>Grounds.</b> Procedural: campaign-finance violations, a mismatch between the text submitted and the version Congress approved, inadequate public notice, legislators switching parties to vote.</p>
+    <p><b>Gamboa et al.:</b> courts in Colombia, Argentina and Mexico &ldquo;stopped potential autocrats&rsquo; from enhancing their powers, extending their time in office, or re-engineering the legal contours of the electoral process.&rdquo;</p>
+  </div>
+  <p class="footer-tag">Jurist, &ldquo;Colombia constitutional court strikes down Uribe third term referendum law,&rdquo; February 2010; Gamboa, García-Holgado &amp; González-Ocantos 2024: 363.</p>
+</section>
+
+<!-- 15 · Gamboa table -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag def">Defenders</span>Gamboa, García-Holgado &amp; González-Ocantos 2024</p>
+  <h2>Two ways courts hold executives to account</h2>
+  <table class="biblio">
+    <tr><th></th><th>Constitutional balancing</th><th>Public administration policing</th></tr>
+    <tr><td>What it is</td><td>Rulings against &ldquo;measures designed to weaken the system of checks and balances and enhance executive power&rdquo;</td><td>&ldquo;Inquiries into allegations of corruption by top bureaucrats and elected officials&rdquo;</td></tr>
+    <tr><td>Stakes for politicians</td><td>Lower; &ldquo;further attempts are by no means off the table&rdquo;</td><td>&ldquo;Existential threats for politicians&rdquo;: reputation, exclusion from elections</td></tr>
+    <tr><td>Form</td><td>&ldquo;Discrete&rdquo;: one law, one top-court decision</td><td>&ldquo;Multiple decisions on a single case,&rdquo; many courts, years</td></tr>
+    <tr><td>Legal footing</td><td>Decisions &ldquo;easier to defend from a jurisprudential standpoint&rdquo;</td><td>&ldquo;Requires a degree of legal unorthodoxy&rdquo;</td></tr>
+    <tr><td>Rhetoric</td><td>&ldquo;Classic republican conceptions of liberal democracy&rdquo;</td><td>&ldquo;An anti-politics message&rdquo;</td></tr>
+    <tr><td>Examples</td><td>Colombia 2010, Argentina 2013, Mexico 2023</td><td>Argentina, Brazil, Ecuador, Peru</td></tr>
+  </table>
+  <p class="footer-tag">Gamboa, García-Holgado &amp; González-Ocantos 2024: 359&ndash;360, 363. Argentina 2013: Supreme Court struck down a law to elect judicial-council members on party lists.</p>
+</section>
+
+<!-- 17 · Progenitors claim -->
+<section class="slide">
+  <p class="kicker"><span class="tag prog">Progenitors</span>Dichio &amp; Logvinenko 2024: 6</p>
+  <h2>A court too strong to capture</h2>
+  <blockquote class="smallest">&ldquo;He argues that U.S. courts are comparatively less likely to be captured (and victimized) than those of many other countries, but, for that same reason, U.S. courts are more likely to instigate democratic erosion themselves due to the ways judicial review has become institutionalized and practiced.&rdquo;<cite>On Stephen Gardbaum, &ldquo;Courts and Democratic Backsliding: A Comparative Perspective on the United States&rdquo; (2024)</cite></blockquote>
+  <blockquote class="smallest">Tom Keck: the Supreme Court has regularly &ldquo;declined to check attacks on democracy.&rdquo; Julie Novkov: the Roberts Court is an &ldquo;empowered judiciary&rdquo; that &ldquo;actually drives democratic backsliding.&rdquo;<cite>Dichio &amp; Logvinenko 2024: 6, summarizing Keck 2024 and Novkov 2024 in the same special issue</cite></blockquote>
+  <p class="footer-tag">Dichio &amp; Logvinenko 2024: 6. Judicial review: a court&rsquo;s power to strike down laws and executive actions that conflict with the constitution. Roberts Court: the Supreme Court since 2005 under Chief Justice John Roberts.</p>
+</section>
+
+<!-- 18 · US term -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag prog">Progenitors</span>United States · Supreme Court · term beginning October 2025</p>
+  <h2>Four rulings, February&ndash;June 2026</h2>
+  <div class="chartwrap chart" id="c-us"></div>
+  <div class="explain">
+    <p><b>International Emergency Economic Powers Act (1977)</b> lets the president regulate trade in a declared national emergency. Chief Justice Roberts: &ldquo;[The Act] contains no reference to tariffs or duties.&rdquo;</p>
+    <p><b>Voting Rights Act (1965), Section 2</b> bars voting rules and district maps that dilute minority voters&rsquo; strength.</p>
+    <p><b><em>Humphrey&rsquo;s Executor</em> (1935)</b> allowed Congress to protect commissioners of independent agencies, such as the Federal Trade Commission, from being fired at will. Roberts in 2026: &ldquo;If anything more is left of <em>Humphrey&rsquo;s</em>, we overrule it.&rdquo; President Trump: &ldquo;This Decision gives tremendous additional Power back to the Presidency.&rdquo;</p>
+    <p><b>Birthright citizenship:</b> the Fourteenth Amendment (1868) makes people born in the United States citizens; <em>United States v. Wong Kim Ark</em> (1898).</p>
+  </div>
+  <p class="footer-tag"><em>Learning Resources v. Trump</em> (Feb 20, 2026, 6&ndash;3); <em>Louisiana v. Callais</em> (Apr 29, 2026); <em>Trump v. Slaughter</em> (Jun 29, 2026, 6&ndash;3); <em>Trump v. Barbara</em> (Jun 30, 2026, 6&ndash;3). Sources: Wikipedia; Congressional Research Service; Ballotpedia; Hunter Maclean; National Public Radio, July 1, 2026.</p>
+</section>
+
+<!-- 19 · Venezuela road -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag coll">Collaborators</span>Venezuela · Supreme Tribunal of Justice, 1999&ndash;2024</p>
+  <h2>Venezuela&rsquo;s high court, 1999&ndash;2024</h2>
+  <div class="chartwrap chart" id="c-ven"></div>
+  <div class="explain">
+    <p><b>1999:</b> new constitution under President Hugo Chávez creates the Supreme Tribunal of Justice. <b>2004:</b> a new law enlarges it from 20 to 32 justices, filled by the governing majority.</p>
+    <p><b>2009:</b> the Tribunal allows a second referendum to abolish term limits after voters rejected the change in 2007 (Gamboa et al. 2024: 361).</p>
+    <p><b>December 23, 2015:</b> after losing the legislative election, the outgoing National Assembly appoints 13 justices and 21 alternates.</p>
+    <p><b>March 29, 2017:</b> Ruling 156 transfers the opposition-controlled National Assembly&rsquo;s powers to the Tribunal; partly reversed April 1 after protests.</p>
+  </div>
+  <p class="footer-tag">Varieties of Democracy project, version 16: v2x_jucon, Venezuela. Wikipedia, &ldquo;Supreme Tribunal of Justice (Venezuela)&rdquo;; Human Rights Watch, December 10, 2015; Gamboa et al. 2024: 361.</p>
+</section>
+
+<!-- 20 · Venezuela 2024 -->
+<section class="slide ex">
+  <p class="kicker"><span class="tag coll">Collaborators</span>Venezuela · presidential election of July 28, 2024</p>
+  <h2>The Tribunal certifies Nicolás Maduro, August 22, 2024</h2>
+  <div class="split">
+    <div class="chartwrap chart" id="c-waffle"></div>
+    <ul class="tl">
+      <li><b>July 28, 2024</b><span>Election. Each of about 30,000 voting machines prints a tally sheet with a scannable code</span></li>
+      <li><b>July 29</b><span>National Electoral Council declares Maduro the winner; no machine-by-machine results published</span></li>
+      <li><b>Early August</b><span>Opposition posts copies of about 80% of tally sheets online: Edmundo González ahead &ldquo;by more than a 2-to-1 margin&rdquo;</span></li>
+      <li class="now"><b>August 22</b><span>Supreme Tribunal of Justice certifies Maduro&rsquo;s victory; calls the opposition&rsquo;s tallies forged</span></li>
+    </ul>
+  </div>
+  <div class="explain">
+    <p><b>Election experts</b> invited by the government (Carter Center; United Nations panel) found the announced results lacked credibility.</p>
+    <p><b>Chile&rsquo;s President Gabriel Boric:</b> &ldquo;Today, Venezuela&rsquo;s [Supreme Tribunal] has finally consolidated the fraud.&rdquo;</p>
+  </div>
+  <p class="footer-tag">Associated Press, &ldquo;Venezuela&rsquo;s Supreme Court certifies Maduro&rsquo;s claims that he won presidential election,&rdquo; August 22, 2024. Grid: one square &asymp; 300 voting machines.</p>
+</section>
+
+<!-- 22 · Brazil who's who -->
+<section class="slide ex">
+  <p class="kicker">Part IV · Brazil · courts and judges</p>
+  <h2>Brazil&rsquo;s courts: who is who</h2>
+  <div class="cards">
+    <div class="card"><h3>Supreme Federal Court</h3><p>11 justices, nominated by the president and confirmed by the Senate; retire at 75. Decides constitutional cases <em>and</em> tries the president, ministers and members of Congress for crimes. Many cases are decided by one of two five-justice panels.</p></div>
+    <div class="card"><h3>Superior Electoral Court</h3><p>7 members: 3 Supreme Federal Court justices, 2 from the Superior Court of Justice, 2 lawyers. Runs national elections, counts the electronic vote, and can bar candidates from office.</p></div>
+    <div class="card"><h3>Sérgio Moro</h3><p class="who">Federal trial judge in Curitiba, 1996&ndash;2018</p><p>Presided over the Operation Car Wash corruption trials; convicted Lula in 2017; became Bolsonaro&rsquo;s justice minister in January 2019; elected senator in 2022.</p></div>
+    <div class="card"><h3>Alexandre de Moraes</h3><p class="who">Supreme Federal Court justice since 2017 (appointed by President Michel Temer)</p><p>President of the Superior Electoral Court, August 2022&ndash;June 2024; judge in charge of the inquiries into false news (2019) and the coup plot (2023&ndash;2025).</p></div>
+  </div>
+  <div class="explain one">
+    <p><b>The presidents.</b> Luiz Inácio Lula da Silva (Workers&rsquo; Party): president 2003&ndash;2010 and since 2023. Jair Bolsonaro (Liberal Party since 2021): president 2019&ndash;2022. Flávio Bolsonaro, his eldest son, senator and 2026 presidential candidate.</p>
+  </div>
+  <p class="footer-tag">Constitution of Brazil (1988), arts. 101&ndash;102 and 119; court websites. Moraes&rsquo;s electoral-court term and inquiry roles: Associated Press and Al Jazeera reporting, 2022&ndash;2025.</p>
+</section>
+
+<!-- 25 · Act 1 Car Wash -->
+<section class="slide ex">
+  <p class="kicker">Part IV · Brazil · Act 1 · Operation Car Wash, 2014&ndash;2021</p>
+  <h2>A corruption probe and an election</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>March 2014</b><span>Operation Car Wash begins: bribes paid by builders for contracts with the state oil company, Petrobras</span></li>
+      <li><b>July 12, 2017</b><span>Judge Moro convicts Lula of corruption and money laundering</span></li>
+      <li><b>April 7, 2018</b><span>Lula jailed after an appeals court confirms the conviction</span></li>
+      <li><b>Sep 1, 2018</b><span>Superior Electoral Court bars Lula, then leading the polls, from the presidential race</span></li>
+      <li><b>Oct 28, 2018</b><span>Jair Bolsonaro elected president with 55.1%</span></li>
+      <li><b>Jan 2019</b><span>Moro becomes Bolsonaro&rsquo;s minister of justice</span></li>
+      <li class="now"><b>March 2021</b><span>Supreme Federal Court annuls Lula&rsquo;s convictions (wrong court) and rules Moro was biased</span></li>
+    </ul>
+    <div>
+      <div class="statrow compact" style="margin-top:0">
+        <div class="stat"><div class="v">580</div><div class="l">days Lula spent in prison, April 2018&ndash;November 2019</div></div>
+        <div class="stat"><div class="v">8 years</div><div class="l">ban from office for candidates whose conviction is upheld on appeal (Clean Record Law, 2010)</div></div>
+      </div>
+      <blockquote class="smallest" style="margin-top:1rem">&ldquo;This is a type of intervention that often demonizes politics and strengthens the hand of outsiders with dubious democratic credentials, thus multiplying the threats to regime stability.&rdquo;<cite>Gamboa et al. 2024: 363, on public administration policing</cite></blockquote>
+    </div>
+  </div>
+  <p class="footer-tag">Gamboa, García-Holgado &amp; González-Ocantos 2024: 363. Dates: Associated Press, Reuters and British Broadcasting Corporation reporting, 2014&ndash;2021. 2018 runoff result: Superior Electoral Court.</p>
+</section>
+
+<!-- 26 · Act 2 Defense -->
+<section class="slide ex">
+  <p class="kicker">Part IV · Brazil · Act 2 · the courts and Jair Bolsonaro, 2019&ndash;2026</p>
+  <h2>From inquiry to prison</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>March 2019</b><span>Supreme Federal Court opens its own inquiry into threats and false news against the court; Moraes in charge</span></li>
+      <li><b>Oct 30, 2022</b><span>Lula defeats Bolsonaro, 50.9% to 49.1%</span></li>
+      <li><b>Jan 8, 2023</b><span>Bolsonaro supporters storm Congress, the Supreme Federal Court and the presidential palace</span></li>
+      <li><b>June 30, 2023</b><span>Superior Electoral Court bars Bolsonaro from office for 8 years, 5&ndash;2: abuse of power at a July 2022 meeting with foreign ambassadors</span></li>
+      <li class="now"><b>Sep 11, 2025</b><span>Supreme Federal Court panel convicts Bolsonaro of plotting a coup, 4&ndash;1: 27 years and 3 months</span></li>
+      <li><b>Nov 22&ndash;25, 2025</b><span>Arrested after damaging his ankle monitor; begins serving sentence</span></li>
+      <li><b>March 2026</b><span>Moved to house arrest on humanitarian (health) grounds</span></li>
+    </ul>
+    <div class="chartwrap chart" id="c-bra"></div>
+  </div>
+  <p class="footer-tag">National Public Radio, June 30, 2023; Organized Crime and Corruption Reporting Project, September 11, 2025; Al Jazeera, November 22 and 24, 2025; Free Malaysia Today (Agence France-Presse), March 25, 2026. Chart: Varieties of Democracy project, version 16, v2x_jucon, Brazil.</p>
+</section>
+
+<!-- 27 · Act 3 Sword and purse from abroad -->
+<section class="slide ex">
+  <p class="kicker">Part IV · Brazil · Act 3 · reaction, 2025&ndash;2026</p>
+  <h2>Sanctions, tariffs and a sentence-reduction law</h2>
+  <div class="chartwrap chart" id="c-react"></div>
+  <div class="explain">
+    <p><b>July 9, 2025, President Trump to President Lula:</b> &ldquo;This Trial should not be taking place. It is a Witch Hunt that should end IMMEDIATELY!&rdquo; Announced a 50% tariff on Brazilian goods.</p>
+    <p><b>July 30, 2025:</b> United States Treasury sanctions Justice Moraes under the Global Magnitsky Act (asset freezes on foreign officials accused of human-rights abuse or corruption); a 40% tariff is added to the existing 10%.</p>
+    <p><b>Congress, December 2025&ndash;April 2026:</b> passes a law that could shorten sentences of those convicted in the coup plot; Lula vetoes it in January; Congress overrides the veto in late April.</p>
+    <p><b>May 9, 2026:</b> Moraes suspends the law until the full Supreme Federal Court rules on its constitutionality.</p>
+  </div>
+  <p class="footer-tag">Trump letter, July 9, 2025 (English text published by Poder360); Al Jazeera, July 30, 2025; Sinclair Broadcast Group, July 30, 2025; Al Jazeera, May 9, 2026.</p>
+</section>
+
+<!-- 28 · Runoff 2026 -->
+<section class="slide ex">
+  <p class="kicker">Part IV · Brazil · presidential runoff, October 25, 2026</p>
+  <h2>Lula re-elected; Flávio Bolsonaro seeks annulment</h2>
+  <div class="split">
+    <div class="chartwrap chart" id="c-runoff"></div>
+    <ul class="tl">
+      <li><b>Oct 25</b><span>Storms and transport problems: both campaigns ask for more voting time; a Supreme Federal Court justice grants a two-hour extension</span></li>
+      <li><b>Oct 25</b><span>Lula wins by about 4.4 million votes; first candidate since 1989 to win a runoff after trailing in the first round</span></li>
+      <li><b>Oct 26</b><span>Flávio Bolsonaro refuses to concede and asks for annulment; his Liberal Party recognizes the result; Organization of American States and Carter Center observers find no reason to doubt the count</span></li>
+      <li><b>Oct 26&ndash;27</b><span>Moraes orders Flávio to surrender his passports (money-laundering inquiry, about 130 million reais); Flávio leaves for Argentina, then the United States</span></li>
+    </ul>
+  </div>
+  <div class="explain">
+    <p><b>Flávio Bolsonaro, on the extension:</b> a justice who was &ldquo;a former lawyer for Lula&rdquo; &ldquo;changed the rules of the game in the middle of the match.&rdquo;</p>
+    <p><b>Lula, on the result:</b> &ldquo;a defeat for denialism and lies.&rdquo; His new term begins January 5, 2027.</p>
+  </div>
+  <p class="footer-tag">Washington Office on Latin America, &ldquo;Lula&rsquo;s Electoral Win and Bolsonaro&rsquo;s Departure Deepen Tensions Between Brazil and the U.S.,&rdquo; October 2026; NewsHour (Public Broadcasting Service), October 26, 2026 (translated quotations). 130 million reais &asymp; 24 million dollars.</p>
+</section>
+
+<!-- T0 · Thursday divider -->
+<section class="slide divider">
+  <p class="kicker">Thursday, November 5</p>
+  <h1>Capture, Rome, Hungary</h1>
+</section>
+<!-- 31 · Part V divider -->
+<section class="slide divider">
+  <p class="kicker">Part V · Capture · Thursday, November 5</p>
+  <blockquote class="smaller">&ldquo;Wanna be autocrats seek to coat their projects with a &lsquo;legal façade&rsquo;&hellip; and promote a type &lsquo;autocratic legalism&rsquo;&hellip; that simultaneously undermines the rule of law and rules by law.&rdquo;<cite>Gamboa, García-Holgado &amp; González-Ocantos 2024: 361, citing Lührmann &amp; Lindberg 2019, Corrales 2015 and Scheppele 2018</cite></blockquote>
+</section>
+
+<!-- 32 · How capture works -->
+<section class="slide ex">
+  <p class="kicker">Part V · Capture · Aguiar-Aguilar; Landau &amp; Dixon</p>
+  <h2>From victim to instrument</h2>
+  <blockquote class="smallest">&ldquo;Using arguments touting efficiency, public austerity, governability, or the fight against judicial corruption, false democrats remove (legally and surreptitiously) judges and/or justices from the bench [&hellip;] With the court in their pockets, we can expect false democrats to request their court to decide in favor of the constitutionality of their reelection, to drop corruption cases targeting the ruling elite, or to validate restrictions imposed on free speech or freedom of association.&rdquo;<cite>Aguiar-Aguilar 2023: 12, quoted in Gamboa et al. 2024: 361</cite></blockquote>
+  <div class="twocol" style="margin-top:.9rem">
+    <div class="col"><div class="collabel">Captured court as a shield</div><div class="colq" style="font-family:var(--sans)">Validates the executive&rsquo;s own laws and amendments. <b>Venezuela, 2009:</b> allows a second term-limit referendum after voters said no in 2007.</div></div>
+    <div class="col"><div class="collabel">Captured court as a sword</div><div class="colq" style="font-family:var(--sans)">Itself attacks a part of democracy. <b>Bolivia, 2017:</b> rules term limits violate President Evo Morales&rsquo;s &ldquo;political rights,&rdquo; after he lost a 2016 referendum.</div></div>
+  </div>
+  <p class="footer-tag">Gamboa et al. 2024: 361, summarizing Landau &amp; Dixon 2020 on &ldquo;abusive judicial review&rdquo;: courts as &ldquo;defensive weapons&rdquo; and &ldquo;offensive weapons.&rdquo;</p>
+</section>
+
+<!-- 33 · Hungary 2010-2013 -->
+<section class="slide ex">
+  <p class="kicker">Part V · Capture · Hungary, 2010&ndash;2013</p>
+  <h2>Hungary under Fidesz, 2010&ndash;2013</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>April 2010</b><span>Fidesz and its Christian Democratic ally win 263 of 386 seats with 52.7% of the list vote: a two-thirds majority, enough to amend the constitution alone</span></li>
+      <li><b>2010&ndash;11</b><span>Constitutional Court: nomination rules changed, review of budget and tax laws restricted; court enlarged from 11 to 15 judges (2011)</span></li>
+      <li><b>2011&ndash;12</b><span>New constitution (the Fundamental Law) in force January 1, 2012; judges&rsquo; retirement age cut from 70 to 62, forcing out senior judges</span></li>
+      <li><b>Nov 6, 2012</b><span>Court of Justice of the European Union: the retirement cut is unlawful age discrimination</span></li>
+      <li class="now"><b>March 2013</b><span>Fourth Amendment annuls the Constitutional Court&rsquo;s case law before 2012 and limits its review of constitutional amendments to procedure</span></li>
+    </ul>
+    <div class="chartwrap chart" id="c-hunpol"></div>
+  </div>
+  <p class="footer-tag">Scheppele, &ldquo;Autocratic Legalism,&rdquo; <em>University of Chicago Law Review</em> 85 (2018) (paraphrase); <em>European Commission v. Hungary</em>, Case C-286/12 (2012); I&middot;CONnect, May 12, 2026. Chart: Varieties of Democracy project, version 16, v2x_jucon.</p>
+</section>
+
+<!-- 34 · Turkey -->
+<section class="slide ex">
+  <p class="kicker">Part V · Capture · Turkey, 2010&ndash;2017 · Esen 2025 (depth)</p>
+  <h2>Turkey: packing, purge, redesign</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>2008</b><span>Constitutional Court comes one vote short of banning the governing Justice and Development Party</span></li>
+      <li><b>Sep 12, 2010</b><span>Referendum (58% yes) enlarges the Constitutional Court to 17 members and reshapes the council that appoints and disciplines judges</span></li>
+      <li><b>July 15, 2016</b><span>Failed coup attempt</span></li>
+      <li class="now"><b>July 16, 2016</b><span>2,745 judges and prosecutors removed from their posts</span></li>
+      <li><b>April 16, 2017</b><span>Referendum (51.4% yes): judges&rsquo; council cut to 13 members, all chosen by the president or parliament</span></li>
+    </ul>
+    <div class="chartwrap chart" id="c-tur"></div>
+  </div>
+  <p class="footer-tag">Esen, &ldquo;Judicial Transformation in a Competitive Authoritarian Regime: Evidence from the Turkish Case,&rdquo; <em>Law &amp; Policy</em> 47, no. 1 (2025) (depth reading; paraphrase). Dismissal count: Reuters and Anadolu Agency, July 16, 2016; Esen 2025: 14: under the two-year state of emergency, &ldquo;approximately 100,000 civil servants, 5000 judges and prosecutors&rdquo; purged. Chart: Varieties of Democracy project, version 16, v2x_jucon.</p>
+</section>
+
+<!-- 36 · Rome timeline -->
+<section class="slide ex">
+  <p class="kicker">Part VI · Rome · the late Republic</p>
+  <h2>Rome: 82 to 43, before the Common Era</h2>
+  <div class="chartwrap chart" id="c-rome"></div>
+  <div class="explain">
+    <p><b>The Republic.</b> Rome was governed by two annually elected consuls, other elected magistrates, popular assemblies and the Senate (former magistrates, serving for life).</p>
+    <p><b>Criminal courts</b> (<em>quaestiones</em>) were standing jury courts for specific crimes, such as extortion by provincial governors. Who sat on the juries was a political fight.</p>
+  </div>
+  <p class="footer-tag">Beard, <em>SPQR: A History of Ancient Rome</em> (2015), ch. 1, &ldquo;Cicero&rsquo;s Finest Hour&rdquo;; Plutarch, <em>Life of Sulla</em> 31&ndash;33. All years before the Common Era. Paraphrase; the Beard chapter is not in the course folder.</p>
+</section>
+
+<!-- 37 · Sulla -->
+<section class="slide ex">
+  <p class="kicker">Part VI · Rome · Sulla&rsquo;s proscriptions, 82&ndash;81</p>
+  <h2>Lists in the Forum</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>82</b><span>Lucius Cornelius Sulla takes Rome by force after a civil war and is named dictator</span></li>
+      <li><b>Day 1</b><span>Posts a list of 80 names in the Forum: anyone may kill them</span></li>
+      <li><b>Next days</b><span>220 more names after one day&rsquo;s interval, then 220 more</span></li>
+      <li><b>Rules</b><span>Killers rewarded; property of the proscribed sold at auction; their sons and grandsons barred from office</span></li>
+      <li><b>81</b><span>Sulla gives the criminal jury courts to senators only</span></li>
+    </ul>
+    <div class="statrow" style="margin-top:0;flex-direction:column;gap:1.2rem">
+      <div class="stat"><div class="v">520</div><div class="l">names posted in the first three days (Plutarch)</div></div>
+      <div class="stat"><div class="v">Catiline</div><div class="l">killed his own brother, then had the name added to the list (Plutarch, <em>Sulla</em> 32)</div></div>
+    </div>
+  </div>
+  <p class="footer-tag">Plutarch, <em>Life of Sulla</em> 31&ndash;33 (written around 100 of the Common Era); paraphrase. A proscription (Latin <em>proscriptio</em>, &ldquo;public notice&rdquo;) declared a citizen an outlaw.</p>
+</section>
+
+<!-- 38 · Verres -->
+<section class="slide ex">
+  <p class="kicker">Part VI · Rome · the trial of Verres, 70</p>
+  <h2>A governor, a jury and a timetable</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>73&ndash;71</b><span>Gaius Verres governs Sicily; accused of extorting the province</span></li>
+      <li><b>70</b><span>Sicilian cities hire Cicero to prosecute in the extortion court; the jury is all senators</span></li>
+      <li><b>70</b><span>Defense plan: delay the trial into 69, when allies of Verres would hold office and preside</span></li>
+      <li class="now"><b>70</b><span>Cicero gives a short opening speech (<em>Against Verres</em> I), then calls witnesses at once; Verres flees into exile before the verdict</span></li>
+      <li><b>70</b><span>Aurelian Law: juries split among senators, wealthy non-senators (equestrians) and treasury officials</span></li>
+    </ul>
+    <div class="card" style="align-self:center"><p style="font-size:1.1rem;line-height:1.5;font-family:var(--serif)">Cicero reports Verres&rsquo;s boast: three years in Sicily were enough &mdash; one year&rsquo;s profits for himself, one for his advocates and protectors, one for the jury.</p><p class="who" style="margin-top:.5rem">Cicero, <em>Against Verres</em> I.40 (paraphrase)</p></div>
+  </div>
+  <p class="footer-tag">Cicero, <em>In Verrem</em> I (70 before the Common Era); Beard 2015, ch. 1. Paraphrase; no translation in the course folder.</p>
+</section>
+
+<!-- 39 · Catiline -->
+<section class="slide ex">
+  <p class="kicker">Part VI · Rome · Cicero and Catiline, 63</p>
+  <h2>&ldquo;Cicero&rsquo;s finest hour&rdquo;</h2>
+  <ul class="tl" style="max-width:1080px">
+    <li><b>63</b><span>Cicero is consul. Lucius Sergius Catiline, defeated for the consulship, is accused of plotting to seize power</span></li>
+    <li><b>October 63</b><span>Senate passes its &ldquo;final decree&rdquo; (<em>senatus consultum ultimum</em>): the consuls should see that the state comes to no harm</span></li>
+    <li><b>November 63</b><span>Cicero&rsquo;s speeches against Catiline; Catiline leaves Rome to join an armed force</span></li>
+    <li class="now"><b>Dec 5, 63</b><span>Senate debates five arrested conspirators: Julius Caesar proposes life imprisonment, Cato the Younger death. They are strangled that night, without trial</span></li>
+    <li><b>58</b><span>A law of Publius Clodius exiles anyone who executed a Roman citizen without trial; Cicero leaves Rome</span></li>
+    <li><b>57</b><span>Cicero recalled from exile</span></li>
+    <li><b>43</b><span>Cicero himself is proscribed by Mark Antony, Octavian and Lepidus, and killed</span></li>
+  </ul>
+  <p class="footer-tag">Beard 2015, ch. 1, &ldquo;Cicero&rsquo;s Finest Hour&rdquo;; paraphrase. All years before the Common Era.</p>
+</section>
+
+<!-- 40 · Hungary seats -->
+<section class="slide ex">
+  <p class="kicker">Part VII · Hungary · elections of 2010 and 2026</p>
+  <h2>Two two-thirds majorities</h2>
+  <div class="chartwrap chart" id="c-seats" style="max-width:1000px"></div>
+  <div class="explain">
+    <p><b>April 12, 2026:</b> Péter Magyar&rsquo;s Tisza party wins 141 of 199 seats with 53.2% of the list vote; Fidesz and its ally fall to 52 seats. Magyar becomes prime minister May 9, 2026.</p>
+    <p><b>Two-thirds</b> of parliament can amend Hungary&rsquo;s constitution with no other body&rsquo;s consent (133 of 199 seats today).</p>
+  </div>
+  <p class="footer-tag">bne IntelliNews, final results, April 2026; National Election Office (2010) via Wikipedia. Parliament shrank from 386 to 199 seats under the 2011 election law.</p>
+</section>
+
+<!-- 41 · 17th Amendment -->
+<section class="slide ex">
+  <p class="kicker">Part VII · Hungary · 17th Amendment to the Fundamental Law · July 13, 2026</p>
+  <h2>The 17th Amendment</h2>
+  <div class="split">
+    <ul class="tl">
+      <li><b>Vote</b><span>139 to 6; Fidesz boycotts</span></li>
+      <li><b>President</b><span>Tamás Sulyok&rsquo;s term ends early; parliament elects an interim head of state</span></li>
+      <li><b>Constitutional Court</b><span>Retirement age 70, ending the tenure of its president, Péter Polt (chief prosecutor, 2000&ndash;2006 and 2010&ndash;2022); terms cut from 12 to 9 years; judges again elect the court&rsquo;s president</span></li>
+      <li><b>Other courts</b><span>Judges may start the recall of the heads of the Supreme Court (the Curia) and the National Office for the Judiciary</span></li>
+      <li><b>Parliament</b><span>Members limited to three terms, counting past service: 22 of 52 Fidesz members barred from running again</span></li>
+    </ul>
+    <div class="statrow" style="margin-top:0;flex-direction:column;gap:1.2rem">
+      <div class="stat"><div class="v">5 days</div><div class="l">public consultation before the vote (Human Rights Watch)</div></div>
+      <div class="stat"><div class="v">Signed</div><div class="l">by President Sulyok, July 2026, after the government said a refusal would start removal proceedings</div></div>
+    </div>
+  </div>
+  <p class="footer-tag">Euronews, July 13, 2026; bne IntelliNews, July 18, 2026; Human Rights Watch, June 25, 2026; Philstar / Reuters, July 19, 2026.</p>
+</section>
+
+<!-- 42 · Two quotes -->
+<section class="slide">
+  <p class="kicker">Part VII · Hungary · two assessments</p>
+  <h2>Hungary&rsquo;s amendment: two assessments</h2>
+  <div class="twocol">
+    <div class="col">
+      <div class="collabel">Gábor Spuller · I&middot;CONnect blog · May 12, 2026</div>
+      <div class="colq">&ldquo;The weapon forged to protect illiberalism from judicial challenge works equally well in liberal hands.&rdquo;<cite>On the 2013 rule limiting review of amendments to procedure</cite></div>
+    </div>
+    <div class="col">
+      <div class="collabel">Benjamin Ward · Human Rights Watch · June 25, 2026</div>
+      <div class="colq">&ldquo;The ends do not justify the means in a state that respects the rule of law.&rdquo;<cite>Also: &ldquo;restoring the rule of law and reversing the changes introduced under Fidesz are legitimate objectives&rdquo;</cite></div>
+    </div>
+  </div>
+  <ul class="big compact" style="margin-top:1.1rem">
+    <li>Prime Minister Magyar: &ldquo;the replacement of Orbán&rsquo;s political puppets can begin&rdquo;</li>
+    <li>Fidesz: &ldquo;constitutional revenge&rdquo;</li>
+  </ul>
+  <p class="footer-tag">I&middot;CONnect, &ldquo;Hungary&rsquo;s Constitutional Boomerang: A Recommendation for the Commission&rdquo;; Human Rights Watch, &ldquo;Hungary: Rushed Constitutional Changes Undermine Rule of Law&rdquo;; Euronews, July 13, 2026; bne IntelliNews, July 18, 2026.</p>
+</section>
+
+<!-- 43 · Debate -->
+<section class="slide">
+  <p class="kicker">Part VII · Hungary · in-class debate · 30 minutes</p>
+  <h2>Is restoring judicial independence by supermajority amendment itself autocratic legalism?</h2>
+  <ol class="task">
+    <li>Left half of the room argues yes; right half argues no</li>
+    <li>Ten minutes in pairs: two pieces of evidence from this week&rsquo;s readings or cases</li>
+    <li>Each side: three speakers, two minutes each</li>
+    <li>Rebuttal: one minute per side</li>
+  </ol>
+  <p class="footer-tag">Readings: Gamboa et al. 2024; Dichio &amp; Logvinenko 2024; Scheppele 2018. Cases: Hungary 2010&ndash;2013 and 2026; Brazil 2019&ndash;2026; Rome 63.</p>
+</section>
+
+<!-- 44 · Synthesis -->
+<section class="slide">
+  <p class="kicker">Week 11 · synthesis</p>
+  <h2>Sources, concepts, cases</h2>
+  <table class="biblio">
+    <tr><th>Source</th><th>Concept</th><th>Cases this week</th></tr>
+    <tr><td>O&rsquo;Donnell 1998</td><td>Vertical and horizontal accountability</td><td>179 countries, 2025</td></tr>
+    <tr><td>Hamilton 1788</td><td>&ldquo;Neither force nor will, but merely judgment&rdquo;</td><td>Brazil, 2025&ndash;2026</td></tr>
+    <tr><td>Dichio &amp; Logvinenko 2024</td><td>Stewards, defenders, progenitors, collaborators</td><td>Germany, Colombia, United States, Venezuela</td></tr>
+    <tr><td>Gamboa et al. 2024</td><td>Constitutional balancing; public administration policing</td><td>Colombia, Mexico, Brazil</td></tr>
+    <tr><td>Scheppele 2018</td><td>Autocratic legalism</td><td>Hungary 2010&ndash;2013 and 2026; Turkey</td></tr>
+    <tr><td>Beard 2015; Plutarch; Cicero</td><td>Proscription; jury capture; emergency decree</td><td>Rome, 82&ndash;43 before the Common Era</td></tr>
+  </table>
+</section>
+
+
+
+
+<div class="counter" id="counter">1</div>
+<div class="hint">&darr; / &rarr; / space to advance</div>
+<script>
+var D = {"scatter":[["MEX","Mexico",0.332,0.77],["SUR","Suriname",0.829,0.896],["SWE","Sweden",0.989,0.934],["CHE","Switzerland",0.977,0.921],["GHA","Ghana",0.895,0.85],["ZAF","South Africa",0.882,0.893],["JPN","Japan",0.928,0.921],["MMR","Burma/Myanmar",0.059,0.323],["RUS","Russia",0.111,0.414],["ALB","Albania",0.732,0.739],["EGY","Egypt",0.342,0.473],["YEM","Yemen",0.181,0.204],["COL","Colombia",0.92,0.893],["POL","Poland",0.91,0.882],["BRA","Brazil",0.921,0.9],["USA","United States",0.708,0.923],["PRT","Portugal",0.935,0.923],["SLV","El Salvador",0.037,0.629],["BGD","Bangladesh",0.33,0.225],["BOL","Bolivia",0.483,0.885],["HTI","Haiti",0.246,0.23],["HND","Honduras",0.571,0.729],["MLI","Mali",0.207,0.175],["PAK","Pakistan",0.502,0.565],["PER","Peru",0.801,0.887],["SEN","Senegal",0.745,0.844],["SSD","South Sudan",0.263,0.18],["SDN","Sudan",0.282,0.202],["VNM","Vietnam",0.537,0.487],["AFG","Afghanistan",0.094,0.075],["ARG","Argentina",0.817,0.908],["ETH","Ethiopia",0.158,0.591],["IND","India",0.546,0.749],["KEN","Kenya",0.883,0.757],["PRK","North Korea",0.088,0.311],["KOR","South Korea",0.95,0.92],["XKX","Kosovo",0.722,0.833],["LBN","Lebanon",0.53,0.681],["NGA","Nigeria",0.578,0.715],["PHL","Philippines",0.707,0.651],["TZA","Tanzania",0.756,0.639],["TWN","Taiwan",0.92,0.929],["THA","Thailand",0.888,0.751],["UGA","Uganda",0.675,0.496],["VEN","Venezuela",0.047,0.347],["BEN","Benin",0.339,0.758],["BTN","Bhutan",0.846,0.86],["BFA","Burkina Faso",0.199,0.21],["KHM","Cambodia",0.072,0.377],["IDN","Indonesia",0.546,0.777],["MOZ","Mozambique",0.373,0.472],["NPL","Nepal",0.834,0.847],["NIC","Nicaragua",0.022,0.405],["NER","Niger",0.316,0.221],["ZMB","Zambia",0.775,0.742],["ZWE","Zimbabwe",0.407,0.551],["GIN","Guinea",0.34,0.499],["CIV","Ivory Coast",0.327,0.615],["MRT","Mauritania",0.297,0.636],["CAN","Canada",0.879,0.928],["AUS","Australia",0.978,0.942],["BWA","Botswana",0.758,0.875],["BDI","Burundi",0.226,0.434],["CPV","Cape Verde",0.862,0.901],["CAF","Central African Republic",0.201,0.452],["CHL","Chile",0.974,0.939],["CRI","Costa Rica",0.954,0.941],["TLS","Timor-Leste",0.707,0.873],["ECU","Ecuador",0.63,0.875],["FRA","France",0.958,0.927],["DEU","Germany",0.98,0.944],["GTM","Guatemala",0.875,0.81],["IRN","Iran",0.463,0.464],["IRQ","Iraq",0.625,0.727],["IRL","Ireland",0.949,0.93],["ITA","Italy",0.899,0.932],["JOR","Jordan",0.772,0.778],["LVA","Latvia",0.902,0.922],["LSO","Lesotho",0.749,0.87],["LBR","Liberia",0.7,0.811],["MWI","Malawi",0.921,0.81],["MDV","Maldives",0.774,0.813],["MNG","Mongolia",0.878,0.776],["MAR","Morocco",0.755,0.666],["NLD","Netherlands",0.954,0.936],["PAN","Panama",0.838,0.898],["PNG","Papua New Guinea",0.859,0.7],["QAT","Qatar",0.162,0.067],["SLE","Sierra Leone",0.601,0.667],["ESP","Spain",0.891,0.942],["SYR","Syria",0.141,0.17],["TUN","Tunisia",0.603,0.625],["TUR","Turkey",0.118,0.691],["UKR","Ukraine",0.636,0.772],["GBR","United Kingdom",0.957,0.914],["URY","Uruguay",0.928,0.928],["DZA","Algeria",0.276,0.578],["AGO","Angola",0.249,0.624],["ARM","Armenia",0.548,0.815],["AZE","Azerbaijan",0.082,0.368],["BLR","Belarus",0.032,0.357],["CMR","Cameroon",0.196,0.438],["TCD","Chad",0.085,0.437],["CHN","China",0.214,0.094],["COD","Democratic Republic of the Congo",0.257,0.554],["COG","Republic of the Congo",0.299,0.429],["DJI","Djibouti",0.25,0.489],["DOM","Dominican Republic",0.468,0.882],["ERI","Eritrea",0.071,0.066],["GAB","Gabon",0.176,0.62],["GMB","The Gambia",0.733,0.871],["GEO","Georgia",0.607,0.652],["GNB","Guinea-Bissau",0.326,0.216],["JAM","Jamaica",0.843,0.921],["KAZ","Kazakhstan",0.34,0.589],["KGZ","Kyrgyzstan",0.447,0.651],["LAO","Laos",0.551,0.35],["LBY","Libya",0.51,0.215],["MDG","Madagascar",0.467,0.594],["MDA","Moldova",0.803,0.852],["NAM","Namibia",0.814,0.779],["PSE","Palestine/West Bank",0.296,0.254],["RWA","Rwanda",0.365,0.512],["SOM","Somalia",0.598,0.217],["LKA","Sri Lanka",0.704,0.913],["SWZ","Eswatini",0.53,0.511],["TJK","Tajikistan",0.15,0.345],["TGO","Togo",0.205,0.647],["TTO","Trinidad and Tobago",0.894,0.914],["TKM","Turkmenistan",0.096,0.335],["PSG","Palestine/Gaza",0.187,0.211],["SML","Somaliland",0.656,0.809],["UZB","Uzbekistan",0.127,0.513],["AUT","Austria",0.92,0.913],["BHR","Bahrain",0.184,0.522],["BRB","Barbados",0.825,0.901],["BEL","Belgium",0.906,0.939],["BIH","Bosnia and Herzegovina",0.519,0.768],["BGR","Bulgaria",0.896,0.843],["COM","Comoros",0.323,0.532],["HRV","Croatia",0.91,0.878],["CUB","Cuba",0.155,0.38],["CYP","Cyprus",0.828,0.915],["CZE","Czechia",0.954,0.914],["DNK","Denmark",0.985,0.938],["GNQ","Equatorial Guinea",0.156,0.36],["EST","Estonia",0.96,0.929],["FJI","Fiji",0.781,0.729],["FIN","Finland",0.971,0.934],["GRC","Greece",0.679,0.925],["GUY","Guyana",0.387,0.79],["HKG","Hong Kong",0.294,0.412],["ISL","Iceland",0.855,0.923],["ISR","Israel",0.899,0.903],["KWT","Kuwait",0.682,0.087],["LTU","Lithuania",0.955,0.882],["LUX","Luxembourg",0.884,0.929],["MKD","North Macedonia",0.674,0.818],["MYS","Malaysia",0.564,0.765],["MLT","Malta",0.667,0.9],["MUS","Mauritius",0.931,0.912],["MNE","Montenegro",0.795,0.793],["NZL","New Zealand",0.948,0.936],["NOR","Norway",0.986,0.937],["OMN","Oman",0.463,0.708],["PRY","Paraguay",0.588,0.811],["ROU","Romania",0.725,0.819],["STP","Sao Tome and Principe",0.841,0.853],["SAU","Saudi Arabia",0.146,0.051],["SRB","Serbia",0.392,0.596],["SYC","Seychelles",0.901,0.899],["SGP","Singapore",0.743,0.753],["SVK","Slovakia",0.693,0.928],["SVN","Slovenia",0.903,0.909],["SLB","Solomon Islands",0.719,0.864],["VUT","Vanuatu",0.851,0.878],["ARE","United Arab Emirates",0.329,0.504],["HUN","Hungary",0.586,0.75],["ZZB","Zanzibar",0.794,0.601]],"jucon":{"DEU":[[2000,0.952],[2001,0.952],[2002,0.952],[2003,0.952],[2004,0.952],[2005,0.952],[2006,0.952],[2007,0.952],[2008,0.952],[2009,0.952],[2010,0.952],[2011,0.952],[2012,0.952],[2013,0.952],[2014,0.952],[2015,0.952],[2016,0.952],[2017,0.918],[2018,0.918],[2019,0.918],[2020,0.918],[2021,0.918],[2022,0.918],[2023,0.947],[2024,0.934],[2025,0.934]],"COL":[[2000,0.815],[2001,0.815],[2002,0.815],[2003,0.815],[2004,0.815],[2005,0.821],[2006,0.827],[2007,0.827],[2008,0.827],[2009,0.829],[2010,0.823],[2011,0.841],[2012,0.848],[2013,0.818],[2014,0.818],[2015,0.818],[2016,0.823],[2017,0.835],[2018,0.826],[2019,0.819],[2020,0.82],[2021,0.82],[2022,0.804],[2023,0.817],[2024,0.846],[2025,0.846]],"BRA":[[2000,0.825],[2001,0.825],[2002,0.825],[2003,0.825],[2004,0.825],[2005,0.925],[2006,0.925],[2007,0.925],[2008,0.925],[2009,0.925],[2010,0.93],[2011,0.93],[2012,0.927],[2013,0.931],[2014,0.927],[2015,0.921],[2016,0.872],[2017,0.881],[2018,0.859],[2019,0.806],[2020,0.806],[2021,0.827],[2022,0.827],[2023,0.914],[2024,0.954],[2025,0.954]],"USA":[[2000,0.954],[2001,0.949],[2002,0.949],[2003,0.949],[2004,0.949],[2005,0.949],[2006,0.949],[2007,0.947],[2008,0.947],[2009,0.951],[2010,0.953],[2011,0.953],[2012,0.953],[2013,0.961],[2014,0.961],[2015,0.961],[2016,0.962],[2017,0.931],[2018,0.948],[2019,0.947],[2020,0.928],[2021,0.93],[2022,0.93],[2023,0.93],[2024,0.902],[2025,0.844]],"MEX":[[2000,0.723],[2001,0.723],[2002,0.723],[2003,0.723],[2004,0.723],[2005,0.723],[2006,0.723],[2007,0.714],[2008,0.714],[2009,0.714],[2010,0.739],[2011,0.739],[2012,0.721],[2013,0.713],[2014,0.713],[2015,0.7],[2016,0.7],[2017,0.7],[2018,0.669],[2019,0.688],[2020,0.61],[2021,0.534],[2022,0.498],[2023,0.467],[2024,0.394],[2025,0.265]],"HUN":[[2000,0.91],[2001,0.91],[2002,0.91],[2003,0.91],[2004,0.91],[2005,0.882],[2006,0.904],[2007,0.904],[2008,0.904],[2009,0.9],[2010,0.832],[2011,0.815],[2012,0.769],[2013,0.745],[2014,0.737],[2015,0.737],[2016,0.747],[2017,0.741],[2018,0.72],[2019,0.71],[2020,0.672],[2021,0.696],[2022,0.632],[2023,0.632],[2024,0.63],[2025,0.678]],"POL":[[2000,0.96],[2001,0.96],[2002,0.96],[2003,0.96],[2004,0.96],[2005,0.96],[2006,0.956],[2007,0.956],[2008,0.959],[2009,0.959],[2010,0.96],[2011,0.961],[2012,0.961],[2013,0.958],[2014,0.952],[2015,0.867],[2016,0.765],[2017,0.678],[2018,0.587],[2019,0.561],[2020,0.572],[2021,0.543],[2022,0.564],[2023,0.56],[2024,0.728],[2025,0.714]],"TUR":[[2000,0.815],[2001,0.829],[2002,0.866],[2003,0.839],[2004,0.839],[2005,0.839],[2006,0.839],[2007,0.835],[2008,0.84],[2009,0.831],[2010,0.722],[2011,0.702],[2012,0.696],[2013,0.655],[2014,0.576],[2015,0.551],[2016,0.315],[2017,0.135],[2018,0.15],[2019,0.162],[2020,0.153],[2021,0.16],[2022,0.164],[2023,0.178],[2024,0.197],[2025,0.202]],"VEN":[[2000,0.329],[2001,0.329],[2002,0.329],[2003,0.313],[2004,0.156],[2005,0.05],[2006,0.044],[2007,0.044],[2008,0.044],[2009,0.044],[2010,0.046],[2011,0.046],[2012,0.046],[2013,0.03],[2014,0.025],[2015,0.024],[2016,0.023],[2017,0.025],[2018,0.019],[2019,0.016],[2020,0.024],[2021,0.018],[2022,0.025],[2023,0.021],[2024,0.016],[2025,0.017]]}};
+
+/* ---------- navigation ---------- */
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var counter = document.getElementById('counter');
+  var current = 0;
+  function goTo(i) { if (i < 0 || i >= slides.length) return; current = i; slides[i].scrollIntoView({ behavior: 'smooth' }); }
+  try {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.5) { current = slides.indexOf(e.target); counter.textContent = (current + 1) + ' / ' + slides.length; }
+      });
+    }, { threshold: [0.6] });
+    slides.forEach(function (s) { obs.observe(s); });
+  } catch (err) {}
+  counter.textContent = '1 / ' + slides.length;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+})();
+
+/* ---------- charts (Varieties of Democracy project data, version 16; other sources per slide footer) ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f', RULE = '#d9dde3';
+  var STEW = '#2f8a5a', DEF = '#2a5da8', PROG = '#e0793f', COLL = '#96302a';
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(name, attrs, parent) { var n = document.createElementNS(NS, name); for (var k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+  function txt(node, s) { node.textContent = s; return node; }
+  function svgIn(id, W, H) { var box = document.getElementById(id); if (!box) return null; return el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box); }
+  function wrap(s, max) { var words = s.split(' '), lines = [], cur = ''; words.forEach(function (w) { if ((cur + ' ' + w).trim().length > max) { if (cur) lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }); if (cur) lines.push(cur); return lines; }
+  function lines(svg, x, y, arr, o) {
+    o = o || {}; var lh = o.lh || (o.size || 14) * 1.25;
+    arr.forEach(function (s, k) { txt(el('text', { x: x, y: y + k * lh, 'text-anchor': o.anchor || 'start', 'font-size': o.size || 14, fill: o.fill || INK, 'font-weight': o.weight || '400', 'font-style': o.style || 'normal' }, svg), s); });
+  }
+  function defs(svg) {
+    var d = el('defs', {}, svg);
+    [['ah', INK], ['ahA', ACCENT], ['ahM', MUTED], ['ahD', DEF], ['ahC', COLL]].forEach(function (a) {
+      var m = el('marker', { id: a[0] + Math.random().toString(36).slice(2, 6), viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' }, d);
+      el('path', { d: 'M0,0 L10,5 L0,10 z', fill: a[1] }, m);
+      d[a[0]] = m.getAttribute('id');
+    });
+    return function (k) { return 'url(#' + d[k] + ')'; };
+  }
+
+  /* generic line chart */
+  function lineChart(svg, series, o) {
+    var W = o.W, H = o.H, pL = o.pL || 50, pR = o.pR || 30, pT = o.pT || 14, pB = o.pB || 30, ox = o.ox || 0, oy = o.oy || 0;
+    var pw = W - pL - pR, ph = H - pT - pB, fs = o.fs || 13;
+    function X(x) { return ox + pL + (x - o.x0) / (o.x1 - o.x0) * pw; }
+    function Y(y) { return oy + pT + ph - (y - o.y0) / (o.y1 - o.y0) * ph; }
+    (o.yTicks || []).forEach(function (t) {
+      el('line', { x1: X(o.x0), x2: X(o.x1), y1: Y(t), y2: Y(t), stroke: '#e6e9ee' }, svg);
+      txt(el('text', { x: X(o.x0) - 7, y: Y(t) + 4, 'text-anchor': 'end', 'font-size': fs, fill: MUTED }, svg), o.fmtY ? o.fmtY(t) : t);
+    });
+    (o.xTicks || []).forEach(function (t) { txt(el('text', { x: X(t), y: Y(o.y0) + fs + 8, 'text-anchor': 'middle', 'font-size': fs, fill: MUTED }, svg), t); });
+    el('line', { x1: X(o.x0), x2: X(o.x1), y1: Y(o.y0), y2: Y(o.y0), stroke: '#b9bfc8' }, svg);
+    (o.events || []).forEach(function (ev) {
+      el('line', { x1: X(ev.x), x2: X(ev.x), y1: Y(o.y1), y2: Y(o.y0), stroke: ev.color || '#b9bfc8', 'stroke-dasharray': '4 4' }, svg);
+      var ty = Y(o.y1) + 12 + (ev.tier || 0) * (o.evlh || 15);
+      txt(el('text', { x: X(ev.x) + (ev.left ? -5 : 5), y: ty, 'text-anchor': ev.left ? 'end' : 'start', 'font-size': o.evfs || 12.5, fill: ev.color || MUTED, 'font-weight': '600' }, svg), ev.label);
+    });
+    series.forEach(function (s) {
+      var d = s.data.filter(function (p) { return p[0] >= o.x0 && p[0] <= o.x1; });
+      el('path', { d: d.map(function (p, i) { return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1); }).join(' '), fill: 'none', stroke: s.color, 'stroke-width': s.width || 3, 'stroke-linejoin': 'round' }, svg);
+      var last = d[d.length - 1];
+      if (s.name) txt(el('text', { x: X(last[0]) + 8, y: Y(last[1]) + 5 + (s.dy || 0), 'font-size': o.lfs || 14, 'font-weight': '700', fill: s.color }, svg), s.name + (o.showVal ? ' ' + last[1].toFixed(2) : ''));
+      (s.dots || []).forEach(function (yr) {
+        var p = d.filter(function (q) { return q[0] === yr; })[0]; if (!p) return;
+        el('circle', { cx: X(p[0]), cy: Y(p[1]), r: 4.5, fill: s.color, stroke: '#fff', 'stroke-width': 2 }, svg);
+        txt(el('text', { x: X(p[0]) + (s.dotdx || 0), y: Y(p[1]) - 9, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': '700', fill: s.color }, svg), p[1].toFixed(2));
+      });
+    });
+    if (o.yLabel) txt(el('text', { x: ox + 12, y: Y((o.y0 + o.y1) / 2), 'font-size': 12, fill: MUTED, 'text-anchor': 'middle', transform: 'rotate(-90 ' + (ox + 12) + ' ' + Y((o.y0 + o.y1) / 2) + ')' }, svg), o.yLabel);
+    return { X: X, Y: Y };
+  }
+  var f1 = function (v) { return v.toFixed(1); };
+  function J(c) { return D.jucon[c]; }
+
+  /* 3 · three directions of accountability */
+  (function () {
+    var svg = svgIn('c-acc', 1020, 330); if (!svg) return; var M = defs(svg);
+    function box(x, y, w, h, label, o) {
+      o = o || {};
+      el('rect', { x: x, y: y, width: w, height: h, rx: 10, fill: o.fill || '#fff', stroke: o.stroke || INK, 'stroke-width': o.sw || 1.5 }, svg);
+      var arr = Array.isArray(label) ? label : [label];
+      lines(svg, x + w / 2, y + h / 2 - (arr.length - 1) * 9 + 5, arr, { anchor: 'middle', size: o.size || 15, weight: o.weight || '700', fill: o.tfill || INK, lh: 18 });
+    }
+    box(380, 18, 260, 62, ['Government', 'president / prime minister, ministers'], { size: 14 });
+    box(380, 250, 260, 62, ['Citizens', 'voters, parties'], { size: 14 });
+    // vertical
+    el('line', { x1: 510, y1: 248, x2: 510, y2: 84, stroke: ACCENT, 'stroke-width': 4, 'marker-end': M('ahA') }, svg);
+    lines(svg, 522, 160, ['VERTICAL', 'elections'], { size: 14, weight: '700', fill: ACCENT });
+    // horizontal: three institutions on left
+    var inst = [['Legislature'], ['Courts'], ['Auditors, prosecutors,', 'ombudsmen']];
+    inst.forEach(function (t, i) {
+      var y = 14 + i * 76;
+      box(20, y, 210, 60, t, { size: 14.5, fill: i === 1 ? '#f4e9e9' : '#fff', stroke: i === 1 ? ACCENT : INK, sw: i === 1 ? 2.5 : 1.5, tfill: i === 1 ? ACCENT : INK });
+      el('line', { x1: 234, y1: y + 30, x2: 376, y2: 49 + (i - 1) * 10, stroke: DEF, 'stroke-width': 3, 'marker-end': M('ahD') }, svg);
+    });
+    lines(svg, 20, 252, ['HORIZONTAL: oversight, sanctions'], { size: 14, weight: '700', fill: DEF });
+    // diagonal
+    box(790, 150, 210, 70, ['Press,', 'civil society'], { size: 14.5 });
+    el('line', { x1: 800, y1: 152, x2: 644, y2: 72, stroke: STEW, 'stroke-width': 3, 'marker-end': M('ah') }, svg);
+    el('line', { x1: 800, y1: 214, x2: 644, y2: 266, stroke: STEW, 'stroke-width': 2, 'stroke-dasharray': '5 4' }, svg);
+    lines(svg, 690, 150, ['DIAGONAL', 'journalism, protest'], { size: 14, weight: '700', fill: STEW, anchor: 'middle' });
+  })();
+
+  /* 5 · scatter */
+  (function () {
+    var W = 640, H = 470, svg = svgIn('c-scatter', W, H); if (!svg) return;
+    var pL = 56, pR = 24, pT = 14, pB = 48, pw = W - pL - pR, ph = H - pT - pB;
+    function X(v) { return pL + v * pw; } function Y(v) { return pT + ph - v * ph; }
+    [0, .25, .5, .75, 1].forEach(function (t) {
+      el('line', { x1: X(0), x2: X(1), y1: Y(t), y2: Y(t), stroke: '#eceef2' }, svg);
+      el('line', { x1: X(t), x2: X(t), y1: Y(0), y2: Y(1), stroke: '#eceef2' }, svg);
+      txt(el('text', { x: X(0) - 8, y: Y(t) + 4, 'text-anchor': 'end', 'font-size': 12, fill: MUTED }, svg), t);
+      txt(el('text', { x: X(t), y: Y(0) + 18, 'text-anchor': 'middle', 'font-size': 12, fill: MUTED }, svg), t);
+    });
+    txt(el('text', { x: X(.5), y: H - 6, 'text-anchor': 'middle', 'font-size': 13.5, 'font-weight': '700', fill: DEF }, svg), 'Horizontal accountability (courts, legislature, oversight agencies) →');
+    txt(el('text', { x: 14, y: Y(.5), 'text-anchor': 'middle', 'font-size': 13.5, 'font-weight': '700', fill: ACCENT, transform: 'rotate(-90 14 ' + Y(.5) + ')' }, svg), 'Vertical accountability (elections) →');
+    var hi = { DEU: [6, -12, 'end', 'Germany'], BRA: [-10, -2, 'end', 'Brazil'], COL: [8, 20, 'start', 'Colombia'], POL: [-12, 22, 'end', 'Poland'], USA: [-10, -8, 'end', 'United States'], HUN: [-10, 4, 'end', 'Hungary'], MEX: [10, 5, 'start', 'Mexico'], TUR: [10, 5, 'start', 'Turkey'], VEN: [10, 5, 'start', 'Venezuela'] };
+    D.scatter.forEach(function (p) { if (!hi[p[0]]) el('circle', { cx: X(p[2]), cy: Y(p[3]), r: 4, fill: '#b8bec8', opacity: .7 }, svg); });
+    D.scatter.forEach(function (p) {
+      var h = hi[p[0]]; if (!h) return;
+      el('circle', { cx: X(p[2]), cy: Y(p[3]), r: 6.5, fill: ACCENT, stroke: '#fff', 'stroke-width': 1.5 }, svg);
+      txt(el('text', { x: X(p[2]) + h[0], y: Y(p[3]) + h[1], 'text-anchor': h[2], 'font-size': 13.5, 'font-weight': '700', fill: INK }, svg), h[3]);
+    });
+  })();
+
+  /* sword, purse, scales icons */
+  function sword(svg, cx, cy, s, col) {
+    var g = el('g', { transform: 'translate(' + cx + ',' + cy + ') scale(' + s + ') rotate(-35)' }, svg);
+    el('path', { d: 'M-4,-60 L4,-60 L4,22 L0,30 L-4,22 Z', fill: '#cfd5dd', stroke: col, 'stroke-width': 2 }, g);
+    el('rect', { x: -20, y: -66, width: 40, height: 7, rx: 3, fill: col }, g);
+    el('rect', { x: -4, y: -88, width: 8, height: 22, rx: 3, fill: col }, g);
+    el('circle', { cx: 0, cy: -92, r: 6, fill: col }, g);
+  }
+  function purse(svg, cx, cy, s, col) {
+    var g = el('g', { transform: 'translate(' + cx + ',' + cy + ') scale(' + s + ')' }, svg);
+    el('path', { d: 'M-34,-6 C-44,30 -30,48 0,48 C30,48 44,30 34,-6 C26,-22 -26,-22 -34,-6 Z', fill: '#f3e3c6', stroke: col, 'stroke-width': 2.5 }, g);
+    el('path', { d: 'M-18,-22 L-26,-44 L-8,-34 L0,-48 L8,-34 L26,-44 L18,-22', fill: '#f3e3c6', stroke: col, 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, g);
+    el('rect', { x: -22, y: -26, width: 44, height: 8, rx: 4, fill: col }, g);
+    txt(el('text', { x: 0, y: 24, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': '700', fill: col }, g), '$');
+  }
+  function scales(svg, cx, cy, s, col) {
+    var g = el('g', { transform: 'translate(' + cx + ',' + cy + ') scale(' + s + ')' }, svg);
+    el('line', { x1: 0, y1: -46, x2: 0, y2: 40, stroke: col, 'stroke-width': 4 }, g);
+    el('rect', { x: -22, y: 40, width: 44, height: 8, rx: 3, fill: col }, g);
+    el('line', { x1: -46, y1: -36, x2: 46, y2: -36, stroke: col, 'stroke-width': 4 }, g);
+    el('circle', { cx: 0, cy: -50, r: 6, fill: col }, g);
+    [-46, 46].forEach(function (x) {
+      el('line', { x1: x, y1: -36, x2: x - 16, y2: 2, stroke: col, 'stroke-width': 1.5 }, g);
+      el('line', { x1: x, y1: -36, x2: x + 16, y2: 2, stroke: col, 'stroke-width': 1.5 }, g);
+      el('path', { d: 'M' + (x - 22) + ',2 Q' + x + ',22 ' + (x + 22) + ',2 Z', fill: '#e8ecf1', stroke: col, 'stroke-width': 2 }, g);
+    });
+  }
+
+  /* 9 · three branches */
+  (function () {
+    var svg = svgIn('c-branches', 1080, 250); if (!svg) return;
+    var cols = [
+      { x: 180, t: 'Executive', q: ['“holds the sword', 'of the community”'], f: sword, c: INK },
+      { x: 540, t: 'Legislature', q: ['“commands the purse”'], f: purse, c: '#8a6a2f' },
+      { x: 900, t: 'Judiciary', q: ['“neither FORCE nor WILL,', 'but merely judgment”'], f: scales, c: ACCENT }
+    ];
+    cols.forEach(function (c, i) {
+      el('rect', { x: c.x - 165, y: 4, width: 330, height: 240, rx: 12, fill: i === 2 ? '#f4e9e9' : '#fff', stroke: i === 2 ? ACCENT : RULE, 'stroke-width': i === 2 ? 2 : 1 }, svg);
+      c.f(svg, c.x, 90, 1, c.c);
+      txt(el('text', { x: c.x, y: 182, 'text-anchor': 'middle', 'font-size': 21, 'font-weight': '700', fill: c.c }, svg), c.t);
+      lines(svg, c.x, 208, c.q, { anchor: 'middle', size: 16, fill: INK, lh: 20 });
+    });
+  })();
+
+  /* 11 · judicial constraints small multiples */
+  (function () {
+    var W = 1120, H = 330, svg = svgIn('c-jucon8', W, H); if (!svg) return;
+    var P = [['BRA', 'Brazil'], ['DEU', 'Germany'], ['COL', 'Colombia'], ['USA', 'United States'], ['HUN', 'Hungary'], ['MEX', 'Mexico'], ['TUR', 'Turkey'], ['VEN', 'Venezuela']];
+    var pw = W / 4, ph = H / 2;
+    P.forEach(function (p, i) {
+      var ox = (i % 4) * pw, oy = Math.floor(i / 4) * ph;
+      txt(el('text', { x: ox + 46, y: oy + 15, 'font-size': 15, 'font-weight': '700', fill: INK }, svg), p[1]);
+      var r = lineChart(svg, [{ color: ACCENT, data: J(p[0]), width: 2.6 }], { ox: ox, oy: oy + 18, W: pw, H: ph - 18, pL: 40, pR: 42, pT: 6, pB: 26, x0: 2000, x1: 2025, y0: 0, y1: 1, yTicks: [0, .5, 1], xTicks: [2000, 2025], fs: 11.5 });
+      var d = J(p[0]), last = d[d.length - 1];
+      el('circle', { cx: r.X(last[0]), cy: r.Y(last[1]), r: 4, fill: ACCENT }, svg);
+      txt(el('text', { x: r.X(last[0]) + 6, y: r.Y(last[1]) + 4, 'font-size': 12.5, 'font-weight': '700', fill: ACCENT }, svg), last[1].toFixed(2));
+    });
+  })();
+
+  /* 12 · 2x2 matrix */
+  (function () {
+    var svg = svgIn('c-matrix', 1000, 300); if (!svg) return;
+    var x0 = 230, y0 = 40, cw = 380, chh = 125;
+    txt(el('text', { x: x0 + cw / 2, y: 26, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': '700', fill: MUTED }, svg), 'Pro-democratic pressure');
+    txt(el('text', { x: x0 + cw * 1.5, y: 26, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': '700', fill: MUTED }, svg), 'Anti-democratic pressure');
+    lines(svg, x0 - 14, y0 + chh / 2 - 4, ['Court acts', 'pro-democratically'], { anchor: 'end', size: 15, weight: '700', fill: MUTED, lh: 19 });
+    lines(svg, x0 - 14, y0 + chh * 1.5 - 4, ['Court acts', 'anti-democratically'], { anchor: 'end', size: 15, weight: '700', fill: MUTED, lh: 19 });
+    var cells = [[0, 0, 'Stewards', STEW, 'Germany, 2023'], [1, 0, 'Defenders', DEF, 'Colombia, 2010'], [0, 1, 'Progenitors', PROG, 'United States, 2026'], [1, 1, 'Collaborators', COLL, 'Venezuela, 2024']];
+    cells.forEach(function (c) {
+      var x = x0 + c[0] * cw, y = y0 + c[1] * chh;
+      el('rect', { x: x + 4, y: y + 4, width: cw - 8, height: chh - 8, rx: 10, fill: c[3], opacity: .12 }, svg);
+      el('rect', { x: x + 4, y: y + 4, width: cw - 8, height: chh - 8, rx: 10, fill: 'none', stroke: c[3], 'stroke-width': 2 }, svg);
+      txt(el('text', { x: x + cw / 2, y: y + 62, 'text-anchor': 'middle', 'font-size': 28, 'font-weight': '700', fill: c[3] }, svg), c[2]);
+      txt(el('text', { x: x + cw / 2, y: y + 92, 'text-anchor': 'middle', 'font-size': 15, fill: INK }, svg), 'Case: ' + c[4]);
+    });
+  })();
+
+  /* 13 · Germany flow */
+  (function () {
+    var svg = svgIn('c-germany', 540, 290); if (!svg) return; var M = defs(svg);
+    el('rect', { x: 10, y: 20, width: 200, height: 92, rx: 10, fill: '#fff', stroke: INK, 'stroke-width': 1.5 }, svg);
+    lines(svg, 110, 50, ['Unused pandemic', 'borrowing authority,', '2021'], { anchor: 'middle', size: 15, weight: '700', lh: 19 });
+    el('rect', { x: 330, y: 20, width: 200, height: 92, rx: 10, fill: '#fff', stroke: STEW, 'stroke-width': 2 }, svg);
+    lines(svg, 430, 58, ['Climate and', 'Transformation Fund'], { anchor: 'middle', size: 15, weight: '700', fill: STEW, lh: 19 });
+    el('line', { x1: 214, y1: 66, x2: 324, y2: 66, stroke: INK, 'stroke-width': 3, 'marker-end': M('ah') }, svg);
+    txt(el('text', { x: 270, y: 30, 'text-anchor': 'middle', 'font-size': 17, 'font-weight': '700', fill: INK }, svg), '€60 billion');
+    // cross
+    el('line', { x1: 250, y1: 44, x2: 290, y2: 88, stroke: ACCENT, 'stroke-width': 6, 'stroke-linecap': 'round' }, svg);
+    el('line', { x1: 290, y1: 44, x2: 250, y2: 88, stroke: ACCENT, 'stroke-width': 6, 'stroke-linecap': 'round' }, svg);
+    scales(svg, 270, 196, .8, ACCENT);
+    lines(svg, 270, 262, ['Federal Constitutional Court, Karlsruhe:', '“void,” November 15, 2023'], { anchor: 'middle', size: 14.5, weight: '700', fill: ACCENT, lh: 18 });
+  })();
+
+  /* 16 · Mexico */
+  (function () {
+    var svg = svgIn('c-mexico', 1120, 290); if (!svg) return;
+    lineChart(svg, [{ name: 'Mexico 0.27', color: DEF, data: J('MEX'), dots: [2015, 2022] }], {
+      W: 1120, H: 290, pL: 56, pR: 90, x0: 2000, x1: 2025, y0: 0, y1: 1, yTicks: [0, .25, .5, .75, 1], xTicks: [2000, 2005, 2010, 2015, 2020, 2025],
+      events: [{ x: 2018, label: 'López Obrador elected, 2018', tier: 0, left: true }, { x: 2023, label: '“Plan B” voided, May 2023', tier: 1, left: true }, { x: 2024, label: 'Elected-judiciary reform, Sep 2024', tier: 3, left: true }, { x: 2025, label: 'Judicial elections, June 2025', tier: 5, left: true }],
+      yLabel: 'Judicial constraints (0–1)'
+    });
+  })();
+
+  /* 18 · United States term timeline */
+  (function () {
+    var W = 1120, H = 290, svg = svgIn('c-us', W, H); if (!svg) return;
+    var x0 = 60, x1 = 1060; function X(m) { return x0 + (m - 1.5) / (7.2 - 1.5) * (x1 - x0); }
+    var yAx = 125;
+    el('line', { x1: x0, x2: x1, y1: yAx, y2: yAx, stroke: INK, 'stroke-width': 2 }, svg);
+    ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'].forEach(function (m, i) {
+      var x = X(2 + i); el('line', { x1: x, x2: x, y1: yAx - 5, y2: yAx + 5, stroke: INK }, svg);
+      txt(el('text', { x: x, y: yAx + 22, 'text-anchor': 'middle', 'font-size': 13, fill: MUTED }, svg), m + ' 2026');
+    });
+    var ev = [
+      { m: 2 + 19 / 28, up: true, c: DEF, t: 'Feb 20 · Learning Resources v. Trump', s: '6–3: emergency-powers law does not authorize tariffs', dx: 0 },
+      { m: 4 + 28 / 30, up: false, c: PROG, t: 'Apr 29 · Louisiana v. Callais', s: 'Narrows Section 2 of the Voting Rights Act', tier: 0, anchor: 'end' },
+      { m: 6 + 28 / 30, up: false, c: PROG, t: 'Jun 29 · Trump v. Slaughter', s: '6–3: president may fire agency commissioners', tier: 1, anchor: 'end' },
+      { m: 6 + 29 / 30, up: true, c: DEF, t: 'Jun 30 · Trump v. Barbara', s: '6–3: birthright-citizenship order struck down', dx: 0 }
+    ];
+    ev.forEach(function (e) {
+      var x = X(e.m), y = e.up ? yAx - 62 : yAx + 52 + (e.tier || 0) * 46;
+      el('line', { x1: x, x2: x, y1: yAx, y2: e.up ? y + 8 : y - 22, stroke: e.c, 'stroke-width': 2 }, svg);
+      el('circle', { cx: x, cy: yAx, r: 7, fill: e.c, stroke: '#fff', 'stroke-width': 2 }, svg);
+      var anchor = e.anchor || (x > 800 ? 'end' : 'start'), tx = anchor === 'end' ? x + 8 : x - 8;
+      txt(el('text', { x: tx, y: y - 6, 'text-anchor': anchor, 'font-size': 15, 'font-weight': '700', fill: e.c }, svg), e.t);
+      txt(el('text', { x: tx, y: y + 12, 'text-anchor': anchor, 'font-size': 13.5, fill: INK }, svg), e.s);
+    });
+    el('rect', { x: x0, y: 4, width: 12, height: 12, rx: 3, fill: DEF }, svg);
+    txt(el('text', { x: x0 + 18, y: 15, 'font-size': 13, fill: MUTED }, svg), 'ruled against the administration’s position');
+    el('rect', { x: x0, y: H - 16, width: 12, height: 12, rx: 3, fill: PROG }, svg);
+    txt(el('text', { x: x0 + 18, y: H - 5, 'font-size': 13, fill: MUTED }, svg), 'ruled for the administration or the state’s map');
+  })();
+
+  /* 19 · Venezuela */
+  (function () {
+    var svg = svgIn('c-ven', 1120, 280); if (!svg) return;
+    lineChart(svg, [{ name: 'Venezuela', color: COLL, data: J('VEN'), dots: [2000, 2005, 2025] }], {
+      W: 1120, H: 280, pL: 56, pR: 100, x0: 2000, x1: 2025, y0: 0, y1: 0.4, yTicks: [0, .1, .2, .3, .4], fmtY: function (v) { return v.toFixed(1); }, xTicks: [2000, 2005, 2010, 2015, 2020, 2025],
+      events: [{ x: 2004, label: '2004: court enlarged, 20 → 32', tier: 0 }, { x: 2009, label: '2009: term-limit referendum allowed', tier: 1 }, { x: 2015, label: 'Dec 2015: 13 justices appointed', tier: 2 }, { x: 2017, label: '2017: Ruling 156', tier: 3 }, { x: 2024, label: '2024: Maduro certified', tier: 4, left: true }],
+      yLabel: 'Judicial constraints (0–0.4)'
+    });
+  })();
+
+  /* 20 · tally-sheet grid */
+  (function () {
+    var svg = svgIn('c-waffle', 470, 380); if (!svg) return;
+    var s = 30, g = 5, ox = 20, oy = 10;
+    for (var i = 0; i < 100; i++) {
+      var r = Math.floor(i / 10), c = i % 10;
+      el('rect', { x: ox + c * (s + g), y: oy + r * (s + g), width: s, height: s, rx: 4, fill: i < 80 ? COLL : '#e3e6eb' }, svg);
+    }
+    lines(svg, ox, 375, ['≈ 30,000 voting machines; opposition copies of ≈ 80%'], { size: 14.5, weight: '700', fill: INK });
+  })();
+
+  /* 24 · Brazil timeline */
+  (function () {
+    var W = 1120, H = 330, svg = svgIn('c-brtl', W, H); if (!svg) return;
+    var x0 = 50, x1 = 1080; function X(y) { return x0 + (y - 2014) / (2027 - 2014) * (x1 - x0); }
+    var acts = [[2014, 2021.2, '#e0793f', 'Act 1 · Car Wash'], [2019.2, 2025.7, '#2a5da8', 'Act 2 · courts and Bolsonaro'], [2025.5, 2026.9, '#5c6470', 'Act 3 · reaction']];
+    acts.forEach(function (a, i) {
+      el('rect', { x: X(a[0]), y: 8 + i * 22, width: X(a[1]) - X(a[0]), height: 18, rx: 4, fill: a[2], opacity: .9 }, svg);
+      txt(el('text', { x: X(a[0]) + 6, y: 21 + i * 22, 'font-size': 12.5, 'font-weight': '700', fill: '#fff' }, svg), a[3]);
+    });
+    // judicial constraints line
+    var yTop = 86, yBot = 186; function Y(v) { return yBot - (v - 0.7) / 0.3 * (yBot - yTop); }
+    var d = J('BRA').filter(function (p) { return p[0] >= 2014; });
+    el('path', { d: d.map(function (p, i) { return (i ? 'L' : 'M') + X(p[0] + .5) + ',' + Y(p[1]); }).join(' '), fill: 'none', stroke: ACCENT, 'stroke-width': 2.6 }, svg);
+    [[2014, .921], [2019, .806], [2025, .954]].forEach(function (p) {
+      el('circle', { cx: X(p[0] + .5), cy: Y(p[1]), r: 4, fill: ACCENT }, svg);
+      txt(el('text', { x: X(p[0] + .5), y: Y(p[1]) + (p[0] === 2019 ? 18 : -8), 'text-anchor': 'middle', 'font-size': 12, 'font-weight': '700', fill: ACCENT }, svg), p[1].toFixed(2));
+    });
+    txt(el('text', { x: x0, y: yTop - 6, 'font-size': 12, fill: MUTED }, svg), 'Judicial constraints on the executive, Brazil (axis 0.7–1.0)');
+    var yAx = 212;
+    el('line', { x1: x0, x2: x1, y1: yAx, y2: yAx, stroke: INK, 'stroke-width': 1.5 }, svg);
+    for (var y = 2014; y <= 2026; y++) { el('line', { x1: X(y), x2: X(y), y1: yAx - 4, y2: yAx + 4, stroke: INK }, svg); txt(el('text', { x: X(y), y: yAx + 18, 'text-anchor': 'middle', 'font-size': 12, fill: MUTED }, svg), y); }
+    var ev = [[2014.2, 'Car Wash begins', 0], [2017.5, 'Lula convicted', 1], [2018.3, 'Lula jailed', 2], [2018.8, 'Bolsonaro elected', 0], [2021.2, 'Lula convictions annulled', 1], [2022.8, 'Lula elected', 2], [2023.05, 'Jan 8 attack', 0], [2023.5, 'Bolsonaro barred', 1], [2025.7, 'Bolsonaro convicted', 2], [2025.55, 'United States tariffs, sanctions', 3, 'end'], [2026.8, 'Lula re-elected', 1, 'end']];
+    ev.forEach(function (e) {
+      var x = X(e[0]), y = yAx + 40 + e[2] * 22;
+      el('line', { x1: x, x2: x, y1: yAx, y2: y - 12, stroke: '#b9bfc8' }, svg);
+      el('circle', { cx: x, cy: yAx, r: 4, fill: INK }, svg);
+      var anchor = e[3] || 'middle';
+      txt(el('text', { x: x, y: y, 'text-anchor': anchor, 'font-size': 12.5, 'font-weight': '600', fill: INK }, svg), e[1]);
+    });
+  })();
+
+  /* 26 · Brazil line */
+  (function () {
+    var svg = svgIn('c-bra', 540, 330); if (!svg) return;
+    lineChart(svg, [{ color: ACCENT, data: J('BRA'), dots: [2015, 2019, 2025] }], {
+      W: 540, H: 330, pL: 46, pR: 20, x0: 2010, x1: 2025, y0: .6, y1: 1, yTicks: [.6, .7, .8, .9, 1], fmtY: f1, xTicks: [2010, 2015, 2020, 2025],
+      events: [{ x: 2019, label: 'Bolsonaro', tier: 0, left: true }, { x: 2023, label: 'Lula', tier: 0, left: true }],
+      yLabel: 'Judicial constraints, Brazil (0.6–1.0)'
+    });
+  })();
+
+  /* 27 · reaction diagram */
+  (function () {
+    var svg = svgIn('c-react', 1120, 250); if (!svg) return; var M = defs(svg);
+    el('rect', { x: 430, y: 70, width: 260, height: 110, rx: 12, fill: '#f4e9e9', stroke: ACCENT, 'stroke-width': 2 }, svg);
+    scales(svg, 470, 125, .5, ACCENT);
+    lines(svg, 590, 112, ['Supreme Federal', 'Court · Moraes'], { anchor: 'middle', size: 16, weight: '700', fill: ACCENT, lh: 20 });
+    // left: United States
+    sword(svg, 60, 70, .55, INK);
+    lines(svg, 100, 42, ['United States Treasury', 'sanctions on Moraes', 'July 30, 2025'], { size: 14, weight: '700', lh: 17 });
+    purse(svg, 60, 190, .55, '#8a6a2f');
+    lines(svg, 100, 172, ['United States tariff', 'on Brazilian goods: 50%', 'August 2025'], { size: 14, weight: '700', lh: 17 });
+    el('line', { x1: 290, y1: 66, x2: 426, y2: 106, stroke: INK, 'stroke-width': 2.5, 'marker-end': M('ah') }, svg);
+    el('line', { x1: 290, y1: 186, x2: 426, y2: 146, stroke: '#8a6a2f', 'stroke-width': 2.5, 'marker-end': M('ah') }, svg);
+    // right: Congress
+    el('rect', { x: 830, y: 60, width: 270, height: 130, rx: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.5 }, svg);
+    lines(svg, 965, 92, ['Congress of Brazil', 'sentence-reduction law', 'veto overridden, April 2026'], { anchor: 'middle', size: 14.5, weight: '700', lh: 19 });
+    lines(svg, 965, 162, ['suspended by Moraes, May 9, 2026'], { anchor: 'middle', size: 13.5, weight: '700', fill: ACCENT });
+    el('line', { x1: 826, y1: 110, x2: 696, y2: 110, stroke: INK, 'stroke-width': 2.5, 'marker-end': M('ah') }, svg);
+    el('line', { x1: 696, y1: 150, x2: 826, y2: 158, stroke: ACCENT, 'stroke-width': 2.5, 'stroke-dasharray': '6 4', 'marker-end': M('ahA') }, svg);
+  })();
+
+  /* 28 · runoff bars */
+  (function () {
+    var svg = svgIn('c-runoff', 520, 230); if (!svg) return;
+    var rows = [['Lula da Silva', 51.79, DEF], ['Flávio Bolsonaro', 48.21, PROG]];
+    var lab = 150, pw = 330; function X(v) { return lab + (v - 0) / 60 * pw; }
+    rows.forEach(function (r, i) {
+      var y = 30 + i * 80;
+      txt(el('text', { x: lab - 10, y: y + 34, 'text-anchor': 'end', 'font-size': 16, 'font-weight': '700', fill: INK }, svg), r[0]);
+      el('rect', { x: lab, y: y, width: X(r[1]) - lab, height: 54, rx: 6, fill: r[2] }, svg);
+      txt(el('text', { x: X(r[1]) - 10, y: y + 35, 'text-anchor': 'end', 'font-size': 20, 'font-weight': '700', fill: '#fff' }, svg), r[1].toFixed(2) + '%');
+    });
+    el('line', { x1: X(50), x2: X(50), y1: 18, y2: 196, stroke: INK, 'stroke-dasharray': '4 4' }, svg);
+    txt(el('text', { x: X(50), y: 14, 'text-anchor': 'middle', 'font-size': 12.5, fill: MUTED }, svg), '50%');
+    txt(el('text', { x: lab, y: 222, 'font-size': 12.5, fill: MUTED }, svg), 'Share of valid votes, runoff of October 25, 2026');
+  })();
+
+  /* 33 · Hungary and Poland */
+  (function () {
+    var svg = svgIn('c-hunpol', 540, 340); if (!svg) return;
+    lineChart(svg, [{ name: 'Poland', color: DEF, data: J('POL').filter(function (p) { return p[0] >= 2005; }), dy: -4 }, { name: 'Hungary', color: COLL, data: J('HUN').filter(function (p) { return p[0] >= 2005; }), dots: [2009], dy: 12 }], {
+      W: 540, H: 340, pL: 46, pR: 78, x0: 2005, x1: 2025, y0: .4, y1: 1, yTicks: [.4, .6, .8, 1], fmtY: f1, xTicks: [2005, 2010, 2015, 2020, 2025],
+      events: [{ x: 2010, label: 'Fidesz 2010', tier: 0 }, { x: 2015, label: 'Law and Justice 2015', tier: 1 }],
+      yLabel: 'Judicial constraints (0.4–1.0)'
+    });
+  })();
+
+  /* 34 · Turkey */
+  (function () {
+    var svg = svgIn('c-tur', 540, 340); if (!svg) return;
+    lineChart(svg, [{ name: 'Turkey', color: COLL, data: J('TUR').filter(function (p) { return p[0] >= 2005; }), dots: [2009, 2017], dy: 0 }], {
+      W: 540, H: 340, pL: 46, pR: 70, x0: 2005, x1: 2025, y0: 0, y1: 1, yTicks: [0, .25, .5, .75, 1], xTicks: [2005, 2010, 2015, 2020, 2025],
+      events: [{ x: 2010, label: '2010 referendum', tier: 0 }, { x: 2016, label: '2016 coup attempt', tier: 1 }],
+      yLabel: 'Judicial constraints (0–1)'
+    });
+  })();
+
+  /* 35 · functions hub */
+  (function () {
+    var svg = svgIn('c-hub', 1000, 332); if (!svg) return;
+    var cx = 500, cy = 165;
+    var F = [['Social control', 'sideline political opponents'], ['Legitimacy', 'claim to rule by law'], ['Administrative compliance', 'discipline officials, settle factional disputes'], ['Credible commitment', 'reassure investors and trading partners'], ['Delegation', 'hand controversial policies to judges']];
+    var pos = [[170, 40], [830, 40], [170, 248], [830, 248], [500, 310]];
+    F.forEach(function (f, i) {
+      var p = pos[i];
+      el('line', { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: '#c9ced6', 'stroke-width': 2 }, svg);
+    });
+    el('circle', { cx: cx, cy: cy, r: 78, fill: '#f4e9e9', stroke: ACCENT, 'stroke-width': 2.5 }, svg);
+    lines(svg, cx, cy - 8, ['Courts under', 'authoritarian rule'], { anchor: 'middle', size: 17, weight: '700', fill: ACCENT, lh: 21 });
+    F.forEach(function (f, i) {
+      var p = pos[i], w = i === 4 ? 420 : 320, h = i === 4 ? 40 : 62;
+      el('rect', { x: p[0] - w / 2, y: p[1] - h / 2, width: w, height: h, rx: 10, fill: '#fff', stroke: INK, 'stroke-width': 1.3 }, svg);
+      if (i === 4) {
+                var t = el('text', { x: p[0], y: p[1] + 5, 'text-anchor': 'middle', 'font-size': 14.5, fill: INK }, svg);
+        var b = el('tspan', { 'font-weight': '700' }, t); b.textContent = f[0] + ': '; var r = el('tspan', {}, t); r.textContent = f[1];
+      } else {
+        txt(el('text', { x: p[0], y: p[1] - 6, 'text-anchor': 'middle', 'font-size': 15.5, 'font-weight': '700', fill: INK }, svg), f[0]);
+        txt(el('text', { x: p[0], y: p[1] + 15, 'text-anchor': 'middle', 'font-size': 13.5, fill: MUTED }, svg), f[1]);
+      }
+    });
+  })();
+
+  /* 36 · Rome timeline (years before the Common Era, descending) */
+  (function () {
+    var W = 1120, H = 270, svg = svgIn('c-rome', W, H); if (!svg) return;
+    var x0 = 40, x1 = 1080; function X(y) { return x0 + (85 - y) / (85 - 40) * (x1 - x0); }
+    var yAx = 120;
+    el('line', { x1: x0, x2: x1, y1: yAx, y2: yAx, stroke: INK, 'stroke-width': 2 }, svg);
+    [85, 80, 75, 70, 65, 60, 55, 50, 45, 40].forEach(function (y) { el('line', { x1: X(y), x2: X(y), y1: yAx - 4, y2: yAx + 4, stroke: INK }, svg); txt(el('text', { x: X(y), y: yAx + 20, 'text-anchor': 'middle', 'font-size': 12, fill: MUTED }, svg), y); });
+    var ev = [
+      [82, 'Sulla dictator; proscriptions', true, 0, COLL], [81, 'Juries: senators only', false, 0, INK],
+      [72, 'Verres governs Sicily (73–71)', true, 1, INK], [70, 'Trial of Verres; Aurelian Law', false, 1, ACCENT],
+      [63, 'Catiline; five executed without trial', true, 0, ACCENT], [58, 'Cicero exiled', false, 0, INK], [57, 'Cicero recalled', true, 1, INK],
+      [49, 'Caesar crosses the Rubicon', false, 1, INK], [44, 'Caesar assassinated', true, 0, INK], [43, 'Cicero proscribed, killed', false, 0, COLL]
+    ];
+    ev.forEach(function (e) {
+      var x = X(e[0]), y = e[2] ? yAx - 30 - e[3] * 34 : yAx + 52 + e[3] * 34;
+      el('line', { x1: x, x2: x, y1: yAx, y2: e[2] ? y + 6 : y - 14, stroke: '#b9bfc8' }, svg);
+      el('circle', { cx: x, cy: yAx, r: 5, fill: e[4] }, svg);
+      var anchor = x > 1000 ? 'end' : (x < 100 ? 'start' : 'middle');
+      txt(el('text', { x: anchor === 'start' ? x - 6 : x, y: y, 'text-anchor': anchor, 'font-size': 13.5, 'font-weight': '700', fill: e[4] }, svg), e[1]);
+    });
+    txt(el('text', { x: x0, y: H - 4, 'font-size': 12, fill: MUTED }, svg), 'Years before the Common Era');
+  })();
+
+  /* 40 · Hungary seats */
+  (function () {
+    var svg = svgIn('c-seats', 1000, 300); if (!svg) return;
+    var groups = [['2010 · Fidesz + Christian Democrats', 52.7, 68.1, '263 of 386 seats'], ['2026 · Tisza (Péter Magyar)', 53.2, 70.9, '141 of 199 seats']];
+    var lab = 330, pw = 600; function X(v) { return lab + v / 100 * pw; }
+    groups.forEach(function (g, i) {
+      var y = 26 + i * 130;
+      txt(el('text', { x: lab - 12, y: y + 20, 'text-anchor': 'end', 'font-size': 15.5, 'font-weight': '700', fill: INK }, svg), g[0]);
+      txt(el('text', { x: lab - 12, y: y + 40, 'text-anchor': 'end', 'font-size': 13, fill: MUTED }, svg), g[3]);
+      el('rect', { x: lab, y: y, width: X(g[1]) - lab, height: 40, rx: 5, fill: '#7d8592' }, svg);
+      txt(el('text', { x: X(g[1]) - 10, y: y + 26, 'text-anchor': 'end', 'font-size': 15, 'font-weight': '700', fill: '#fff' }, svg), g[1] + '% of list vote');
+      el('rect', { x: lab, y: y, width: 0, height: 0 }, svg);
+      el('rect', { x: lab, y: y + 46, width: X(g[2]) - lab, height: 40, rx: 5, fill: COLL }, svg);
+      txt(el('text', { x: X(g[2]) + 8, y: y + 72, 'font-size': 15, 'font-weight': '700', fill: COLL }, svg), g[2] + '% of seats');
+    });
+    el('line', { x1: X(66.67), x2: X(66.67), y1: 14, y2: 290, stroke: INK, 'stroke-dasharray': '5 4', 'stroke-width': 1.5 }, svg);
+    txt(el('text', { x: X(66.67) - 6, y: 296, 'text-anchor': 'end', 'font-size': 13, 'font-weight': '700', fill: INK }, svg), 'two-thirds: can amend the constitution alone');
+  })();
+})();
+
+
+/* ---------- prologue charts ---------- */
+(function () {
+  var INK = '#1d2129', MUTED = '#5c6470', ACCENT = '#8a2f2f', RULE = '#d9dde3', DEF = '#2a5da8';
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+  function txt(n, s) { n.textContent = s; return n; }
+  function lines(svg, x, y, arr, o) { o = o || {}; var lh = o.lh || (o.size || 14) * 1.25; arr.forEach(function (s, k) { txt(el('text', { x: x, y: y + k * lh, 'text-anchor': o.anchor || 'start', 'font-size': o.size || 14, fill: o.fill || INK, 'font-weight': o.weight || '400' }, svg), s); }); }
+
+  /* project flow */
+  (function () {
+    var box = document.getElementById('c-proj'); if (!box) return;
+    var W = 1120, H = 230, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var d = el('defs', {}, svg), m = el('marker', { id: 'pah', viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto' }, d);
+    el('path', { d: 'M0,0 L10,5 L0,10 z', fill: MUTED }, m);
+    var steps = [
+      { t: 'Occidental College', b: ['John Parke Young', 'Initiative on the Global', 'Political Economy'], big: 'Endowment' },
+      { t: 'December 16–17, 2022', b: ['Workshop at Occidental:', '“Courts and Authoritarian', 'Populism”'], big: '10 participants' },
+      { t: 'April 2023', b: ['European Consortium for', 'Political Research workshop,', 'Toulouse'], big: 'drafts' },
+      { t: '2024–2025', b: ['Law & Policy special issue:', 'half on the United States,', 'half comparative'], big: '10 articles' },
+      { t: 'This week', b: ['Six articles in the', 'course readings folder'], big: '6 readings', hl: true }
+    ];
+    var w = 190, g = 32;
+    steps.forEach(function (s, i) {
+      var x = 4 + i * (w + g);
+      el('rect', { x: x, y: 8, width: w, height: 212, rx: 12, fill: s.hl ? '#f4e9e9' : '#fff', stroke: s.hl ? ACCENT : RULE, 'stroke-width': s.hl ? 2 : 1.3 }, svg);
+      txt(el('text', { x: x + w / 2, y: 36, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': '700', fill: MUTED, 'letter-spacing': '.04em' }, svg), s.t.toUpperCase());
+      txt(el('text', { x: x + w / 2, y: 82, 'text-anchor': 'middle', 'font-size': 25, 'font-weight': '700', fill: ACCENT }, svg), s.big);
+      lines(svg, x + w / 2, 128, s.b, { anchor: 'middle', size: 14.5, lh: 20 });
+      if (i < steps.length - 1) el('line', { x1: x + w + 3, y1: 114, x2: x + w + g - 4, y2: 114, stroke: MUTED, 'stroke-width': 2.5, 'marker-end': 'url(#pah)' }, svg);
+    });
+  })();
+
+  /* authors grid */
+  (function () {
+    var box = document.getElementById('c-authors'); if (!box) return;
+    var W = 1120, H = 600, svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H }, box);
+    var cols = [
+      { h: 'United States', x: 0, rows: [
+        { t: 'Culture and practice eat documents for lunch: the 2020 election cases', a: [['Michael Dichio', 'University of Utah', 1], ['Igor Logvinenko', 'Occidental College', 1]], r: 1 },
+        { t: 'Courts and democratic backsliding: a comparative perspective on the United States', a: [['Stephen Gardbaum', 'University of California, Los Angeles', 1]], r: 1 },
+        { t: 'The U.S. Supreme Court and democratic backsliding', a: [['Thomas Keck', 'Syracuse University', 1]] },
+        { t: 'From the rotting soil grows the poison ivy: the Supreme Court and Herrenvolk democracy', a: [['Julie Novkov', 'University at Albany', 1]] },
+        { t: 'Courts, the state, and democratization in the United States', a: [['Robert Lieberman', 'Johns Hopkins University', 1], ['Kory Gaines', 'Johns Hopkins (doctoral student)', 0]] }
+      ] },
+      { h: 'Comparative', x: 570, rows: [
+        { t: 'Courts against backsliding: lessons from Latin America', a: [['Laura Gamboa', 'University of Utah', 0], ['Benjamín García-Holgado', 'University of Delaware', 0], ['Ezequiel Gonzalez-Ocantos', 'University of Oxford', 0]], r: 1 },
+        { t: 'Judicial transformation in a competitive authoritarian regime: Turkey', a: [['Berk Esen', 'Sabancı University, Istanbul', 1]], r: 1 },
+        { t: 'The light and the dark side of judicial resistance', a: [['Katarína Šipulová', 'Masaryk University, Brno', 1]], r: 1 },
+        { t: 'Gaming judicial turnover: the case of court-hoarding', a: [['Patrick Leisure', '', 0], ['David Kosař', 'Masaryk University, Brno', 1]] },
+        { t: 'Courts and authoritarian populism in Asia: Indonesia and the Philippines', a: [['Björn Dressel', 'Australian National University', 0], ['Cristina Regina Bonoan', '', 0]] }
+      ] }
+    ];
+    function wrapT(str, max) { var w = str.split(' '), out = [], cur = ''; w.forEach(function (x) { if ((cur + ' ' + x).trim().length > max) { out.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); }); if (cur) out.push(cur); return out; }
+    cols.forEach(function (c) {
+      txt(el('text', { x: c.x, y: 18, 'font-size': 15, 'font-weight': '700', fill: ACCENT, 'letter-spacing': '.08em' }, svg), c.h.toUpperCase());
+      var y = 30;
+      c.rows.forEach(function (r) {
+        var tl = wrapT(r.t, 70), h = 12 + tl.length * 18 + r.a.length * 19 + 6;
+        el('rect', { x: c.x, y: y, width: 550, height: h, rx: 8, fill: r.r ? '#fff' : '#f6f7f9', stroke: r.r ? INK : RULE, 'stroke-width': r.r ? 1.3 : 1 }, svg);
+        tl.forEach(function (l, k) { txt(el('text', { x: c.x + 12, y: y + 22 + k * 18, 'font-size': 14, 'font-weight': r.r ? '700' : '600', fill: INK, 'font-style': 'italic' }, svg), l); });
+        r.a.forEach(function (a, k) {
+          var ax = c.x + 14, ay = y + 22 + tl.length * 18 + 2 + k * 19;
+          el('circle', { cx: ax + 5, cy: ay - 4.5, r: 5, fill: a[2] ? ACCENT : '#fff', stroke: ACCENT, 'stroke-width': 1.5 }, svg);
+          var t = el('text', { x: ax + 17, y: ay, 'font-size': 14, fill: INK }, svg);
+          var b = el('tspan', { 'font-weight': '700' }, t); b.textContent = a[0];
+          if (a[1]) { var s2 = el('tspan', { fill: MUTED }, t); s2.textContent = ' · ' + a[1]; }
+        });
+        y += h + 8;
+      });
+    });
+  })();
+})();
+
+</script>
+</body>
+</html>
